@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ItrBok">
+	<resultMap type="ItrBok" id="itrBokResultSet">
+		<id property="bid" column="BID"/>
+		<result property="btype" column="BTYPE"/>
+		<result property="btitle" column="BTITLE"/>
+		<result property="bcontent" column="BCONTENT"/>
+		<result property="bimg" column="BIMG"/>
+	</resultMap>
+	<insert id="itrBokInsert" parameterType="ItrBok">
+		INSERT INTO 
+		hsgbiz_book(BTYPE, BTITLE, BCONTENT, BIMG) 
+		VALUES(#{btype}, #{btitle}, #{bcontent}, #{bimg})
+	</insert>
+	<select id="selectitrBokList" resultMap="itrBokResultSet">
+		SELECT * FROM hsgbiz_book
+	</select>
+	<select id="selectitrBok" resultMap="itrBokResultSet" parameterType="java.lang.Integer">
+		SELECT * FROM hsgbiz_book 
+		WHERE BID = #{bId}
+	</select>
+	<update id="itrBokUpdate" parameterType="ItrBok">
+		UPDATE hsgbiz_book
+			SET BTYPE = #{btype}
+			, BTITLE = #{btitle}
+			, BCONTENT = #{bcontent}
+			<if test="bimg != null">
+			, BIMG = #{bimg}
+		    </if>
+		WHERE BID = #{bid}
+	</update>
+	<delete id="itrBokDelete" parameterType="java.lang.Integer">
+		DELETE FROM hsgbiz_book
+		WHERE BID = #{bId}
+	</delete>
+</mapper>

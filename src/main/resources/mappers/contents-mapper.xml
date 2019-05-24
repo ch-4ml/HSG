@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Contents">
+	<resultMap type="Contents" id="contentsResultSet">
+		<id property="contentsId" column="CONTENTS_ID"/>
+		<result property="pageId" column="PAGE_ID"/>
+		<result property="text" column="TEXT"/>
+		<result property="image" column="IMAGE"/>
+	</resultMap>
+	<select id="findContents" resultMap="contentsResultSet" parameterType="Contents">
+		SELECT * FROM hsgbiz_contents
+		WHERE CONTENTS_ID=#{contentsId};
+	</select>
+	<select id="findByPageId" resultMap="contentsResultSet" parameterType="Contents">
+		SELECT * FROM hsgbiz_contents 
+		WHERE PAGE_ID=#{pageId};
+	</select>
+	<select id="updateContents" resultMap="contentsResultSet" parameterType="Contents">
+		UPDATE hsgbiz_contents SET 
+		TEXT=#{text} WHERE CONTENTS_ID=#{contentsId};
+	</select>
+		<select id="updateImgContents" resultMap="contentsResultSet" parameterType="Contents">
+		UPDATE hsgbiz_contents SET 
+		IMAGE=#{image} WHERE CONTENTS_ID=#{contentsId};
+	</select>
+</mapper>

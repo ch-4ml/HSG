@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+		<typeAlias alias="MEMBER" type="com.hsg.intro.member.model.vo.Member"/>
+		<typeAlias alias="ITRBOK" type="com.hsg.intro.itr.bok.model.vo.ItrBok"/>
+		<typeAlias alias="CONTENTS" type="com.hsg.intro.common.contents.model.vo.Contents"/>
+		<typeAlias alias="EDUELN" type="com.hsg.intro.edu.eln.model.vo.EduEln"/>
+	</typeAliases>
+	<mappers>
+		<mapper resource="mappers/member-mapper.xml"/>
+		<mapper resource="mappers/itr-bok-mapper.xml"/>
+		<mapper resource="mappers/contents-mapper.xml"/>
+		<mapper resource="mappers/edu-eln-mapper.xml"/>
+	</mappers>
+	
+	
+</configuration>
