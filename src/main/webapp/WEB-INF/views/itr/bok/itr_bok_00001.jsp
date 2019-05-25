@@ -44,10 +44,11 @@
 			<tr>
 				<td>${content.title}</td>
 				<td>${content.text}</td>
-				<td><img alt="" src="${content.image}"></td>
+				<td><img alt="" src="../../../../resources/uploadFiles/itrbok_upload_file/${content.image}"></td>
 				<c:if test="${!empty loginUser }">
-					<td><input type="button"
-						onclick="updateBtnClickEvent(${content.id})" value="수정하기"></td>
+				<td>
+					<input type="button" onclick="updateBtnClickEvent(${content.id})" value="수정하기">
+				</td>
 				</c:if>
 			</tr>
 		</c:forEach>
