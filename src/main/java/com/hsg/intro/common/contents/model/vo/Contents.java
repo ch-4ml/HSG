@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 public class Contents implements Serializable {
 	private int contentsId;
 	private String pageId;
+	private String title;
 	private String text;
 	private String image;
 	
@@ -15,10 +16,11 @@ public class Contents implements Serializable {
 		super();
 	}
 	
-	public Contents(int contentsId, String pageId, String text, String image) {
+	public Contents(int contentsId, String pageId, String title, String text, String image) {
 		super();
 		this.contentsId = contentsId;
 		this.pageId = pageId;
+		this.title = title;
 		this.text = text;
 		this.image = image;
 	}
@@ -35,6 +37,12 @@ public class Contents implements Serializable {
 	public void setPageId(String pageId) {
 		this.pageId = pageId;
 	}
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
 	public String getText() {
 		return text;
 	}
@@ -47,10 +55,5 @@ public class Contents implements Serializable {
 	public void setImage(String image) {
 		this.image = image;
 	}
-	
-	@Override
-	public String toString() {
-		return "Contents [contentsId=" + contentsId + ", pageId=" + pageId + ", text=" + text + ", image=" + image
-				+ "]";
-	}
+
 }
