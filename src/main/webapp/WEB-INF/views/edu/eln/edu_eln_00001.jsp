@@ -28,12 +28,12 @@
     	<a href="insertView.ee">추가하기</a>
     	<br>
     </c:if>
-	<c:forEach var="e" items="${eln }" varStatus="status">
-		<a href="viewDetail.ee?id=${e.id }">
+	<c:forEach var="content" items="${contents }" varStatus="status">
+		<a href="viewDetail.ee?id=${content.id }">
 		${status.count }
-		<img src="https://img.youtube.com/vi/${e.video }/mqdefault.jpg">
-		${e.title }
-		${e.postDate }
+		<img src="https://img.youtube.com/vi/${content.image }/mqdefault.jpg">
+		${content.title }
+		${content.postDate }
 		</a>
 		<br>
 		<br>

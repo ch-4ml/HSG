@@ -38,6 +38,13 @@
     	});
     });
     
+    $(function() {
+    	$("#delete").click(function() {
+    		var id = $("#id").val();
+    		if(!confirm("삭제하시겠습니까?")) return false;
+    		else location.href="delete.ee?id=" + id;
+    	});
+    });
     </script>
 </head>
 <body>
@@ -57,15 +64,16 @@
     <!-- About Area Starts -->
     <form action="update.ee", method="post">
 	    <span id="content">
-		    ${eln.postDate }
-		   	<span id="title">${eln.title }</span>
-		    <span id="text">${eln.text }</span>
+		    ${content.postDate }
+		   	<span id="title">${content.title }</span>
+		    <span id="text">${content.text }</span>
 			<c:if test="${!empty loginUser }">
 				<input type="button" id="update" value="수정">
+				<input type="button" id="delete" value="삭제">
 			</c:if>
-			<input type="hidden" id="cat" name="cat" value="${eln.category }">
+			<input type="hidden" id="cat" name="cat" value="${content.category }">
 		</span>
-	    <input type="hidden" name="id" value="${eln.id }">
+	    <input type="hidden" id="id" name="id" value="${content.id }">
     </form>
     	
 	

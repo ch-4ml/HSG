@@ -43,17 +43,6 @@
 								<li><a href="#">교육 의뢰</a></li>
                             </ul>
                         </li>
-                        <li class="menu-has-children"><a href="">개발</a>
-                            <ul>
-                                <li><a href="#">산업용</a></li>
-                                <li><a href="#">교육용</a></li>
-                            </ul>
-                        </li>
-						<li class="menu-has-children"><a href="">컨설팅</a>
-                            <ul>
-                                <li><a href="#">설계 및 회로</a></li>
-                            </ul>
-                        </li>
 						<li class="menu-has-children"><a href="view.el">강사채용</a>
                             <ul>
                                 <li><a href="view.el">채용 공고</a></li>

@@ -52,13 +52,13 @@ public class ItrHisController {
 		// 매개변수로 줄 예정
 		int id = Integer.parseInt(request.getParameter("id"));
 		String text = request.getParameter("text"); 
-		c.setContentsId(id);
+		c.setId(id);
 		c.setText(text);
 		
 		System.out.println("in update.ih : " + c);
 		
 		try {
-			cs.updateContents(c);
+			cs.update(c);
 			List<Contents> contents = cs.findByPageId(pageId);
 			
 			mv.addObject("contents", contents);
@@ -123,9 +123,9 @@ public class ItrHisController {
 		}
 				
 		try {
-			c.setContentsId(id);
+			c.setId(id);
 			System.out.println("controller his : " + c);
-			cs.updateContentsImg(c);
+			cs.updateImage(c);
 			List<Contents> contents = cs.findByPageId(pageId);
 			
 			mv.addObject("contents", contents);

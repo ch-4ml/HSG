@@ -13,80 +13,87 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.hsg.intro.Exception.EduElnException;
-import com.hsg.intro.edu.eln.model.service.EduElnServiceImpl;
-import com.hsg.intro.edu.eln.model.vo.EduEln;
+import com.hsg.intro.Exception.ContentsException;
+import com.hsg.intro.common.contents.model.service.ContentsServiceImpl;
+import com.hsg.intro.common.contents.model.vo.Contents;
 
 @Controller
 @SessionAttributes("loginUser")
 public class EduElnController {
 	
 	@Autowired
-	private EduElnServiceImpl ees;
+	private ContentsServiceImpl cd;
+	
+	private String pageId = "edu/eln";
 	
 	SimpleDateFormat formatter = new SimpleDateFormat ("yyyy.MM.dd HH:mm", Locale.KOREA);
 	Date currentDate = new Date();
 	String postDate = formatter.format (currentDate);
 	
+	// 추가
 	@RequestMapping(value="insert.ee", method=RequestMethod.POST)
 	public ModelAndView insertEduEln(
-			EduEln e, ModelAndView mv, 
+			Contents c, ModelAndView mv, 
 			@RequestParam(value="category") int category,
 			@RequestParam(value="title") String title,
 			@RequestParam(value="text") String text) {
 		
-		String video = text.substring(
+		String image = text.substring(
 				text.indexOf("embed/") + 6, // 첫 번째에 위치한
 				text.indexOf("embed/") + 17); // 유튜브 동영상 id 추출
 		
-		e.setCategory(category);
-		e.setTitle(title);
-		e.setText(text);
-		e.setVideo(video);
-		e.setPostDate(postDate);
+		c.setPageId(pageId);
+		c.setCategory(category);
+		c.setTitle(title);
+		c.setText(text);
+		c.setImage(image);
+		c.setPostDate(postDate);
 		
-		System.out.println("in insert : " + e);
+		System.out.println("in insert : " + c);
 		
 		try {
-			ees.insertEduEln(e);
-			List<EduEln> eln = ees.findAll();
+			cd.insert(c);
+			List<Contents> contents = cd.findByPageId(pageId);
 			
-			mv.addObject("eln", eln);
-		} catch (Exception ex) {
-			ex.printStackTrace();
+			mv.addObject("contents", contents);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		mv.setViewName("edu/eln/edu_eln_00001");
 		return mv;
 	}
 	
+	// 추가 페이지
 	@RequestMapping(value="insertView.ee")
 	public ModelAndView insertView(ModelAndView mv) {
 		mv.setViewName("edu/eln/edu_eln_00002");
 		return mv;
 	}
 	
+	// 메인 페이지
 	@RequestMapping(value="view.ee")
 	public ModelAndView viewEduEln(ModelAndView mv) {		
 		try {
-			List<EduEln> eln = ees.findAll();
+			List<Contents> contents = cd.findByPageId(pageId);
 			
-			mv.addObject("eln", eln);
-		} catch(EduElnException ex) {
-			ex.printStackTrace();
+			mv.addObject("contents", contents);
+		} catch(ContentsException e) {
+			e.printStackTrace();
 		}
 		mv.setViewName("edu/eln/edu_eln_00001");
 		return mv;
 	}
 	
+	// 상세 보기
 	@RequestMapping(value="viewDetail.ee")
 	public ModelAndView viewEduElnDetail(ModelAndView mv,
 			@RequestParam(value="id") int id) {
 		try {
-			EduEln eln = ees.findById(id);
+			Contents content = cd.findById(id);
 			
-			mv.addObject("eln", eln);
-		} catch(Exception ex) {
-			ex.printStackTrace();
+			mv.addObject("content", content);
+		} catch(ContentsException e) {
+			e.printStackTrace();
 		}
 		mv.setViewName("edu/eln/edu_eln_00003");
 		return mv;
@@ -96,35 +103,36 @@ public class EduElnController {
 	// 업데이트(검색한 페이지로 돌아가게 하려면 파라미터 추가)
 	@RequestMapping(value="update.ee", method=RequestMethod.POST) // DI 의존성 주입
 	public ModelAndView updateEduEln(
-			EduEln e, ModelAndView mv, 
+			Contents c, ModelAndView mv, 
 			@RequestParam(value="id") int id,
 			@RequestParam(value="category") int category,
 			@RequestParam(value="title") String title,
 			@RequestParam(value="text") String text) {
-		
+
 		String param = ""; // 검색 기록 남길 때
-		String video = text.substring(
+		String image = text.substring(
 				text.indexOf("embed/") + 6, // 첫 번째에 위치한
 				text.indexOf("embed/") + 17); // 유튜브 동영상 id 추출
 		
-		e.setId(id);
-		e.setCategory(category);
-		e.setTitle(title);
-		e.setText(text);
-		e.setVideo(video);
-		e.setPostDate(postDate);
+		c.setId(id);
+		c.setPageId(pageId);
+		c.setCategory(category);
+		c.setTitle(title);
+		c.setText(text);
+		c.setImage(image);
+		c.setPostDate(postDate);
 		
-		System.out.println("in update : " + e);
+		System.out.println("in update : " + c);
 		
 		try {
-			ees.updateEduEln(e);
-			List<EduEln> eln = ees.findAll();
+			cd.update(c);
+			List<Contents> contents = cd.findByPageId(pageId);
 			
-			mv.addObject("eln", eln);
-		} catch (Exception ex) {
-			ex.printStackTrace();
+			mv.addObject("contents", contents);
+		} catch (ContentsException e) {
+			e.printStackTrace();
 		}
-		mv.setViewName("edu/eln/edu_eln_00001");
+		mv.setViewName("redirect:viewDetail.ee?id=" + id);
 		return mv;
 	}
 	
@@ -134,11 +142,14 @@ public class EduElnController {
 		@RequestParam(value="id") int id) {
 		String param = ""; // 검색 기록 남길 때
 		try {
-			ees.deleteEduEln(id);
-		} catch(Exception ex) {
-			ex.printStackTrace();
+			cd.delete(id);
+			List<Contents> contents = cd.findByPageId(pageId);
+			
+			mv.addObject("contents", contents);
+		} catch(ContentsException e) {
+			e.printStackTrace();
 		}
-		mv.setViewName("" + param);
+		mv.setViewName("edu/eln/edu_eln_00001" + param);
 		return mv;
 	}
 	

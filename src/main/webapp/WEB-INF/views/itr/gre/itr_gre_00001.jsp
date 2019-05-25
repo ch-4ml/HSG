@@ -62,7 +62,7 @@
 						    		<input type="button" id="update" value="수정">
 						    	</c:if>
 							</span>
-							<input type="hidden" name="id" value="${contents[0].contentsId }">
+							<input type="hidden" name="id" value="${contents[0].id }">
 							<!-- <input type="hidden" name="pageId" value="itr_gre_00001"> -->
 				    	</form>    
                     </div>

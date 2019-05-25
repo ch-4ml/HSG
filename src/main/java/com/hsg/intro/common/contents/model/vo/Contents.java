@@ -6,30 +6,35 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class Contents implements Serializable {
-	private int contentsId;
+	private int id;
 	private String pageId;
+	private int category;
 	private String title;
 	private String text;
 	private String image;
+	private String postDate;
 	
 	public Contents() {
 		super();
 	}
-	
-	public Contents(int contentsId, String pageId, String title, String text, String image) {
+
+	public Contents(int id, String pageId, int category, String title, String text, String image,
+			String postDate) {
 		super();
-		this.contentsId = contentsId;
+		this.id = id;
 		this.pageId = pageId;
+		this.category = category;
 		this.title = title;
 		this.text = text;
 		this.image = image;
+		this.postDate = postDate;
 	}
-	
-	public int getContentsId() {
-		return contentsId;
+
+	public int getId() {
+		return id;
 	}
-	public void setContentsId(int contentsId) {
-		this.contentsId = contentsId;
+	public void setId(int id) {
+		this.id = id;
 	}
 	public String getPageId() {
 		return pageId;
@@ -37,6 +42,14 @@ public class Contents implements Serializable {
 	public void setPageId(String pageId) {
 		this.pageId = pageId;
 	}
+	public int getCategory() {
+		return category;
+	}
+
+	public void setCategory(int category) {
+		this.category = category;
+	}
+
 	public String getTitle() {
 		return title;
 	}
@@ -56,4 +69,17 @@ public class Contents implements Serializable {
 		this.image = image;
 	}
 
+	public String getPostDate() {
+		return postDate;
+	}
+
+	public void setPostDate(String postDate) {
+		this.postDate = postDate;
+	}
+
+	@Override
+	public String toString() {
+		return "Contents [id=" + id + ", pageId=" + pageId + ", category=" + category + ", title="
+				+ title + ", text=" + text + ", image=" + image + ", postDate=" + postDate + "]";
+	}
 }

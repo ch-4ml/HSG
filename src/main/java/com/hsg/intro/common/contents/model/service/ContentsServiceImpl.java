@@ -16,22 +16,34 @@ public class ContentsServiceImpl implements ContentsService {
 	private ContentsDaoImpl cd;
 	
 	@Override
+	public void insert(Contents c) throws ContentsException {
+		cd.insert(c);
+	}
+	
+	@Override
 	public List<Contents> findByPageId(String pageId) throws ContentsException {
 		List<Contents> contents = cd.findByPageId(pageId);		
 		return contents;
 	}
 	
 	@Override
-	public void updateContents(Contents c) throws ContentsException {
-		System.out.println("service c : " + c.toString());
-		
-		cd.updateContents(c);
+	public Contents findById(int id) throws ContentsException {
+		Contents content = cd.findById(id);
+		return content;
+	}
+	
+	@Override
+	public void update(Contents c) throws ContentsException {		
+		cd.update(c);
 	}
 
 	@Override
-	public void updateContentsImg(Contents c) throws ContentsException {
-		System.out.println("service c : " + c.toString());
-		
-		cd.updateContentsImg(c);
+	public void updateImage(Contents c) throws ContentsException {		
+		cd.updateImage(c);
+	}
+
+	@Override
+	public void delete(int id) throws ContentsException {
+		cd.delete(id);
 	}
 }

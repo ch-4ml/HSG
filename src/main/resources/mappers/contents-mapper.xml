@@ -4,22 +4,50 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="Contents">
 	<resultMap type="Contents" id="contentsResultSet">
-		<id property="contentsId" column="CONTENTS_ID"/>
+		<id property="id" column="ID"/>
 		<result property="pageId" column="PAGE_ID"/>
+		<result property="category" column="CATEGORY" />
 		<result property="title" column="TITLE" />
 		<result property="text" column="TEXT"/>
 		<result property="image" column="IMAGE"/>
+		<result property="postDate" column="POST_DATE" />
 	</resultMap>
-	<select id="findContents" resultMap="contentsResultSet" parameterType="Contents">
+	<insert id = "insert" parameterType="Contents">
+		INSERT INTO 
+		hsgbiz_contents(PAGE_ID, CATEGORY, TITLE, TEXT, IMAGE, POST_DATE) 
+		VALUES(#{pageId}, #{category}, #{title}, #{text}, #{image}, #{postDate})
+	</insert>
+	<!-- 
+	<select id="findAll" resultMap="contentsResultSet" parameterType="Contents">
 		SELECT * FROM hsgbiz_contents
-		WHERE CONTENTS_ID=#{contentsId};
+		WHERE ID = #{id};
 	</select>
+	 -->
 	<select id="findByPageId" resultMap="contentsResultSet" parameterType="Contents">
 		SELECT * FROM hsgbiz_contents 
-		WHERE PAGE_ID=#{pageId};
+		WHERE PAGE_ID = #{pageId};
 	</select>
-	<select id="updateContents" resultMap="contentsResultSet" parameterType="Contents">
+	<select id="findById" resultMap="contentsResultSet" parameterType="Contents">
+		SELECT * FROM hsgbiz_contents 
+		WHERE ID = #{id};
+	</select>
+	<update id="update" parameterType="Contents">
+		UPDATE hsgbiz_contents SET  
+			CATEGORY = #{category}, 
+			TITLE = #{title}, 
+			TEXT = #{text}, 
+			IMAGE = #{image}, 
+			POST_DATE = #{postDate} 
+		WHERE ID = #{id};
+	</update>
+	<!-- IMAGE = IF(#{image} = '', IMAGE, #{image}),  -->
+	<update id="updateImage" parameterType="Contents">
 		UPDATE hsgbiz_contents SET 
-		TITLE=#{title}, TEXT=#{text} WHERE CONTENTS_ID=#{contentsId};
-	</select>
+			IMAGE = #{image}
+		WHERE ID = #{id};
+	</update>
+	<delete id="delete" parameterType="java.lang.Integer">
+		DELETE FROM hsgbiz_contents 
+		WHERE ID = #{id}
+	</delete>
 </mapper>
