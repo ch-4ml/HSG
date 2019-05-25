@@ -51,13 +51,13 @@ public class ItrGreController {
 		// 매개변수로 줄 예정
 		int id = Integer.parseInt(request.getParameter("id"));
 		String text = request.getParameter("text"); 
-		g.setContentsId(id);
+		g.setId(id);
 		g.setText(text);
 		
 		System.out.println("in update.ig : " + g);
 		
 		try {
-			cs.updateContents(g);
+			cs.update(g);
 			List<Contents> contents = cs.findByPageId(pageId);
 			
 			mv.addObject("contents", contents);
@@ -122,9 +122,9 @@ public class ItrGreController {
 		}
 				
 		try {
-			g.setContentsId(id);
+			g.setId(id);
 			System.out.println("controller gre : " + g);
-			cs.updateContentsImg(g);
+			cs.updateImage(g);
 			List<Contents> contents = cs.findByPageId(pageId);
 			
 			mv.addObject("contents", contents);

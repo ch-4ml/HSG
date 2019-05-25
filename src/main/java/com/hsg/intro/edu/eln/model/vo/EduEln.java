@@ -7,7 +7,7 @@ public class EduEln {
 	private int category;
 	private String title;
 	private String text;
-	private String video;
+	private String image;
 	private String postDate;
 
 	public int getId() {
@@ -34,11 +34,11 @@ public class EduEln {
 	public void setText(String text) {
 		this.text = text;
 	}
-	public String getVideo() {
-		return video;
+	public String getImage() {
+		return image;
 	}
-	public void setVideo(String video) {
-		this.video = video;
+	public void setImage(String image) {
+		this.image = image;
 	}
 	public String getPostDate() {
 		return postDate;
@@ -46,11 +46,11 @@ public class EduEln {
 	public void setPostDate(String postDate) {
 		this.postDate = postDate;
 	}
-	
 	@Override
 	public String toString() {
-		return "EduEln [id=" + id + ", category=" + category + ", title=" + title + ", text=" + text + ", video="
-				+ video + ", postDate=" + postDate + "]";
+		return "EduEln [id=" + id + ", category=" + category + ", title=" + title + ", text=" + text + ", image="
+				+ image + ", postDate=" + postDate + "]";
 	}
+	
 		
 }

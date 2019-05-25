@@ -26,7 +26,7 @@
 				<td>이미지</td>
 				<td>
 					<input type="file" name="gfile">
-					<input type="hidden" name="id" value="${id }">
+					<input type="hidden" name="id" value="">
 					<!-- <input type="hidden" name="pageId" value="itr_gre_00001">  -->
 				</td>
 			</tr>		

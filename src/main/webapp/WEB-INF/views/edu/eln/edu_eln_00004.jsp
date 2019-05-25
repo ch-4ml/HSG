@@ -39,28 +39,28 @@
     <!-- About Area Starts -->
     
 	<form action="update.ee" method="post">
-		<input type="hidden" name="id" value="${eln.id }">
-		<input type="text" name="title" placeholder="제목" value="${eln.title }">
+		<input type="hidden" name="id" value="${content.id }">
+		<input type="text" name="title" placeholder="제목" value="${content.title }">
 		<select name="category">
 			<c:choose>
-				<c:when test="${eln.category == 1}">
+				<c:when test="${content.category == 1}">
 					<option value="1" selected>빅데이터</option>
 					<option value="2">인공지능</option>
 					<option value="3">기타</option>
 				</c:when>
-				<c:when test="${eln.category == 2}">
+				<c:when test="${content.category == 2}">
 					<option value="1">빅데이터</option>
 					<option value="2" selected>인공지능</option>
 					<option value="3">기타</option>
 				</c:when>
-				<c:when test="${eln.category == 3}">
+				<c:when test="${content.category == 3}">
 					<option value="1">빅데이터</option>
 					<option value="2">인공지능</option>
 					<option value="3" selected>기타</option>
 				</c:when>
 			</c:choose>			
 		</select>
-		<textarea id="text" name="text" placeholder="동영상과 내용을 추가하세요.">${eln.text }</textarea>
+		<textarea id="text" name="text" placeholder="동영상과 내용을 추가하세요.">${content.text }</textarea>
 		<input type="submit" value="수정">
 	</form>
 	
