@@ -25,12 +25,11 @@
 			});
 		});
 	
-		function deleteBtnClickEvent(bid) {
-			
+		function deleteBtnClickEvent(id) {
 			var sign = confirm("정말로 삭제하시겠습니까?");
 			
 			if(sign == true){
-				window.location.assign('<%=PATH %>/delete.ib?bid='+bid);
+				window.location.assign("<%=PATH %>/delete.ib?id=" + id);
 			}
 		}
 	
@@ -49,22 +48,22 @@
                     <h1>출판도서/특허 추가</h1><br>
                 </div><!-- banner text -->
                 <form action="update.ib" method="post" enctype="multipart/form-data">
-				<input type="hidden" name="bid" value="${itrBok.bid} ">
+				<input type="hidden" name="id" value="${content.id} ">
 				<table>
 					<tr>
 						<td>*출판도서/특허명</td>
-						<td><input type="text" name="btitle" value="${itrBok.btitle} "></td>
+						<td><input type="text" name="title" value="${content.title} "></td>
 					</tr>
 					<c:choose>
-						<c:when test="${itrBok.btype eq '1'}">
+						<c:when test="${content.category eq '1'}">
 						<tr>
 							<td>*종류</td>
 							<td>
-								<input type="radio" id="bok" name="btype" value="1" checked="checked">
+								<input type="radio" id="bok" name="category" value="1" checked="checked">
 								<label for="bok">서적</label>
 							</td>
 							<td>
-								<input type="radio" id="patent" name="btype" value="2">
+								<input type="radio" id="patent" name="category" value="2">
 								<label for="patent">특허</label>
 							</td>
 						<tr>
@@ -73,11 +72,11 @@
 						<tr>
 							<td>*종류</td>
 							<td>
-								<input type="radio" id="bok" name="btype" value="1">
+								<input type="radio" id="bok" name="category" value="1">
 								<label for="bok">서적</label>
 							</td>
 							<td>
-								<input type="radio" id="patent" name="btype" value="2" checked="checked">
+								<input type="radio" id="patent" name="category" value="2" checked="checked">
 								<label for="patent">특허</label>
 							</td>
 						<tr>
@@ -86,21 +85,21 @@
 					</tr>
 						<td>*내용</td>
 						<td>
-							<input type="text" name="bcontent" value="${itrBok.bcontent} ">
+							<input type="text" name="text" value="${content.text} ">
 						</td>
 					</tr>
 					<tr>
 						<td>*사진</td>
 						<td>
-							<input type="file" id="file" name="bfile" accept=".jpg, .jpeg, .png">
-							<input type="text" id="bfleText" value="${itrBok.bimg} " disabled="disabled">
+							<input type="file" id="file" name="file" accept=".jpg, .jpeg, .png">
+							<input type="text" id="bfleText" value="${content.image} " disabled="disabled">
 							<input type="button" id="fileBtn" value="Chose file">
 						</td>
 					</tr>		
 				</table>
 				<br>
 				<div align="center">
-					<input type="button" value="삭제하기" onclick="deleteBtnClickEvent(${itrBok.bid})"/>
+					<input type="button" value="삭제하기" onclick="deleteBtnClickEvent(${content.id})"/>
 					<input type="submit" value="수정하기"/>
 				</div>
 				</form>

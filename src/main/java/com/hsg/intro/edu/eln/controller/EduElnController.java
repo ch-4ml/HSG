@@ -53,13 +53,11 @@ public class EduElnController {
 		
 		try {
 			cd.insert(c);
-			List<Contents> contents = cd.findByPageId(pageId);
-			
-			mv.addObject("contents", contents);
+			mv.setViewName("redirect:view.ee");
 		} catch (Exception e) {
-			e.printStackTrace();
+			mv.addObject("message",e.getMessage());
+			mv.setViewName("common/errorPage");
 		}
-		mv.setViewName("edu/eln/edu_eln_00001");
 		return mv;
 	}
 	
@@ -75,12 +73,12 @@ public class EduElnController {
 	public ModelAndView viewEduEln(ModelAndView mv) {		
 		try {
 			List<Contents> contents = cd.findByPageId(pageId);
-			
 			mv.addObject("contents", contents);
+			mv.setViewName("edu/eln/edu_eln_00001");
 		} catch(ContentsException e) {
-			e.printStackTrace();
+			mv.addObject("message",e.getMessage());
+			mv.setViewName("common/errorPage");
 		}
-		mv.setViewName("edu/eln/edu_eln_00001");
 		return mv;
 	}
 	
@@ -90,12 +88,12 @@ public class EduElnController {
 			@RequestParam(value="id") int id) {
 		try {
 			Contents content = cd.findById(id);
-			
 			mv.addObject("content", content);
+			mv.setViewName("edu/eln/edu_eln_00003");
 		} catch(ContentsException e) {
-			e.printStackTrace();
+			mv.addObject("message",e.getMessage());
+			mv.setViewName("common/errorPage");
 		}
-		mv.setViewName("edu/eln/edu_eln_00003");
 		return mv;
 	}
 	
@@ -126,13 +124,11 @@ public class EduElnController {
 		
 		try {
 			cd.update(c);
-			List<Contents> contents = cd.findByPageId(pageId);
-			
-			mv.addObject("contents", contents);
+			mv.setViewName("redirect:viewDetail.ee?id=" + id);
 		} catch (ContentsException e) {
-			e.printStackTrace();
-		}
-		mv.setViewName("redirect:viewDetail.ee?id=" + id);
+			mv.addObject("message",e.getMessage());
+			mv.setViewName("common/errorPage");
+		}		
 		return mv;
 	}
 	
@@ -143,13 +139,11 @@ public class EduElnController {
 		String param = ""; // 검색 기록 남길 때
 		try {
 			cd.delete(id);
-			List<Contents> contents = cd.findByPageId(pageId);
-			
-			mv.addObject("contents", contents);
+			mv.setViewName("redirect:view.ee");
 		} catch(ContentsException e) {
-			e.printStackTrace();
+			mv.addObject("message",e.getMessage());
+			mv.setViewName("common/errorPage");
 		}
-		mv.setViewName("edu/eln/edu_eln_00001" + param);
 		return mv;
 	}
 	
