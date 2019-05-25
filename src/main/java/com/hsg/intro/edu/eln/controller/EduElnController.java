@@ -22,44 +22,13 @@ import com.hsg.intro.common.contents.model.vo.Contents;
 public class EduElnController {
 	
 	@Autowired
-	private ContentsServiceImpl cd;
+	private ContentsServiceImpl cs;
 	
 	private String pageId = "edu/eln";
 	
 	SimpleDateFormat formatter = new SimpleDateFormat ("yyyy.MM.dd HH:mm", Locale.KOREA);
 	Date currentDate = new Date();
 	String postDate = formatter.format (currentDate);
-	
-	// 추가
-	@RequestMapping(value="insert.ee", method=RequestMethod.POST)
-	public ModelAndView insertEduEln(
-			Contents c, ModelAndView mv, 
-			@RequestParam(value="category") int category,
-			@RequestParam(value="title") String title,
-			@RequestParam(value="text") String text) {
-		
-		String image = text.substring(
-				text.indexOf("embed/") + 6, // 첫 번째에 위치한
-				text.indexOf("embed/") + 17); // 유튜브 동영상 id 추출
-		
-		c.setPageId(pageId);
-		c.setCategory(category);
-		c.setTitle(title);
-		c.setText(text);
-		c.setImage(image);
-		c.setPostDate(postDate);
-		
-		System.out.println("in insert : " + c);
-		
-		try {
-			cd.insert(c);
-			mv.setViewName("redirect:view.ee");
-		} catch (Exception e) {
-			mv.addObject("message",e.getMessage());
-			mv.setViewName("common/errorPage");
-		}
-		return mv;
-	}
 	
 	// 추가 페이지
 	@RequestMapping(value="insertView.ee")
@@ -68,11 +37,35 @@ public class EduElnController {
 		return mv;
 	}
 	
+	// 추가
+	@RequestMapping(value="insert.ee", method=RequestMethod.POST)
+	public ModelAndView insertEduEln(Contents c, ModelAndView mv) {
+		
+		String image = c.getText().substring(
+				c.getText().indexOf("embed/") + 6, // 첫 번째에 위치한
+				c.getText().indexOf("embed/") + 17); // 유튜브 동영상 id 추출
+		
+		c.setPageId(pageId);
+		c.setImage(image);
+		c.setPostDate(postDate);
+		
+		System.out.println("in insert : " + c);
+		
+		try {
+			cs.insert(c);
+			mv.setViewName("redirect:view.ee");
+		} catch (Exception e) {
+			mv.addObject("message",e.getMessage());
+			mv.setViewName("common/errorPage");
+		}
+		return mv;
+	}
+	
 	// 메인 페이지
 	@RequestMapping(value="view.ee")
 	public ModelAndView viewEduEln(ModelAndView mv) {		
 		try {
-			List<Contents> contents = cd.findByPageId(pageId);
+			List<Contents> contents = cs.findByPageId(pageId);
 			mv.addObject("contents", contents);
 			mv.setViewName("edu/eln/edu_eln_00001");
 		} catch(ContentsException e) {
@@ -87,7 +80,7 @@ public class EduElnController {
 	public ModelAndView viewEduElnDetail(ModelAndView mv,
 			@RequestParam(value="id") int id) {
 		try {
-			Contents content = cd.findById(id);
+			Contents content = cs.findById(id);
 			mv.addObject("content", content);
 			mv.setViewName("edu/eln/edu_eln_00003");
 		} catch(ContentsException e) {
@@ -102,28 +95,22 @@ public class EduElnController {
 	@RequestMapping(value="update.ee", method=RequestMethod.POST) // DI 의존성 주입
 	public ModelAndView updateEduEln(
 			Contents c, ModelAndView mv, 
-			@RequestParam(value="id") int id,
-			@RequestParam(value="category") int category,
-			@RequestParam(value="title") String title,
-			@RequestParam(value="text") String text) {
+			@RequestParam(value="id") int id) {
 
 		String param = ""; // 검색 기록 남길 때
-		String image = text.substring(
-				text.indexOf("embed/") + 6, // 첫 번째에 위치한
-				text.indexOf("embed/") + 17); // 유튜브 동영상 id 추출
+		String image = c.getText().substring(
+				c.getText().indexOf("embed/") + 6, // 첫 번째에 위치한
+				c.getText().indexOf("embed/") + 17); // 유튜브 동영상 id 추출
 		
 		c.setId(id);
 		c.setPageId(pageId);
-		c.setCategory(category);
-		c.setTitle(title);
-		c.setText(text);
 		c.setImage(image);
 		c.setPostDate(postDate);
 		
 		System.out.println("in update : " + c);
 		
 		try {
-			cd.update(c);
+			cs.update(c);
 			mv.setViewName("redirect:viewDetail.ee?id=" + id);
 		} catch (ContentsException e) {
 			mv.addObject("message",e.getMessage());
@@ -138,7 +125,7 @@ public class EduElnController {
 		@RequestParam(value="id") int id) {
 		String param = ""; // 검색 기록 남길 때
 		try {
-			cd.delete(id);
+			cs.delete(id);
 			mv.setViewName("redirect:view.ee");
 		} catch(ContentsException e) {
 			mv.addObject("message",e.getMessage());

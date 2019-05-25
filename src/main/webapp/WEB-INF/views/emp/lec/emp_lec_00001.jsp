@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,7 +24,18 @@
     <!-- Banner Area End -->
 
     <!-- About Area Starts -->
-	<a href="sendForm.el">지원하기</a>
+    <c:if test="${!empty loginUser }">
+    	<a href="insertView.el">추가하기</a>
+    	<br>
+    </c:if>
+    <c:forEach var="content" items="${contents }" varStatus="status">
+		<a href="viewDetail.el?id=${content.id }">
+			${content.title }
+			${content.postDate }
+		</a>
+		<br>
+		<br>
+	</c:forEach>
     <!-- About Area End -->
     
     <jsp:include page="../../common/footer.jsp" />

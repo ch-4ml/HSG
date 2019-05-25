@@ -15,14 +15,8 @@
     	$("#update").click(function() {
     		var oldTitle = $('#title').html();
     		var oldText = $('#text').html();
-    		var oldCategory = $('#cat').val();
     		$("#content").html(
     				"<input type='text' name='title' placeholder='제목' value='" + oldTitle + "'>" + 
-    				"<select name='category'>" + 
-    				"<option value='1'>빅데이터</option>" + 
-    				"<option value='2'>인공지능</option>" + 
-    				"<option value='3'>기타</option>" + 
-    				"</select>" + 
     				"<textarea id='text' name='text'>" + oldText + "</textarea><input type='submit' value='수정'>");
     		tinymce.init({
     	        selector: 'textarea',
@@ -41,16 +35,16 @@
     	$("#delete").click(function() {
     		var id = $("#id").val();
     		if(!confirm("삭제하시겠습니까?")) return false;
-    		else location.href="delete.ee?id=" + id;
+    		else location.href="delete.el?id=" + id;
     	});
     });
     
     $(function() {
     	$("#list").click(function() {
-    		location.href="view.ee";
+    		location.href="view.el";
     	});
     });
-    </script>
+</script>
 </head>
 <body>
 <jsp:include page="../../common/header-content.jsp" />
@@ -59,7 +53,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1>MOOC 상세</h1>
+                    <h1>강사 채용 상세</h1>
                 </div>
             </div>
         </div>
@@ -67,22 +61,22 @@
     <!-- Banner Area End -->
 
     <!-- About Area Starts -->
-    <form action="update.ee", method="post">
+	<form action="update.el", method="post">
 	    <span id="content">
 		    ${content.postDate }
 		   	<span id="title">${content.title }</span>
 		    <span id="text">${content.text }</span>
+		    <a href="sendForm.el">지원하기</a>
+    		<input type="button" id="list" value="목록 보기">
 			<c:if test="${!empty loginUser }">
 				<input type="button" id="update" value="수정">
 				<input type="button" id="delete" value="삭제">
 			</c:if>
-			<input type="hidden" id="cat" name="cat" value="${content.category }">
 		</span>
 	    <input type="hidden" id="id" name="id" value="${content.id }">
     </form>
-    <input type="button" id="list" value="목록 보기">
-    	
-	
+
+
     <!-- About Area End -->
     
     <jsp:include page="../../common/footer.jsp" />

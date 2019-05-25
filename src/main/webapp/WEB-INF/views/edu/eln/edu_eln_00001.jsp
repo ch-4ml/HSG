@@ -30,10 +30,10 @@
     </c:if>
 	<c:forEach var="content" items="${contents }" varStatus="status">
 		<a href="viewDetail.ee?id=${content.id }">
-		${status.count }
-		<img src="https://img.youtube.com/vi/${content.image }/mqdefault.jpg">
-		${content.title }
-		${content.postDate }
+			${status.count }
+			<img src="https://img.youtube.com/vi/${content.image }/mqdefault.jpg">
+			${content.title }
+			${content.postDate }
 		</a>
 		<br>
 		<br>
