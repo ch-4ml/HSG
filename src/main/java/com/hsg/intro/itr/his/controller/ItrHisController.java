@@ -28,7 +28,7 @@ public class ItrHisController {
 	private ContentsServiceImpl cs;
 	// 주로 사용할 페이지의 이름입니다. contents 테이블의 page_id 컬럼에 들어갈 값입니다.
 	// page_id는 간단한 내용을 뿌려주는 단일 페이지에서 같은 테이블을 사용할 수 있도록 만든 컬럼입니다.
-	private String pageId = "itr/his/itr_his_00001"; 
+	private String pageId = "itr/his"; 
 	
 	// CEO 인사말 보기
 	@RequestMapping(value="view.ih", method=RequestMethod.GET) // DI 의존성 주입

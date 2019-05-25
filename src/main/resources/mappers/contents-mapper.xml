@@ -6,6 +6,7 @@
 	<resultMap type="Contents" id="contentsResultSet">
 		<id property="contentsId" column="CONTENTS_ID"/>
 		<result property="pageId" column="PAGE_ID"/>
+		<result property="title" column="TITLE" />
 		<result property="text" column="TEXT"/>
 		<result property="image" column="IMAGE"/>
 	</resultMap>
@@ -19,10 +20,6 @@
 	</select>
 	<select id="updateContents" resultMap="contentsResultSet" parameterType="Contents">
 		UPDATE hsgbiz_contents SET 
-		TEXT=#{text} WHERE CONTENTS_ID=#{contentsId};
-	</select>
-		<select id="updateImgContents" resultMap="contentsResultSet" parameterType="Contents">
-		UPDATE hsgbiz_contents SET 
-		IMAGE=#{image} WHERE CONTENTS_ID=#{contentsId};
+		TITLE=#{title}, TEXT=#{text} WHERE CONTENTS_ID=#{contentsId};
 	</select>
 </mapper>
