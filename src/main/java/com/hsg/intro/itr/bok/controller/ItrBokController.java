@@ -38,6 +38,9 @@ public class ItrBokController {
 
 		String root = request.getSession().getServletContext().getRealPath("resources");
 		String filePath = root + "\\uploadFiles\\itrbok_upload_file";
+		
+		String fileName = "";
+		
 		try {
 			
 			// 파일명 새이름 설정
@@ -58,12 +61,10 @@ public class ItrBokController {
 			
 			//파일경로를 itrbok 객체에 넣어줌
 			
-			filePath = filePath + "\\" + newfileName + ext;
-			
-			System.out.println("controller filePath : " + filePath);
+			fileName = newfileName + ext;
 			
 			c.setPageId(pageId);
-			c.setImage(filePath);
+			c.setImage(fileName);
 			
 			// 해당 폴더에 파일 생성
 			file.transferTo(new File(filePath));
