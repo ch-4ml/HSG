@@ -45,6 +45,12 @@
     		else location.href="delete.ee?id=" + id;
     	});
     });
+    
+    $(function() {
+    	$("#list").click(function() {
+    		location.href="view.ee";
+    	});
+    });
     </script>
 </head>
 <body>
@@ -75,6 +81,7 @@
 		</span>
 	    <input type="hidden" id="id" name="id" value="${content.id }">
     </form>
+    <input type="button" id="list" value="목록 보기">
     	
 	
     <!-- About Area End -->

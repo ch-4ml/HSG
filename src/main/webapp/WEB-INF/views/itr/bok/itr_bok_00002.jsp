@@ -13,15 +13,15 @@
     <script type="text/javascript">
     	$(function() {
 			$("#resisterBtn").click(function() {
-				var btitle = $("#btitle").val();
-				var bcontent = $("#bcontent").val();
-				var bfile = $("#bfile").val();
+				var title = $("#title").val();
+				var text = $("#text").val();
+				var file = $("#file").val();
 				
-				if(btitle == ""){
+				if(title == ""){
 					return alert("제목을 입력해주세요.");
-				} else if(bcontent == ""){
+				} else if(text == ""){
 					return alert("내용을 입력해주세요.");
-				} else if(bfile == "") {
+				} else if(file == "") {
 					return alert("파일을 선택해주세요.");
 				} else {
 					return $("#resisterForm").submit();
@@ -45,29 +45,29 @@
 				<table>
 					<tr>
 						<td>*출판도서/특허명</td>
-						<td><input type="text" id="btitle" name="btitle"></td>
+						<td><input type="text" id="title" name="title"></td>
 					</tr>
 					<tr>
 						<td>*종류</td>
 						<td>
-							<input type="radio" id="bok" name="btype" value="1" checked="checked">
+							<input type="radio" id="bok" name="category" value="1" checked="checked">
 							<label for="bok">서적</label>
 						</td>
 						<td>
-							<input type="radio" id="patent" name="btype" value="2">
+							<input type="radio" id="patent" name="category" value="2">
 							<label for="patent">특허</label>
 						</td>
 					</tr>
 					<tr>
 						<td>*내용</td>
 						<td>
-							<input type="text" id="bcontent" name="bcontent">
+							<input type="text" id="text" name="text">
 						</td>
 					</tr>
 					<tr>
 						<td>*사진</td>
 						<td>
-							<input type="file" id="bfile" name="bfile">
+							<input type="file" id="file" name="file">
 						</td>
 					</tr>		
 				</table>
