@@ -27,20 +27,21 @@
                         <li class="menu-active"><a href="view.ma">Home</a></li>
                         <li class="menu-has-children"><a href="view.ig">회사소개</a>
                             <ul>
-                                <li><a href="view.ig">CEO인사말</a></li>
-                                <li><a href="view.ih">일반현황 및 연혁</a></li>
-								<li><a href="view.io">조직 및 사업분야</a></li>
-								<li><a href="view.ib">출판도서/특허</a></li>
+                                <li><a href="view.ig">CEO 인사말</a></li>
+                                <li><a href="view.ih">일반 현황 및 연혁</a></li>
+								<li><a href="view.io">조직 및 사업 분야</a></li>
+								<li><a href="view.ib">출판 도서/특허</a></li>
+								<li><a href="view.ic">컨설팅 및 검증 실적</a></li>
 								<li><a href="view.il">회사위치</a></li>
                             </ul>
                         </li>
-                        <li class="menu-has-children"><a href="">교육솔루션</a>
+                        <li class="menu-has-children"><a href="view.ee">교육솔루션</a>
                             <ul>
                                 <li><a href="view.ee">MOOC</a></li>
-                                <li><a href="#">하드웨어</a></li>
-								<li><a href="#">소프트웨어</a></li>
-								<li><a href="#">교육 컨설팅</a></li>
-								<li><a href="#">교육 의뢰</a></li>
+                                <li><a href="view.eh">하드웨어</a></li>
+								<li><a href="view.es">소프트웨어</a></li>
+								<li><a href="view.ec">교육 컨설팅</a></li>
+								<li><a href="view.er">교육 의뢰</a></li>
                             </ul>
                         </li>
 						<li class="menu-has-children"><a href="view.el">강사채용</a>

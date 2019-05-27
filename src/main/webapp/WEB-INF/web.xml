@@ -110,6 +110,20 @@
   </servlet-mapping>
   
   <servlet>
+  	<servlet-name>itr-cst</servlet-name>
+  	<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+  	<init-param>
+  	  <param-name>contextConfigLocation</param-name>
+  	  <param-value>/WEB-INF/config/itr-cst-servlet.xml</param-value>
+  	</init-param>
+  	<load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>itr-cst</servlet-name>
+    <url-pattern>*.ic</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
   	<servlet-name>itr-loc</servlet-name>
   	<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
   	<init-param>
@@ -135,6 +149,48 @@
   <servlet-mapping>
     <servlet-name>edu-eln</servlet-name>
     <url-pattern>*.ee</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>edu-hrd</servlet-name>
+  	<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+  	<init-param>
+  	  <param-name>contextConfigLocation</param-name>
+  	  <param-value>/WEB-INF/config/edu-hrd-servlet.xml</param-value>
+  	</init-param>
+  	<load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>edu-hrd</servlet-name>
+    <url-pattern>*.eh</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>edu-sft</servlet-name>
+  	<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+  	<init-param>
+  	  <param-name>contextConfigLocation</param-name>
+  	  <param-value>/WEB-INF/config/edu-sft-servlet.xml</param-value>
+  	</init-param>
+  	<load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>edu-sft</servlet-name>
+    <url-pattern>*.es</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>edu-cst</servlet-name>
+  	<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+  	<init-param>
+  	  <param-name>contextConfigLocation</param-name>
+  	  <param-value>/WEB-INF/config/edu-cst-servlet.xml</param-value>
+  	</init-param>
+  	<load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>edu-cst</servlet-name>
+    <url-pattern>*.ec</url-pattern>
   </servlet-mapping>
   
   <servlet>
