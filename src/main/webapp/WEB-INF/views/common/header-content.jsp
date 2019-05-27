@@ -20,11 +20,11 @@
             <div class="container">
                 <div class="row align-items-center justify-content-between d-flex">
                 <div id="logo">
-                    <a href="index.me"><img src="./resources/images/logo/logo.png" alt="" title="" /></a>
+                    <a href="view.ma"><img src="./resources/images/logo/logo.png" alt="" title="" /></a>
                 </div>
                 <nav id="nav-menu-container">
                     <ul class="nav-menu">
-                        <li class="menu-active"><a href="index.me">Home</a></li>
+                        <li class="menu-active"><a href="view.ma">Home</a></li>
                         <li class="menu-has-children"><a href="view.ig">회사소개</a>
                             <ul>
                                 <li><a href="view.ig">CEO인사말</a></li>
@@ -36,7 +36,7 @@
                         </li>
                         <li class="menu-has-children"><a href="">교육솔루션</a>
                             <ul>
-                                <li><a href="view.ee">E-러닝</a></li>
+                                <li><a href="view.ee">MOOC</a></li>
                                 <li><a href="#">하드웨어</a></li>
 								<li><a href="#">소프트웨어</a></li>
 								<li><a href="#">교육 컨설팅</a></li>
