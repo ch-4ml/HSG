@@ -36,7 +36,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12">
-					<h1>교육솔루션 - 소프트웨어</h1>
+					<h1>일반현황 및 연혁</h1>
 				</div>
 			</div>
 		</div>
@@ -45,7 +45,7 @@
 
 	<!-- About Area Starts -->
 
-	<form id="content_form" method="post" action="update.es">
+	<form id="content_form" method="post" action="update.ih">
 		<span id="content"> ${contents[0].text } </span>
 		<span id="updateButton">
 			<c:if test="${!empty loginUser }">

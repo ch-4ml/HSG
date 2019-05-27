@@ -46,7 +46,6 @@ public class MemberController {
 			String result = ms.loginMember(m);
 			
 			mv.addObject("result",result);
-			//mv.setViewName("main/index");
 			System.out.println("Controller - try. result : " + mv.getModel());
 		} catch (LoginException e) {
 			mv.addObject("message",e.getMessage());
@@ -68,7 +67,7 @@ public class MemberController {
 			Member loginUser = ms.selectMember(m);
 			
 			mv.addObject("loginUser",loginUser);
-			mv.setViewName("main/index");
+			mv.setViewName("redirect:/");
 		} catch (LoginException e) {
 			mv.addObject("message",e.getMessage());
 			System.out.println("SessionStore error : " + e);
@@ -84,7 +83,7 @@ public class MemberController {
 
 		status.setComplete();
 		
-		return "redirect:index.me";
+		return "redirect:/";
 	}
 	@RequestMapping(value="memberJoinView.me")
 	public String showMemberJoinView(){
