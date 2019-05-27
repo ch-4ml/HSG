@@ -25,7 +25,8 @@
 	 -->
 	<select id="findByPageId" resultMap="contentsResultSet" parameterType="Contents">
 		SELECT * FROM hsgbiz_contents 
-		WHERE PAGE_ID = #{pageId};
+		WHERE PAGE_ID = #{pageId}
+		ORDER BY ID DESC;
 	</select>
 	<select id="findById" resultMap="contentsResultSet" parameterType="Contents">
 		SELECT * FROM hsgbiz_contents 

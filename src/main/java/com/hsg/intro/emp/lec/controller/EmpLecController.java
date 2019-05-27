@@ -1,6 +1,7 @@
 package com.hsg.intro.emp.lec.controller;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -137,7 +138,12 @@ public class EmpLecController {
 	public String send(HttpServletRequest request) {
 		
 		String from = request.getParameter("email");
-		String to = "ark9659@gmail.com"; // 대표님 이메일로 변경
+		
+		// 메일 받을 주소 지정
+		List<String> toAddress = new ArrayList<String>();
+		// 대표님과 관리자 이메일로 변경, 추가 가능
+		toAddress.add("ark9659@gmail.com");
+		toAddress.add("cksgud1350@naver.com");
 		String subject = "[HS글로벌 강사 지원] " + request.getParameter("name");
 		String text = "지원자 이름 : " + request.getParameter("name") + "\r\n"
 					   + "분야 : " + request.getParameter("field") + "\r\n"
@@ -149,7 +155,9 @@ public class EmpLecController {
 			MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "UTF-8");
 			
 			messageHelper.setFrom(from);
-			messageHelper.setTo(to);
+			for(String to: toAddress) {
+				messageHelper.addTo(to);
+			}
 			messageHelper.setSubject(subject);
 			messageHelper.setText(text);
 			
