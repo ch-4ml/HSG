@@ -150,6 +150,8 @@ public class EmpLecController {
 					   + "연락처 : " + request.getParameter("phone") + "\r\n"
 					   + "이메일 : " + request.getParameter("email") + "\r\n"
 					   + "경력사항 : " + request.getParameter("career");
+		// 파일
+		request.getParameter("filename");
 		try {
 			MimeMessage message = mailSender.createMimeMessage();
 			MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "UTF-8");

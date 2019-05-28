@@ -123,6 +123,7 @@ public class ItrBokController {
 					
 					System.out.println("controller filePath : " + filePath);
 					
+					c.setPageId(pageId);
 					c.setImage(filePath);
 					
 					// 해당 폴더에 파일 생성

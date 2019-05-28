@@ -24,12 +24,13 @@
     <!-- Banner Area End -->
     
     <!-- About Area Starts -->
-    <form action="send.el" method="post">
+    <form action="send.el" method="post" enctype="multipart/form-data">
 	    <input type="text" name="name" placeholder="지원자 성함">
 	    <input type="text" name="field" placeholder="분야">
 	    <input type="text" name="phone" placeholder="연락처">
 	    <input type="text" name="email" placeholder="이메일">
 	    <textarea name="career" placeholder="경력사항을 자유롭게 기재해주세요."></textarea>
+	    <input multiple="multiple" type="file" name="filename[]" />
 	    <input type="submit" value="메일 보내기">
 	    <!-- 파일 첨부 추가 예정 -->
     </form>
