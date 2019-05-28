@@ -31,11 +31,18 @@
     </script>
 </head>
 <body>
-<section class="sub_banner" role="banner">
-        <header id="header">
-            <jsp:include page="../../common/header-content.jsp" />
-            <!-- header content -->
-        </header><!-- header -->
+<jsp:include page="../../common/header-content.jsp" />
+    <!-- Banner Area Starts -->
+    <section class="banner-area other-page">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1>MOOC</h1>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Banner Area End -->
 		<div class="container">
             <div class="col-md-10 col-md-offset-1">
                 <div class="sub_banner-text text-center">
@@ -78,9 +85,7 @@
 				</div>
 				</form>
             </div>
-        </div>
-    </section><!-- banner -->
-	
+        </div>	
 	<jsp:include page="../../common/footer.jsp" />
     <!-- footer -->
 
