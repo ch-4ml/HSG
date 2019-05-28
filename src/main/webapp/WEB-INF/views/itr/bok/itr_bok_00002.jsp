@@ -37,16 +37,16 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1>MOOC</h1>
+                    <h1>출판도서/특허</h1>
                 </div>
             </div>
         </div>
     </section>
-    <!-- Banner Area End -->
+<section class="sub_banner" role="banner">
 		<div class="container">
             <div class="col-md-10 col-md-offset-1">
                 <div class="sub_banner-text text-center">
-                    <h1>출판도서/특허 추가</h1><br>
+                    <h2>[ 출판 도서 / 특허 추가 ]</h2><br>
                 </div><!-- banner text -->
                 <form action="insert.ib" id="resisterForm" method="post" enctype="multipart/form-data">
 				<table>
@@ -85,7 +85,9 @@
 				</div>
 				</form>
             </div>
-        </div>	
+        </div>
+    </section><!-- banner -->
+	
 	<jsp:include page="../../common/footer.jsp" />
     <!-- footer -->
 
