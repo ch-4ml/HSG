@@ -1,13 +1,14 @@
 package com.hsg.intro.emp.lec.controller;
 
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import javax.activation.DataSource;
 import javax.mail.internet.MimeMessage;
-import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -17,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.hsg.intro.Exception.ContentsException;
@@ -135,7 +138,7 @@ public class EmpLecController {
 	
 	
 	@RequestMapping(value="send.el")
-	public String send(HttpServletRequest request) {
+	public String send(MultipartHttpServletRequest request) {
 		
 		String from = request.getParameter("email");
 		
@@ -151,7 +154,7 @@ public class EmpLecController {
 					   + "이메일 : " + request.getParameter("email") + "\r\n"
 					   + "경력사항 : " + request.getParameter("career");
 		// 파일
-		request.getParameter("filename");
+		List<MultipartFile> fileList = request.getFiles("file");
 		try {
 			MimeMessage message = mailSender.createMimeMessage();
 			MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "UTF-8");
@@ -159,6 +162,10 @@ public class EmpLecController {
 			messageHelper.setFrom(from);
 			for(String to: toAddress) {
 				messageHelper.addTo(to);
+			}
+			for (MultipartFile f: fileList) {
+				File file = new File(f.getOriginalFilename());
+				messageHelper.addAttachment(f.getOriginalFilename(), file);
 			}
 			messageHelper.setSubject(subject);
 			messageHelper.setText(text);
