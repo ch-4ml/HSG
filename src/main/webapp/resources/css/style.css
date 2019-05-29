@@ -8,37 +8,38 @@
 @import
 	url("https://fonts.googleapis.com/css?family=Ubuntu:400,500,700");
 
+@import url('https://cdn.rawgit.com/innks/NanumSquareRound/master/nanumsquareround.min.css');
 body {
 	color: #777;
-	font-family: "Roboto", sans-serif;
+	font-family: 'NanumSquareRound',sans-serif
 	font-size: 15px;
 	font-weight: 400
 }
 
 p {
 	color: #000;
-	font-family: "Do Hyeon", sans-serif;
+	font-family: 'NanumSquareRound',sans-serif
 	font-size: 15px !important;
 	font-weight: 100
 }
 
 h1 {
 	color: #fff;
-	font-family: "Do Hyeon", sans-serif;
+	font-family: 'NanumSquareRound',sans-serif
 	font-size: 80px !important;
 	font-weight: 700
 }
 
 h2 {
-	color: #000;
-	font-family: "Do Hyeon", sans-serif;
+	color: #222;
+	font-family: 'NanumSquareRound',sans-serif
 	font-size: 36px !important;
 	font-weight: 700
 }
 
 h3 {
 	color: #222;
-	font-family: "Ubuntu", sans-serif;
+	font-family: 'NanumSquareRound',sans-serif
 	font-size: 18px !important;
 	font-weight: 700;
 	text-transform: uppercase
@@ -46,14 +47,14 @@ h3 {
 
 h4 {
 	color: #222;
-	font-family: "Ubuntu", sans-serif;
+	font-family: 'NanumSquareRound',sans-serif
 	font-size: 16px !important;
 	font-weight: 400
 }
 
 h5 {
 	color: #777;
-	font-family: "Roboto", sans-serif;
+	font-family: 'NanumSquareRound',sans-serif
 	text-transform: capitalize;
 	font-size: 14px !important;
 	font-weight: 400
@@ -62,7 +63,7 @@ h5 {
 h6 {
 	color: #777;
 	font-size: 12px !important;
-	font-family: "Roboto", sans-serif;
+	font-family: 'NanumSquareRound',sans-serif
 	text-transform: uppercase;
 	font-weight: 500
 }
