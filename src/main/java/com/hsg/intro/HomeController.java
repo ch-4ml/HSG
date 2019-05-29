@@ -52,10 +52,8 @@ public class HomeController {
 					image = c.getText().substring(c.getText().indexOf("ftp")).substring(0, c.getText().substring(c.getText().indexOf("ftp")).indexOf("\" alt=\""));
 				if(c.getText().indexOf("ssh") != -1)
 					image = c.getText().substring(c.getText().indexOf("ssh")).substring(0, c.getText().substring(c.getText().indexOf("ssh")).indexOf("\" alt=\""));
-				System.out.println("image : " + image);
 				// base64 형식의 이미지 src 부분 추출(태그 포함)
 				String imageWithTag = c.getText().substring(c.getText().indexOf("<img ")).substring(0, c.getText().substring(c.getText().indexOf("<img ")).indexOf("\" />") + 4);
-				System.out.println("imageWithTag : " + imageWithTag);
 				c.setImage(image);
 				c.setText(c.getText().replace(imageWithTag, ""));
 			}

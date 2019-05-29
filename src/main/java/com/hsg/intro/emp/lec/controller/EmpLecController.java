@@ -7,10 +7,12 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-import javax.activation.DataSource;
+import javax.activation.MimetypesFileTypeMap;
 import javax.mail.internet.MimeMessage;
+import javax.mail.util.ByteArrayDataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.InputStreamResource;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
@@ -69,12 +71,13 @@ public class EmpLecController {
 	public ModelAndView view(ModelAndView mv) {
 		try {
 			List<Contents> contents = cs.findByPageId(pageId);
-			
 			mv.addObject("contents", contents);
+			mv.setViewName("emp/lec/emp_lec_00001");
 		} catch(ContentsException e) {
-			e.printStackTrace();
+			mv.addObject("message",e.getMessage());
+			mv.setViewName("common/errorPage");
 		}
-		mv.setViewName("emp/lec/emp_lec_00001");
+
 		return mv;
 	}
 	
@@ -103,9 +106,7 @@ public class EmpLecController {
 		c.setId(id);
 		c.setPageId(pageId);
 		c.setPostDate(postDate);
-		
-		System.out.println("in update : " + c);
-		
+
 		try {
 			cs.update(c);
 			mv.setViewName("redirect:viewDetail.el?id=" + id);
@@ -148,13 +149,20 @@ public class EmpLecController {
 		toAddress.add("ark9659@gmail.com");
 		toAddress.add("cksgud1350@naver.com");
 		String subject = "[HS글로벌 강사 지원] " + request.getParameter("name");
-		String text = "지원자 이름 : " + request.getParameter("name") + "\r\n"
-					   + "분야 : " + request.getParameter("field") + "\r\n"
-					   + "연락처 : " + request.getParameter("phone") + "\r\n"
-					   + "이메일 : " + request.getParameter("email") + "\r\n"
-					   + "경력사항 : " + request.getParameter("career");
+		String text = "지원자 이름 : " + request.getParameter("name") + "\r\n" + 
+					  "분야 : " + request.getParameter("field") + "\r\n" + 
+					  "연락처 : " + request.getParameter("phone") + "\r\n" + 
+					  "이메일 : " + request.getParameter("email") + "\r\n" + 
+					  "경력사항 : " + request.getParameter("career");
 		// 파일
 		List<MultipartFile> fileList = request.getFiles("file");
+		for (MultipartFile f : fileList) {
+			System.out.println(f.getOriginalFilename() + "의 크기 : " + Math.round(f.getSize()/1024*1000)/1000.0 + "KB");
+		}
+		
+		System.out.println(subject);
+		System.out.println(text);
+		
 		try {
 			MimeMessage message = mailSender.createMimeMessage();
 			MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "UTF-8");
@@ -163,10 +171,18 @@ public class EmpLecController {
 			for(String to: toAddress) {
 				messageHelper.addTo(to);
 			}
+			
 			for (MultipartFile f: fileList) {
 				File file = new File(f.getOriginalFilename());
-				messageHelper.addAttachment(f.getOriginalFilename(), file);
+				String mimeType = new MimetypesFileTypeMap().getContentType(file);
+				
+				messageHelper.addAttachment(f.getOriginalFilename(), new ByteArrayDataSource(f.getBytes(), mimeType)); // string, datasource
+//				messageHelper.addAttachment(arg0, arg1); // string, dataSource				
+//				messageHelper.addAttachment(attachmentFilename, file); // string, file
+//				messageHelper.addAttachment(attachmentFilename, inputStreamSource); // string, inputstreamsource
+//				messageHelper.addAttachment(attachmentFilename, inputStreamSource, contentType); // string, inputstreamsource, string
 			}
+			
 			messageHelper.setSubject(subject);
 			messageHelper.setText(text);
 			
@@ -175,6 +191,6 @@ public class EmpLecController {
 			System.out.println(e);
 		}
 		
-		return "redirect:view.el";
+		return "redirect:sendForm.el";
 	}
 }
