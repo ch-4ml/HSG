@@ -1,13 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>HS글로벌</title>
 <jsp:include page="../../common/head.jsp" />
+<%@ include file="../../common/tinymce.jsp" %>
 </head>
 <body>
 <jsp:include page="../../common/header-content.jsp" />
@@ -16,24 +15,19 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1>강사 지원</h1>
+                    <h1>교육 등록</h1>
                 </div>
             </div>
         </div>
     </section>
     <!-- Banner Area End -->
-    
+
     <!-- About Area Starts -->
-    <form action="send.el" method="post" enctype="multipart/form-data">
-	    <input type="text" name="name" placeholder="지원자 성함"><br>
-	    <input type="text" name="field" placeholder="분야"><br>
-	    <input type="text" name="phone" placeholder="연락처"><br>
-	    <input type="text" name="email" placeholder="이메일"><br>
-	    <textarea name="career" placeholder="경력사항을 자유롭게 기재해주세요."></textarea><br>
-	    <input type="file" name="file" multiple="multiple"><br>
-	    <input type="submit" value="메일 보내기">
-    </form>
-    
+    <form action="insert.er" method="post">
+		<input type="text" name="title" placeholder="제목">
+		<textarea id="text" name="text" placeholder="내용을 추가하세요."></textarea>
+		<input type="submit" value="추가">
+	</form>
     <!-- About Area End -->
     
     <jsp:include page="../../common/footer.jsp" />

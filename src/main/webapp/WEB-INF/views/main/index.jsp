@@ -171,8 +171,10 @@
 									<h3>${content.title }</h3>
 									<p>${content.text }</p>
 									<c:if test="${!empty loginUser }">
-										<input type="button" value="수정" onclick="location.href='updateDevView.ma?id=${content.id}'">
-										<input type="button" value="삭제" onclick="location.href='deleteDev.ma?id=${content.id}'">
+										<input type="button" value="수정"
+											onclick="location.href='updateDevView.ma?id=${content.id}'">
+										<input type="button" value="삭제"
+											onclick="location.href='deleteDev.ma?id=${content.id}'">
 									</c:if>
 								</div>
 							</div>
@@ -184,97 +186,21 @@
 	</section>
 	<!-- Department Area Starts -->
 
-	<!-- Contact Area Starts -->
-	<section id="contact" class="section contacts no-padding">
-		<div class="container-fluid">
-			<div class="row no-gutter">
-				<div class="col-md-6 wow fadeInUp" data-wow-delay="250ms">
-					<div class="card" style="width: 100%; height: 100%">
-						<div class="card-header bg-primary text-white">
-							<i class="fa fa-envelope"></i> 교육 의뢰
-						</div>
-						<div class="card-body">
-							<form>
-								<div class="row">
-									<div class="col-12 col-lg-6">
-										<div class="form-group">
-											<input type="text" class="form-control" id="name"
-												aria-describedby="emailHelp" placeholder="회사명 *" required>
-										</div>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-12 col-lg-6">
-										<div class="input-group  mb-3">
-											<input type="text" class="form-control" id="zip_code"
-												name="zip_code" aria-describedby="emailHelp"
-												placeholder="우편번호 *" required>
-											<div class="input-group-append">
-												<button class="btn btn-outline-secondary" type="button"
-													onclick="sample2_execDaumPostcode()" value="우편번호 검색">검색</button>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-12 col-lg-7 mr-1">
-										<div class="form-group">
-											<input type="text" class="form-control" id="b_address"
-												aria-describedby="emailHelp" placeholder="주소 *" required>
-										</div>
-									</div>
-									<div class="col-12 col-lg-3">
-										<div class="form-group">
-											<input type="text" class="form-control" id="d_address"
-												aria-describedby="emailHelp" placeholder="상세주소 *" required>
-										</div>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-12 col-lg-4 mr-1">
-										<div class="form-group">
-											<input type="text" class="form-control" id="s_name"
-												aria-describedby="emailHelp" placeholder="담당자 *" required>
-										</div>
-									</div>
-									<div class="col-12 col-lg-4">
-										<div class="form-group">
-											<input type="email" class="form-control" id="email"
-												aria-describedby="emailHelp" placeholder="E-mail *" required>
-										</div>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-12 col-lg-10">
-										<div class="form-group">
-											<textarea class="form-control" id="message" rows="6"
-												placeholder="요구사항 *" required></textarea>
-										</div>
-									</div>
-								</div>
-								<div class="mx-auto">
-									<button type="submit" class="btn btn-primary text-right">보내기</button>
-								</div>
-							</form>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-6 wow fadeInUp" data-wow-delay="500ms">
-					<div id="overlay" class="map">
-						<iframe id="map"
-							src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJ57HhYJNEezURlmk1gdNK4Do&key=AIzaSyBEVw-A4jYQCCNUCiqtI6EZLlIfysbTBTk"
-							width="100%" height="560" frameborder="0"></iframe>
-					</div>
-				</div>
-			</div>
+	<!-- 
+		Contact Area 는 메인에서 사용하기 적절하지 않을 것 같아서 뺐습니다.
+		 소스는 common 아래에 따로 저장해뒀습니다. -박찬형-
+	-->
+
+	<div class="col-md-6 wow fadeInUp" data-wow-delay="500ms">
+		<div id="overlay" class="map">
+			<iframe id="map"
+				src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJ57HhYJNEezURlmk1gdNK4Do&key=AIzaSyBEVw-A4jYQCCNUCiqtI6EZLlIfysbTBTk"
+				width="100%" height="560" frameborder="0"></iframe>
 		</div>
-	</section>
-	<!-- Contact Area Starts -->
+	</div>
 
 	<jsp:include page="../common/footer.jsp" />
 	<!-- footer -->
 
-	<jsp:include page="../common/script.jsp" />
-	<!-- script -->
 </body>
 </html>

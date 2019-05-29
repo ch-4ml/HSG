@@ -193,6 +193,20 @@
     <url-pattern>*.ec</url-pattern>
   </servlet-mapping>
   
+    <servlet>
+  	<servlet-name>edu-req</servlet-name>
+  	<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+  	<init-param>
+  	  <param-name>contextConfigLocation</param-name>
+  	  <param-value>/WEB-INF/config/edu-req-servlet.xml</param-value>
+  	</init-param>
+  	<load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>edu-req</servlet-name>
+    <url-pattern>*.er</url-pattern>
+  </servlet-mapping>
+  
   <servlet>
   	<servlet-name>emp-lec</servlet-name>
   	<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
