@@ -28,17 +28,20 @@
 	
 	<!-- Mail -->
 	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
-      <property name="host" value="smtp.gmail.com" />
-      <property name="port" value="587" />
+      <property name="port" value="465" />
       <!-- 대표님 gmail 계정 정보로 변경 후 앱 안전성 설정 해제 해주기 -->
       <property name="username" value="ark9659@gmail.com" />
-      <property name="password" value="knifeark767" />
+      <property name="password" value="swhqcdfxsmkdafmf" />
+      <property name="defaultEncoding" value="UTF-8"/>
       <property name="javaMailProperties">
          <props>
-               <prop key="mail.transport.protocol">smtp</prop>
+         	   <prop key="mail.smtp.host">smtp.gmail.com</prop>
                <prop key="mail.smtp.auth">true</prop>
                <prop key="mail.smtp.starttls.enable">true</prop>
-               <prop key="mail.debug">true</prop>
+               <prop key="mail.smtp.debug">true</prop>
+               <prop key="mail.smtp.socketFactory.port">465</prop>
+               <prop key="mail.smtp.socketFactory.class">javax.net.ssl.SSLSocketFactory</prop>
+               <prop key="mail.smtp.socketFactory.fallback">false</prop>
          </props>
       </property>
    </bean>

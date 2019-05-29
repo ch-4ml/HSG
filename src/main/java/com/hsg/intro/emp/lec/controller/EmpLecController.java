@@ -154,13 +154,7 @@ public class EmpLecController {
 					  "이메일 : " + request.getParameter("email") + "\r\n" + 
 					  "경력사항 : " + request.getParameter("career");
 		// 파일
-		List<MultipartFile> fileList = request.getFiles("file");
-		for (MultipartFile f : fileList) {
-			System.out.println(f.getOriginalFilename() + "의 크기 : " + Math.round(f.getSize()/1024*1000)/1000.0 + "KB");
-		}
-		
-		System.out.println(subject);
-		System.out.println(text);
+		List<MultipartFile> fileList = request.getFiles("file");		
 		
 		try {
 			MimeMessage message = mailSender.createMimeMessage();
@@ -192,6 +186,6 @@ public class EmpLecController {
 			System.out.println(e);
 		}
 		
-		return "redirect:sendForm.el";
+		return "emp/lec/emp_lec_00005";
 	}
 }

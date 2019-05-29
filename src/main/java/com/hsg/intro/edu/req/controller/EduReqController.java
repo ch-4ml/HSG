@@ -199,6 +199,6 @@ public class EduReqController {
 			System.out.println(e);
 		}
 		
-		return "redirect:view.er";
+		return "edu/req/edu_req_00005";
 	}
 }
