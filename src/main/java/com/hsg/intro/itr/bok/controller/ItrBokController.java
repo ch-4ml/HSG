@@ -59,15 +59,16 @@ public class ItrBokController {
 
 			String ext = file.getOriginalFilename().substring(pos);
 			
-			//파일경로를 itrbok 객체에 넣어줌
-			
 			fileName = newfileName + ext;
+			//파일경로를 itrbok 객체에 넣어줌
+			filePath = filePath + "\\" + fileName;
 			
 			c.setPageId(pageId);
 			c.setImage(fileName);
 			
 			// 해당 폴더에 파일 생성
 			file.transferTo(new File(filePath));
+			
 		} catch (IllegalStateException e1) {
 			e1.printStackTrace();
 		} catch (IOException e1) {
