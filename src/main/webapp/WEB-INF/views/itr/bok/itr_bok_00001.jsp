@@ -51,7 +51,7 @@
 							<td>${content.title}</td>
 							<td>${content.text}</td>
 							<td><img alt=""
-								src="../../../../resources/uploadFiles/itrbok_upload_file/${content.image}"></td>
+								src="http://tbsko.cafe24.com/HSG/resources/uploadFiles/itrbok_upload_file/${content.image}"></td>
 							<c:if test="${!empty loginUser }">
 								<td><input type="button"
 									onclick="updateBtnClickEvent(${content.id})" value="수정하기">
