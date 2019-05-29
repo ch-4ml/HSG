@@ -49,6 +49,8 @@
                                 <li><a href="view.el">채용 공고</a></li>
                             </ul>
                         </li>
+                        <li class="menu-has-children"><a href="view.st">사이트맵</a>
+                        </li>
                         <c:choose>
 							<c:when test="${empty loginUser }">
 								<li><a href="signIn.me">LOGIN</a></li>
