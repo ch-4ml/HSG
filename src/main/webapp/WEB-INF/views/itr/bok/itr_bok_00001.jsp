@@ -5,6 +5,9 @@
 <!DOCTYPE html>
 <head>
 <title>HS글로벌</title>
+<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="./resources/css/main2.css" />
 
 <%
 		String PATH = request.getContextPath();
@@ -31,60 +34,73 @@
 		</div>
 	</section>
 	<!-- Banner Area End -->
-	<section class="feature-area section-padding">
-		<div class="container">
-			<c:if test="${!empty loginUser }">
-				<div>
-					<button class="btndy btn-1dy btn-1ady">
-						<a href='<%=PATH %>/insertView.ib'>추가하기</a>
-					</button>
-				</div>
-			</c:if>
-			<table id="itrbokListTable">
-				<tr>
-					<h3>[ 출판 도서 ]</h3>
-				</tr>
-
-				<c:forEach var="content" items="${contents}">
+	
+		<!-- Two -->
+		
+			<section id="two" class="wrapper style2 alt">
+			<div><h1><center>[ 출판 도서 ]</center></h1><br></div>
+				<div class="inner">
+					<c:forEach var="content" items="${contents}">
 					<c:if test="${content.category eq 1 }">
-						<tr>
-							<td>${content.title}</td>
-							<td>${content.text}</td>
-							<td><img alt=""
-								src="http://tbsko.cafe24.com/HSG/resources/uploadFiles/itrbok_upload_file/${content.image}"></td>
+					
+					<div class="spotlight">
+						<div class="image">
+							<img src="../../../../resources/uploadFiles/itrbok_upload_file/${content.image}" alt="" />
+						</div>
+						<div class="content">
+							<h3>${content.title}</h3>
+							<p>${content.text}</p>
 							<c:if test="${!empty loginUser }">
-								<td><input type="button"
-									onclick="updateBtnClickEvent(${content.id})" value="수정하기">
-								</td>
+							<ul class="actions">
+								<li><a onclick="updateBtnClickEvent(${content.id})"  class="button alt">수정</a></li><p>
+							</ul>
 							</c:if>
-						</tr>
+						</div>
+					</div>
 					</c:if>
-				</c:forEach>
-			</table>
-			<table id="itrbokListTable2">
-				<tr>
-					<h3>[ 특허 ]</h3>
-				</tr>
-				<c:forEach var="content" items="${contents}">
+					</c:forEach>
+					
+
+
+				<c:if test="${!empty loginUser }">
+					<ul class="actions special">
+						<li><a href="<%=PATH %>/insertView.ib" class="button alt">추가하기</a></li>
+					</ul>
+				</c:if>
+				</div>
+			</section>
+			<p>
+			<section id="two" class="wrapper style2 alt">
+			<div><h1><center>[ 특허 ]</center></h1><br></div>
+				<div class="inner">
+					<c:forEach var="content" items="${contents}">
 					<c:if test="${content.category eq 2 }">
-						<tr>
-							<td>${content.title}</td>
-							<td>${content.text}</td>
-							<td><img alt=""
-								src="../../../../resources/uploadFiles/itrbok_upload_file/${content.image}"></td>
+					
+					<div class="spotlight">
+						<div class="image">
+						<img src="../../../../resources/uploadFiles/itrbok_upload_file/test.jpg" alt="" />
+							<!-- <img src="../../../../resources/uploadFiles/itrbok_upload_file/${content.image}" alt="" /> -->
+						</div>
+						<div class="content">
+							<h3>${content.title}</h3>
+							<p>${content.text}</p>
 							<c:if test="${!empty loginUser }">
-								<td><input type="button"
-									onclick="updateBtnClickEvent(${content.id})" value="수정하기">
-								</td>
+							<ul class="actions">
+								<li><a onclick="updateBtnClickEvent(${content.id})" class="button alt">수정</a></li><p>
+							</ul>
 							</c:if>
-						</tr>
+						</div>
+					</div>
 					</c:if>
-				</c:forEach>
-			</table>
-		</div>
-	</section>
+					</c:forEach>
+				<c:if test="${!empty loginUser }">
+					<ul class="actions special">
+						<li><a href="<%=PATH %>/insertView.ib" class="button alt">추가하기</a></li>
+					</ul>
+				</c:if>
+				</div>
+			</section>
 
 	<jsp:include page="../../common/footer.jsp" />
-	<!-- footer -->
 
-</body>
+	</body>

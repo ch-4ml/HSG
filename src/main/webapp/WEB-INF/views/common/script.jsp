@@ -14,5 +14,10 @@
     <script src="./resources/js/vendor/jquery.nice-select.min.js"></script>
     <script src="./resources/js/vendor/superfish.min.js"></script>
     <script src="./resources/js/main.js"></script>
+
+	<script src="./resources/js/vendor/jquery.min.js"></script>
+	<script src="./resources/js/vendor/skel.min.js"></script>
+	<script src="./resources/js/vendor/util.js"></script>
+	<script src="./resources/js/main2.js"></script>
 </body>
 </html>
