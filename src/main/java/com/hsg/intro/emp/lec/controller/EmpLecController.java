@@ -12,7 +12,6 @@ import javax.mail.internet.MimeMessage;
 import javax.mail.util.ByteArrayDataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.InputStreamResource;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
@@ -173,14 +172,16 @@ public class EmpLecController {
 			}
 			
 			for (MultipartFile f: fileList) {
-				File file = new File(f.getOriginalFilename());
-				String mimeType = new MimetypesFileTypeMap().getContentType(file);
-				
-				messageHelper.addAttachment(f.getOriginalFilename(), new ByteArrayDataSource(f.getBytes(), mimeType)); // string, datasource
-//				messageHelper.addAttachment(arg0, arg1); // string, dataSource				
-//				messageHelper.addAttachment(attachmentFilename, file); // string, file
-//				messageHelper.addAttachment(attachmentFilename, inputStreamSource); // string, inputstreamsource
-//				messageHelper.addAttachment(attachmentFilename, inputStreamSource, contentType); // string, inputstreamsource, string
+				if(f.getOriginalFilename() != "") {
+					File file = new File(f.getOriginalFilename());
+					String mimeType = new MimetypesFileTypeMap().getContentType(file);
+					
+					messageHelper.addAttachment(f.getOriginalFilename(), new ByteArrayDataSource(f.getBytes(), mimeType)); // string, datasource
+	//				messageHelper.addAttachment(arg0, arg1); // string, dataSource				
+	//				messageHelper.addAttachment(attachmentFilename, file); // string, file
+	//				messageHelper.addAttachment(attachmentFilename, inputStreamSource); // string, inputstreamsource
+	//				messageHelper.addAttachment(attachmentFilename, inputStreamSource, contentType); // string, inputstreamsource, string
+				}
 			}
 			
 			messageHelper.setSubject(subject);
