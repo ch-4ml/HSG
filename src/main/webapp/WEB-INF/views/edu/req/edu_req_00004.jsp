@@ -71,27 +71,14 @@ function fileCheck(file)
 	// 사이즈체크
 	var maxSize  = 25 * 1024 * 1024
 	var fileSize = 0;
-	// 브라우저 확인
-	var browser = navigator.appName;
-	
-	// 익스플로러일 경우
-	if (browser=="Microsoft Internet Explorer") {
-		var oas = new ActiveXObject("Scripting.FileSystemObject");
-		fileSize = oas.getFile( file.value ).size;
+	for(var i=0; i<file.files.length; i++) {
+		fileSize = fileSize + file.files[i].size;
 	}
-	// 익스플로러가 아닐경우
-	else {
-//		file.files.forEach(function(f) {
-//			fileSize += f.size;
-//		});
-		fileSize = file.files[0].size;
-	}
-	alert("파일사이즈 : "+ fileSize +", 최대파일사이즈 : 25MB");
 	if(fileSize > maxSize) {
 		alert("첨부파일 사이즈는 25MB 이내로 전송 가능합니다.");
 		return;
 	}
-		document.form.submit();
+	document.form.submit();
 }
 </script>
 
@@ -111,8 +98,7 @@ function fileCheck(file)
 
 	<!-- Contact Area Starts -->
 
-	<form action="send.er" name="form" method="post"
-		enctype="multipart/form-data">
+	<form action="send.er" name="form" method="post" enctype="multipart/form-data">
 		<input type="text" class="form-control" id="program" name="program"
 			aria-describedby="emailHelp" placeholder="신청할 프로그램 *"
 			value="${content.title }" required readonly> <input
