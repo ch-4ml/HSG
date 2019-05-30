@@ -20,7 +20,7 @@
             <div class="container">
                 <div class="row align-items-center justify-content-between d-flex">
                 <div id="logo">
-                    <a href="view.ma"><img src="./resources/images/logo/logo.png" alt="" title="" /></a>
+                    <a href="view.ma"><img src="./resources/images/logo/logo.png" alt="" title="" width="25%"/></a>
                 </div>
                 <nav id="nav-menu-container">
                     <ul class="nav-menu">
@@ -48,8 +48,6 @@
                             <ul>
                                 <li><a href="view.el">채용 공고</a></li>
                             </ul>
-                        </li>
-                        <li class="menu-has-children"><a href="view.st">사이트맵</a>
                         </li>
                         <c:choose>
 							<c:when test="${empty loginUser }">

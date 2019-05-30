@@ -43,7 +43,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1>출판도서/특허</h1>
+                    <h1>출판도서/특허 수정</h1>
                 </div>
             </div>
         </div>
@@ -52,7 +52,7 @@
 		<div class="container">
             <div class="col-md-10 col-md-offset-1">
                 <div class="sub_banner-text text-center">
-                    <h2>[ 출판 도서 / 특허 수정 ]</h2><br>
+                    
                 </div><!-- banner text -->
                 <form action="update.ib" method="post" enctype="multipart/form-data">
 				<input type="hidden" name="id" value="${content.id} ">

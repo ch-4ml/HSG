@@ -7,7 +7,19 @@
     <title>HS글로벌</title>
     <jsp:include page="../../common/head.jsp" />
 	<%@ include file="../../common/tinymce.jsp" %>
-    
+     <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
 </head>
 <body>
 <jsp:include page="../../common/header-content.jsp" />
@@ -16,17 +28,24 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1>강사 채용</h1>
+                    <h1>회사 위치</h1>
                 </div>
             </div>
         </div>
     </section>
     <!-- Banner Area End -->
 	
-	<div id="overlay" class="map">
-		<iframe id="map"
-			src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3177.6398989608747!2d127.0971884264644!3d37.20878170574413!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x18b26f1c5d97b083!2zKOyjvCnsnIjsnbjthY0!5e0!3m2!1sko!2skr!4v1559184596739!5m2!1sko!2skr"width="100%" height="200"></iframe>
-	</div>
+	<div id="map"></div>
+    <script>
+      var map;
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: -34.397, lng: 150.644},
+          zoom: 8
+        });
+      }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB4LR6QGoBBw_VJChqlK6mAs5l4mB33YSM&callback=initMap" async defer></script>
 	
 	<jsp:include page="../../common/footer.jsp" />
     <!-- footer -->

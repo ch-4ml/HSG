@@ -25,8 +25,9 @@
 	<link rel="stylesheet" href="./resources/css/main.css">
 	<link rel="stylesheet" href="./resources/css/component.css">
 	<link rel="stylesheet" href="./resources/css/default.css">
-	
+	<link rel="stylesheet" href="./resources/css/list.css" />
 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
 </head>
 <body>
 
