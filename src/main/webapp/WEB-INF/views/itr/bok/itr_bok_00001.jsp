@@ -10,8 +10,8 @@
 		<link rel="stylesheet" href="./resources/css/main2.css" />
 
 <%
-		String PATH = request.getContextPath();
-	%>
+	String PATH = request.getContextPath();
+%>
 
 <jsp:include page="../../common/head.jsp" />
 
@@ -19,7 +19,7 @@
     	function updateBtnClickEvent(id) {
 	    	window.location.assign('<%=PATH %>/updateView.ib?id='+id);
 		}
-    </script>
+</script>
 </head>
 <body>
 	<jsp:include page="../../common/header-content.jsp" />
@@ -52,7 +52,7 @@
 							<p>${content.text}</p>
 							<c:if test="${!empty loginUser }">
 							<ul class="actions">
-								<li><a onclick="updateBtnClickEvent(${content.id})"  class="button alt">수정</a></li><p>
+								<li><a onclick="updateBtnClickEvent(${content.id})" class="button alt">수정</a></li>
 							</ul>
 							</c:if>
 						</div>
@@ -69,7 +69,6 @@
 				</c:if>
 				</div>
 			</section>
-			<p>
 			<section id="two" class="wrapper style2 alt">
 			<div><h1><center>[ 특허 ]</center></h1><br></div>
 				<div class="inner">
@@ -86,7 +85,7 @@
 							<p>${content.text}</p>
 							<c:if test="${!empty loginUser }">
 							<ul class="actions">
-								<li><a onclick="updateBtnClickEvent(${content.id})" class="button alt">수정</a></li><p>
+								<li><a onclick="updateBtnClickEvent(${content.id})" class="button alt">수정</a></li>
 							</ul>
 							</c:if>
 						</div>
