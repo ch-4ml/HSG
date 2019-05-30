@@ -45,7 +45,7 @@
 					
 					<div class="spotlight">
 						<div class="image">
-							<img src="../../../../resources/uploadFiles/itrbok_upload_file/${content.image}" alt="" />
+							<img src="http://tbsko.cafe24.com/resources/uploadFiles/itrbok_upload_file/${content.image}" alt="" />
 						</div>
 						<div class="content">
 							<h3>${content.title}</h3>
@@ -77,7 +77,7 @@
 					
 					<div class="spotlight">
 						<div class="image">
-						<img src="../../../../resources/uploadFiles/itrbok_upload_file/test.jpg" alt="" />
+						<img src="http://tbsko.cafe24.com/resources/uploadFiles/itrbok_upload_file/${content.image}" alt="" />
 							<!-- <img src="../../../../resources/uploadFiles/itrbok_upload_file/${content.image}" alt="" /> -->
 						</div>
 						<div class="content">
