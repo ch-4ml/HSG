@@ -191,13 +191,13 @@
 		 소스는 common 아래에 따로 저장해뒀습니다. -박찬형-
 	-->
 
+	<!-- 
 	<div class="col-md-6 wow fadeInUp" data-wow-delay="500ms">
 		<div id="overlay" class="map">
-			<iframe id="map"
-				src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJ57HhYJNEezURlmk1gdNK4Do&key=AIzaSyBEVw-A4jYQCCNUCiqtI6EZLlIfysbTBTk"
-				width="100%" height="560" frameborder="0"></iframe>
+			<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3177.6398989608747!2d127.0971884264644!3d37.20878170574413!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x18b26f1c5d97b083!2zKOyjvCnsnIjsnbjthY0!5e0!3m2!1sko!2skr!4v1559184596739!5m2!1sko!2skr" width="600" height="450" style="border:0"></iframe>
 		</div>
 	</div>
+	 -->
 
 	<jsp:include page="../common/footer.jsp" />
 	<!-- footer -->
