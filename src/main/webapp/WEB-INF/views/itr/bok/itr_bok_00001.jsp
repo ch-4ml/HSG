@@ -102,6 +102,7 @@
 								</ul>
 							</c:if>
 						</div>
+						<br>
 					</div>
 				</c:if>
 			</c:forEach>

@@ -48,47 +48,45 @@
             </div>
         </div>
     </section>
-<section class="sub_banner" role="banner">
-		<div class="container">
-            <div class="col-md-10 col-md-offset-1">
-                <div class="sub_banner-text text-center">
-                    
-                </div><!-- banner text -->
-                <form action="update.ib" method="post" enctype="multipart/form-data">
-				<input type="hidden" name="id" value="${content.id} ">
-				<table>
-					<tr>
-						<td>*출판도서/특허명</td>
-						<td><input type="text" name="title" value="${content.title} "></td>
-					</tr>
-					<c:choose>
-						<c:when test="${content.category eq '1'}">
-						<tr>
-							<td>*종류</td>
-							<td>
-								<input type="radio" id="bok" name="category" value="1" checked="checked">
-								<label for="bok">서적</label>
-							</td>
-							<td>
-								<input type="radio" id="patent" name="category" value="2">
-								<label for="patent">특허</label>
-							</td>
-						<tr>
-						</c:when>
-						<c:otherwise>
-						<tr>
-							<td>*종류</td>
-							<td>
-								<input type="radio" id="bok" name="category" value="1">
-								<label for="bok">서적</label>
-							</td>
-							<td>
-								<input type="radio" id="patent" name="category" value="2" checked="checked">
-								<label for="patent">특허</label>
-							</td>
-						<tr>
-						</c:otherwise>
-					</c:choose>
+
+<!-- banner text -->
+    <form action="update.ib" method="post" enctype="multipart/form-data">
+		<input type="hidden" name="id" value="${content.id} ">
+		<span class="input input--hoshi">
+			<input class="input__field input__field--hoshi" type="text" id="title" name="title">
+			<label class="input__label input__label--hoshi input__label--hoshi-color-1" for="title">
+				<span class="input__label-content input__label-content--hoshi">출판도서 / 특허명</span>
+			</label>
+		</span>
+		<br>					
+		<c:choose>
+			<c:when test="${content.category eq '1'}">
+			<tr>
+				<td>*종류</td>
+				<td>
+					<input type="radio" id="bok" name="category" value="1" checked="checked">
+					<label for="bok">서적</label>
+				</td>
+				<td>
+					<input type="radio" id="patent" name="category" value="2">
+					<label for="patent">특허</label>
+				</td>
+			<tr>
+			</c:when>
+			<c:otherwise>
+			<tr>
+				<td>*종류</td>
+				<td>
+					<input type="radio" id="bok" name="category" value="1">
+					<label for="bok">서적</label>
+				</td>
+				<td>
+					<input type="radio" id="patent" name="category" value="2" checked="checked">
+					<label for="patent">특허</label>
+				</td>
+			<tr>
+			</c:otherwise>
+		</c:choose>
 					</tr>
 						<td>*내용</td>
 						<td>
@@ -109,11 +107,8 @@
 					<input type="button" value="삭제하기" onclick="deleteBtnClickEvent(${content.id})"/>
 					<input type="submit" value="수정하기"/>
 				</div>
-				</form>
-            </div>
-        </div>
-    </section><!-- banner -->
-	
+			</form>
+
 	<jsp:include page="../../common/footer.jsp" />
     <!-- footer -->
 

@@ -81,8 +81,12 @@ function fileCheck(file)
 	document.form.submit();
 }
 </script>
-
-
+<script>
+function resize(obj) {
+	  obj.style.height = "1px";
+	  obj.style.height = (12+obj.scrollHeight)+"px";
+	}
+</script>
 	<jsp:include page="../../common/header-content.jsp" />
 	<!-- Banner Area Starts -->
 	<section class="banner-area other-page">
@@ -97,41 +101,90 @@ function fileCheck(file)
 	<!-- Banner Area End -->
 
 	<!-- Contact Area Starts -->
-
-	<form action="send.er" name="form" method="post" enctype="multipart/form-data">
-		<input type="text" class="form-control" id="program" name="program"
-			aria-describedby="emailHelp" placeholder="신청할 프로그램 *"
-			value="${content.title }" required readonly> <input
-			type="text" class="form-control" id="company" name="company"
-			aria-describedby="emailHelp" placeholder="회사명 *" required> <input
-			type="text" class="form-control" id="zip_code" name="zip_code"
-			aria-describedby="emailHelp" placeholder="우편번호 *" required readonly>
-		<div class="input-group-append">
-			<button class="btn btn-outline-secondary" type="button"
-				onclick="execDaumPostcode()" value="우편번호 검색">검색</button>
+	<section class="content">
+		<div style="text-align:center;">
+			<h2>교육 의뢰 메일 보내기</h2>
 		</div>
-		<input type="text" class="form-control" id="address" name="address"
-			aria-describedby="emailHelp" placeholder="주소 *" required readonly>
-		<input type="text" class="form-control" id="d_address"
-			name="d_address" aria-describedby="emailHelp" placeholder="상세주소 *"
-			required> <input type="text" class="form-control"
-			id="e_address" name="e_address" aria-describedby="emailHelp"
-			placeholder="참고항목 " readonly> <input type="text"
-			class="form-control" id="name" name="name"
-			aria-describedby="emailHelp" placeholder="담당자명 *" required> <input
-			type="text" class="form-control" id="phone" name="phone"
-			aria-describedby="emailHelp" placeholder="연락처 *" required> <input
-			type="email" class="form-control" id="email" name="email"
-			aria-describedby="emailHelp" placeholder="E-mail *" required>
-		<textarea class="form-control" id="message" name="message" rows="6"
-			placeholder="요구사항 *" required></textarea>
-		<input type="file" class="form-control" id="file" name="file"
-			multiple="multiple" aria-describedby="emailHelp" placeholder="첨부 파일">
-		<div class="mx-auto">
-			<button type="button" class="btn btn-primary text-right"
-				onclick="fileCheck(this.form.file)">보내기</button>
+		<div class="container">
+			<form action="send.er" name="form" method="post" enctype="multipart/form-data">
+				<span class="input input--hoshi">
+					<input class="input__field input__field--hoshi" type="text" id="program" name="program" value="${content.title }" readonly onfocus="this.blur();">
+					<label class="input__label input__label--hoshi input__label--hoshi-color-1" for="program">
+						<span class="input__label-content input__label-content--hoshi">신청할 프로그램</span>
+					</label>
+				</span>
+				<span class="input input--hoshi">
+					<input class="input__field input__field--hoshi" type="text" id="company" name="company">
+					<label class="input__label input__label--hoshi input__label--hoshi-color-1" for="company">
+						<span class="input__label-content input__label-content--hoshi">회사명</span>
+					</label>
+				</span>
+				<br>
+				<span class="input input--hoshi">
+					<input class="input__field input__field--hoshi" type="text" id="zip_code" name="zip_code" value="주소 검색하기" onclick="execDaumPostcode()" readonly onfocus="this.blur();">
+					<label class="input__label input__label--hoshi input__label--hoshi-color-1" for="zip_code">
+						<span class="input__label-content input__label-content--hoshi">우편번호</span>
+					</label>
+				</span>
+				<span class="input input--hoshi">
+					<input class="input__field input__field--hoshi input--filled" type="text" id="address" name="address" value="←" readonly onfocus="this.blur();">
+					<label class="input__label input__label--hoshi input__label--hoshi-color-1" for="address">
+						<span class="input__label-content input__label-content--hoshi">회사주소</span>
+					</label>
+				</span>
+				<br>
+				<span class="input input--hoshi">
+					<input class="input__field input__field--hoshi" type="text" id="d_address" name="d_address">
+					<label class="input__label input__label--hoshi input__label--hoshi-color-1" for="d_address">
+						<span class="input__label-content input__label-content--hoshi">상세주소</span>
+					</label>
+				</span>
+				<span class="input input--hoshi">
+					<input class="input__field input__field--hoshi input--filled" type="text" id="e_address" name="e_address" value="←" readonly onfocus="this.blur();">
+					<label class="input__label input__label--hoshi input__label--hoshi-color-1" for="e_address">
+						<span class="input__label-content input__label-content--hoshi">참고주소</span>
+					</label>
+				</span>
+				<br>
+				<span class="input input--hoshi">
+					<input class="input__field input__field--hoshi" type="text" id="name" name="name">
+					<label class="input__label input__label--hoshi input__label--hoshi-color-1" for="name">
+						<span class="input__label-content input__label-content--hoshi">담당자 성함</span>
+					</label>
+				</span>
+				<span class="input input--hoshi">
+					<input class="input__field input__field--hoshi" type="text" id="phone" name="phone">
+					<label class="input__label input__label--hoshi input__label--hoshi-color-1" for="phone">
+						<span class="input__label-content input__label-content--hoshi">연락처</span>
+					</label>
+				</span>
+				<br>
+				<span class="input input--hoshi">
+					<input class="input__field input__field--hoshi" type="text" id="email" name="email">
+					<label class="input__label input__label--hoshi input__label--hoshi-color-1" for="email">
+						<span class="input__label-content input__label-content--hoshi">E-mail</span>
+					</label>
+				</span>
+				<span class="input input--hoshi input--filled">
+					<input class="input__field input__field--hoshi" type="file" id="file" name="file" multiple="multiple">
+					<label class="input__label input__label--hoshi input__label--hoshi-color-1" for="name">
+						<span class="input__label-content input__label-content--hoshi">첨부파일</span>
+					</label>
+				</span>
+				<br>	
+				<span class="input__textarea input--hoshi">
+					<textarea class="autosize input__field input__field--hoshi" onkeydown="resize(this)" onkeyup="resize(this)" id="message" name="message"></textarea>
+					<label class="input__label input__label--hoshi input__label--hoshi-color-1" for="message">
+						<span class="input__label-content input__label-content--hoshi">요구사항</span>
+					</label>
+				</span>
+				<br>
+				<div style="text-align:center;">
+					<input type="button" onclick="fileCheck(this.form.file)" value="보내기">
+				</div>	
+			</form>
 		</div>
-	</form>
+	</section>
 	<!-- Contact Area End -->
 
 	<jsp:include page="../../common/footer.jsp" />
