@@ -16,7 +16,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1>회사 위치</h1>
+                    <h1>채용 공고</h1>
                 </div>
             </div>
         </div>
@@ -24,18 +24,32 @@
     <!-- Banner Area End -->
 
     <!-- About Area Starts -->
-    <c:if test="${!empty loginUser }">
-    	<a href="insertView.el">추가하기</a>
-    	<br>
-    </c:if>
-    <c:forEach var="content" items="${contents }" varStatus="status">
-		<a href="viewDetail.el?id=${content.id }">
-			${content.title }
-			${content.postDate }
-		</a>
-		<br>
-		<br>
-	</c:forEach>
+    <section id="two" class="wrapper style2 alt">
+		<div style="text-align:center;">
+			<h1>
+				[ 진행 중인 교육 채용 ]
+			</h1>
+			<br>
+		</div>
+		<div class="inner">
+			<c:forEach var="content" items="${contents}">
+					<a href="viewDetail.er?id=${content.id }">
+					<div class="spotlight">
+						<div class="content">
+							<h3>${content.title }</h3>
+							<h4 style="text-align:left;">${content.postDate}</h4>
+						</div>
+					</div>
+					</a>
+			</c:forEach>
+			<c:if test="${!empty loginUser }">
+				<ul class="actions special">
+					<li><a href="insertView.el" class="button alt">추가하기</a></li>
+				</ul>
+			</c:if>
+		</div>
+	</section>
+
     <!-- About Area End -->
     
     <jsp:include page="../../common/footer.jsp" />
