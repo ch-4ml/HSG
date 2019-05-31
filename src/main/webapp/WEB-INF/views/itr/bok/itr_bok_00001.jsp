@@ -59,8 +59,6 @@
 					</div>
 					</c:if>
 					</c:forEach>
-					
-
 
 				<c:if test="${!empty loginUser }">
 					<ul class="actions special">
