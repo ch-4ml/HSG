@@ -37,7 +37,7 @@ public class ItrBokController {
 		System.out.println("controller file : " + file);
 
 		String root = request.getSession().getServletContext().getRealPath("resources");
-		String filePath = root + "\\uploadFiles\\itrbok_upload_file";
+		String filePath = root + "/uploadFiles/itrbok_upload_file";
 		
 		String fileName = "";
 		
@@ -61,13 +61,13 @@ public class ItrBokController {
 			
 			fileName = newfileName + ext;
 			//파일경로를 itrbok 객체에 넣어줌
-			filePath = filePath + "\\" + fileName;
+			filePath = filePath + "/" + fileName;
 			
 			c.setPageId(pageId);
 			c.setImage(fileName);
 			
 			// 해당 폴더에 파일 생성
-			file.transferTo(new File(filePath));
+			file.transferTo(new File(fileName));
 			
 		} catch (IllegalStateException e1) {
 			e1.printStackTrace();
@@ -102,7 +102,7 @@ public class ItrBokController {
 					
 					String root = request.getSession().getServletContext().getRealPath("resources");
 					
-					String filePath = root + "\\uploadFiles\\itrbok_upload_file";
+					String filePath = root + "/uploadFiles/itrbok_upload_file";
 						
 					int randomNumber = (int)((Math.random()*10000)+1);
 					
@@ -120,7 +120,7 @@ public class ItrBokController {
 					
 					//파일경로를 itrbok 객체에 넣어줌
 					
-					filePath = filePath + "\\" + newfileName + ext;
+					filePath = filePath + "/" + newfileName + ext;
 					
 					System.out.println("controller filePath : " + filePath);
 					

@@ -67,20 +67,22 @@
     <!-- Banner Area End -->
 
     <!-- About Area Starts -->
-    <form action="update.ee", method="post">
-	    <span id="content">
-		    ${content.postDate }
-		   	<span id="title">${content.title }</span>
-		    <span id="text">${content.text }</span>
-			<c:if test="${!empty loginUser }">
-				<input type="button" id="update" value="수정">
-				<input type="button" id="delete" value="삭제">
-			</c:if>
-			<input type="hidden" id="cat" name="cat" value="${content.category }">
-		</span>
-	    <input type="hidden" id="id" name="id" value="${content.id }">
-    </form>
-    <input type="button" id="list" value="목록 보기">
+    <div style="text-align:center;">
+	    <form action="update.ee", method="post">
+		    <span id="content"><br>
+			   	<span id="title"><h2>${content.title }</h2></span>
+			   	${content.postDate }
+			    <span id="text">${content.text }</span>
+				<input type="hidden" id="cat" name="cat" value="${content.category }">
+			</span>
+		    <input type="hidden" id="id" name="id" value="${content.id }">
+	    </form>
+	    <c:if test="${!empty loginUser }">
+					<input type="button" id="update" value="수정">
+					<input type="button" id="delete" value="삭제">
+		</c:if>
+	    <input type="button" id="list" value="목록 보기">
+    </div>
     	
 	
     <!-- About Area End -->

@@ -16,7 +16,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1>강사 채용</h1>
+                    <h1>회사 위치</h1>
                 </div>
             </div>
         </div>

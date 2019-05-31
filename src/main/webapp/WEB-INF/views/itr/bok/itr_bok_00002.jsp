@@ -10,7 +10,7 @@
 	%>
 	
     <jsp:include page="../../common/head.jsp" />
-    <script type="text/javascript">
+    <script>
     	$(function() {
 			$("#resisterBtn").click(function() {
 				var title = $("#title").val();
@@ -37,7 +37,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1>출판도서/특허</h1>
+                    <h1>출판도서/특허 추가</h1>
                 </div>
             </div>
         </div>
@@ -46,7 +46,7 @@
 		<div class="container">
             <div class="col-md-10 col-md-offset-1">
                 <div class="sub_banner-text text-center">
-                    <h2>[ 출판 도서 / 특허 추가 ]</h2><br>
+                    
                 </div><!-- banner text -->
                 <form action="insert.ib" id="resisterForm" method="post" enctype="multipart/form-data">
 				<table>
