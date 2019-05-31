@@ -49,7 +49,9 @@
 		<span id="content"> ${contents[0].text } </span>
 		<span id="updateButton">
 			<c:if test="${!empty loginUser }">
+			<div style="text-align:center;">
 				<input type="button" id="update" value="수정">
+			</div>
 			</c:if>
 		</span>
 		<input type="hidden" name="id" value="${contents[0].id }">
