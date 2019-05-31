@@ -11,27 +11,52 @@
 </head>
 <body>
 <script>
-function fileCheck(file)
-{
-	// 사이즈체크
-	var maxSize  = 25 * 1024 * 1024
-	var fileSize = 0;
-	for(var i=0; i<file.files.length; i++) {
-		fileSize = fileSize + file.files[i].size;
-	}
-	if(fileSize > maxSize) {
-		alert("첨부파일 사이즈는 25MB 이내로 전송 가능합니다.");
-		return;
-	}
-	document.form.submit();
-}
+	$(function() {
+		function fileCheck(file) {
+			
+			/* validation 처리 */
+			var name = $("#name").val();
+			var field = $("#field").val();
+			var phone = $("#phone").val();
+			var email = $("#email").val();
+			var message = $("#message").val();
+			var file = $("#file").val();
+			
+			if(name == ""){
+				return alert("지원자 성함을 입력해주세요.");
+			} else if(field == ""){
+				return alert("분야를 입력해주세요.");
+			} else if(phone == ""){
+				return alert("연락처를 입력해주세요.");
+			} else if(email == ""){
+				return alert("이메일을 입력해주세요.");
+			} else if(message == " "){
+				return alert("경력사항을 입력해주세요.");
+			} else if(file == ""){
+				return alert("첨부파일을 입력해주세요.");
+			}
+			
+			// 사이즈체크
+			var maxSize  = 25 * 1024 * 1024
+			var fileSize = 0;
+			for(var i=0; i<file.files.length; i++) {
+				fileSize = fileSize + file.files[i].size;
+			}
+			if(fileSize > maxSize) {
+				alert("첨부파일 사이즈는 25MB 이내로 전송 가능합니다.");
+				return;
+			}
+			document.form.submit();
+		}
+		
+		function resize(obj) {
+		  obj.style.height = "1px";
+		  obj.style.height = (12+obj.scrollHeight)+"px";
+		}
+	});
+
 </script>
-<script>
-function resize(obj) {
-	  obj.style.height = "1px";
-	  obj.style.height = (12+obj.scrollHeight)+"px";
-	}
-</script>
+
 <jsp:include page="../../common/header-content.jsp" />
     <!-- Banner Area Starts -->
     <section class="banner-area other-page">
@@ -72,7 +97,7 @@ function resize(obj) {
 			    	</label>
 			    </span>
 			    <span class="input input--hoshi">
-			    	<input class="input__field input__field--hoshi" type="text" id="email" name="email">
+			    	<input class="input__field input__field--hoshi" type="email" id="email" name="email">
 			    	<label class="input__label input__label--hoshi input__label--hoshi-color-1" for="email">
 			    		<span class="input__label-content input__label-content--hoshi">이메일</span>
 			    	</label>
