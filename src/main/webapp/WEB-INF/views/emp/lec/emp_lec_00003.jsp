@@ -10,7 +10,9 @@
 <jsp:include page="../../common/head.jsp" />
 <script src="https://cloud.tinymce.com/5/tinymce.min.js?apiKey=iiyaoh4ovlz6z3aafb6vdpqtllt555a3g3loxoh2dwetyw3e"></script>
 <script>
-
+	
+	
+	
     $(function() {
     	$("#update").click(function() {
     		var oldTitle = $('#title').html();
@@ -28,22 +30,30 @@
     		    font_formats: "나눔스퀘어라운드=NanumSquareRound;",
     		    fontsize_formats: "11px 12px 14px 16px 18px 24px 36px 48px"
     	    });
+    		
+    		var title = $("#title").val();
+			var content = $("#content").val();
+			
+			if(name == ""){
+				return alert("제목을 입력해주세요.");
+			} else if(content == ""){
+				return alert("내용을 입력해주세요.");
+			}
+			
+			return $("#insertForm").submit();
     	});
-    });
-    
-    $(function() {
+    	
     	$("#delete").click(function() {
     		var id = $("#id").val();
     		if(!confirm("삭제하시겠습니까?")) return false;
     		else location.href="delete.el?id=" + id;
     	});
-    });
-    
-    $(function() {
+    	
     	$("#list").click(function() {
     		location.href="view.el";
     	});
     });
+    
 </script>
 </head>
 <body>
