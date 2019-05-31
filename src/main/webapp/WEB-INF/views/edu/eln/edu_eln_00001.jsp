@@ -40,10 +40,12 @@
 		</a>
 	</c:forEach>
 	<c:if test="${!empty loginUser }">
-				<ul class="actions special">
-					<li><a href="insertView.er" class="button alt">추가하기</a></li>
-				</ul>
-			</c:if>
+		<div style="text-align:center;">
+			<ul class="actions special">
+				<li><a href="insertView.er" class="button alt">추가하기</a></li>
+			</ul>
+		</div>
+	</c:if>
 	</div>
 	</section>
     <!-- About Area End -->

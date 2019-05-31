@@ -35,9 +35,9 @@
 	<!-- Banner Area End -->
 	<section id="two" class="wrapper style2 alt">
 		<div style="text-align:center;">
-			<h1>
+			<h2>
 				[ 출판 도서 ]
-			</h1>
+			</h2>
 			<br>
 		</div>
 		<div class="inner">
@@ -64,17 +64,19 @@
 				</c:if>
 			</c:forEach>
 			<c:if test="${!empty loginUser }">
-				<ul class="actions special">
-					<li><a href="<%=PATH%>/insertView.ib" class="button alt">추가하기</a></li>
-				</ul>
+				<div style="text-align:center;">
+					<ul class="actions special">
+						<li><a href="<%=PATH%>/insertView.ib" class="button alt">추가하기</a></li>
+					</ul>
+				</div>
 			</c:if>
 		</div>
 	</section>
 	<section id="two" class="wrapper style2 alt">
 		<div style="text-align:center;">
-			<h1>
+			<h2>
 				[ 특허 ]
-			</h1>
+			</h2>
 			<br>
 		</div>
 		<div class="inner">
@@ -103,9 +105,11 @@
 				</c:if>
 			</c:forEach>
 			<c:if test="${!empty loginUser }">
-				<ul class="actions special">
-					<li><a href="<%=PATH%>/insertView.ib" class="button alt">추가하기</a></li>
-				</ul>
+				<div style="text-align:center;">
+					<ul class="actions special">
+						<li><a href="<%=PATH%>/insertView.ib" class="button alt">추가하기</a></li>
+					</ul>
+				</div>
 			</c:if>
 		</div>
 	</section>
