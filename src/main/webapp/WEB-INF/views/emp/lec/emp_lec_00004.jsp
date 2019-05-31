@@ -26,6 +26,12 @@ function fileCheck(file)
 	document.form.submit();
 }
 </script>
+<script>
+function resize(obj) {
+	  obj.style.height = "1px";
+	  obj.style.height = (12+obj.scrollHeight)+"px";
+	}
+</script>
 <jsp:include page="../../common/header-content.jsp" />
     <!-- Banner Area Starts -->
     <section class="banner-area other-page">
@@ -40,15 +46,57 @@ function fileCheck(file)
     <!-- Banner Area End -->
     
     <!-- About Area Starts -->
-    <form action="send.el" name="form" method="post" enctype="multipart/form-data">
-	    <input type="text" name="name" placeholder="지원자 성함" required><br>
-	    <input type="text" name="field" placeholder="분야" required><br>
-	    <input type="text" name="phone" placeholder="연락처" required><br>
-	    <input type="text" name="email" placeholder="이메일" required><br>
-	    <textarea name="career" placeholder="경력사항을 자유롭게 기재해주세요."></textarea><br>
-	    <input type="file" name="file" multiple="multiple"><br>
-	    <input type="button" value="메일 보내기" onclick="fileCheck(this.form.file)">
-    </form>
+    <section class="content">
+    	<div style="text-align:center;">
+			<h2>교육 의뢰 메일 보내기</h2>
+		</div>
+		<div class="container">
+		    <form action="send.el" name="form" method="post" enctype="multipart/form-data">
+			    <span class="input input--hoshi">
+			    	<input class="input__field input__field--hoshi" type="text" id="name" name="name">
+			    	<label class="input__label input__label--hoshi input__label--hoshi-color-1" for="name">
+			    		<span class="input__label-content input__label-content--hoshi">지원자 성함</span>
+			    	</label>
+			    </span>
+			    <span class="input input--hoshi">
+			    	<input class="input__field input__field--hoshi" type="text" id="field" name="field">
+			    	<label class="input__label input__label--hoshi input__label--hoshi-color-1" for="field">
+			    		<span class="input__label-content input__label-content--hoshi">분야</span>
+			    	</label>
+			    </span>
+			    <br>
+			    <span class="input input--hoshi">
+			    	<input class="input__field input__field--hoshi" type="text" id="phone" name="phone">
+			    	<label class="input__label input__label--hoshi input__label--hoshi-color-1" for="phone">
+			    		<span class="input__label-content input__label-content--hoshi">연락처</span>
+			    	</label>
+			    </span>
+			    <span class="input input--hoshi">
+			    	<input class="input__field input__field--hoshi" type="text" id="email" name="email">
+			    	<label class="input__label input__label--hoshi input__label--hoshi-color-1" for="email">
+			    		<span class="input__label-content input__label-content--hoshi">이메일</span>
+			    	</label>
+			    </span>
+			    <br>
+			    <span class="input input--hoshi">
+					<textarea class="autosize input__field input__field--hoshi" onkeydown="resize(this)" onkeyup="resize(this)" id="message" name="message" placeholder="　　　　　　　자유롭게 기재해주세요."></textarea>
+					<label class="input__label input__label--hoshi input__label--hoshi-color-1" for="message">
+						<span class="input__label-content input__label-content--hoshi">경력사항</span>
+					</label>
+				</span>
+			    <span class="input input--hoshi input--filled">
+			    	<input class="input__field input__field--hoshi" type="file" id="file" name="file" multiple="multiple">
+			    	<label class="input__label input__label--hoshi input__label--hoshi-color-1" for="file">
+			    		<span class="input__label-content input__label-content--hoshi">첨부파일</span>
+			    	</label>
+			    </span>
+			    <br>
+				<div style="text-align:center;">
+					<input type="button" onclick="fileCheck(this.form.file)" value="보내기">
+				</div>	
+		    </form>
+    	</div>
+    </section>
     
     <!-- About Area End -->
     

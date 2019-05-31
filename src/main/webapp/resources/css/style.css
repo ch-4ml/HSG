@@ -193,7 +193,7 @@ keyframes sk-scaleout { 0%{
 	content: "\f107";
 	position: absolute;
 	right: 15px;
-	font-family: 'NanumSquareRound',sans-serif;
+	font-family: 'FontAwesome',sans-serif;
 	font-style: normal;
 	font-weight: normal
 }
