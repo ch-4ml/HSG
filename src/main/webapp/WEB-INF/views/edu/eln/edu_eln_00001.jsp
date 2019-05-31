@@ -24,10 +24,6 @@
     <!-- Banner Area End -->
 
     <!-- About Area Starts -->
-    <c:if test="${!empty loginUser }">
-    	<a href="insertView.ee">추가하기</a>
-    	<br>
-    </c:if>
     
     <section id="two" class="wrapper style2 alt">
 	<div style="text-align:center;"><h2>강의 목록</h2></div><br><br><br>
@@ -35,13 +31,19 @@
 	<c:forEach var="content" items="${contents }" varStatus="status">
 		<a href="viewDetail.ee?id=${content.id }">
 		<div class="spotlight">
-			<h3>${status.count }</h3>
-			<img src="https://img.youtube.com/vi/${content.image }/hqdefault.jpg" width="25%">
-			<h3>${content.title }</h3>
-			${content.postDate }
+			<h3>&nbsp &nbsp ${status.count } &nbsp &nbsp </h3>
+			<img src="https://img.youtube.com/vi/${content.image }/hqdefault.jpg" width="25%">&nbsp &nbsp &nbsp &nbsp
+			<div><h3>${content.title }</h3><BR>
+			<h4>본문</h4><BR>
+			${content.postDate }</div>
 		</div>
 		</a>
 	</c:forEach>
+	<c:if test="${!empty loginUser }">
+				<ul class="actions special">
+					<li><a href="insertView.er" class="button alt">추가하기</a></li>
+				</ul>
+			</c:if>
 	</div>
 	</section>
     <!-- About Area End -->

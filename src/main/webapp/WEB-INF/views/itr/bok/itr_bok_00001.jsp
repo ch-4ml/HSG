@@ -33,9 +33,6 @@
 		</div>
 	</section>
 	<!-- Banner Area End -->
-
-	<!-- Two -->
-
 	<section id="two" class="wrapper style2 alt">
 		<div style="text-align:center;">
 			<h1>
@@ -66,7 +63,6 @@
 					</div>
 				</c:if>
 			</c:forEach>
-
 			<c:if test="${!empty loginUser }">
 				<ul class="actions special">
 					<li><a href="<%=PATH%>/insertView.ib" class="button alt">추가하기</a></li>
