@@ -79,7 +79,7 @@ function resize(obj) {
     <!-- About Area Starts -->
     <section class="content">
     	<div style="text-align:center;">
-			<h2>교육 의뢰 메일 보내기</h2>
+			<h2>강사 지원 메일 보내기</h2>
 		</div>
 		<div class="container">
 		    <form action="send.el" name="form" method="post" enctype="multipart/form-data">

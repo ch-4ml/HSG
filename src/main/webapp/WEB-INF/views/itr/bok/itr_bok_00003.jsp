@@ -49,6 +49,7 @@
 		</span>
 		<br>
 		<select class="cs-select cs-skin-underline" id="category" name="category">
+		
 			<c:choose>
 				<c:when test="${content.category eq '1'}">
 					<option value="1" selected>도서</option>
