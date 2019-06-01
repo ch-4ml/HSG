@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
     <!-- Required Meta Tags -->
@@ -25,7 +25,8 @@
 	<link rel="stylesheet" href="./resources/css/main.css">
 	<link rel="stylesheet" href="./resources/css/list.css" />
 	<link rel="stylesheet" href="./resources/css/input.css" />
-	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="./resources/css/cs-select.css" />
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
 </head>
 <body>

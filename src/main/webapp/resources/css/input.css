@@ -29,7 +29,7 @@
 	background: #f0f0f0;
 	color: #aaa;
 	font-weight: bold;
-	font-size: 80%;
+	font-size: 100%;
 	/* font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; */
 	-webkit-appearance: none; /* for box shadows to show on iOS */
 }
@@ -46,7 +46,7 @@
 	color: #6a7989;
 	font-family: inherit;
 	font-weight: bold;
-	font-size: 75%;
+	font-size: 90%;
 	/*
 	-webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -266,11 +266,14 @@ a:hover, a:focus {
 .bgcolor-10 { background: #6C6C6C; }
 */
 
+/*
 body .nomargin-bottom {
 	margin-bottom: 0;
 }
+*/
 
 /* Header */
+/*
 .codrops-header {
 	padding: 3em 190px 4em;
 	letter-spacing: -1px;
@@ -290,8 +293,9 @@ body .nomargin-bottom {
 	padding: 0.325em 0 1em 0;
 	color: #c3c8cd;
 }
-
+*/
 /* Demos nav */
+/*
 .codrops-demos a {
 	text-transform: uppercase;
 	letter-spacing: 1px;
@@ -299,15 +303,16 @@ body .nomargin-bottom {
 	font-size: 0.85em;
 	display: inline-block;
 	margin: 0 1em;
-	/*font-family: "Avenir", "Helvetica Neue", Helvetica, Arial, sans-serif;*/
+	font-family: "Avenir", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 .codrops-demos a.current-demo {
 	border-bottom: 2px solid;
 	color: #404d5b;
 }
-
+*/
 /* Top Navigation Style */
+/*
 .codrops-links {
 	position: relative;
 	display: inline-block;
@@ -347,7 +352,7 @@ body .nomargin-bottom {
 	font-weight: normal;
 	font-style: normal;
 	font-variant: normal;
-	/*font-family: 'codropsicons';*/
+	font-family: 'codropsicons';
 	line-height: 1;
 	speak: none;
 	-webkit-font-smoothing: antialiased;
@@ -360,8 +365,9 @@ body .nomargin-bottom {
 .codrops-icon--prev:before {
 	content: "\e004";
 }
-
+*/
 /* Related demos */
+/*
 .content--related {
 	text-align: center;
 	color: #D8DADB;
@@ -404,7 +410,7 @@ body .nomargin-bottom {
 		font-size: 2.8em;
 	}
 }
-
+*/
 
 /* ---- demo ---- */
 
@@ -583,7 +589,7 @@ textarea {
 }
 
 textarea.autosize {
-	min-height: 50px;	
+	min-height: 25px;	
 }
 
 table {

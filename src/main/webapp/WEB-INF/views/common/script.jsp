@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -21,7 +21,31 @@
 			})();
 		}
 
-		[].slice.call( document.querySelectorAll( 'input.input__field' ) ).forEach( function( inputEl ) {
+//		[].slice.call( document.querySelectorAll( 'input.input__field' ) ).forEach( function( inputEl ) {
+//			
+//			// in case the input is already filled..
+//			if( inputEl.value.trim() !== '' ) {
+//				classie.add( inputEl.parentNode, 'input--filled' );
+//			}
+
+			// events:
+//			inputEl.addEventListener( 'focus', onInputFocus );
+//			inputEl.addEventListener( 'blur', onInputBlur );
+//		} );
+		
+		[].slice.call( document.querySelectorAll( 'input[type="text"].input__field' ) ).forEach( function( inputEl ) {
+			
+			// in case the input is already filled..
+			if( inputEl.value.trim() !== '' ) {
+				classie.add( inputEl.parentNode, 'input--filled' );
+			}
+
+			// events:
+			inputEl.addEventListener( 'focus', onInputFocus );
+			inputEl.addEventListener( 'blur', onInputBlur );
+		} );
+		
+		[].slice.call( document.querySelectorAll( 'textarea.input__field' ) ).forEach( function( inputEl ) {
 			// in case the input is already filled..
 			if( inputEl.value.trim() !== '' ) {
 				classie.add( inputEl.parentNode, 'input--filled' );
@@ -49,7 +73,7 @@
     <script src="./resources/js/vendor/wow.min.js"></script>
     <script src="./resources/js/vendor/owl-carousel.min.js"></script>
     <script src="./resources/js/vendor/jquery.datetimepicker.full.min.js"></script>
-    <script src="./resources/js/vendor/jquery.nice-select.min.js"></script>
+    <!-- <script src="./resources/js/vendor/jquery.nice-select.min.js"></script>  -->
     <script src="./resources/js/vendor/superfish.min.js"></script>
     <script src="./resources/js/main.js"></script>
 
@@ -57,5 +81,13 @@
 	<script src="./resources/js/vendor/skel.min.js"></script>
 	<script src="./resources/js/vendor/util.js"></script>
 	<script src="./resources/js/main2.js"></script>
+	<script src="./resources/js/selectFx.js"></script>
+	<script>
+			(function() {
+				[].slice.call( document.querySelectorAll( 'select.cs-select' ) ).forEach( function(el) {	
+					new SelectFx(el);
+				} );
+			})();
+	</script>
 </body>
 </html>

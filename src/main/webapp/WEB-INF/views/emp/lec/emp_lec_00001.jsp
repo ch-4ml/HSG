@@ -27,13 +27,13 @@
     <section id="two" class="wrapper style2 alt">
 		<div style="text-align:center;">
 			<h1>
-				[ 진행 중인 교육 채용 ]
+				[ 진행 중인 강사 채용 ]
 			</h1>
 			<br>
 		</div>
 		<div class="inner">
 			<c:forEach var="content" items="${contents}">
-					<a href="viewDetail.er?id=${content.id }">
+					<a href="viewDetail.el?id=${content.id }">
 					<div class="spotlight">
 						<div class="content">
 							<h3>${content.title }</h3>
