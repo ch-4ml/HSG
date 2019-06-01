@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -21,7 +21,31 @@
 			})();
 		}
 
-		[].slice.call( document.querySelectorAll( 'input.input__field' ) ).forEach( function( inputEl ) {
+//		[].slice.call( document.querySelectorAll( 'input.input__field' ) ).forEach( function( inputEl ) {
+//			
+//			// in case the input is already filled..
+//			if( inputEl.value.trim() !== '' ) {
+//				classie.add( inputEl.parentNode, 'input--filled' );
+//			}
+
+			// events:
+//			inputEl.addEventListener( 'focus', onInputFocus );
+//			inputEl.addEventListener( 'blur', onInputBlur );
+//		} );
+		
+		[].slice.call( document.querySelectorAll( 'input[type="text"].input__field' ) ).forEach( function( inputEl ) {
+			
+			// in case the input is already filled..
+			if( inputEl.value.trim() !== '' ) {
+				classie.add( inputEl.parentNode, 'input--filled' );
+			}
+
+			// events:
+			inputEl.addEventListener( 'focus', onInputFocus );
+			inputEl.addEventListener( 'blur', onInputBlur );
+		} );
+		
+		[].slice.call( document.querySelectorAll( 'textarea.input__field' ) ).forEach( function( inputEl ) {
 			// in case the input is already filled..
 			if( inputEl.value.trim() !== '' ) {
 				classie.add( inputEl.parentNode, 'input--filled' );

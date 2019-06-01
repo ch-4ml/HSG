@@ -110,7 +110,7 @@ function resize(obj) {
 			    </span>
 			    <br>
 			    <span class="input input--hoshi">
-					<textarea class="autosize input__field input__field--hoshi" onkeydown="resize(this)" onkeyup="resize(this)" id="message" name="message" placeholder="　　　　　　　자유롭게 기재해주세요."></textarea>
+					<textarea class="autosize input__field input__field--hoshi" onkeydown="resize(this)" onkeyup="resize(this)" id="message" name="message"></textarea>
 					<label class="input__label input__label--hoshi input__label--hoshi-color-1" for="message">
 						<span class="input__label-content input__label-content--hoshi">경력사항</span>
 					</label>
