@@ -25,6 +25,7 @@
 	<link rel="stylesheet" href="./resources/css/main.css">
 	<link rel="stylesheet" href="./resources/css/list.css" />
 	<link rel="stylesheet" href="./resources/css/input.css" />
+	<link rel="stylesheet" href="./resources/css/cs-select.css" />
 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 </head>

@@ -49,7 +49,7 @@
     <script src="./resources/js/vendor/wow.min.js"></script>
     <script src="./resources/js/vendor/owl-carousel.min.js"></script>
     <script src="./resources/js/vendor/jquery.datetimepicker.full.min.js"></script>
-    <script src="./resources/js/vendor/jquery.nice-select.min.js"></script>
+    <!-- <script src="./resources/js/vendor/jquery.nice-select.min.js"></script>  -->
     <script src="./resources/js/vendor/superfish.min.js"></script>
     <script src="./resources/js/main.js"></script>
 
@@ -57,5 +57,13 @@
 	<script src="./resources/js/vendor/skel.min.js"></script>
 	<script src="./resources/js/vendor/util.js"></script>
 	<script src="./resources/js/main2.js"></script>
+	<script src="./resources/js/selectFx.js"></script>
+	<script>
+			(function() {
+				[].slice.call( document.querySelectorAll( 'select.cs-select' ) ).forEach( function(el) {	
+					new SelectFx(el);
+				} );
+			})();
+	</script>
 </body>
 </html>

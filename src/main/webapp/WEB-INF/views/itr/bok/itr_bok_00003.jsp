@@ -50,71 +50,56 @@
     </section>
 
 <!-- banner text -->
+<section class="content">
     <form action="update.ib" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="id" value="${content.id} ">
 		<span class="input input--hoshi">
-			<input class="input__field input__field--hoshi" type="text" id="title" name="title">
+			<input class="input__field input__field--hoshi" type="text" id="title" name="title" value="${content.title }">
 			<label class="input__label input__label--hoshi input__label--hoshi-color-1" for="title">
 				<span class="input__label-content input__label-content--hoshi">출판도서 / 특허명</span>
 			</label>
 		</span>
-		<br>					
-		<c:choose>
-			<c:when test="${content.category eq '1'}">
+		<section>
+			<select class="cs-select cs-skin-underline" id="category" name="category">
+				<c:choose>
+					<c:when test="${content.category eq '1'}">
+						<option value="1" selected>도서</option>
+						<option value="2">특허</option>
+					</c:when>
+					<c:otherwise>
+						<option value="1">도서</option>
+						<option value="2" selected>특허</option>
+					</c:otherwise>
+				</c:choose>
+			</select>
+			<label class="input__label input__label--hoshi input__label--hoshi-color-1" for="category">
+				<span class="input__label-content input__label-content--hoshi">카테고리</span>
+			</label>
+		</section>				
+		<table>
 			<tr>
-				<td>*종류</td>
+				<td>*내용</td>
 				<td>
-					<input type="radio" id="bok" name="category" value="1" checked="checked">
-					<label for="bok">서적</label>
+					<input type="text" name="text" value="${content.text} ">
 				</td>
+				</tr>
+				<tr>
+				<td>*사진</td>
 				<td>
-					<input type="radio" id="patent" name="category" value="2">
-					<label for="patent">특허</label>
+					<input type="file" id="file" name="file" accept=".jpg, .jpeg, .png">
+					<input type="text" id="bfleText" value="${content.image} " disabled="disabled">
+					<input type="button" id="fileBtn" value="Choose file">
 				</td>
-			<tr>
-			</c:when>
-			<c:otherwise>
-			<tr>
-				<td>*종류</td>
-				<td>
-					<input type="radio" id="bok" name="category" value="1">
-					<label for="bok">서적</label>
-				</td>
-				<td>
-					<input type="radio" id="patent" name="category" value="2" checked="checked">
-					<label for="patent">특허</label>
-				</td>
-			<tr>
-			</c:otherwise>
-		</c:choose>
-					</tr>
-						<td>*내용</td>
-						<td>
-							<input type="text" name="text" value="${content.text} ">
-						</td>
-					</tr>
-					<tr>
-						<td>*사진</td>
-						<td>
-							<input type="file" id="file" name="file" accept=".jpg, .jpeg, .png">
-							<input type="text" id="bfleText" value="${content.image} " disabled="disabled">
-							<input type="button" id="fileBtn" value="Chose file">
-						</td>
-					</tr>		
-				</table>
-				<br>
-				<div align="center">
-					<input type="button" value="삭제하기" onclick="deleteBtnClickEvent(${content.id})"/>
-					<input type="submit" value="수정하기"/>
-				</div>
-			</form>
-
+			</tr>		
+		</table>
+		<br>
+		<div align="center">
+			<input type="button" value="삭제하기" onclick="deleteBtnClickEvent(${content.id})"/>
+			<input type="submit" value="수정하기"/>
+		</div>
+	</form>
+</section>
 	<jsp:include page="../../common/footer.jsp" />
-    <!-- footer -->
-
-    <jsp:include page="../../common/script.jsp" />
-    <!-- script -->
-    
-    
+    <!-- footer -->    
     
 </body>
