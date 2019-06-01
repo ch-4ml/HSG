@@ -48,6 +48,9 @@
                 <div class="sub_banner-text text-center">
                     
                 </div><!-- banner text -->
+                <div style="text-align:center;"><br>
+					<h2> 출판 도서 / 특서 추가 </h2><br>
+				</div>
                 <form action="insert.ib" id="resisterForm" method="post" enctype="multipart/form-data">
 				<table>
 					<tr>
