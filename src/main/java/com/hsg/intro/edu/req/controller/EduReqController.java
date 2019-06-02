@@ -94,6 +94,21 @@ public class EduReqController {
 		return mv;
 	}
 	
+	// 업데이트 폼
+	@RequestMapping(value="updateView.er")
+	public ModelAndView ubdateEmpLec(ModelAndView mv, @RequestParam(value="id") int id) {
+		Contents content;
+		try {
+			content = cs.findById(id);
+			mv.addObject("content", content);
+			mv.setViewName("edu/req/edu_req_00004");
+		} catch (ContentsException e) {
+			mv.addObject("message",e.getMessage());
+			mv.setViewName("redirect:/common/errorPage");
+		}
+		return mv;
+	}
+	
 	// 업데이트(검색한 페이지로 돌아가게 하려면 파라미터 추가)
 	@RequestMapping(value="update.er", method=RequestMethod.POST) // DI 의존성 주입
 	public ModelAndView updateEduEln(
@@ -139,7 +154,7 @@ public class EduReqController {
 		try {
 			Contents content = cs.findById(id);
 			mv.addObject("content", content);
-			mv.setViewName("edu/req/edu_req_00004");
+			mv.setViewName("edu/req/edu_req_00005");
 		} catch(ContentsException e) {
 			mv.addObject("message",e.getMessage());
 			mv.setViewName("common/errorPage");
@@ -199,6 +214,6 @@ public class EduReqController {
 			System.out.println(e);
 		}
 		
-		return "edu/req/edu_req_00005";
+		return "edu/req/edu_req_00006";
 	}
 }

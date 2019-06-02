@@ -161,12 +161,14 @@ div.cs-skin-underline {
 	padding: 1.046em 0;
 }
 
+/*
 @media screen and (max-width: 30em) {
 	div.cs-skin-underline { font-size: 1.2em; }
 }
+*/
 
 .cs-skin-underline > span {
-	padding: 0.5em 3em 0.5em 0.5em;
+	padding: 0.5em 0.5em 0.5em 0.5em;
 	border-bottom: 4px solid hsl(200, 100%, 50%);
 	/* border-color: inherit; */
 	font-weight: bold;

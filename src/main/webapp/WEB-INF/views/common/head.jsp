@@ -15,6 +15,7 @@
     <link rel="shortcut icon" href="./resources/images/logo/favicon.png" type="image/x-icon">
 
     <!-- CSS Files -->
+     
     <link rel="stylesheet" href="./resources/css/animate-3.7.0.css">
     <link rel="stylesheet" href="./resources/css/font-awesome-4.7.0.min.css">
     <link rel="stylesheet" href="./resources/css/bootstrap-4.1.3.min.css">

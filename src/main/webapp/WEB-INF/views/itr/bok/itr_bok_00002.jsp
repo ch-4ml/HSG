@@ -29,6 +29,12 @@
 			})
 		});
     </script>
+    <script>
+function resize(obj) {
+	  obj.style.height = "1px";
+	  obj.style.height = (12+obj.scrollHeight)+"px";
+	}
+</script>
 </head>
 <body>
 <jsp:include page="../../common/header-content.jsp" />
@@ -42,58 +48,57 @@
             </div>
         </div>
     </section>
-<section class="sub_banner" role="banner">
+    <!-- Banner Area End -->
+    
+    <!-- Content Area Start -->
+	<section class="content">
 		<div class="container">
-            <div class="col-md-10 col-md-offset-1">
-                <div class="sub_banner-text text-center">
-                    
-                </div><!-- banner text -->
-                <div style="text-align:center;"><br>
-					<h2> 출판 도서 / 특서 추가 </h2><br>
-				</div>
-                <form action="insert.ib" id="resisterForm" method="post" enctype="multipart/form-data">
-				<table>
-					<tr>
-						<td>*출판도서/특허명</td>
-						<td><input type="text" id="title" name="title"></td>
-					</tr>
-					<tr>
-						<td>*종류</td>
-						<td>
-							<input type="radio" id="bok" name="category" value="1" checked="checked">
-							<label for="bok">서적</label>
-						</td>
-						<td>
-							<input type="radio" id="patent" name="category" value="2">
-							<label for="patent">특허</label>
-						</td>
-					</tr>
-					<tr>
-						<td>*내용</td>
-						<td>
-							<input type="text" id="text" name="text">
-						</td>
-					</tr>
-					<tr>
-						<td>*사진</td>
-						<td>
-							<input type="file" id="file" name="file">
-						</td>
-					</tr>		
-				</table>
+		    <form action="insert.ib" method="post" enctype="multipart/form-data">
+				<section>
+					<span class="input input--hoshi">
+						<input class="input__field input__field--hoshi" type="text" id="title" name="title"">
+						<label class="input__label input__label--hoshi input__label--hoshi-color-1" for="title">
+							<span class="input__label-content input__label-content--hoshi">출판도서 / 특허명</span>
+						</label>
+					</span>
+					<br>
+					<select class="cs-select cs-skin-underline" id="category" name="category">
+						<option value="" disabled selected>카테고리 선택</option>
+						<option value="1">도서</option>
+						<option value="2">특허</option>
+					</select>
+				</section>
+				<section>
+				<span class="input input--hoshi">
+					<input class="input__field input__field--hoshi" type="text" id="url" name="url">
+					<label class="input__label input__label--hoshi input__label--hoshi-color-1" for="url">
+						<span class="input__label-content input__label-content--hoshi">연결할 URL</span>
+					</label>
+				</span>
+				<br>
+				<span class="input input--hoshi">
+					<textarea class="autosize, input__field input__field--hoshi" onkeydown="resize(this)" onkeyup="resize(this)" id="text" name="text"></textarea>
+					<label class="input__label input__label--hoshi input__label--hoshi-color-1" for="text">
+						<span class="input__label-content input__label-content--hoshi">간단한 설명</span>
+					</label>
+				</span>
+				<br>
+				<span class="input input--hoshi input--filled">
+			    	<input class="input__field input__field--hoshi" type="file" id="file" name="file" accept=".jpg, .jpeg, .png">
+			    	<label class="input__label input__label--hoshi input__label--hoshi-color-1" for="file">
+			    		<span class="input__label-content input__label-content--hoshi">사진 첨부</span>
+			    	</label>
+				</span>
 				<br>
 				<div align="center">
-					<input type="reset" value="다시쓰기">
-					<input type="button" id="resisterBtn" value="등록하기">
+					<input type="submit" value="추가"/>
 				</div>
-				</form>
-            </div>
-        </div>
-    </section><!-- banner -->
+				</section>
+			</form>
+		</div>
+	</section>
+	<!-- Content Area End -->
 	
 	<jsp:include page="../../common/footer.jsp" />
     <!-- footer -->
-
-    <jsp:include page="../../common/script.jsp" />
-    <!-- script -->
 </body>

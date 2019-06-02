@@ -10,50 +10,28 @@
 <jsp:include page="../../common/head.jsp" />
 <script src="https://cloud.tinymce.com/5/tinymce.min.js?apiKey=iiyaoh4ovlz6z3aafb6vdpqtllt555a3g3loxoh2dwetyw3e"></script>
 <script>
-	
-	
-	
-    $(function() {
-    	$("#update").click(function() {
-    		var oldTitle = $('#title').html();
-    		var oldText = $('#text').html();
-    		$("#content").html(
-    				"<input type='text' name='title' placeholder='제목' value='" + oldTitle + "'>" + 
-    				"<textarea id='text' name='text'>" + oldText + "</textarea><input type='submit' value='수정'>");
-    		tinymce.init({
-    		    selector: 'textarea',
-    		    menubar: false,
-    		    language_url: 'tinymce/ko_KR.js',
-    		    plugins: ['autolink autosave code link media table textcolor autoresize hr image imagetools powerpaste fullpage'],
-    		    toolbar: "undo redo | fontselect fontsizeselect | forecolor bold underline italic code | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | table link media code hr",
-    		    fullpage_default_font_family: "NanumSquareRound",
-    		    font_formats: "나눔스퀘어라운드=NanumSquareRound;",
-    		    fontsize_formats: "11px 12px 14px 16px 18px 24px 36px 48px"
-    	    });
-    		
-    		var title = $("#title").val();
-			var content = $("#content").val();
-			
-			if(name == ""){
-				return alert("제목을 입력해주세요.");
-			} else if(content == ""){
-				return alert("내용을 입력해주세요.");
-			}
-			
-			return $("#insertForm").submit();
-    	});
-    	
-    	$("#delete").click(function() {
-    		var id = $("#id").val();
-    		if(!confirm("삭제하시겠습니까?")) return false;
-    		else location.href="delete.el?id=" + id;
-    	});
-    	
-    	$("#list").click(function() {
-    		location.href="view.el";
-    	});
-    });
-    
+$(function() {
+	$("#delete").click(function() {
+  		var id = $("#id").val();
+  		if(!confirm("삭제하시겠습니까?")) return false;
+  		else location.href="delete.el?id=" + id;
+  	});
+});
+
+$(function() {
+	$("#list").click(function() {
+  		location.href="view.el";
+  	});	
+});
+  	
+  	
+$(function() {
+   	$("#update").click(function() {
+   		var id = $("#id").val();
+   		location.href="updateView.el?id=" + id;
+   	});
+});
+
 </script>
 </head>
 <body>
@@ -71,6 +49,8 @@
     <!-- Banner Area End -->
 
     <!-- About Area Starts -->
+    <section class="content">
+    <div class="container">
 	<form action="update.el", method="post">
 	    <span id="content">
 		    ${content.postDate }
@@ -85,6 +65,8 @@
 		</span>
 	    <input type="hidden" id="id" name="id" value="${content.id }">
     </form>
+    </div>
+    </section>
 
 
     <!-- About Area End -->

@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html>
@@ -14,10 +13,19 @@
 
 <jsp:include page="../../common/head.jsp" />
 
-<script type="text/javascript">
-    	function updateBtnClickEvent(id) {
-	    	window.location.assign('<%=PATH%>/updateView.ib?id='+id);
-		}
+<script>   	
+function updateBtnClickEvent(id) {
+   	location.href='updateView.ib?id=' + id;
+}
+</script>
+<script>
+function deleteBtnClickEvent(id) {
+	var sign = confirm("정말로 삭제하시겠습니까?");
+	
+	if(sign == true){
+		location.href="delete.ib?id=" + id;
+	}
+}
 </script>
 </head>
 <body>
@@ -33,70 +41,66 @@
 		</div>
 	</section>
 	<!-- Banner Area End -->
+	<c:if test="${!empty loginUser }">
+	<br>
+	<br>
+		<div style="text-align: center;">
+			<ul class="actions special">
+				<li><a href="insertView.ib" class="button alt">추가하기</a></li>
+			</ul>
+		</div>
+		<br>
+		<br>
+	</c:if>
 	<section id="two" class="wrapper style2 alt">
-		<div style="text-align:center;">
-			<h2>
-				[ 출판 도서 ]
-			</h2>
+		<div style="text-align: center;">
+			<h2>[ 출판 도서 ]</h2>
 			<br>
 		</div>
 		<div class="inner">
-			<c:forEach var="content" items="${contents}">
-				<c:if test="${content.category eq 1 }">
-
+			<c:forEach var="ibd" items="${ibds}">
+				<a href="redirect.ib?url=${ibd.url }">
+				<c:if test="${ibd.category eq 1 }">
 					<div class="spotlight">
 						<div class="image">
-							<img
-								src="http://tbsko.cafe24.com/resources/uploadFiles/itrbok_upload_file/${content.image}"
-								alt="" />
+							<img src="http://tbsko.cafe24.com/resources/uploadFiles/itrbok_upload_file/${ibd.image}" alt="" />
 						</div>
-						<div class="content">
-							<h3>${content.title}</h3>
-							<p>${content.text}</p>
+						<div class="ibd">
+							<h3>${ibd.title}</h3>
+							<p>${ibd.text}</p>
 							<c:if test="${!empty loginUser }">
 								<ul class="actions">
-									<li><a onclick="updateBtnClickEvent(${content.id})"
-										class="button alt">수정</a></li>
+									<li><a onclick="updateBtnClickEvent(${ibd.id})" class="button alt">수정</a></li>
+									<li><a onclick="deleteBtnClickEvent(${ibd.id})" class="button alt">삭제</a></li>
 								</ul>
 							</c:if>
 						</div>
 					</div>
 				</c:if>
+				</a>
 			</c:forEach>
-			<c:if test="${!empty loginUser }">
-				<div style="text-align:center;">
-					<ul class="actions special">
-						<li><a href="<%=PATH%>/insertView.ib" class="button alt">추가하기</a></li>
-					</ul>
-				</div>
-			</c:if>
 		</div>
 	</section>
 	<section id="two" class="wrapper style2 alt">
-		<div style="text-align:center;">
-			<h2>
-				[ 특허 ]
-			</h2>
+		<div style="text-align: center;">
+			<h2>[ 특허 ]</h2>
 			<br>
 		</div>
 		<div class="inner">
-			<c:forEach var="content" items="${contents}">
-				<c:if test="${content.category eq 2 }">
-
+			<c:forEach var="ibd" items="${ibds}">
+				<c:if test="${ibd.category eq 2 }">
 					<div class="spotlight">
 						<div class="image">
-							<img
-								src="http://tbsko.cafe24.com/resources/uploadFiles/itrbok_upload_file/${content.image}"
-								alt="" />
-							<!-- <img src="../../../../resources/uploadFiles/itrbok_upload_file/${content.image}" alt="" /> -->
+							<img src="http://tbsko.cafe24.com/resources/uploadFiles/itrbok_upload_file/${ibd.image}" alt="" />
+							<!-- <img src="../../../../resources/uploadFiles/itrbok_upload_file/${ibd.image}" alt="" /> -->
 						</div>
-						<div class="content">
-							<h3>${content.title}</h3>
-							<p>${content.text}</p>
+						<div class="ibd">
+							<h3>${ibd.title}</h3>
+							<p>${ibd.text}</p>
 							<c:if test="${!empty loginUser }">
 								<ul class="actions">
-									<li><a onclick="updateBtnClickEvent(${content.id})"
-										class="button alt">수정</a></li>
+									<li><a onclick="updateBtnClickEvent(${ibd.id})" class="button alt">수정</a></li>
+									<li><a onclick="deleteBtnClickEvent(${ibd.id})" class="button alt">삭제</a></li>
 								</ul>
 							</c:if>
 						</div>
@@ -104,13 +108,6 @@
 					</div>
 				</c:if>
 			</c:forEach>
-			<c:if test="${!empty loginUser }">
-				<div style="text-align:center;">
-					<ul class="actions special">
-						<li><a href="<%=PATH%>/insertView.ib" class="button alt">추가하기</a></li>
-					</ul>
-				</div>
-			</c:if>
 		</div>
 	</section>
 

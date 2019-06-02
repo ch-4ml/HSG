@@ -90,6 +90,20 @@ public class EduElnController {
 		return mv;
 	}
 	
+	// 업데이트 폼
+		@RequestMapping(value="updateView.ee")
+		public ModelAndView ubdateEmpLec(ModelAndView mv, @RequestParam(value="id") int id) {
+			Contents content;
+			try {
+				content = cs.findById(id);
+				mv.addObject("content", content);
+				mv.setViewName("edu/eln/edu_eln_00004");
+			} catch (ContentsException e) {
+				mv.addObject("message",e.getMessage());
+				mv.setViewName("redirect:/common/errorPage");
+			}
+			return mv;
+		}
 	
 	// 업데이트(검색한 페이지로 돌아가게 하려면 파라미터 추가)
 	@RequestMapping(value="update.ee", method=RequestMethod.POST) // DI 의존성 주입
