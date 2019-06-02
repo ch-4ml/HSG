@@ -86,13 +86,16 @@ public class ItrBokController {
 				, HttpServletRequest request){
 			
 			try {
-				if(!file.getOriginalFilename().equals("")) {
+				// 현재 DB에 저장되어 있는 파일명 넘겨 받은 파일명이 일치할 경우, 이미지 링크를 지우지 않고 그대로 넘겨주어야함 
+				// 다를 경우, 해당 이미지를 삭제하고 새로운 이미지를 업로드 해야함
+
 					// 파일명 새이름 설정
-					
 					String root = request.getSession().getServletContext().getRealPath("resources");
 					
 					String filePath = root + "/uploadFiles/itrbok_upload_file";
 						
+					String fileName = "";
+					
 					int randomNumber = (int)((Math.random()*10000)+1);
 					
 					SimpleDateFormat format = new SimpleDateFormat ( "yyyyMMddHHmmss");
@@ -107,19 +110,16 @@ public class ItrBokController {
 
 					String ext = file.getOriginalFilename().substring(pos);
 					
+					fileName = newfileName + ext;
+					content.setImage(fileName);
 					//파일경로를 itrbok 객체에 넣어줌
-					
-					filePath = filePath + "/" + newfileName + ext;
-					
-					System.out.println("controller filePath : " + filePath);
-					
-					content.setImage(filePath);
+					filePath = filePath + "/" + fileName;
+
+					content.setImage(fileName);
 					
 					// 해당 폴더에 파일 생성
 					file.transferTo(new File(filePath));
-				} else {
-					content.setImage("");
-				}
+					
 			} catch (IllegalStateException e1) {
 				e1.printStackTrace();
 			} catch (IOException e1) {
