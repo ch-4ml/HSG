@@ -17,6 +17,28 @@ function resize(obj) {
 	  obj.style.height = (12+obj.scrollHeight)+"px";
 	}
 </script>
+    <script>
+    	$(function() {
+			$("#updateBtn").click(function() {
+				var title = $("#title").val();
+				var url = $("#url").val();
+				var text = $("#text").val();
+				var file = $("#file").val();
+				
+				if(title == ""){
+					return alert("제목을 입력해주세요.");
+				} else if(url == "") {
+					return alert("연결할 주소를 입력해주세요.");
+				} else if(text == ""){
+					return alert("내용을 입력해주세요.");
+				} else if(file == "") {
+					return alert("파일을 선택해주세요.");
+				} else {
+					return $("#updateForm").submit();
+				}
+			})
+		});
+    </script>
 </head>
 <body>
 <jsp:include page="../../common/header-content.jsp" />
@@ -35,7 +57,7 @@ function resize(obj) {
 	<!-- Content Area Start -->
 <section class="content">
 <div class="container">
-    <form action="update.ib" method="post" enctype="multipart/form-data">
+    <form id="updateForm" action="update.ib" method="post" enctype="multipart/form-data">
 		<section>
 		<input type="hidden" name="id" value="${ibd.id} ">
 		<span class="input input--hoshi">
@@ -81,7 +103,7 @@ function resize(obj) {
 		</span>
 		<br>
 		<div align="center">
-			<input type="submit" value="수정"/>
+			<input type="button" id="updateBtn" value="수정">
 		</div>
 		</section>
 	</form>
