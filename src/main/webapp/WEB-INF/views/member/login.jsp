@@ -13,7 +13,7 @@
 <head>
 	<jsp:include page="../common/head.jsp" />
     <title>HS글로벌 - 로그인</title>
-    <script type="text/javascript">
+    <script>
     $(function(){
 		$("#loginBtn").click(function() {
 				
@@ -45,9 +45,23 @@
 	    		alert("관리자 모드입니다.");	
 			}
 		});
-    	
 	});
+    
+    $(function() {
+    	$("#userId").keypress(function (e) {
+    		if(e.which == 13) {
+    			var loginBtn = document.getElementById("loginBtn");
+    	    	loginBtn.click();
+    		}
+    	});
     	
+    	$("#userPw").keypress(function (e) {
+    		if(e.which == 13) {
+    			var loginBtn = document.getElementById("loginBtn");
+    	    	loginBtn.click();
+    		}
+    	});
+    });
     </script>
 </head>
 <body>
