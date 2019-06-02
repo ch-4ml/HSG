@@ -12,19 +12,22 @@
     <jsp:include page="../../common/head.jsp" />
     <script>
     	$(function() {
-			$("#resisterBtn").click(function() {
+			$("#insertBtn").click(function() {
 				var title = $("#title").val();
+				var url = $("#url").val();
 				var text = $("#text").val();
 				var file = $("#file").val();
 				
 				if(title == ""){
 					return alert("제목을 입력해주세요.");
+				} else if(url == "") {
+					return alert("연결할 주소를 입력해주세요.");
 				} else if(text == ""){
 					return alert("내용을 입력해주세요.");
 				} else if(file == "") {
 					return alert("파일을 선택해주세요.");
 				} else {
-					return $("#resisterForm").submit();
+					return $("#insertForm").submit();
 				}
 			})
 		});
@@ -53,7 +56,7 @@ function resize(obj) {
     <!-- Content Area Start -->
 	<section class="content">
 		<div class="container">
-		    <form action="insert.ib" method="post" enctype="multipart/form-data">
+		    <form id="insertForm" action="insert.ib" method="post" enctype="multipart/form-data">
 				<section>
 					<span class="input input--hoshi">
 						<input class="input__field input__field--hoshi" type="text" id="title" name="title"">
@@ -91,7 +94,7 @@ function resize(obj) {
 				</span>
 				<br>
 				<div align="center">
-					<input type="submit" value="추가"/>
+					<input type="button" id="insertBtn" value="추가">
 				</div>
 				</section>
 			</form>

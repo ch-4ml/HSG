@@ -16,9 +16,9 @@
 			var title = $("#title").val();
 			var text = $("#text").val();
 			
-			if(name == ""){
+			if(title == ""){
 				return alert("제목을 입력해주세요.");
-			} else if(content == ""){
+			} else if(text == ""){
 				return alert("내용을 입력해주세요.");
 			}
 			
@@ -35,7 +35,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1>교육 등록</h1>
+                    <h1>교육 수정</h1>
                 </div>
             </div>
         </div>

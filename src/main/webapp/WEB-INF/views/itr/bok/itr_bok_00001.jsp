@@ -70,8 +70,7 @@ function deleteBtnClickEvent(id) {
 							<p>${ibd.text}</p>
 							<c:if test="${!empty loginUser }">
 								<ul class="actions">
-									<li><a onclick="updateBtnClickEvent(${ibd.id})" class="button alt">수정</a></li>
-									<li><a onclick="deleteBtnClickEvent(${ibd.id})" class="button alt">삭제</a></li>
+									<li><a onclick="updateBtnClickEvent(${ibd.id})" class="button alt">수정</a><a onclick="deleteBtnClickEvent(${ibd.id})" class="button alt">삭제</a></li>
 								</ul>
 							</c:if>
 						</div>
@@ -99,8 +98,7 @@ function deleteBtnClickEvent(id) {
 							<p>${ibd.text}</p>
 							<c:if test="${!empty loginUser }">
 								<ul class="actions">
-									<li><a onclick="updateBtnClickEvent(${ibd.id})" class="button alt">수정</a></li>
-									<li><a onclick="deleteBtnClickEvent(${ibd.id})" class="button alt">삭제</a></li>
+									<li><a onclick="updateBtnClickEvent(${ibd.id})" class="button alt">수정</a><a onclick="deleteBtnClickEvent(${ibd.id})" class="button alt">삭제</a></li>
 								</ul>
 							</c:if>
 						</div>
