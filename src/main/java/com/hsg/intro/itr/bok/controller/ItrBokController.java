@@ -3,6 +3,7 @@ package com.hsg.intro.itr.bok.controller;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -20,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.hsg.intro.Exception.ContentsException;
 import com.hsg.intro.common.contents.model.service.ContentsServiceImpl;
 import com.hsg.intro.common.contents.model.vo.Contents;
+import com.hsg.intro.itr.bok.model.dto.ItrBokDto;
 
 @Controller
 @SessionAttributes("loginUser")
@@ -30,55 +32,41 @@ public class ItrBokController {
 	private String pageId = "itr/bok";
 	// 서적/특허 추가
 	@RequestMapping(value = "insert.ib", method = RequestMethod.POST) // DI 의존성 주입
-	public ModelAndView insertIbkBok(Contents c, ModelAndView mv
+	public ModelAndView insertIbkBok(Contents content, ModelAndView mv
 			, @RequestParam(required=false) MultipartFile file
 			, HttpServletRequest request){
-		
-		System.out.println("controller file : " + file);
 
 		String root = request.getSession().getServletContext().getRealPath("resources");
 		String filePath = root + "/uploadFiles/itrbok_upload_file";
 		
 		String fileName = "";
-		
 		try {
-			
 			// 파일명 새이름 설정
-			
 			int randomNumber = (int)((Math.random()*10000)+1);
-			
 			SimpleDateFormat format = new SimpleDateFormat ( "yyyyMMddHHmmss");
-			
 			Date nowTime = new Date();
-			
 			String newfileName = format.format(nowTime) + String.valueOf(randomNumber);
-			
 			// 확장자 구하기
-			
 			int pos = file.getOriginalFilename().lastIndexOf(".");
-
 			String ext = file.getOriginalFilename().substring(pos);
-			
 			fileName = newfileName + ext;
 			//파일경로를 itrbok 객체에 넣어줌
 			filePath = filePath + "/" + fileName;
-			
-			c.setPageId(pageId);
-			c.setImage(fileName);
-			
 			// 해당 폴더에 파일 생성
 			file.transferTo(new File(fileName));
+			content.setImage(fileName);
 			
 		} catch (IllegalStateException e1) {
 			e1.printStackTrace();
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
+		content.setPageId(pageId);
+		content.setText("<URL - " + request.getParameter("url") + " - URLEND>" + content.getText());
 		
-		System.out.println("controller bok : " + c);
-		
+		System.out.println("controller bok : " + content);
 		try {
-			cs.insert(c);			
+			cs.insert(content);			
 			mv.setViewName("redirect:view.ib");
 			
 		} catch (Exception e) {
@@ -92,7 +80,7 @@ public class ItrBokController {
 	
 	// 서적/특허 수정
 		@RequestMapping(value = "update.ib", method = RequestMethod.POST) // DI 의존성 주입
-		public ModelAndView updateIbkBok(Contents c, ModelAndView mv
+		public ModelAndView updateIbkBok(Contents content, ModelAndView mv
 				, @RequestParam(required=false) MultipartFile file
 				, HttpServletRequest request){
 			
@@ -124,13 +112,12 @@ public class ItrBokController {
 					
 					System.out.println("controller filePath : " + filePath);
 					
-					c.setPageId(pageId);
-					c.setImage(filePath);
+					content.setImage(filePath);
 					
 					// 해당 폴더에 파일 생성
 					file.transferTo(new File(filePath));
 				} else {
-					c.setImage(null);
+					content.setImage(null);
 				}
 			} catch (IllegalStateException e1) {
 				e1.printStackTrace();
@@ -138,10 +125,11 @@ public class ItrBokController {
 				e1.printStackTrace();
 			}
 			
-			System.out.println("controller bok : " + c);
+			content.setPageId(pageId);
+			content.setText("<URL - " + request.getParameter("url") + " - URLEND>" + content.getText());
 			
 			try {
-				cs.update(c);
+				cs.update(content);
 				
 				List<Contents> contents = cs.findByPageId(pageId);
 				mv.addObject("contents", contents);
@@ -173,9 +161,24 @@ public class ItrBokController {
 			ModelAndView mv, 
 			@RequestParam(value="id") int id) {
 		Contents content;
+		ItrBokDto ibd = new ItrBokDto();
 		try {
-			content = cs.findById(id);	
-			mv.addObject("content", content);
+			content = cs.findById(id);
+			String url = "";
+			String urlWithTag = "";
+			if(content.getText().indexOf("<URL - ") != -1) {
+				url = content.getText().substring(content.getText().indexOf("<URL - ") + 7, content.getText().indexOf(" - URLEND>"));
+				urlWithTag = content.getText().substring(content.getText().indexOf("<URL - "), content.getText().indexOf(" - URLEND>") + 10);
+			}
+			ibd.setId(content.getId());
+			ibd.setCategory(content.getCategory());
+			ibd.setTitle(content.getTitle());
+			ibd.setUrl(url);
+			ibd.setText(content.getText().replace(urlWithTag, ""));
+			ibd.setImage(content.getImage());
+			ibd.setPostDate(content.getPostDate());
+			
+			mv.addObject("ibd", ibd);
 			mv.setViewName("itr/bok/itr_bok_00003");
 			
 		} catch (ContentsException e) {
@@ -207,7 +210,25 @@ public class ItrBokController {
 	public ModelAndView viewIbkBok(ModelAndView mv){
 		try {
 			List<Contents> contents = cs.findByPageId(pageId);
-			mv.addObject("contents", contents);
+			List<ItrBokDto> ibds = new ArrayList<ItrBokDto>();
+			for(Contents content: contents) {
+				ItrBokDto ibd = new ItrBokDto();
+				String url = "";
+				String urlWithTag = "";
+				if(content.getText().indexOf("<URL - ") != -1) {
+					url = content.getText().substring(content.getText().indexOf("<URL - ") + 7, content.getText().indexOf(" - URLEND>"));
+					urlWithTag = content.getText().substring(content.getText().indexOf("<URL - "), content.getText().indexOf(" - URLEND>") + 10);
+				}
+				ibd.setId(content.getId());
+				ibd.setCategory(content.getCategory());
+				ibd.setTitle(content.getTitle());
+				ibd.setUrl(url);
+				ibd.setText(content.getText().replace(urlWithTag, ""));
+				ibd.setImage(content.getImage());
+				ibd.setPostDate(content.getPostDate());
+				ibds.add(ibd);
+			}
+			mv.addObject("ibds", ibds);
 			mv.setViewName("itr/bok/itr_bok_00001");
 		} catch (ContentsException e) {
 			mv.addObject("message",e.getMessage());
@@ -215,6 +236,18 @@ public class ItrBokController {
 		}
 		return mv;
 		
+	}
+	
+	// 외부 url 접근
+	@RequestMapping(value = "redirect.ib", method = RequestMethod.GET) // DI 의존성 주입
+	public ModelAndView viewIbkBokDetail(ModelAndView mv, @RequestParam(value="url") String url){
+		if(url.indexOf("http://") != -1)
+			mv.setViewName("redirect:" + url);
+		else if(url.indexOf("https://") != -1)
+			mv.setViewName("redirect:" + url);
+		else	
+			mv.setViewName("redirect:http://" + url);
+		return mv;
 	}
 
 }

@@ -33,7 +33,7 @@
 //			inputEl.addEventListener( 'blur', onInputBlur );
 //		} );
 		
-		[].slice.call( document.querySelectorAll( 'input[type="text"].input__field' ) ).forEach( function( inputEl ) {
+		[].slice.call( document.querySelectorAll( 'input:not([type="file"]).input__field' ) ).forEach( function( inputEl ) {
 			
 			// in case the input is already filled..
 			if( inputEl.value.trim() !== '' ) {

@@ -26,26 +26,30 @@
     <!-- About Area Starts -->
     
     <section id="two" class="wrapper style2 alt">
-	<div style="text-align:center;"><h2>강의 목록</h2></div><br><br><br>
+	<div style="text-align:center;"><h2>강의 목록</h2></div><br><br>
 	<div class="inner">
-	<c:forEach var="content" items="${contents }" varStatus="status">
-		<a href="viewDetail.ee?id=${content.id }">
-		<div class="spotlight">
-			<h3>&nbsp &nbsp ${status.count } &nbsp &nbsp </h3>
-			<img src="https://img.youtube.com/vi/${content.image }/hqdefault.jpg" width="25%">&nbsp &nbsp &nbsp &nbsp
-			<div><h3>${content.title }</h3><BR>
-			<h4>본문</h4><BR>
-			${content.postDate }</div>
-		</div>
-		</a>
-	</c:forEach>
-	<c:if test="${!empty loginUser }">
-		<div style="text-align:center;">
-			<ul class="actions special">
-				<li><a href="insertView.er" class="button alt">추가하기</a></li>
-			</ul>
-		</div>
-	</c:if>
+		<c:if test="${!empty loginUser }">
+			<div style="text-align:center;">
+				<ul class="actions special">
+					<li><a href="insertView.ee" class="button alt">추가하기</a></li>
+				</ul>
+			</div>
+			<br>
+			<br>
+		</c:if>
+		<c:forEach var="content" items="${contents }" varStatus="status">
+			<a href="viewDetail.ee?id=${content.id }">
+			<span class="spotlight">
+				<h3>&nbsp;&nbsp; ${status.count } &nbsp;&nbsp; </h3>
+				<img src="https://img.youtube.com/vi/${content.image }/hqdefault.jpg" width="25%">&nbsp &nbsp &nbsp &nbsp
+				<span>
+					<h3>${content.title }</h3><BR>
+					<h4>본문</h4><BR>
+					${content.postDate }
+				</span>
+			</span>
+			</a>
+		</c:forEach>
 	</div>
 	</section>
     <!-- About Area End -->

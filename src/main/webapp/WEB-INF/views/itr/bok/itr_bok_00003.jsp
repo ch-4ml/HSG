@@ -11,16 +11,12 @@
     <%
 		String PATH = request.getContextPath();
 	%>
-	<script>
-		function deleteBtnClickEvent(id) {
-			var sign = confirm("정말로 삭제하시겠습니까?");
-			
-			if(sign == true){
-				window.location.assign("<%=PATH %>/delete.ib?id=" + id);
-			}
-		}
-	</script>
-    
+    <script>
+function resize(obj) {
+	  obj.style.height = "1px";
+	  obj.style.height = (12+obj.scrollHeight)+"px";
+	}
+</script>
 </head>
 <body>
 <jsp:include page="../../common/header-content.jsp" />
@@ -34,24 +30,24 @@
             </div>
         </div>
     </section>
-
-<!-- banner text -->
+	<!-- Banner Area End -->
+	
+	<!-- Content Area Start -->
 <section class="content">
 <div class="container">
     <form action="update.ib" method="post" enctype="multipart/form-data">
 		<section>
-		<input type="hidden" name="id" value="${content.id} ">
+		<input type="hidden" name="id" value="${ibd.id} ">
 		<span class="input input--hoshi">
-			<input class="input__field input__field--hoshi" type="text" id="title" name="title" value="${content.title }">
+			<input class="input__field input__field--hoshi" type="text" id="title" name="title" value="${ibd.title }">
 			<label class="input__label input__label--hoshi input__label--hoshi-color-1" for="title">
 				<span class="input__label-content input__label-content--hoshi">출판도서 / 특허명</span>
 			</label>
 		</span>
 		<br>
 		<select class="cs-select cs-skin-underline" id="category" name="category">
-		
 			<c:choose>
-				<c:when test="${content.category eq '1'}">
+				<c:when test="${ibd.category eq '1'}">
 					<option value="1" selected>도서</option>
 					<option value="2">특허</option>
 				</c:when>
@@ -64,28 +60,36 @@
 		</section>
 		<section class="related">
 		<span class="input input--hoshi">
-			<input class="input__field input__field--hoshi" type="text" id="text" name="text" value="${content.text }">
+			<input class="input__field input__field--hoshi" type="text" id="url" name="url" value="${ibd.url }">
+			<label class="input__label input__label--hoshi input__label--hoshi-color-1" for="url">
+				<span class="input__label-content input__label-content--hoshi">연결할 URL (www.abcde.com)</span>
+			</label>
+		</span>
+		<br>
+		<span class="input input--hoshi">
+			<textarea class="autosize, input__field input__field--hoshi" onkeydown="resize(this)" onkeyup="resize(this)" id="text" name="text">${ibd.text}</textarea>
 			<label class="input__label input__label--hoshi input__label--hoshi-color-1" for="text">
-				<span class="input__label-content input__label-content--hoshi">연결할 URL</span>
+				<span class="input__label-content input__label-content--hoshi">간단한 설명</span>
 			</label>
 		</span>
 		<br>
 		<span class="input input--hoshi input--filled">
 	    	<input class="input__field input__field--hoshi" type="file" id="file" name="file" accept=".jpg, .jpeg, .png">
 	    	<label class="input__label input__label--hoshi input__label--hoshi-color-1" for="file">
-	    		<span class="input__label-content input__label-content--hoshi">사진 첨부하기</span>
+	    		<span class="input__label-content input__label-content--hoshi">사진 첨부</span>
 	    	</label>
 		</span>
 		<br>
 		<div align="center">
-			<input type="button" value="삭제하기" onclick="deleteBtnClickEvent(${content.id})"/>
-			<input type="submit" value="수정하기"/>
+			<input type="submit" value="수정"/>
 		</div>
 		</section>
 	</form>
 </div>
 </section>
+	<!-- Content Area End -->
+	
 	<jsp:include page="../../common/footer.jsp" />
-    <!-- footer -->    
+    <!-- footer -->
     
 </body>

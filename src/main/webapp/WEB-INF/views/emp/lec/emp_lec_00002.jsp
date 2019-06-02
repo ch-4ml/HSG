@@ -7,24 +7,20 @@
 <title>HS글로벌</title>
 <jsp:include page="../../common/head.jsp" />
 <%@ include file="../../common/tinymce.jsp" %>
-
-<script type="text/javascript">
-	$(function() {
-		
+<script>
+	$(function() {		
 		/* validation 처리 */
 		$("#insertBtn").click(function() {
 			
 			var title = $("#title").val();
-			var content = $("#content").val();
+			var text = $("#text").val();
 			
 			if(name == ""){
 				return alert("제목을 입력해주세요.");
 			} else if(content == ""){
 				return alert("내용을 입력해주세요.");
 			}
-			
 			return $("#insertForm").submit();
-			
 		});
 	});
 	
@@ -46,11 +42,23 @@
     <!-- Banner Area End -->
 
     <!-- About Area Starts -->
-    <form id="insertForm" action="insert.el" method="post">
-		<input type="text" id="title" name="title" placeholder="제목">
-		<textarea id="text" id= "content" name="text" placeholder="내용을 추가하세요."></textarea>
-		<input type="button" id="insertBtn" value="추가">
-	</form>
+    <section class="content">
+	    <div class="container">
+		    <form id="insertForm" action="insert.el" method="post">
+			    <span class="input input--hoshi">
+					<input class="input__field input__field--hoshi" type="text" id="title" name="title">
+					<label class="input__label input__label--hoshi input__label--hoshi-color-1" for="title">
+						<span class="input__label-content input__label-content--hoshi">채용 공고 제목</span>
+					</label>
+				</span>
+				<textarea id="text" name="text" placeholder="내용을 추가하세요."></textarea>
+				<br>
+				<div style="text-align:center;">
+					<input type="button" id="insertBtn" value="추가">
+				</div>	
+			</form>
+		</div>
+    </section>
     <!-- About Area End -->
     
     <jsp:include page="../../common/footer.jsp" />
