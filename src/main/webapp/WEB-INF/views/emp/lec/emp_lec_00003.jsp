@@ -8,6 +8,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>HS글로벌</title>
 <jsp:include page="../../common/head.jsp" />
+<link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900|Quicksand:400,700|Questrial" rel="stylesheet" />
+<link href="./resources/css/detail-default.css" rel="stylesheet" type="text/css" media="all" />
 <script src="https://cloud.tinymce.com/5/tinymce.min.js?apiKey=iiyaoh4ovlz6z3aafb6vdpqtllt555a3g3loxoh2dwetyw3e"></script>
 <script>
 $(function() {
@@ -49,7 +51,27 @@ $(function() {
     <!-- Banner Area End -->
 
     <!-- About Area Starts -->
-    <section class="content">
+    <form action="update.el" method="post">
+    <div class="wrapper">
+    	<div id="welcome" class="container">
+    		<div class="title">
+    			<h2>${content.title }</h2> <h4>${content.postDate}</h4>
+    		</div>
+    	</div>
+	<div id="banner" class="container">${content.text}</div>
+	</div>
+	<input type="hidden" id="id" name="id" value="${content.id }">
+    </form>
+    <div style="text-align:center;">
+   		<a href="sendForm.el">지원하기</a>
+	    <c:if test="${!empty loginUser }">
+			<input type="button" id="update" value="수정">
+			<input type="button" id="delete" value="삭제">
+		</c:if>
+	    <input type="button" id="list" value="목록 보기">
+    </div>
+    
+ <!--   <section class="content">
     <div class="container">
 	<form action="update.el", method="post">
 	    <span id="content">
@@ -66,7 +88,7 @@ $(function() {
 	    <input type="hidden" id="id" name="id" value="${content.id }">
     </form>
     </div>
-    </section>
+    </section> --> 
 
 
     <!-- About Area End -->
