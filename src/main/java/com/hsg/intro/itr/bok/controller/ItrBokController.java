@@ -50,11 +50,12 @@ public class ItrBokController {
 			int pos = file.getOriginalFilename().lastIndexOf(".");
 			String ext = file.getOriginalFilename().substring(pos);
 			fileName = newfileName + ext;
+			content.setImage(fileName);
 			//파일경로를 itrbok 객체에 넣어줌
 			filePath = filePath + "/" + fileName;
+
 			// 해당 폴더에 파일 생성
-			file.transferTo(new File(fileName));
-			content.setImage(fileName);
+			file.transferTo(new File(filePath));
 			
 		} catch (IllegalStateException e1) {
 			e1.printStackTrace();
@@ -117,7 +118,7 @@ public class ItrBokController {
 					// 해당 폴더에 파일 생성
 					file.transferTo(new File(filePath));
 				} else {
-					content.setImage(null);
+					content.setImage("");
 				}
 			} catch (IllegalStateException e1) {
 				e1.printStackTrace();
