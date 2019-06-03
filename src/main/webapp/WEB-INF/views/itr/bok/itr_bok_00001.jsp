@@ -63,7 +63,7 @@ function deleteBtnClickEvent(id) {
 				<c:if test="${ibd.category eq 1 }">
 					<div class="spotlight">
 						<div class="image">
-							<img src="http://tbsko.cafe24.com/resources/uploadFiles/itrbok_upload_file/${ibd.image}" alt="" />
+							<img src="http://tbsko.cafe24.com/HSG/resources/uploadFiles/itrbok_upload_file/${ibd.image}" alt="" />
 						</div>
 						<div class="ibd">
 							<h3>${ibd.title}</h3>
@@ -90,7 +90,7 @@ function deleteBtnClickEvent(id) {
 				<c:if test="${ibd.category eq 2 }">
 					<div class="spotlight">
 						<div class="image">
-							<img src="http://tbsko.cafe24.com/resources/uploadFiles/itrbok_upload_file/${ibd.image}" alt="" />
+							<img src="http://tbsko.cafe24.com/HSG/resources/uploadFiles/itrbok_upload_file/${ibd.image}" alt="" />
 							<!-- <img src="../../../../resources/uploadFiles/itrbok_upload_file/${ibd.image}" alt="" /> -->
 						</div>
 						<div class="ibd">
