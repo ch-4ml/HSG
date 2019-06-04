@@ -253,6 +253,10 @@ a:hover, a:focus {
 	font-size: 0.65em;
 }
 
+.content-center{
+	text-align:center;
+}
+
 /*
 .bgcolor-1 { background: #f0efee; }
 .bgcolor-2 { background: #f9f9f9; }
