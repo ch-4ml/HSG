@@ -68,6 +68,29 @@
 <script>
 function fileCheck(file)
 {
+	/* validation 처리 */
+	var company = $("#company").val();
+	var zip_code = $("#zip_code").val();
+	var address = $("#address").val();
+	var d_address = $("#d_address").val();
+	var name = $("#name").val();
+	var phone = $("#phone").val();
+	var email = $("#email").val();
+	var files = $("#file").val();
+	
+	if(company == ""){
+		return alert("회사명을 입력해주세요.");
+	} else if(zip_code == ""){
+		return alert("주소를 입력해주세요.");
+	} else if(name == ""){
+		return alert("담당자 성함을 입력해주세요.");
+	} else if(phone == ""){
+		return alert("연락처를 입력해주세요.");
+	} else if(email == ""){
+		return alert("이메일을 입력해주세요.");
+	} else if(files == ""){
+		return alert("첨부파일을 입력해주세요.");
+	}
 	// 사이즈체크
 	var maxSize  = 25 * 1024 * 1024
 	var fileSize = 0;
@@ -160,7 +183,7 @@ function resize(obj) {
 				</span>
 				<br>
 				<span class="input input--hoshi">
-					<input class="input__field input__field--hoshi" type="text" id="email" name="email">
+					<input class="input__field input__field--hoshi" type="email" id="email" name="email">
 					<label class="input__label input__label--hoshi input__label--hoshi-color-1" for="email">
 						<span class="input__label-content input__label-content--hoshi">E-mail</span>
 					</label>
