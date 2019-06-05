@@ -30,6 +30,7 @@
 		</div>
 	</section>
 	<!-- Banner Area End -->
+	
 	<!-- Feature Area Starts -->
 	<section class="feature-area section-padding">
 		<div class="container">

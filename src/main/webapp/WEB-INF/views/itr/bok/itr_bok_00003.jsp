@@ -55,7 +55,7 @@ function resize(obj) {
 	<!-- Banner Area End -->
 	
 	<!-- Content Area Start -->
-<section class="content">
+<section class="content content-center">
 <div class="container">
     <form id="updateForm" action="update.ib" method="post" enctype="multipart/form-data">
 		<section>

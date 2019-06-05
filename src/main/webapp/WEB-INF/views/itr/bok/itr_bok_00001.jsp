@@ -66,13 +66,18 @@ function deleteBtnClickEvent(id) {
 							<img src="http://tbsko.cafe24.com/HSG/resources/uploadFiles/itrbok_upload_file/${ibd.image}" alt="" />
 						</div>
 						<div class="ibd">
-							<h3>${ibd.title}</h3>
-							<p>${ibd.text}</p>
-							<c:if test="${!empty loginUser }">
-								<ul class="actions">
-									<li><a onclick="updateBtnClickEvent(${ibd.id})" class="button alt">수정</a><a onclick="deleteBtnClickEvent(${ibd.id})" class="button alt">삭제</a></li>
-								</ul>
-							</c:if>
+							<div class="ibd-content">
+								<h3>${ibd.title}</h3>
+								<p>${ibd.text}</p>
+							</div>
+							<div class="ibd-button">
+								<c:if test="${!empty loginUser }">
+									<ul class="actions">
+										<li><a onclick="updateBtnClickEvent(${ibd.id})" class="button alt">수정</a></li>
+										<li><a onclick="deleteBtnClickEvent(${ibd.id})" class="button alt">삭제</a></li>
+									</ul>
+								</c:if>
+							</div>
 						</div>
 					</div>
 				</c:if>
@@ -96,11 +101,14 @@ function deleteBtnClickEvent(id) {
 						<div class="ibd">
 							<h3>${ibd.title}</h3>
 							<p>${ibd.text}</p>
-							<c:if test="${!empty loginUser }">
-								<ul class="actions">
-									<li><a onclick="updateBtnClickEvent(${ibd.id})" class="button alt">수정</a><a onclick="deleteBtnClickEvent(${ibd.id})" class="button alt">삭제</a></li>
-								</ul>
-							</c:if>
+							<div class="ibd-button">
+								<c:if test="${!empty loginUser }">
+									<ul class="actions">
+										<li><a onclick="updateBtnClickEvent(${ibd.id})" class="button alt">수정</a></li>
+										<li><a onclick="deleteBtnClickEvent(${ibd.id})" class="button alt">삭제</a></li>
+									</ul>
+								</c:if>
+							</div>
 						</div>
 						<br>
 					</div>

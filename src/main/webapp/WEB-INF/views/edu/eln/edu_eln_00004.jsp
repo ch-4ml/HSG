@@ -38,7 +38,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1>MOOC 등록</h1>
+                    <h1>MOOC 수정</h1>
                 </div>
             </div>
         </div>
@@ -82,7 +82,7 @@
 				<textarea id="text" name="text" placeholder="동영상과 내용을 추가하세요.">${content.text }</textarea>
 				<br>
 				<div style="text-align:center;">
-					<input type="button" id="updateBtn" value="추가">
+					<input type="button" id="updateBtn" value="수정">
 				</div>
 				</section>
 			</form>
