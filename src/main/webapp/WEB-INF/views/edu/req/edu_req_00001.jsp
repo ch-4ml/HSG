@@ -23,48 +23,30 @@
     </section>
     <!-- Banner Area End -->
     
-    <section id="two" class="wrapper style2 alt">
-		<div style="text-align:center;">
-			<h1>
-				[ 진행 중인 교육 목록 ]
-			</h1>
-			<br>
-		</div>
+    <section id="two" class="wrapper style2 alt">		
+		
+		<div style="text-align:center;"><h2>진행 중인 교육 목록</h2></div><br><br>
 		<div class="inner">
-			<c:forEach var="content" items="${contents}">
-					<a href="viewDetail.er?id=${content.id }">
-					<div class="spotlight">
-						<div class="content">
-							<h3>${content.title }</h3>
-							<h4 style="text-align:left;">${content.postDate}</h4>
-						</div>
-					</div>
-					</a>
-			</c:forEach>
 			<c:if test="${!empty loginUser }">
-				<ul class="actions special">
-					<li><a href="insertView.er" class="button alt">추가하기</a></li>
-				</ul>
+				<div style="text-align:center;">
+					<ul class="actions special">
+						<li><a href="insertView.er" class="button alt">추가하기</a></li>
+					</ul>
+				</div>
+				<br>
+				<br>
 			</c:if>
+			<c:forEach var="content" items="${contents}" varStatus="status">
+				<a href="viewDetail.er?id=${content.id }">
+					<span class="spotlight">
+						<h3> &nbsp;&nbsp; ${status.count } &nbsp;&nbsp; </h3>
+						${content.title }
+						<h4 style="text-align:right;">${content.postDate}</h4>
+					</span>
+				</a>
+			</c:forEach>
 		</div>
 	</section>
-  
-<!-- 	
-	진행 중인 교육 목록 <br>
-
-    <!-- About Area Starts ->
-    <c:if test="${!empty loginUser }">
-    	<a href="insertView.er">추가하기</a>
-    	<br>
-    </c:if>
-    <c:forEach var="content" items="${contents }" varStatus="status">
-		<a href="viewDetail.er?id=${content.id }">
-			${content.title }
-			${content.postDate }
-		</a>
-		<br>
-		<br>
-	</c:forEach> -->
     <!-- About Area End -->
     
     <jsp:include page="../../common/footer.jsp" />

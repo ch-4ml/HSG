@@ -43,8 +43,8 @@
 				<h3>&nbsp;&nbsp; ${status.count } &nbsp;&nbsp; </h3>
 				<img src="https://img.youtube.com/vi/${content.image }/hqdefault.jpg" width="25%">&nbsp &nbsp &nbsp &nbsp
 				<span>
-					<h3>${content.title }</h3><BR>
-					<h4>본문</h4><BR>
+					<h3>${content.title }</h3><br>
+					<h4>본문</h4><br>
 					${content.postDate }
 				</span>
 			</span>

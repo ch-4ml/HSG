@@ -38,9 +38,9 @@
         </div>
     </section>
     <!-- Banner Area End -->
-	<section class="content">
-	<div class="container">
-		<h3>지도</h3>
+	<section id="two" class="wrapper style2 alt">
+	<div class="inner">
+		<div style="text-align:center;"><h2>지도</h2></div><br><br>
 	</div>
 	</section>
 	<div id="maps"></div>
@@ -81,10 +81,25 @@
 	  }
 	}
 	</script>
-    <section class="content">
-	<div class="container">
-		<h3>오시는 길</h3>
-	</div>
+    <section id="two" class="wrapper style2 alt">
+	    <div style="text-align:center;"><h2>오시는길</h2></div><br><br>
+	    <div class="inner">
+			<form id="content_form" method="post" action="update.ig">
+				<div class="contents">
+					<span id="contents"> ${contents[0].text } </span>
+				</div>
+				<br>
+				<span id="updateButton">
+					<c:if test="${!empty loginUser }">
+						<div style="text-align:center;">
+							<input type="button" id="update" value="수정">
+						</div>
+						<br>
+					</c:if>
+				</span>
+				<input type="hidden" name="id" value="${contents[0].id }">
+			</form>
+		</div>
 	</section>
     <!--Load the API from the specified URL
     * The async attribute allows the browser to render the page while the API loads

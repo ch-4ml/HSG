@@ -22,15 +22,23 @@
 	<!-- Banner Area End -->
 
 	<!-- About Area Starts -->
-	<section class="content">
-		<div class="container">
+	<section id="two" class="wrapper style2 alt">
+		<div style="text-align:center;"><h2>조직 및 사업분야</h2></div><br><br>
+		<div class="inner">
 			<form id="content_form" method="post" action="update.io">
-				<span id="content"> ${contents[0].text } </span> <span id="updateButton"> <c:if test="${!empty loginUser }">
+				<div class="contents">
+					<span id="content"> ${contents[0].text } </span>
+				</div>
+				<br> 
+				<span id="updateButton"> 
+					<c:if test="${!empty loginUser }">
 						<div style="text-align: center;">
 							<input type="button" id="update" value="수정">
 						</div>
+						<br>
 					</c:if>
-				</span> <input type="hidden" name="id" value="${contents[0].id }">
+				</span> 
+				<input type="hidden" name="id" value="${contents[0].id }">
 			</form>
 		</div>
 	</section>

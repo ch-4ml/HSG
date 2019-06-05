@@ -23,10 +23,14 @@
 	<!-- Banner Area End -->
 
 	<!-- About Area Starts -->
-	<section class="content">
-	    <div class="container">
+	<section id="two" class="wrapper style2 alt">
+		<div style="text-align:center;"><h2>컨설팅 및 검증 실적</h2></div><br><br>
+	    <div class="inner">
 			<form id="content_form" method="post" action="update.ic">
-				<span id="contents"> ${contents[0].text } </span>
+				<div class="contents">
+					<span id="contents"> ${contents[0].text } </span>
+				</div>
+				<br>
 				<span id="updateButton">
 					<c:if test="${!empty loginUser }">
 						<div style="text-align:center;">
