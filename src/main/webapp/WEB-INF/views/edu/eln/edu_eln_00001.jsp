@@ -31,7 +31,7 @@
 		<c:if test="${!empty loginUser }">
 			<div style="text-align:center;">
 				<ul class="actions special">
-					<li><a href="insertView.ee" class="button alt">추가하기</a></li>
+					<li><input type="button" id="insert" onclick="location.href='insertView.ee'" value="추가하기"></li>
 				</ul>
 			</div>
 			<br>
@@ -43,8 +43,8 @@
 				<h3>&nbsp;&nbsp; ${status.count } &nbsp;&nbsp; </h3>
 				<img src="https://img.youtube.com/vi/${content.image }/hqdefault.jpg" width="25%">&nbsp &nbsp &nbsp &nbsp
 				<span>
-					<h3>${content.title }</h3><BR>
-					<h4>본문</h4><BR>
+					<h3>${content.title }</h3><br>
+					<h4>본문</h4><br>
 					${content.postDate }
 				</span>
 			</span>

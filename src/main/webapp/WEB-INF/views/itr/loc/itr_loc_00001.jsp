@@ -10,8 +10,12 @@
      <style>
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
-      #map {
+      #maps {
         height: 100%;
+        padding: 10%;
+        border-style: outset;
+        border-width: 5px;
+        border-color: hsl(200, 100%, 50%);
       }
       /* Optional: Makes the sample page fill the window. */
       html, body {
@@ -34,17 +38,74 @@
         </div>
     </section>
     <!-- Banner Area End -->
-	
-	<div id="map"></div>
+	<section id="two" class="wrapper style2 alt">
+	<div class="inner">
+		<div style="text-align:center;"><h2>지도</h2></div><br><br>
+	</div>
+	</section>
+	<div id="maps"></div>
     <script>
-      var map;
-      function initMap() {
-        map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: -34.397, lng: 150.644},
-          zoom: 8
-        });
-      }
-    </script>
+    var marker;
+    var infowindow;
+	// Initialize and add the map
+	function initMap() {
+	  // The location of hsgbiz
+	  var hsgbiz = {lat: 37.208455, lng: 127.097964};
+	  
+	  var contentString = '<div style=\"text-align:center\"><h3>HS글로벌</h3><br>경기도 화성시 동탄순환대로 823 709호<br>(영천동, 에이팩시티 지식산업센터)</div>';
+	  
+	  infowindow = new google.maps.InfoWindow({
+		  content: contentString
+		});
+	  
+	  // The map, centered at hsgbiz
+	  var map = new google.maps.Map(
+	      document.getElementById('maps'), {zoom: 17, center: hsgbiz});
+	  // The marker, positioned at hsgbiz
+	  marker = new google.maps.Marker({
+		  position: hsgbiz, 
+		  map: map,
+		  title: "HS글로벌"});
+	  marker.addListener('click', toggleBounce);
+	  marker.addListener('click', function () {
+		  infowindow.open(map, marker);
+	  });
+	  infowindow.open(map, marker);
+	}
+
+  	function toggleBounce() {
+	  if (marker.getAnimation() !== null) {
+	    marker.setAnimation(null);
+	  } else {
+	    marker.setAnimation(google.maps.Animation.BOUNCE);
+	  }
+	}
+	</script>
+    <section id="two" class="wrapper style2 alt">
+	    <div style="text-align:center;"><h2>오시는길</h2></div><br><br>
+	    <div class="inner">
+			<form id="content_form" method="post" action="update.ig">
+				<div class="contents">
+					<span id="contents"> ${contents[0].text } </span>
+				</div>
+				<br>
+				<span id="updateButton">
+					<c:if test="${!empty loginUser }">
+						<div style="text-align:center;">
+							<input type="button" id="update" value="수정">
+						</div>
+						<br>
+					</c:if>
+				</span>
+				<input type="hidden" name="id" value="${contents[0].id }">
+			</form>
+		</div>
+	</section>
+    <!--Load the API from the specified URL
+    * The async attribute allows the browser to render the page while the API loads
+    * The key parameter will contain your own API key (which is not needed for this tutorial)
+    * The callback parameter executes the initMap() function
+    -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB4LR6QGoBBw_VJChqlK6mAs5l4mB33YSM&callback=initMap" async defer></script>
 	
 	<jsp:include page="../../common/footer.jsp" />

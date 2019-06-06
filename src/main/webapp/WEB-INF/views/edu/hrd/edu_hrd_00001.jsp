@@ -22,14 +22,25 @@
 	<!-- Banner Area End -->
 
 	<!-- About Area Starts -->
-	<section class="content">
-		<div class="container">
+	<section id="two" class="wrapper style2 alt">
+		<div style="text-align:center;"><h2>하드웨어 교육 솔루션</h2></div><br><br>
+		<div class="inner">
 			<form id="content_form" method="post" action="update.eh">
-				<span id="content"> ${contents[0].text } </span> <span id="updateButton"> <c:if test="${!empty loginUser }">
-						<input type="button" id="update" value="수정">
+				<div class="contents">
+					<br>
+					<span id="content"> ${contents[0].text } </span>
+					<br>
+				</div>
+				<br>
+				<span id="updateButton">
+					<c:if test="${!empty loginUser }">
+						<div style="text-align:center;">
+							<input type="button" id="update" value="수정">
+						</div>
 						<br>
-					</c:if>					
-				</span> <input type="hidden" name="id" value="${contents[0].id }">
+					</c:if>
+				</span>
+				<input type="hidden" name="id" value="${contents[0].id }">
 			</form>
 		</div>
 	</section>

@@ -129,3 +129,26 @@ iframe{
     }
 }
 /*======================================*/
+
+.ibd{
+	width:100%;
+    padding-top: 1em;
+    padding-left: 1em;
+}
+.ibd div{
+	float:left;
+}
+.ibd-content{
+	width:50%;
+}
+.ibd-button li{
+	float:left;
+    margin-right: 0.2em;    
+    margin-bottom: 0.5em;
+}
+
+.contents {
+	background-color: white;
+	border-bottom-color: rgba(144, 144, 144, 0.25);
+	border-bottom: solid 3px;
+}

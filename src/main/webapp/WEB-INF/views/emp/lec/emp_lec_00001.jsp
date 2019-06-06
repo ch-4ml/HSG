@@ -22,7 +22,6 @@
         </div>
     </section>
     <!-- Banner Area End -->
-
     <!-- About Area Starts -->
     <section id="two" class="wrapper style2 alt">
 		<div style="text-align:center;">
