@@ -37,17 +37,22 @@
 			<br>
 			<br>
 		</c:if>
-		<c:forEach var="content" items="${contents }" varStatus="status">
-			<a href="viewDetail.ee?id=${content.id }">
-			<span class="spotlight">
-				<h3>&nbsp;&nbsp; ${status.count } &nbsp;&nbsp; </h3>
-				<img src="https://img.youtube.com/vi/${content.image }/hqdefault.jpg" width="25%">&nbsp &nbsp &nbsp &nbsp
-				<span>
-					<h3>${content.title }</h3><br>
-					<h4>본문</h4><br>
-					${content.postDate }
-				</span>
-			</span>
+		<c:forEach var="cd" items="${cds }" varStatus="status">
+			<a href="viewDetail.ee?id=${cd.id }">
+			<div class="spotlight">
+				<div class="thumbnail">
+					<img src="https://img.youtube.com/vi/${cd.image }/hqdefault.jpg" width="75%">
+				</div>
+				<div class="list">
+					<div class="list-content-mooc">
+						<h3>${cd.title }</h3><br>
+						<h4>${cd.comment }</h4>
+					</div>
+					<div class="list-date">
+						<br>${cd.postDate }<br>
+					</div>
+				</div>
+			</div>
 			</a>
 		</c:forEach>
 	</div>

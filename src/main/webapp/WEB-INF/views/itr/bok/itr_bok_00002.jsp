@@ -14,12 +14,15 @@
     	$(function() {
 			$("#insertBtn").click(function() {
 				var title = $("#title").val();
+				var category = $("#category").val();
 				var url = $("#url").val();
 				var text = $("#text").val();
 				var file = $("#file").val();
 				
 				if(title == ""){
 					return alert("제목을 입력해주세요.");
+				} else if(category == "") {
+					return alert("카테고리를 선택해주세요.");
 				} else if(url == "") {
 					return alert("연결할 주소를 입력해주세요.");
 				} else if(text == ""){

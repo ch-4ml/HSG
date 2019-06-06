@@ -31,6 +31,14 @@
     		location.href="view.ee";
     	});
     });
+ 
+    $(function() {
+		var con = $('iframe').parent().attr('style');
+		if(con.includes("text-align: center;")) {
+			$('iframe').parent('p').attr('align', 'middle');
+			$('iframe').parent('p').removeAttr('style');
+		}// your code here
+    });
     </script>
 </head>
 <body>
@@ -48,37 +56,26 @@
     <!-- Banner Area End -->
 
     <!-- About Area Starts -->
-    <form action="update.ee" method="post">
-    <div class="wrapper">
-	<div id="banner" class="container">${content.text }</div>
-	<div id="welcome" class="container">
-    	
-	<div class="title">
-	  <h2>${content.title }</h2> <h4>${content.postDate}</h4>
-		</div>
-		<p> 이 부분에 내용을 넣으면 될 것 같습니다. <BR> 영상과 내용을 따로 올릴 수 있도록 만들어주시면 감사하겠습니다.</p>
-	</div>
-	</div>
-	<input type="hidden" id="category" name="category" value="${content.category }">
-	<input type="hidden" id="id" name="id" value="${content.id }">
-    </form>
-    <div style="text-align:center;">
-	    <!-- 
-		    <span id="content"><br>
-			   	<span id="title">${content.title }</span>
-			   	${content.postDate }
-			    <span id="text">${content.text }</span>
+    <section id="two" class="wrapper style2 alt">
+	    <div style="text-align:center;"><h2>${content.title }</h2></div><br><br>
+   		<div class="inner">
+    		<form action="update.ee" method="post">
+				<div class="contents">
+					<span id="contents">${content.text }</span>
+				</div>
+				<br>
+				<div style="text-align: center;">
+					<input type="button" id="list" value="목록 보기">
+					<c:if test="${!empty loginUser }">
+						<input type="button" id="update" value="수정">
+						<input type="button" id="delete" value="삭제">
+					</c:if>
+				</div>
 				<input type="hidden" id="category" name="category" value="${content.category }">
-			</span>
-		    <input type="hidden" id="id" name="id" value="${content.id }">
-	    </form> -->
-	    <c:if test="${!empty loginUser }">
-			<input type="button" id="update" value="수정">
-			<input type="button" id="delete" value="삭제">
-		</c:if>
-	    <input type="button" id="list" value="목록 보기">
-    </div>
-    	
+				<input type="hidden" id="id" name="id" value="${content.id }">
+    		</form>
+   		</div>
+    </section>	    
 	
     <!-- About Area End -->
     

@@ -24,8 +24,7 @@
     <!-- Banner Area End -->
     
     <section id="two" class="wrapper style2 alt">		
-		
-		<div style="text-align:center;"><h2>진행 중인 교육 목록</h2></div><br><br>
+		<div style="text-align:center;"><h2>교육 목록</h2></div><br><br>
 		<div class="inner">
 			<c:if test="${!empty loginUser }">
 				<div style="text-align:center;">
@@ -39,9 +38,10 @@
 			<c:forEach var="content" items="${contents}" varStatus="status">
 				<a href="viewDetail.er?id=${content.id }">
 					<span class="spotlight">
-						<h3> &nbsp;&nbsp; ${status.count } &nbsp;&nbsp; </h3>
-						${content.title }
-						<h4 style="text-align:right;">${content.postDate}</h4>
+					<div class="list">
+						<h3>${content.title }</h3>
+						<h4>${content.postDate}</h4>
+					</div>
 					</span>
 				</a>
 			</c:forEach>

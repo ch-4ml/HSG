@@ -2635,12 +2635,20 @@
 	}
 
 		.spotlight .image {
-			width: 40%;
+			width: 30%;
 		}
-
+		
 			.spotlight .image img {
-				width: 100%;
+				width: 50%;
 			}
+
+		.spotlight .thumbnail {
+			width: 30%;
+		}
+			.spotlight .thumnail img {
+				width: 50%;
+			}
+		
 
 		.spotlight .content {
 			padding: 1.5em 3em 1em 3em;

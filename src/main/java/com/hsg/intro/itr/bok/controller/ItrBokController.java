@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -19,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.hsg.intro.Exception.ContentsException;
+import com.hsg.intro.common.contents.model.domain.ContentsDomain;
 import com.hsg.intro.common.contents.model.service.ContentsServiceImpl;
 import com.hsg.intro.common.contents.model.vo.Contents;
 import com.hsg.intro.itr.bok.model.dto.ItrBokDto;
@@ -162,7 +164,7 @@ public class ItrBokController {
 			ModelAndView mv, 
 			@RequestParam(value="id") int id) {
 		Contents content;
-		ItrBokDto ibd = new ItrBokDto();
+		ContentsDomain cd = new ContentsDomain();
 		try {
 			content = cs.findById(id);
 			String url = "";
@@ -171,15 +173,15 @@ public class ItrBokController {
 				url = content.getText().substring(content.getText().indexOf("<URL - ") + 7, content.getText().indexOf(" - URLEND>"));
 				urlWithTag = content.getText().substring(content.getText().indexOf("<URL - "), content.getText().indexOf(" - URLEND>") + 10);
 			}
-			ibd.setId(content.getId());
-			ibd.setCategory(content.getCategory());
-			ibd.setTitle(content.getTitle());
-			ibd.setUrl(url);
-			ibd.setText(content.getText().replace(urlWithTag, ""));
-			ibd.setImage(content.getImage());
-			ibd.setPostDate(content.getPostDate());
+			cd.setId(content.getId());
+			cd.setCategory(content.getCategory());
+			cd.setTitle(content.getTitle());
+			cd.setUrl(url);
+			cd.setText(content.getText().replace(urlWithTag, ""));
+			cd.setImage(content.getImage());
+			cd.setPostDate(content.getPostDate());
 			
-			mv.addObject("ibd", ibd);
+			mv.addObject("cd", cd);
 			mv.setViewName("itr/bok/itr_bok_00003");
 			
 		} catch (ContentsException e) {
@@ -211,25 +213,25 @@ public class ItrBokController {
 	public ModelAndView viewIbkBok(ModelAndView mv){
 		try {
 			List<Contents> contents = cs.findByPageId(pageId);
-			List<ItrBokDto> ibds = new ArrayList<ItrBokDto>();
+			List<ContentsDomain> cds = new ArrayList<ContentsDomain>();
 			for(Contents content: contents) {
-				ItrBokDto ibd = new ItrBokDto();
+				ContentsDomain cd = new ContentsDomain();
 				String url = "";
 				String urlWithTag = "";
 				if(content.getText().indexOf("<URL - ") != -1) {
 					url = content.getText().substring(content.getText().indexOf("<URL - ") + 7, content.getText().indexOf(" - URLEND>"));
 					urlWithTag = content.getText().substring(content.getText().indexOf("<URL - "), content.getText().indexOf(" - URLEND>") + 10);
 				}
-				ibd.setId(content.getId());
-				ibd.setCategory(content.getCategory());
-				ibd.setTitle(content.getTitle());
-				ibd.setUrl(url);
-				ibd.setText(content.getText().replace(urlWithTag, ""));
-				ibd.setImage(content.getImage());
-				ibd.setPostDate(content.getPostDate());
-				ibds.add(ibd);
+				cd.setId(content.getId());
+				cd.setCategory(content.getCategory());
+				cd.setTitle(content.getTitle());
+				cd.setUrl(url);
+				cd.setText(content.getText().replace(urlWithTag, ""));
+				cd.setImage(content.getImage());
+				cd.setPostDate(content.getPostDate());
+				cds.add(cd);
 			}
-			mv.addObject("ibds", ibds);
+			mv.addObject("cds", cds);
 			mv.setViewName("itr/bok/itr_bok_00001");
 		} catch (ContentsException e) {
 			mv.addObject("message",e.getMessage());

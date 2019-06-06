@@ -623,6 +623,23 @@ body.mobile-nav-active #mobile-nav-toggle {
 	transition: .5s
 }
 
+.department-area .single-slide .item-padding #container {
+	display: inline-block; 
+	width: calc(100%); 
+	white-space: nowrap; 
+	overflow: hidden; 
+	text-overflow: ellipsis; 
+	/* 여러 줄 자르기 추가 스타일 */ 
+	white-space: normal; 
+	line-height: 1.2; 
+	height: 3.6em; 
+	text-align: left; 
+	word-wrap: break-word; 
+	display: -webkit-box; 
+	-webkit-line-clamp: 3; 
+	-webkit-box-orient: vertical;
+}
+
 @media ( max-width : 575.98px) {
 	.department-area .single-slide .item-padding {
 		padding: 40px 20px

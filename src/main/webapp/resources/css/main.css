@@ -130,21 +130,38 @@ iframe{
 }
 /*======================================*/
 
-.ibd{
-	width:100%;
+.list{
+	width:70%;
     padding-top: 1em;
     padding-left: 1em;
 }
-.ibd div{
+.list-content-mooc h4 p{
+	text-overflow: ellipsis;
+	width:calc(90%);
+	word-wrap: normal;
+	display: inline-block; 
+	white-space: nowrap; 
+	overflow: hidden;
+}
+.list div{
 	float:left;
 }
-.ibd-content{
+.list-content{
 	width:50%;
 }
-.ibd-button li{
+
+.list-button li{
 	float:left;
-    margin-right: 0.2em;    
+    margin-right: 0.3em;    
     margin-bottom: 0.5em;
+}
+.list-content-mooc{
+	width:70%;
+
+}
+.list-date{
+	float:left;
+	margin: 0.5em 0.3em;
 }
 
 .contents {

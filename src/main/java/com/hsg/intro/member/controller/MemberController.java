@@ -1,30 +1,17 @@
 package com.hsg.intro.member.controller;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.HashMap;
-
 import javax.security.auth.login.LoginException;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.xml.ws.Response;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hsg.intro.member.model.service.MemberServiceImpl;
 import com.hsg.intro.member.model.vo.Member;
 
@@ -33,10 +20,7 @@ import com.hsg.intro.member.model.vo.Member;
 public class MemberController {
 	@Autowired
 	private MemberServiceImpl ms;
-	@Autowired
-	private BCryptPasswordEncoder passwordEncoder;
 	@RequestMapping(value = "login.me", method = RequestMethod.POST) // DI 의존성 주입
-	
 	// 로그인
 	public ModelAndView loginCheck(Member m, ModelAndView mv, SessionStatus status){
 		
@@ -59,15 +43,16 @@ public class MemberController {
 	}
 	// 로그인 - 세션 저장
 	@RequestMapping(value = "loginSessionStore.me", method = RequestMethod.GET) // DI 의존성 주입
-	public ModelAndView loginSessionStore(Member m, ModelAndView mv){
+	public ModelAndView loginSessionStore(Member m, ModelAndView mv, HttpServletRequest request){
 		
 		System.out.println("controller member : " + m);
-		
+		HttpSession session = request.getSession();
+		String redirectUrl = (String) session.getAttribute("prevPage");
 		try {
 			Member loginUser = ms.selectMember(m);
 			
 			mv.addObject("loginUser",loginUser);
-			mv.setViewName("redirect:/");
+			mv.setViewName("redirect:" + redirectUrl);
 		} catch (LoginException e) {
 			mv.addObject("message",e.getMessage());
 			System.out.println("SessionStore error : " + e);
@@ -91,7 +76,9 @@ public class MemberController {
 		return "member/memberJoin";
 	}
 	@RequestMapping(value="signIn.me", method=RequestMethod.GET)
-	public String signIn() {
+	public String signIn(HttpServletRequest request) {
+		String referer = request.getHeader("Referer");
+		request.getSession().setAttribute("prevPage", referer);
 		return "member/login";
 	}
 	//회원가입

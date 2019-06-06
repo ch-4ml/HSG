@@ -41,71 +41,65 @@ function deleteBtnClickEvent(id) {
 		</div>
 	</section>
 	<!-- Banner Area End -->
-	<c:if test="${!empty loginUser }">
-	<br>
-	<br>
-		<div style="text-align: center;">
-			<ul class="actions special">
-				<li><a href="insertView.ib" class="button alt">추가하기</a></li>
-			</ul>
-		</div>
-		<br>
-		<br>
-	</c:if>
+
 	<section id="two" class="wrapper style2 alt">
-		<div style="text-align: center;">
-			<h2>[ 출판 도서 ]</h2>
-			<br>
-		</div>
+		<div style="text-align: center;"><h2>출판 도서</h2></div><br><br>		
 		<div class="inner">
-			<c:forEach var="ibd" items="${ibds}">
-				<a href="redirect.ib?url=${ibd.url }">
-				<c:if test="${ibd.category eq 1 }">
+			<c:if test="${!empty loginUser }">
+				<div style="text-align: center;">
+					<ul class="actions special">
+						<li><input type="button" id="insert" onclick="location href='insertView.ib'" value="추가하기"></li>
+					</ul>
+				</div>
+				<br>
+				<br>
+			</c:if>
+			<c:forEach var="cd" items="${cds}">
+				<c:if test="${cd.category eq 1 }">
 					<div class="spotlight">
 						<div class="image">
-							<img src="http://tbsko.cafe24.com/HSG/resources/uploadFiles/itrbok_upload_file/${ibd.image}" alt="" />
+							<img src="http://tbsko.cafe24.com/HSG/resources/uploadFiles/itrbok_upload_file/${cd.image}" alt="" />
 						</div>
-						<div class="ibd">
-							<div class="ibd-content">
-								<h3>${ibd.title}</h3>
-								<p>${ibd.text}</p>
-							</div>
-							<div class="ibd-button">
+						<div class="list">
+							<a href="redirect.ib?url=${cd.url }">
+								<div class="list-content">
+									<h3>${cd.title}</h3><br>
+									<p>${cd.text}</p>
+								</div>
+							</a>
+							<div class="list-button">
 								<c:if test="${!empty loginUser }">
 									<ul class="actions">
-										<li><a onclick="updateBtnClickEvent(${ibd.id})" class="button alt">수정</a></li>
-										<li><a onclick="deleteBtnClickEvent(${ibd.id})" class="button alt">삭제</a></li>
+										<li><input type="button" onclick="updateBtnClickEvent(${ibd.id})" value="수정"></li>
+										<li><input type="button" onclick="deleteBtnClickEvent(${ibd.id})" value="삭제"></li>
 									</ul>
 								</c:if>
 							</div>
 						</div>
 					</div>
 				</c:if>
-				</a>
 			</c:forEach>
 		</div>
 	</section>
 	<section id="two" class="wrapper style2 alt">
-		<div style="text-align: center;">
-			<h2>[ 특허 ]</h2>
-			<br>
-		</div>
+		<div style="text-align: center;"><h2>특허</h2></div><br><br>
 		<div class="inner">
-			<c:forEach var="ibd" items="${ibds}">
-				<c:if test="${ibd.category eq 2 }">
+			<c:forEach var="cd" items="${cds}">
+				<c:if test="${cd.category eq 2 }">
 					<div class="spotlight">
 						<div class="image">
-							<img src="http://tbsko.cafe24.com/HSG/resources/uploadFiles/itrbok_upload_file/${ibd.image}" alt="" />
-							<!-- <img src="../../../../resources/uploadFiles/itrbok_upload_file/${ibd.image}" alt="" /> -->
+							<img src="http://tbsko.cafe24.com/HSG/resources/uploadFiles/itrbok_upload_file/${cd.image}" alt="" />
 						</div>
-						<div class="ibd">
-							<h3>${ibd.title}</h3>
-							<p>${ibd.text}</p>
-							<div class="ibd-button">
+						<div class="list">
+							<div class="list-content">
+								<h3>${cd.title}</h3>
+								<p>${cd.text}</p>
+							</div>
+							<div class="list-button">
 								<c:if test="${!empty loginUser }">
 									<ul class="actions">
-										<li><a onclick="updateBtnClickEvent(${ibd.id})" class="button alt">수정</a></li>
-										<li><a onclick="deleteBtnClickEvent(${ibd.id})" class="button alt">삭제</a></li>
+										<li><input type="button" onclick="updateBtnClickEvent(${cd.id})" value="수정"></li>
+										<li><input type="button" onclick="deleteBtnClickEvent(${cd.id})" value="삭제"></li>
 									</ul>
 								</c:if>
 							</div>

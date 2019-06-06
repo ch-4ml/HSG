@@ -29,6 +29,7 @@
 			
 		});
 	});
+	
 </script>
 </head>
 <body>
@@ -85,6 +86,7 @@
 					<input type="button" id="updateBtn" value="수정">
 				</div>
 				</section>
+				<input type="hidden" id="id" name="id" value="${content.id }">
 			</form>
 		</div>
 	</section>

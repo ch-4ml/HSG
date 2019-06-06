@@ -3,6 +3,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
     <!-- Required Meta Tags -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -27,7 +29,7 @@
 	<link rel="stylesheet" href="./resources/css/list.css" />
 	<link rel="stylesheet" href="./resources/css/input.css" />
 	<link rel="stylesheet" href="./resources/css/cs-select.css" />
-	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
 
 </head>
 <body>

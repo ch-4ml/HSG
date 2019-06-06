@@ -6,6 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 </head>
 <body>
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 	<!-- input style 관련 스크립트 -->
 	<script src="./resources/js/classie.js"></script>
 	<script>
