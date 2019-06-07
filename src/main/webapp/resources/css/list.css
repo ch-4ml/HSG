@@ -2633,13 +2633,19 @@
 		border-bottom: solid 2px;
 		margin-bottom: 3em;
 	}
+	
+	.match-size {
+		height: 15em;
+	}
 
 		.spotlight .image {
 			width: 30%;
+			height: 100%
 		}
 		
 			.spotlight .image img {
 				width: 50%;
+				height: 100%;
 			}
 
 		.spotlight .thumbnail {

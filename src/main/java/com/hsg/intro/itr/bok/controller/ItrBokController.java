@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -23,7 +22,6 @@ import com.hsg.intro.Exception.ContentsException;
 import com.hsg.intro.common.contents.model.domain.ContentsDomain;
 import com.hsg.intro.common.contents.model.service.ContentsServiceImpl;
 import com.hsg.intro.common.contents.model.vo.Contents;
-import com.hsg.intro.itr.bok.model.dto.ItrBokDto;
 
 @Controller
 @SessionAttributes("loginUser")

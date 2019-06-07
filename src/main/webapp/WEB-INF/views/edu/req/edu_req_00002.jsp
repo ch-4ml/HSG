@@ -9,21 +9,15 @@
 <%@ include file="../../common/tinymce.jsp" %>
 <script>
 	$(function() {
-		
 		/* validation 처리 */
 		$("#insertBtn").click(function() {
 			
 			var title = $("#title").val();
-			var text = $("#text").val();
 			
 			if(title == ""){
 				return alert("제목을 입력해주세요.");
-			} else if(text == ""){
-				return alert("내용을 입력해주세요.");
 			}
-			
 			return $("#insertForm").submit();
-			
 		});
 	});
 </script>

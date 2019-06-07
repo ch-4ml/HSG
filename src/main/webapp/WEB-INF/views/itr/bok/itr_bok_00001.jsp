@@ -48,7 +48,7 @@ function deleteBtnClickEvent(id) {
 			<c:if test="${!empty loginUser }">
 				<div style="text-align: center;">
 					<ul class="actions special">
-						<li><input type="button" id="insert" onclick="location href='insertView.ib'" value="추가하기"></li>
+						<li><input type="button" id="insert" onclick="location.href='insertView.ib'" value="추가"></li>
 					</ul>
 				</div>
 				<br>
@@ -70,8 +70,8 @@ function deleteBtnClickEvent(id) {
 							<div class="list-button">
 								<c:if test="${!empty loginUser }">
 									<ul class="actions">
-										<li><input type="button" onclick="updateBtnClickEvent(${ibd.id})" value="수정"></li>
-										<li><input type="button" onclick="deleteBtnClickEvent(${ibd.id})" value="삭제"></li>
+										<li><input type="button" onclick="updateBtnClickEvent(${cd.id})" value="수정"></li>
+										<li><input type="button" onclick="deleteBtnClickEvent(${cd.id})" value="삭제"></li>
 									</ul>
 								</c:if>
 							</div>

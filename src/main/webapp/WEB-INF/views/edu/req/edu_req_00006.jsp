@@ -23,9 +23,12 @@
     <!-- Banner Area End -->
     
     <!-- About Area Starts -->
-    
-       메일을 전송하였습니다.
-    <a href="view.ma">Go to main</a>
+    <section id="two" class="wrapper style2 alt content-center">
+    	<h2>메일을 전송하였습니다.</h2>
+    	<div class="inner">
+    		<a href="view.ma">GO TO MAIN</a>
+    	</div>
+    </section>
      
     <!-- About Area End -->    
 <jsp:include page="../../common/footer.jsp" />

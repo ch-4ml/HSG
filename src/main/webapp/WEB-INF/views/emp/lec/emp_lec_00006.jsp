@@ -24,9 +24,12 @@
     <!-- Banner Area End -->
     
     <!-- About Area Starts -->
-    
-       지원해주셔서 감사합니다.
-    <a href="view.ma">Go to main</a>
+    <section id="two" class="wrapper style2 alt content-center">
+    	<h2>지원해주셔셔 감사합니다.</h2>
+    	<div class="inner">
+    		<a href="view.ma">GO TO MAIN</a>
+    	</div>
+    </section>
      
     <!-- About Area End -->    
 <jsp:include page="../../common/footer.jsp" />

@@ -31,7 +31,7 @@
 		<c:if test="${!empty loginUser }">
 			<div style="text-align:center;">
 				<ul class="actions special">
-					<li><input type="button" id="insert" onclick="location.href='insertView.ee'" value="추가하기"></li>
+					<li><input type="button" id="insert" onclick="location.href='insertView.ee'" value="추가"></li>
 				</ul>
 			</div>
 			<br>
