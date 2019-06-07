@@ -15,14 +15,11 @@
 			$("#updateBtn").click(function() {
 				var title = $("#title").val();
 				var category = $("#category").val();
-				var text = $("#text").val();
 				
 				if(title == ""){
 					return alert("제목을 입력해주세요.");
 				} else if(category == "") {
 					return alert("카테고리를 선택해주세요.");
-				} else if(text == ""){
-					return alert("내용을 입력해주세요.");
 				} else {
 					return $("#updateForm").submit();
 				}
@@ -50,7 +47,7 @@
 			<form id="updateForm" action="updateDev.ma" method="post">
 				<section>								
 					<span class="input input--hoshi">
-						<input class="input__field input__field--hoshi" type="text" name="title" id="title" value="${content.title }" placeholder="제품명">
+						<input class="input__field input__field--hoshi" type="text" name="title" id="title" value="${content.title }">
 						<label class="input__label input__label--hoshi input__label--hoshi-color-1" for="title">
 							<span class="input__label-content input__label-content--hoshi">제품명</span>
 						</label>

@@ -14,15 +14,11 @@
     	$(function() {
 			$("#insertBtn").click(function() {
 				var title = $("#title").val();
-				var category = $("#category").val();
-				var text = $("#text").val();
-				
+				var category = $("#category").val();				
 				if(title == ""){
 					return alert("제목을 입력해주세요.");
 				} else if(category == "") {
 					return alert("카테고리를 선택해주세요.");
-				} else if(text == ""){
-					return alert("내용을 입력해주세요.");
 				} else {
 					return $("#insertForm").submit();
 				}
@@ -45,12 +41,12 @@
     <!-- Banner Area End -->
 
     <!-- About Area Starts -->
-	<section class="content content-center">
+	<section class="content">
 		<div class="container">
-			<form id="insertForm" action="updateDev.ma" method="post">
+			<form id="insertForm" action="insertDev.ma" method="post">
 				<section>
 					<span class="input input--hoshi">
-						<input class="input__field input__field--hoshi" type="text" name="title" id="title" placeholder="제품명">
+						<input class="input__field input__field--hoshi" type="text" name="title" id="title">
 						<label class="input__label input__label--hoshi input__label--hoshi-color-1" for="title">
 							<span class="input__label-content input__label-content--hoshi">제품명</span>
 						</label>
@@ -66,7 +62,6 @@
 				<section class="related">
 					<textarea id="text" name="text" placeholder="사진과 내용을 추가하세요."></textarea>
 					<br>
-					<input type="hidden" name="id">
 					<div style="text-align: center;">
 						<input type="button" id="insertBtn" value="추가">
 					</div>
