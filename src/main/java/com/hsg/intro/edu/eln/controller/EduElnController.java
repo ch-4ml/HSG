@@ -79,9 +79,9 @@ public class EduElnController {
 					video = content.getText().substring(content.getText().indexOf("www.youtube.com") - 15, content.getText().lastIndexOf("allowfullscreen") + 26);
 				}
 				if(content.getText().indexOf("data:image/png;base64") != -1 || 
-				   content.getText().indexOf("http") != -1 || 
-				   content.getText().indexOf("ftp") != -1 || 
-				   content.getText().indexOf("ssh") != -1)
+				   content.getText().indexOf("http://") != -1 || 
+				   content.getText().indexOf("ftp://") != -1 || 
+				   content.getText().indexOf("ssh://") != -1)
 					image = content.getText().substring(content.getText().indexOf("<img ")).substring(0, content.getText().substring(content.getText().indexOf("<img ")).indexOf("\" />") + 4);
 					
 				comment = content.getText().replace(video, "").replace(image, "");

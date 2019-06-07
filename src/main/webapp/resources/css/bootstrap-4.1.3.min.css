@@ -94,6 +94,11 @@ p {
 	margin-bottom: 0.5rem
 }
 
+div {
+	margin-top: 0;
+	margin-bottom: 0.5rem
+}
+
 abbr[data-original-title], abbr[title] {
 	text-decoration: underline;
 	-webkit-text-decoration: underline dotted;

@@ -23,6 +23,11 @@ p {
 	font-weight: 100
 }
 
+div {
+	color: #000;
+	font-family: 'NanumSquareRound',sans-serif;
+}
+
 h1 {
 	color: #fff;
 	font-family: 'NanumSquareRound',sans-serif;
@@ -539,7 +544,8 @@ body.mobile-nav-active #mobile-nav-toggle {
 	-webkit-transition: .5s;
 	-moz-transition: .5s;
 	-o-transition: .5s;
-	transition: .5s
+	transition: .5s;
+	height: 18em;
 }
 
 .single-feature img {
@@ -620,10 +626,18 @@ body.mobile-nav-active #mobile-nav-toggle {
 	-webkit-transition: .5s;
 	-moz-transition: .5s;
 	-o-transition: .5s;
-	transition: .5s
+	transition: .5s;
+	
+	display: inline-block; 
+	width: calc(100%); 
+	white-space: nowrap; 
+	overflow: hidden; 
+	text-overflow: ellipsis; 
+	/* 여러 줄 자르기 추가 스타일 */ 
+	height: 14em; 
 }
 
-.department-area .single-slide .item-padding #container {
+.department-area .single-slide .item-padding p, .department-area .single-slide .item-padding div {
 	display: inline-block; 
 	width: calc(100%); 
 	white-space: nowrap; 
@@ -632,12 +646,15 @@ body.mobile-nav-active #mobile-nav-toggle {
 	/* 여러 줄 자르기 추가 스타일 */ 
 	white-space: normal; 
 	line-height: 1.2; 
-	height: 3.6em; 
 	text-align: left; 
 	word-wrap: break-word; 
 	display: -webkit-box; 
 	-webkit-line-clamp: 3; 
 	-webkit-box-orient: vertical;
+}
+
+.department-area .single-slide .item-padding #container #wrap #body #body_contents div ul{
+
 }
 
 @media ( max-width : 575.98px) {
@@ -653,7 +670,16 @@ body.mobile-nav-active #mobile-nav-toggle {
 	-ms-border-radius: 5px;
 	-o-border-radius: 5px;
 	border-radius: 5px;
-	overflow: hidden
+	overflow: hidden;
+	width: 100%;
+	height: 14em;
+}
+
+.department-area .single-slide .slide-img img {
+	width: 100%;
+	height: 100%;
+	border-bottom: solid 2px;
+	border-bottom-color: rgba(144, 144, 144, 0.25);
 }
 
 .department-area .single-slide .slide-img .hover-state {
