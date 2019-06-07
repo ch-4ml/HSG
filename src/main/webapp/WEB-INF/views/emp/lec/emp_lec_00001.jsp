@@ -24,28 +24,35 @@
     <!-- Banner Area End -->
     <!-- About Area Starts -->
     <section id="two" class="wrapper style2 alt">
-		<div style="text-align:center;">
-			<h1>
-				[ 진행 중인 강사 채용 ]
-			</h1>
-			<br>
-		</div>
+		<div style="text-align:center;"><h2>진행 중인 강사 채용</h2></div><br><br>
 		<div class="inner">
+			<c:if test="${!empty loginUser }">
+				<div style="text-align: center;">
+					<ul class="actions special">
+						<li><input type="button" id="insert" onclick="location.href='insertView.el'" value="추가"></li>
+					</ul>
+				</div>
+				<br>
+				<br>
+			</c:if>
 			<c:forEach var="content" items="${contents}">
-					<a href="viewDetail.el?id=${content.id }">
-					<div class="spotlight">
-						<div class="content">
-							<h3>${content.title }</h3>
-							<h4 style="text-align:left;">${content.postDate}</h4>
+				<a href="viewDetail.el?id=${content.id }">
+					<div class="spotlight match-size">
+						<div class="image">
+							<img src="${content.image }">
+						</div>
+						<div class="list">
+							<div class="list-content-mooc">
+								<h3>${content.title }</h3>
+								<h4>${content.text }</h4>
+							</div>
+							<div class="list-date">
+								<h4>${content.postDate}</h4>
+							</div>
 						</div>
 					</div>
-					</a>
+				</a>
 			</c:forEach>
-			<c:if test="${!empty loginUser }">
-				<ul class="actions special">
-					<li><a href="insertView.el" class="button alt">추가하기</a></li>
-				</ul>
-			</c:if>
 		</div>
 	</section>
 

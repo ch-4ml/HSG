@@ -5,7 +5,7 @@
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
 <!--[if gt IE 8]><!-->
-<html class="no-js" lang="">
+<html>
 <!--<![endif]-->
 <head>
 <jsp:include page="../common/head.jsp" />
@@ -79,15 +79,14 @@ function deleteBtnClickEvent(id) {
 			<div class="row wow fadeIn" data-wow-delay="500ms">
 				<div class="col-lg-5 align-self-center">
 					<div class="welcome-img">
-						<img src="http://placehold.it/554x418" alt="">
+						<img src="./resources/images/main_gre.jpg" alt="">
 					</div>
 				</div>
 				<div class="col-lg-7">
-					<div class="welcome-text mt-5 mt-lg-0">
+					<div class="welcome-text mt-5 mt-lg-0" id="mainGre">
 						<h2>HS글로벌에 오신 것을 환영합니다.</h2>
 						<p class="pt-3">HS글로벌은 하드웨어와 소프트웨어를 융합하는 혁신적인 시스템 개발의 목적을 가지고 설립되었습니다. 현업에서 풍부한 노하우를 가지고 있는 훌륭한 엔지니어들이 모여 융합 시스템 연구 및 개발을 적극적으로 진행하고 있으며 산업 현장에 실무 노하우를 전달하는 역할에도 최선을 다하고 있습니다.</p>
 						<p>HS글로벌은 하드웨어/소프트웨어 융합 시스템 솔루션 전문 기업으로 시작하여 미래 글로벌 IT 융합 기업을 목표로 힘차게 나아가겠습니다. 고객, 엔지니어, 직원이 모두 행복한 회사가 될 것을 약속드리며 앞으로도 저희 HS글로벌에 변함없는 관심과 성원을 부탁드립니다.</p>
-						<a href="#" class="template-btn mt-3">더 알아보기</a>
 					</div>
 				</div>
 			</div>
@@ -100,14 +99,14 @@ function deleteBtnClickEvent(id) {
 			<div class="row">
 				<div class="col-lg-6 offset-lg-3">
 					<div class="section-top text-center ">
-						<h2>E-LEARNING</h2>
+						<h2>MOOC</h2>
 					</div>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-lg-5 align-self-center wow fadeInUp" data-wow-delay="250ms">
 					<div style="position: relative; max-width: 100%; padding-bottom: 75%; height: 0;">
-						<iframe width="320" height="240" src="https://www.youtube.com/embed/4dW_X4fDPqg" frameborder="0" allowfullscreen="" style="position: absolute; position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
+						<iframe width="320" height="240" src="https://www.youtube.com/embed/jXarjmelLrw" frameborder="0" allowfullscreen="" style="position: absolute; position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
 					</div>
 				</div>
 				<div class="col-lg-7 wow fadeInUp" data-wow-delay="500ms">

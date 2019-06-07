@@ -124,14 +124,12 @@ function resize(obj) {
 	<!-- Banner Area End -->
 
 	<!-- Contact Area Starts -->
-	<section class="content">
-		<div style="text-align:center;">
-			<h2>교육 의뢰 메일 보내기</h2>
-		</div>
+	<section class="content content-center">
+		<div style="text-align:center;"><h2>교육 의뢰 메일 보내기</h2>	</div><br>
 		<div class="container">
 			<form action="send.er" name="form" method="post" enctype="multipart/form-data">
 				<span class="input input--hoshi">
-					<input class="input__field input__field--hoshi" type="text" id="program" name="program" value="${content.title }" readonly onfocus="this.blur();">
+					<input class="input__field input__field--hoshi" type="text" id="program" name="program" value="${title }" readonly onfocus="this.blur();">
 					<label class="input__label input__label--hoshi input__label--hoshi-color-1" for="program">
 						<span class="input__label-content input__label-content--hoshi">신청할 프로그램</span>
 					</label>
@@ -144,13 +142,13 @@ function resize(obj) {
 				</span>
 				<br>
 				<span class="input input--hoshi">
-					<input class="input__field input__field--hoshi" type="text" id="zip_code" name="zip_code" value="주소 검색하기" onclick="execDaumPostcode()" readonly onfocus="this.blur();">
+					<input class="input__field input__field--hoshi" type="text" id="zip_code" name="zip_code" value="검색" onclick="execDaumPostcode()" readonly onfocus="this.blur();">
 					<label class="input__label input__label--hoshi input__label--hoshi-color-1" for="zip_code">
 						<span class="input__label-content input__label-content--hoshi">우편번호</span>
 					</label>
 				</span>
 				<span class="input input--hoshi">
-					<input class="input__field input__field--hoshi input--filled" type="text" id="address" name="address" value="←" readonly onfocus="this.blur();">
+					<input class="input__field input__field--hoshi input--filled" type="text" id="address" name="address" value="검색 시 자동으로 입력됩니다." readonly onfocus="this.blur();">
 					<label class="input__label input__label--hoshi input__label--hoshi-color-1" for="address">
 						<span class="input__label-content input__label-content--hoshi">회사주소</span>
 					</label>
@@ -163,7 +161,7 @@ function resize(obj) {
 					</label>
 				</span>
 				<span class="input input--hoshi">
-					<input class="input__field input__field--hoshi input--filled" type="text" id="e_address" name="e_address" value="←" readonly onfocus="this.blur();">
+					<input class="input__field input__field--hoshi input--filled" type="text" id="e_address" name="e_address" value="검색 시 자동으로 입력됩니다." readonly onfocus="this.blur();">
 					<label class="input__label input__label--hoshi input__label--hoshi-color-1" for="e_address">
 						<span class="input__label-content input__label-content--hoshi">참고주소</span>
 					</label>
@@ -203,7 +201,7 @@ function resize(obj) {
 				</span>
 				<br>
 				<div style="text-align:center;">
-					<input type="button" onclick="fileCheck(this.form.file)" value="보내기">
+					<input type="button" onclick="fileCheck(this.form.file)" value="전송">
 				</div>	
 			</form>
 		</div>

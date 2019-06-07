@@ -158,7 +158,14 @@ div.cs-skin-underline {
 	font-size: 100%;
 	margin: 1em;
 	max-width: 450px;
+}
+
+.single {
 	padding: 1.046em 0;
+}
+
+.double {
+	padding: 1.5em 0 0 0;
 }
 
 /*

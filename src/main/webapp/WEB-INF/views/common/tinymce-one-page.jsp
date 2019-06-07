@@ -19,7 +19,7 @@
     		    toolbar: "undo redo | fontsizeselect | forecolor bold underline italic code | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | table link media image code hr",
     		    fullpage_default_font_family: "NanumSquareRound",
     		    font_formats: "나눔스퀘어라운드=NanumSquareRound;",
-    		    fontsize_formats: "11px 12px 14px 16px 18px 24px 36px 48px"
+    		    fontsize_formats: "11px 12px 14px 16px 18px 24px 36px 48px",
    		    	file_picker_types: 'image',
    			    file_picker_callback: function (cb, value, meta) {
    			        var input = document.createElement('input');

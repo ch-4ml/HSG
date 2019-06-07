@@ -39,9 +39,7 @@
     </section>
     <!-- Banner Area End -->
 	<section id="two" class="wrapper style2 alt">
-	<div class="inner">
 		<div style="text-align:center;"><h2>지도</h2></div><br><br>
-	</div>
 	</section>
 	<div id="maps"></div>
     <script>

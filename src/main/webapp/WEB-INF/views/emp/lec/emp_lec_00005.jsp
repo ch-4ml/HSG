@@ -66,7 +66,7 @@ function resize(obj) {
     <!-- Banner Area End -->
     
     <!-- About Area Starts -->
-    <section class="content">
+    <section class="content content-center">
     	<div style="text-align:center;">
 			<h2>강사 지원 메일 보내기</h2>
 		</div>

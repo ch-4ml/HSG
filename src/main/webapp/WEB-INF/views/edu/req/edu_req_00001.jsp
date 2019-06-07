@@ -29,7 +29,7 @@
 			<c:if test="${!empty loginUser }">
 				<div style="text-align:center;">
 					<ul class="actions special">
-						<li><a href="insertView.er" class="button alt">추가하기</a></li>
+						<li><input type="button" id="insert" onclick="location.href='insertView.er'" value="추가"></li>
 					</ul>
 				</div>
 				<br>
@@ -37,11 +37,19 @@
 			</c:if>
 			<c:forEach var="content" items="${contents}" varStatus="status">
 				<a href="viewDetail.er?id=${content.id }">
-					<span class="spotlight">
-					<div class="list">
-						<h3>${content.title }</h3>
-						<h4>${content.postDate}</h4>
-					</div>
+					<span class="spotlight match-size">
+						<div class="image">
+							<img src="${content.image }">
+						</div>
+						<div class="list">
+							<div class="list-content-mooc">
+								<h3>${content.title }</h3>
+								<h4>${content.text}</h4>
+							</div>
+							<div class="list-date">
+								<h4>${content.postDate }</h4>
+							</div>
+						</div>
 					</span>
 				</a>
 			</c:forEach>

@@ -18,10 +18,7 @@
 			
 			if(title == ""){
 				return alert("제목을 입력해주세요.");
-			} else if(text == ""){
-				return alert("내용을 입력해주세요.");
-			}
-			
+			}			
 			return $("#updateForm").submit();
 			
 		});
@@ -57,7 +54,8 @@
 				<br>
 				<div style="text-align:center;">
 					<input type="button" id="updateBtn" value="수정">
-				</div>	
+				</div>
+				<input type="hidden" id="id" name="id" value="${content.id }">
 			</form>
 		</div>
 	</section>

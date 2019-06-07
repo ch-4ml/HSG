@@ -18,7 +18,6 @@ import com.hsg.intro.Exception.ContentsException;
 import com.hsg.intro.common.contents.model.domain.ContentsDomain;
 import com.hsg.intro.common.contents.model.service.ContentsServiceImpl;
 import com.hsg.intro.common.contents.model.vo.Contents;
-import com.hsg.intro.edu.eln.model.dto.EduElnDto;
 
 @Controller
 @SessionAttributes("loginUser")
@@ -78,12 +77,14 @@ public class EduElnController {
 				if(content.getText().indexOf("www.youtube.com") != -1) {
 					video = content.getText().substring(content.getText().indexOf("www.youtube.com") - 15, content.getText().lastIndexOf("allowfullscreen") + 26);
 				}
-				if(content.getText().indexOf("data:image/png;base64") != -1 || 
+				if(content.getText().indexOf("data:image/jpeg;base64") != -1 ||
+				   content.getText().indexOf("data:image/jpg;base64") != -1 ||
+				   content.getText().indexOf("data:image/png;base64") != -1 || 
+				   content.getText().indexOf("https://") != -1 ||
 				   content.getText().indexOf("http://") != -1 || 
 				   content.getText().indexOf("ftp://") != -1 || 
 				   content.getText().indexOf("ssh://") != -1)
 					image = content.getText().substring(content.getText().indexOf("<img ")).substring(0, content.getText().substring(content.getText().indexOf("<img ")).indexOf("\" />") + 4);
-					
 				comment = content.getText().replace(video, "").replace(image, "");
 
 				cd.setId(content.getId());

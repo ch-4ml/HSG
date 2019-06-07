@@ -57,7 +57,7 @@ function resize(obj) {
     <!-- Banner Area End -->
     
     <!-- Content Area Start -->
-	<section class="content content-center" >
+	<section class="content content-center">
 		<div class="container">
 		    <form id="insertForm" action="insert.ib" method="post" enctype="multipart/form-data">
 				<section>
@@ -67,33 +67,33 @@ function resize(obj) {
 							<span class="input__label-content input__label-content--hoshi">출판도서 / 특허명</span>
 						</label>
 					</span>
-					<br>
-					<select class="cs-select cs-skin-underline" id="category" name="category">
+					<select class="cs-select cs-skin-underline double" id="category" name="category">
 						<option value="" disabled selected>카테고리 선택</option>
 						<option value="1">도서</option>
 						<option value="2">특허</option>
 					</select>
 				</section>
 				<section>
-				<span class="input input--hoshi">
-					<input class="input__field input__field--hoshi" type="text" id="url" name="url">
-					<label class="input__label input__label--hoshi input__label--hoshi-color-1" for="url">
-						<span class="input__label-content input__label-content--hoshi">연결할 URL</span>
-					</label>
-				</span>
+					<span class="input input--hoshi">
+						<input class="input__field input__field--hoshi" type="text" id="url" name="url">
+						<label class="input__label input__label--hoshi input__label--hoshi-color-1" for="url">
+							<span class="input__label-content input__label-content--hoshi">연결할 URL</span>
+						</label>
+					</span>
+					<span class="input input--hoshi input--filled">
+				    	<input class="input__field input__field--hoshi" type="file" id="file" name="file" accept=".jpg, .jpeg, .png">
+				    	<label class="input__label input__label--hoshi input__label--hoshi-color-1" for="file">
+				    		<span class="input__label-content input__label-content--hoshi">사진 첨부</span>
+				    	</label>
+					</span>
+					</section>
+				<section>
 				<br>
-				<span class="input input--hoshi">
+				<span class="input__textarea input--hoshi">
 					<textarea class="autosize, input__field input__field--hoshi" onkeydown="resize(this)" onkeyup="resize(this)" id="text" name="text"></textarea>
 					<label class="input__label input__label--hoshi input__label--hoshi-color-1" for="text">
 						<span class="input__label-content input__label-content--hoshi">간단한 설명</span>
 					</label>
-				</span>
-				<br>
-				<span class="input input--hoshi input--filled">
-			    	<input class="input__field input__field--hoshi" type="file" id="file" name="file" accept=".jpg, .jpeg, .png">
-			    	<label class="input__label input__label--hoshi input__label--hoshi-color-1" for="file">
-			    		<span class="input__label-content input__label-content--hoshi">사진 첨부</span>
-			    	</label>
 				</span>
 				<br>
 				<div align="center">

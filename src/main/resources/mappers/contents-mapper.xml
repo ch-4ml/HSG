@@ -23,6 +23,11 @@
 		WHERE ID = #{id};
 	</select>
 	 -->
+	<select id="findOneByPageId" resultMap="contentsResultSet" parameterType="Contents">
+		SELECT * FROM hsgbiz_contents 
+		WHERE PAGE_ID = #{pageId}
+		ORDER BY POST_DATE DESC LIMIT 1;
+	</select>
 	<select id="findByPageId" resultMap="contentsResultSet" parameterType="Contents">
 		SELECT * FROM hsgbiz_contents 
 		WHERE PAGE_ID = #{pageId}

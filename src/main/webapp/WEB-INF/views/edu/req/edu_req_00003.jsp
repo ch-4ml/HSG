@@ -16,6 +16,13 @@
     });
     
     $(function() {
+    	$("#apply").click(function() {
+    		var title = $("#title").val();
+    		location.href="sendForm.er?title= " + title;
+    	});
+    });
+    
+    $(function() {
     	$("#update").click(function() {
     		var id = $("#id").val();
     		location.href="updateView.er?id=" + id;
@@ -47,23 +54,23 @@
 
     <!-- About Area Starts -->
     <section id="two" class="wrapper style2 alt">
-    	<div style="text-align:center;"><h2>교육 상세보기</h2></div><br><br>
+    	<div style="text-align:center;"><h2>${content.title }</h2></div><br><br>
     	<div class="inner">
 		    <form id="content_form" action="update.er" method="post">
-			    <span id="content"><br>
-				   	<span id="title"><h2>${content.title }</h2></span>
-				   	${content.postDate }
-				    <span id="text">${content.text }</span>
-				    <div class="content-center">
-					    <a href="sendForm.er?id=${content.id}"><input type="button" value="지원하기"></a>
-						<input type="button" id="list" value="목록 보기">
-						<c:if test="${!empty loginUser }">
-							<input type="button" id="update" value="수정">
-							<input type="button" id="delete" value="삭제">
-						</c:if>
-					</div>
-				</span>
-			    <input type="hidden" id="id" name="id" value="${content.id }">
+			    <div class="contents">
+			    	<span id="contents">${content.text }</span>
+			    </div>
+			    <br>
+			    <div style="text-align: center;">
+				    <input type="button" id="list" value="목록">
+				    <input type="button" id="apply" value="신청">
+					<c:if test="${!empty loginUser }">
+						<input type="button" id="update" value="수정">
+						<input type="button" id="delete" value="삭제">
+					</c:if>
+				</div>
+				<input type="hidden" id="id" name="id" value="${content.id }">
+				<input type="hidden" id="title" name="title" value="${content.title }">
 		    </form>
 	    </div>
 	</section>

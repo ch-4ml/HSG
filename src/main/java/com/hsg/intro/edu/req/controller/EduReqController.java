@@ -70,6 +70,42 @@ public class EduReqController {
 	public ModelAndView view(ModelAndView mv) {
 		try {
 			List<Contents> contents = cs.findByPageId(pageId);
+			for(Contents c: contents) {
+				String image = "";
+				String imageWithTag = "";
+				if(c.getText().indexOf("data:image/jpeg;base64") != -1) {
+					image = c.getText().substring(c.getText().indexOf("data:image/jpeg;base64")).substring(0, c.getText().substring(c.getText().indexOf("data:image/jpeg;base64")).indexOf("\" alt=\""));
+					imageWithTag = c.getText().substring(c.getText().indexOf("<img ")).substring(0, c.getText().substring(c.getText().indexOf("<img ")).indexOf("\" />") + 4);
+				}
+				if(c.getText().indexOf("data:image/png;base64") != -1) {
+					image = c.getText().substring(c.getText().indexOf("data:image/png;base64")).substring(0, c.getText().substring(c.getText().indexOf("data:image/png;base64")).indexOf("\" alt=\""));
+					imageWithTag = c.getText().substring(c.getText().indexOf("<img ")).substring(0, c.getText().substring(c.getText().indexOf("<img ")).indexOf("\" />") + 4);
+				}
+				if(c.getText().indexOf("data:image/jpg;base64") != -1) {
+					image = c.getText().substring(c.getText().indexOf("data:image/jpg;base64")).substring(0, c.getText().substring(c.getText().indexOf("data:image/jpg;base64")).indexOf("\" alt=\""));
+					imageWithTag = c.getText().substring(c.getText().indexOf("<img ")).substring(0, c.getText().substring(c.getText().indexOf("<img ")).indexOf("\" />") + 4);
+				}
+				if(c.getText().indexOf("https://") != -1) {
+					image = c.getText().substring(c.getText().indexOf("https://")).substring(0, c.getText().substring(c.getText().indexOf("https")).indexOf("\" alt=\""));
+					imageWithTag = c.getText().substring(c.getText().indexOf("<img ")).substring(0, c.getText().substring(c.getText().indexOf("<img ")).indexOf("\" />") + 4);
+				}
+				if(c.getText().indexOf("http://") != -1) {
+					image = c.getText().substring(c.getText().indexOf("http://")).substring(0, c.getText().substring(c.getText().indexOf("http")).indexOf("\" alt=\""));
+					imageWithTag = c.getText().substring(c.getText().indexOf("<img ")).substring(0, c.getText().substring(c.getText().indexOf("<img ")).indexOf("\" />") + 4);
+				}
+				if(c.getText().indexOf("ftp://") != -1) {
+					image = c.getText().substring(c.getText().indexOf("ftp://")).substring(0, c.getText().substring(c.getText().indexOf("ftp")).indexOf("\" alt=\""));
+					imageWithTag = c.getText().substring(c.getText().indexOf("<img ")).substring(0, c.getText().substring(c.getText().indexOf("<img ")).indexOf("\" />") + 4);
+				}
+				if(c.getText().indexOf("ssh://") != -1) {
+					image = c.getText().substring(c.getText().indexOf("ssh://")).substring(0, c.getText().substring(c.getText().indexOf("ssh")).indexOf("\" alt=\""));
+					imageWithTag = c.getText().substring(c.getText().indexOf("<img ")).substring(0, c.getText().substring(c.getText().indexOf("<img ")).indexOf("\" />") + 4);
+				}
+				// base64 형식의 이미지 src 부분 추출(태그 포함)
+				
+				c.setImage(image);
+				c.setText(c.getText().replace(imageWithTag, ""));
+			}
 			mv.addObject("contents", contents);
 			mv.setViewName("edu/req/edu_req_00001");
 		} catch(ContentsException e) {
@@ -147,18 +183,10 @@ public class EduReqController {
 	}
 		
 	@RequestMapping(value="sendForm.er")
-	public ModelAndView sendForm(
-			Contents c, ModelAndView mv, 
-			@RequestParam(value="id") int id) {
-		
-		try {
-			Contents content = cs.findById(id);
-			mv.addObject("content", content);
-			mv.setViewName("edu/req/edu_req_00005");
-		} catch(ContentsException e) {
-			mv.addObject("message",e.getMessage());
-			mv.setViewName("common/errorPage");
-		}
+	public ModelAndView sendForm(ModelAndView mv, 
+			@RequestParam(value="title") String title) {
+		mv.addObject("title", title);
+		mv.setViewName("edu/req/edu_req_00005");
 		return mv;
 	}
 	

@@ -21,8 +21,8 @@ $(function() {
 });
 
 $(function() {
-	$("#list").click(function() {
-  		location.href="view.el";
+	$("#apply").click(function() {
+  		location.href="sendForm.el";
   	});	
 });
   	
@@ -32,6 +32,12 @@ $(function() {
    		var id = $("#id").val();
    		location.href="updateView.el?id=" + id;
    	});
+});
+
+$(function() {
+	$("#list").click(function() {
+		location.href="view.el";
+	});
 });
 
 </script>
@@ -51,48 +57,26 @@ $(function() {
     <!-- Banner Area End -->
 
     <!-- About Area Starts -->
-    <form action="update.el" method="post">
-    <div class="wrapper">
-    	<div id="welcome" class="container">
-    		<div class="title">
-    			<h2>${content.title }</h2> <h4>${content.postDate}</h4>
-    		</div>
-    	</div>
-	<div id="banner" class="container">${content.text}</div>
-	</div>
-	<input type="hidden" id="id" name="id" value="${content.id }">
-    </form>
-    <div style="text-align:center;">
-   		<a href="sendForm.el">지원하기</a>
-	    <c:if test="${!empty loginUser }">
-			<input type="button" id="update" value="수정">
-			<input type="button" id="delete" value="삭제">
-		</c:if>
-	    <input type="button" id="list" value="목록 보기">
-    </div>
-    
- <!--   <section class="content">
-    <div class="container">
-	<form action="update.el", method="post">
-	    <span id="content">
-		    ${content.postDate }
-		   	<span id="title">${content.title }</span>
-		    <span id="text">${content.text }</span>
-		    <div class="content-center">
-			    <a href="sendForm.el"><input type="button" value="지원하기"></a>
-	    		<input type="button" id="list" value="목록 보기">
-				<c:if test="${!empty loginUser }">
-					<input type="button" id="update" value="수정">
-					<input type="button" id="delete" value="삭제">
-				</c:if>
-			</div>
-		</span>
-	    <input type="hidden" id="id" name="id" value="${content.id }">
-    </form>
-    </div>
-    </section> --> 
-
-
+    <section id="two" class="wrapper style2 alt">
+	    <div style="text-align: center;"><h2>${content.title }</h2></div><br><br>
+	    <div class="inner">
+	    	<form action="update.el" method="post">
+	    		<div class="contents">
+	    			<span id="contents">${content.text }</span>
+	    		</div>
+	    		<br>
+	    		<div style="text-align: center;">
+		    		<input type="button" id="list" value="목록">
+		    		<input type="button" id="apply" value="지원">
+		    		<c:if test="${!empty loginUser }">
+		    			<input type="button" id="update" value="수정">
+		    			<input type="button" id="delete" value="삭제">
+		    		</c:if>
+	    		</div>
+	    		<input type="hidden" id="id" name="id" value="${content.id }">
+	   		</form>
+	    </div>
+	</section>
     <!-- About Area End -->
     
     <jsp:include page="../../common/footer.jsp" />
