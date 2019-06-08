@@ -169,19 +169,6 @@ function deleteBtnClickEvent(id) {
 	</section>
 	<!-- Department Area Starts -->
 
-	<!-- 
-		Contact Area 는 메인에서 사용하기 적절하지 않을 것 같아서 뺐습니다.
-		 소스는 common 아래에 따로 저장해뒀습니다. -박찬형-
-	-->
-
-	<!-- 
-	<div class="col-md-6 wow fadeInUp" data-wow-delay="500ms">
-		<div id="overlay" class="map">
-			<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3177.6398989608747!2d127.0971884264644!3d37.20878170574413!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x18b26f1c5d97b083!2zKOyjvCnsnIjsnbjthY0!5e0!3m2!1sko!2skr!4v1559184596739!5m2!1sko!2skr" width="600" height="450" style="border:0"></iframe>
-		</div>
-	</div>
-	 -->
-
 	<jsp:include page="../common/footer.jsp" />
 	<!-- footer -->
 
