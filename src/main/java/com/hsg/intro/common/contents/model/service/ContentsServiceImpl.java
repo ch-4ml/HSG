@@ -21,6 +21,12 @@ public class ContentsServiceImpl implements ContentsService {
 	}
 	
 	@Override
+	public Contents findOneByPageId(String pageId) throws ContentsException {
+		Contents content = cd.findOneByPageId(pageId);
+		return content;
+	}
+	
+	@Override
 	public List<Contents> findByPageId(String pageId) throws ContentsException {
 		List<Contents> contents = cd.findByPageId(pageId);		
 		return contents;

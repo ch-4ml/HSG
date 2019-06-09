@@ -6,6 +6,10 @@ iframe{
 	display: block;
 }
 
+#contentsMoocImage iframe {
+	width: 100%;
+}
+
 .section {
   padding: 100px 0; }
 .no-padding {

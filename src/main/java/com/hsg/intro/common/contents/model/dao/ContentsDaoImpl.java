@@ -25,6 +25,12 @@ public class ContentsDaoImpl implements ContentsDao {
 	}
 	
 	@Override
+	public Contents findOneByPageId(String pageId) throws ContentsException {
+		Contents content = sqlSession.selectOne("Contents.findOneByPageId", pageId);
+		return content;
+	}
+	
+	@Override
 	public List<Contents> findByPageId(String pageId) throws ContentsException {
 		List<Contents> contents = sqlSession.selectList("Contents.findByPageId", pageId);
 		return contents;

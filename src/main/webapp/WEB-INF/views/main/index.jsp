@@ -19,6 +19,123 @@ function deleteBtnClickEvent(id) {
 	}
 }
 </script>
+<script src="https://cloud.tinymce.com/5/tinymce.min.js?apiKey=iiyaoh4ovlz6z3aafb6vdpqtllt555a3g3loxoh2dwetyw3e"></script>
+<script>
+$(function() {
+	$("#updateGreButton").click(function() {
+		var oldImage = $('#contentsGreImage').html();
+		var oldContent = $('#contentsGre').html();
+		$("#updateGreSection").html("<textarea id='text' name='text'>" + oldImage + oldContent + "</textarea><br><div style='text-align:center;'><input type='submit' value='수정'></div>");
+		tinymce.init({
+		    selector: 'textarea',
+		    menubar: false,
+		    language_url: 'tinymce/ko_KR.js',
+		    plugins: ['autolink autosave code link media table textcolor autoresize hr image imagetools fullpage'],
+		    toolbar: "undo redo | fontsizeselect | forecolor bold underline italic code | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | table link media image code hr",
+		    fullpage_default_font_family: "NanumSquareRound",
+		    font_formats: "나눔스퀘어라운드=NanumSquareRound;",
+		    fontsize_formats: "11px 12px 14px 16px 18px 24px 36px 48px",
+		    	file_picker_types: 'image',
+			    file_picker_callback: function (cb, value, meta) {
+			        var input = document.createElement('input');
+			        input.setAttribute('type', 'file');
+			        input.setAttribute('accept', 'image/*');
+
+			        /*
+			          Note: In modern browsers input[type="file"] is functional without
+			          even adding it to the DOM, but that might not be the case in some older
+			          or quirky browsers like IE, so you might want to add it to the DOM
+			          just in case, and visually hide it. And do not forget do remove it
+			          once you do not need it anymore.
+			        */
+
+			        input.onchange = function () {
+			          var file = this.files[0];
+
+			          var reader = new FileReader();
+			          reader.onload = function () {
+			            /*
+			              Note: Now we need to register the blob in TinyMCEs image blob
+			              registry. In the next release this part hopefully won't be
+			              necessary, as we are looking to handle it internally.
+			            */
+			            var id = 'blobid' + (new Date()).getTime();
+			            var blobCache =  tinymce.activeEditor.editorUpload.blobCache;
+			            var base64 = reader.result.split(',')[1];
+			            var blobInfo = blobCache.create(id, file, base64);
+			            blobCache.add(blobInfo);
+
+			            /* call the callback and populate the Title field with the file name */
+			            cb(blobInfo.blobUri(), { title: file.name });
+			          };
+			          reader.readAsDataURL(file);
+			        };
+
+			        input.click();
+			      }
+		});
+		$("#updateGreButton").html("");
+	});
+});
+
+$(function() {
+	$("#updateMoocButton").click(function() {
+		var oldImage = $('#contentsMoocImage').html();
+		var oldContent = $('#contentsMooc').html();
+		$("#updateMoocSection").html("<textarea id='text' name='text'>" + oldImage + oldContent + "</textarea><br><div style='text-align:center;'><input type='submit' value='수정'></div>");
+		tinymce.init({
+		    selector: 'textarea',
+		    menubar: false,
+		    language_url: 'tinymce/ko_KR.js',
+		    plugins: ['autolink autosave code link media table textcolor autoresize hr image imagetools fullpage'],
+		    toolbar: "undo redo | fontsizeselect | forecolor bold underline italic code | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | table link media image code hr",
+		    fullpage_default_font_family: "NanumSquareRound",
+		    font_formats: "나눔스퀘어라운드=NanumSquareRound;",
+		    fontsize_formats: "11px 12px 14px 16px 18px 24px 36px 48px",
+		    	file_picker_types: 'image',
+			    file_picker_callback: function (cb, value, meta) {
+			        var input = document.createElement('input');
+			        input.setAttribute('type', 'file');
+			        input.setAttribute('accept', 'image/*');
+
+			        /*
+			          Note: In modern browsers input[type="file"] is functional without
+			          even adding it to the DOM, but that might not be the case in some older
+			          or quirky browsers like IE, so you might want to add it to the DOM
+			          just in case, and visually hide it. And do not forget do remove it
+			          once you do not need it anymore.
+			        */
+
+			        input.onchange = function () {
+			          var file = this.files[0];
+
+			          var reader = new FileReader();
+			          reader.onload = function () {
+			            /*
+			              Note: Now we need to register the blob in TinyMCEs image blob
+			              registry. In the next release this part hopefully won't be
+			              necessary, as we are looking to handle it internally.
+			            */
+			            var id = 'blobid' + (new Date()).getTime();
+			            var blobCache =  tinymce.activeEditor.editorUpload.blobCache;
+			            var base64 = reader.result.split(',')[1];
+			            var blobInfo = blobCache.create(id, file, base64);
+			            blobCache.add(blobInfo);
+
+			            /* call the callback and populate the Title field with the file name */
+			            cb(blobInfo.blobUri(), { title: file.name });
+			          };
+			          reader.readAsDataURL(file);
+			        };
+
+			        input.click();
+			      }
+		});
+		$("#updateMoocButton").html("");
+	});
+});
+</script>
+
 </head>
 <body>
 	<jsp:include page="../common/header-content.jsp" />
@@ -33,7 +150,7 @@ function deleteBtnClickEvent(id) {
 					<p>
 						HS글로벌은 하드웨어/소프트웨어 융합 시스템 솔루션 전문 기업으로 시작하여 <BR>미래 글로벌 IT 융합 기업을 목표로 힘차게 나아가겠습니다.
 					</p>
-					<a href="" class="template-btn mt-3">자세히보기</a>
+					<!-- <a href="" class="template-btn mt-3">자세히보기</a>  -->
 				</div>
 			</div>
 		</div>
@@ -76,22 +193,30 @@ function deleteBtnClickEvent(id) {
 	<!-- Welcome Area Starts -->
 	<section class="welcome-area section-padding3">
 		<div class="container">
-			<div class="row wow fadeIn" data-wow-delay="500ms">
-				<div class="col-lg-5 align-self-center">
-					<div class="welcome-img">
-						<img src="./resources/images/main_gre.jpg" alt="">
+			<form id="updateGreForm" action="updateGre.ma" method="post">
+				<span id="updateGreSection">
+					<div class="row wow fadeIn" data-wow-delay="500ms">
+						<div class="col-lg-5 align-self-center">
+							<div class="welcome-img">
+								<span id="contentsGreImage">${gre.image }</span>
+							</div>
+						</div>
+						<div class="col-lg-7">
+							<div class="welcome-text mt-5 mt-lg-0" id="mainGre">
+								<span id="contentsGre">${gre.text }</span>
+								<c:if test="${!empty loginUser }">
+									<div style="text-align: center;">
+										<input type="button" id="updateGreButton" value="수정">
+									</div>
+								</c:if>
+							</div>
+						</div>
 					</div>
-				</div>
-				<div class="col-lg-7">
-					<div class="welcome-text mt-5 mt-lg-0" id="mainGre">
-						<h2>HS글로벌에 오신 것을 환영합니다.</h2>
-						<p class="pt-3">HS글로벌은 하드웨어와 소프트웨어를 융합하는 혁신적인 시스템 개발의 목적을 가지고 설립되었습니다. 현업에서 풍부한 노하우를 가지고 있는 훌륭한 엔지니어들이 모여 융합 시스템 연구 및 개발을 적극적으로 진행하고 있으며 산업 현장에 실무 노하우를 전달하는 역할에도 최선을 다하고 있습니다.</p>
-						<p>HS글로벌은 하드웨어/소프트웨어 융합 시스템 솔루션 전문 기업으로 시작하여 미래 글로벌 IT 융합 기업을 목표로 힘차게 나아가겠습니다. 고객, 엔지니어, 직원이 모두 행복한 회사가 될 것을 약속드리며 앞으로도 저희 HS글로벌에 변함없는 관심과 성원을 부탁드립니다.</p>
-					</div>
-				</div>
-			</div>
+				</span> <input type="hidden" name="id" value="${gre.id }">
+			</form>
 		</div>
 	</section>
+
 	<!-- Welcome Area End -->
 
 	<section class="mooc-area section-padding3">
@@ -103,20 +228,30 @@ function deleteBtnClickEvent(id) {
 					</div>
 				</div>
 			</div>
+			<form id="updateMoocForm" action="updateMooc.ma" method="post">
+			<span id="updateMoocSection">
 			<div class="row">
 				<div class="col-lg-5 align-self-center wow fadeInUp" data-wow-delay="250ms">
 					<div style="position: relative; max-width: 100%; padding-bottom: 75%; height: 0;">
-						<iframe width="320" height="240" src="https://www.youtube.com/embed/jXarjmelLrw" frameborder="0" allowfullscreen="" style="position: absolute; position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
+						<span id="contentsMoocImage">${mooc.image }</span>
 					</div>
 				</div>
 				<div class="col-lg-7 wow fadeInUp" data-wow-delay="500ms">
 					<div class="youtube-text mt-5 mt-lg-0">
-						<p class="pt-1">SW교육 솔루션 '스마트메이커‘ 를 문제해결능력 교육 관점에서 설명을 해 놓았습니다. 강력한 휴대용컴퓨터라고 할 수 있는 스마트폰을, 모든 사람이 한 대씩 항시 소지하고 다니면서, 사용하는 모바일시대가 도래하면서, 지구촌의 거의 모든 나라에서 소프트웨어를 의무교육으로 가르치고 있습니다. 오늘날, 모든 학생을 대상으로 하는 소프트웨어 보편교육의 목적은, 이전에 소수 전문 프로그래머 양성을 위해서, 실시해온 코딩 교육이 아닙니다. 코딩은, 더 이상 적합한 교육의 대상도, 방법도 아니라고 할 수 있습니다. 소프트웨어 보편교육 목적은, 우리 일상생활의 문제를 해결하는 능력을 배양하는 것 입니다. 하지만, 프로그래밍 코딩 기술을 배우지 않고는, 문제해결능력을 배양하는 수업을 할 수 있는 교육용 솔루션이 없었다는 것이, 사실입니다. 그러나 A. I. 기술로 만들어진 '스마트메이커'를 활용하면, 더 이상 코딩이나 알고리즘과 같이, 세상 문제와는 아무런 상관도 없고, 컴퓨팅 장치 밖에서는 전혀 써먹지도 못할 교육을 학생들에게 시킬 필요가 없습니다. 앞으로 학생들이 실제로 풀어야 할 사회 문제나, 현실 문제에 집중해서 조사 및 분석하는 과정을 통해, 생각하는 힘을 기르고 그런 문제를 해결할 도구로서, 소프트웨어를 만드는 지식과 경험을 체득할 수 있게 됩니다</p>
+						<span id="contentsMooc">${mooc.text }</span>
+						<c:if test="${!empty loginUser }">
+							<div style="text-align: center;">
+								<input type="button" id="updateMoocButton" value="수정">
+							</div>
+						</c:if>
 					</div>
 				</div>
 			</div>
+			</span> <input type="hidden" name="id" value="${mooc.id }">
+			</form>
 	</section>
 
+	<span id="updateMoocSection"></span>
 	<!-- Department Area Starts -->
 	<section class="department-area section-padding4">
 		<div class="container">
@@ -144,20 +279,20 @@ function deleteBtnClickEvent(id) {
 								</div>
 							</div>
 						</c:if>
-						<c:forEach var="content" items="${contents }" varStatus="status">
+						<c:forEach var="d" items="${dev }" varStatus="status">
 							<div class="single-slide">
 								<div class="slide-img">
-									<img src="${content.image }" alt="" class="img-fluid">
+									<img src="${d.image }" alt="" class="img-fluid">
 									<div class="hover-state">
 										<a href="#"><i class="fa fa-plus"></i></a>
 									</div>
 								</div>
 								<div class="single-department item-padding text-center">
-									<h3>${content.title }</h3>
-									<p>${content.text }</p>
+									<h3>${d.title }</h3>
+									<p>${d.text }</p>
 									<c:if test="${!empty loginUser }">
-										<input type="button" value="수정" onclick="location.href='updateDevView.ma?id=${content.id}'">
-										<input type="button" value="삭제" onclick="deleteBtnClickEvent(${content.id})">
+										<input type="button" value="수정" onclick="location.href='updateDevView.ma?id=${d.id}'">
+										<input type="button" value="삭제" onclick="deleteBtnClickEvent(${d.id})">
 									</c:if>
 								</div>
 							</div>

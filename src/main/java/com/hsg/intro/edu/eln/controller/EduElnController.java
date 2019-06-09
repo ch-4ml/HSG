@@ -74,8 +74,8 @@ public class EduElnController {
 				String comment = "";
 				String video = "";
 				String image = "";
-				if(content.getText().indexOf("www.youtube.com") != -1) {
-					video = content.getText().substring(content.getText().indexOf("www.youtube.com") - 15, content.getText().lastIndexOf("allowfullscreen") + 26);
+				if(content.getText().indexOf("www.youtube.com/embed/") != -1) {
+					video = content.getText().substring(content.getText().indexOf("www.youtube.com/embed/") - 15, content.getText().lastIndexOf("allowfullscreen") + 26);
 				}
 				if(content.getText().indexOf("data:image/jpeg;base64") != -1 ||
 				   content.getText().indexOf("data:image/jpg;base64") != -1 ||
@@ -137,24 +137,21 @@ public class EduElnController {
 	// 업데이트(검색한 페이지로 돌아가게 하려면 파라미터 추가)
 	@RequestMapping(value="update.ee", method=RequestMethod.POST) // DI 의존성 주입
 	public ModelAndView updateEduEln(
-			Contents content, ModelAndView mv, 
-			@RequestParam(value="id") int id) {
-
+			Contents content, ModelAndView mv) {
+		String image = "";
 		String param = ""; // 검색 기록 남길 때
-		String image = content.getText().substring(
+		if(content.getText().indexOf("embed/") != -1) {
+		image = content.getText().substring(
 				content.getText().indexOf("embed/") + 6, // 첫 번째에 위치한
 				content.getText().indexOf("embed/") + 17); // 유튜브 동영상 id 추출
-		
-		content.setId(id);
+		} else image = "X";
 		content.setPageId(pageId);
 		content.setImage(image);
 		content.setPostDate(postDate);
 		
-		System.out.println("in update : " + content);
-		
 		try {
 			cs.update(content);
-			mv.setViewName("redirect:viewDetail.ee?id=" + id);
+			mv.setViewName("redirect:viewDetail.ee?id=" + content.getId());
 		} catch (ContentsException e) {
 			mv.addObject("message",e.getMessage());
 			mv.setViewName("common/errorPage");
@@ -175,7 +172,5 @@ public class EduElnController {
 			mv.setViewName("common/errorPage");
 		}
 		return mv;
-	}
-	
-	// insert view랑 update view 필요 
+	} 
 }
