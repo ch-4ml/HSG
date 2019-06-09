@@ -28,7 +28,7 @@
 			<form id="content_form" method="post" action="update.eh">
 				<div class="contents">
 					<br>
-					<span id="content"> ${content.text } </span>
+					<span id="contents"> ${content.text } </span>
 					<br>
 				</div>
 				<br>

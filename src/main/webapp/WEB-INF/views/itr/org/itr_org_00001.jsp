@@ -27,7 +27,7 @@
 		<div class="inner">
 			<form id="content_form" method="post" action="update.io">
 				<div class="contents">
-					<span id="content"> ${content.text } </span>
+					<span id="contents"> ${content.text } </span>
 				</div>
 				<br> 
 				<span id="updateButton"> 
