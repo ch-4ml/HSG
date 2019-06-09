@@ -1,3 +1,6 @@
+
+
+
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!doctype html>
@@ -145,9 +148,9 @@ $(function() {
 			<div class="row">
 				<div class="col-lg-8">
 					<div class="col-lg-10">
-						<h1>HW/SW 시스템 융합 솔루션 기업</h1>
+						<h1 class="text-shadow-banner">HW/SW 시스템 융합 솔루션 기업</h1>
 					</div>
-					<p>
+					<p class="text-shadow-p">
 						HS글로벌은 하드웨어/소프트웨어 융합 시스템 솔루션 전문 기업으로 시작하여 <BR>미래 글로벌 IT 융합 기업을 목표로 힘차게 나아가겠습니다.
 					</p>
 					<!-- <a href="" class="template-btn mt-3">자세히보기</a>  -->

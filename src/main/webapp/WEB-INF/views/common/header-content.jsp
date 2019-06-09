@@ -20,7 +20,7 @@
             <div class="container">
                 <div class="row align-items-center justify-content-between d-flex">
                 <div id="logo">
-                    <a href="view.ma"><img src="./resources/images/logo/logo.png" alt="" title="" width="25%"/></a>
+                    <a href="view.ma"><img src="./resources/images/logo/logo1.png" alt="" title="" width="25%"/></a>
                 </div>
                 <nav id="nav-menu-container">
                     <ul class="nav-menu">
