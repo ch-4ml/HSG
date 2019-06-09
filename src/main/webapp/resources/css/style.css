@@ -218,13 +218,14 @@ keyframes sk-scaleout { 0%{
 
 .nav-menu a {
 	padding: 7px 10px;
-	text-decoration: none;
-	display: inline-block;
-	color: #222;
-	font-weight: 500;
-	font-size: 12px;
-	text-transform: uppercase;
-	outline: none
+    text-decoration: none;
+    display: inline-block;
+    color: #ffffff;
+    font-weight: 500;
+    font-size: 14px;
+    text-transform: uppercase;
+    outline: none;
+    text-shadow: 0 0 9px #000000;
 }
 
 .nav-menu>li {
@@ -508,7 +509,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 .banner-area {
 	padding: 400px 0 235px;
 	background-color: #b0b0b0;
-	background-image: url("../images/banner.jpg");
+	background-image: url("../images/banner-bg10.jpg");
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: cover;
@@ -3405,4 +3406,13 @@ h6 {
 
 .item-padding {
 	padding: 40px 20px
+}
+
+.text-shadow-banner{	
+    text-shadow: 0 0 14px #ffffffb0;
+}
+
+.text-shadow-p{	
+	color:#fff!important;
+    text-shadow: 0 0 9px #000000;
 }
