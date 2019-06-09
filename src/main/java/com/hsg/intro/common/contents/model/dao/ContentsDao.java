@@ -7,6 +7,7 @@ import com.hsg.intro.common.contents.model.vo.Contents;
 
 public interface ContentsDao {
 	void insert(Contents c) throws ContentsException;
+	Contents findOneByPageId(String pageId) throws ContentsException;
 	List<Contents> findByPageId(String pageId) throws ContentsException;
 	Contents findById(int id) throws ContentsException;
 	void update(Contents c) throws ContentsException;

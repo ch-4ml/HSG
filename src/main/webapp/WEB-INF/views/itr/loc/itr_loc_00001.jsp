@@ -6,7 +6,7 @@
 <head>
     <title>HS글로벌</title>
     <jsp:include page="../../common/head.jsp" />
-	<%@ include file="../../common/tinymce.jsp" %>
+	<%@ include file="../../common/tinymce-one-page.jsp" %>
      <style>
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
@@ -82,9 +82,9 @@
     <section id="two" class="wrapper style2 alt">
 	    <div style="text-align:center;"><h2>오시는길</h2></div><br><br>
 	    <div class="inner">
-			<form id="content_form" method="post" action="update.ig">
+			<form id="content_form" method="post" action="update.il">
 				<div class="contents">
-					<span id="contents"> ${contents[0].text } </span>
+					<span id="contents"> ${content.text } </span>
 				</div>
 				<br>
 				<span id="updateButton">
@@ -95,7 +95,7 @@
 						<br>
 					</c:if>
 				</span>
-				<input type="hidden" name="id" value="${contents[0].id }">
+				<input type="hidden" name="id" value="${content.id }">
 			</form>
 		</div>
 	</section>

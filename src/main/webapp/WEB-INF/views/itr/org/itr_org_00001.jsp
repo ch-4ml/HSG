@@ -27,7 +27,7 @@
 		<div class="inner">
 			<form id="content_form" method="post" action="update.io">
 				<div class="contents">
-					<span id="content"> ${contents[0].text } </span>
+					<span id="content"> ${content.text } </span>
 				</div>
 				<br> 
 				<span id="updateButton"> 
@@ -38,7 +38,7 @@
 						<br>
 					</c:if>
 				</span> 
-				<input type="hidden" name="id" value="${contents[0].id }">
+				<input type="hidden" name="id" value="${content.id }">
 			</form>
 		</div>
 	</section>
