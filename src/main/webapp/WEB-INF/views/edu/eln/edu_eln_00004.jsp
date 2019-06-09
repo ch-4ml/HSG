@@ -17,12 +17,12 @@
 		$("#updateBtn").click(function() {
 			
 			var title = $("#title").val();
-			var text = $("#text").val();
+			var category = $("#category").val();
 			
 			if(title == ""){
 				return alert("제목을 입력해주세요.");
-			} else if(text == ""){
-				return alert("내용을 입력해주세요.");
+			} else if(!category){
+				return alert("카테고리를 선택해주세요.");
 			}
 			
 			return $("#updateForm").submit();
