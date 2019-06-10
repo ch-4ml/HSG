@@ -189,8 +189,9 @@ keyframes sk-scaleout { 0%{
 	text-transform: uppercase !important
 }
 
-.sf-arrows .sf-with-ul {
-	padding-right: 30px
+.sf-arrows .sf-with-ul, .sf-arrows .sf-main {
+	padding-right: 30px;
+	text-shadow: 0 0 10px #000000;
 }
 
 .sf-arrows .sf-with-ul:after {
@@ -225,7 +226,7 @@ keyframes sk-scaleout { 0%{
     font-size: 14px;
     text-transform: uppercase;
     outline: none;
-    text-shadow: 0 0 9px #000000;
+    
 }
 
 .nav-menu>li {

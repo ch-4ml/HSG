@@ -24,7 +24,7 @@
                 </div>
                 <nav id="nav-menu-container">
                     <ul class="nav-menu">
-                        <li class="menu-active"><a href="view.ma">Home</a></li>
+                        <li class="menu-active"><a class="sf-main" href="view.ma">Home</a></li>
                         <li class="menu-has-children"><a href="view.ig">회사소개</a>
                             <ul>
                                 <li><a href="view.ig">CEO 인사말</a></li>
@@ -51,10 +51,10 @@
                         </li>
                         <c:choose>
 							<c:when test="${empty loginUser }">
-								<li><a href="signIn.me">LOGIN</a></li>
+								<li><a class="sf-main" href="signIn.me">LOGIN</a></li>
 							</c:when>
 							<c:otherwise>
-								<li><a href="logout.me">LOGOUT</a>
+								<li><a class="sf-main" href="logout.me">LOGOUT</a>
 							</c:otherwise>
 						</c:choose>			          				          
                     </ul>
