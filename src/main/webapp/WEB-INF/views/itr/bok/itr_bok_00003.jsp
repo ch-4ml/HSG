@@ -31,8 +31,6 @@ function resize(obj) {
 					return alert("연결할 주소를 입력해주세요.");
 				} else if(text == ""){
 					return alert("내용을 입력해주세요.");
-				} else if(file == "") {
-					return alert("파일을 선택해주세요.");
 				} else {
 					return $("#updateForm").submit();
 				}

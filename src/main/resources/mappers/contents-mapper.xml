@@ -38,12 +38,16 @@
 		WHERE ID = #{id};
 	</select>
 	<update id="update" parameterType="Contents">
-		UPDATE hsgbiz_contents SET  
-			CATEGORY = #{category}, 
-			TITLE = #{title}, 
-			TEXT = #{text}, 
-			IMAGE = #{image}, 
-			POST_DATE = #{postDate} 
+		UPDATE hsgbiz_contents
+			<set>
+				CATEGORY = #{category}, 
+				TITLE = #{title}, 
+				TEXT = #{text}, 
+				<if test="image != null">
+				IMAGE = #{image}, 
+				</if>
+				POST_DATE = #{postDate} 			
+			</set>
 		WHERE ID = #{id};
 	</update>
 	<!-- IMAGE = IF(#{image} = '', IMAGE, #{image}),  -->
