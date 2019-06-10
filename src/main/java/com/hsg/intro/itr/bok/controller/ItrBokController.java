@@ -86,39 +86,60 @@ public class ItrBokController {
 				, HttpServletRequest request){
 			
 			try {
-				// 현재 DB에 저장되어 있는 파일명 넘겨 받은 파일명이 일치할 경우, 이미지 링크를 지우지 않고 그대로 넘겨주어야함 
-				// 다를 경우, 해당 이미지를 삭제하고 새로운 이미지를 업로드 해야함
-
-					// 파일명 새이름 설정
-					String root = request.getSession().getServletContext().getRealPath("resources");
+				
+					System.out.println("#################### update.ib file : " + file + "####################");
+					System.out.println("#################### update.ib content : " + content + "####################");
 					
-					String filePath = root + "/uploadFiles/itrbok_upload_file";
+					if(file == null) { // 파일이 null 일 경우
+						String root = request.getSession().getServletContext().getRealPath("resources");
+						String filePath = root + "/uploadFiles/itrbok_upload_file";
+						String fileName = "";
+						String updatefilePath = "";
+						// ##################### 파일 삭제 처리 #######################
+						String deleteFileName = cs.findById(content.getId()).getImage();
+
+						// 파일명 새이름 설정
+						int randomNumber = (int)((Math.random()*10000)+1);
 						
-					String fileName = "";
+						SimpleDateFormat format = new SimpleDateFormat ("yyyyMMddHHmmss");
+						
+						Date nowTime = new Date();
+						
+						String newfileName = format.format(nowTime) + String.valueOf(randomNumber);	
+						
+						// 확장자 구하기
+						
+						int pos = file.getOriginalFilename().lastIndexOf(".");
+						
+						String ext = file.getOriginalFilename().substring(pos);
+						
+						fileName = newfileName + ext;
+						
+						content.setImage(fileName);
+						//파일경로를 itrbok 객체에 넣어줌
+						updatefilePath = filePath + "/" + fileName;
+						
+						content.setImage(fileName);
+						
+						// 해당 폴더에 파일 생성
+						file.transferTo(new File(updatefilePath));
+						// ##################### 파일 삭제 처리 #######################
+						String deleteFilePath = filePath + "/" + deleteFileName;
+						
+						// ##################### 파일 삭제 처리 #######################
+						File deleteFile = new File(deleteFilePath); // 파일 URL
+						
+						if(deleteFile.exists()) {
+							if(deleteFile.delete()) {
+								System.out.println("파일 삭제 완료");
+							} else {
+								System.out.println("파일 삭제 실패");
+							}
+						} else {
+							System.out.println("파일이 존재하지 않습니다.");
+						}
+					}
 					
-					int randomNumber = (int)((Math.random()*10000)+1);
-					
-					SimpleDateFormat format = new SimpleDateFormat ( "yyyyMMddHHmmss");
-					
-					Date nowTime = new Date();
-					
-					String newfileName = format.format(nowTime) + String.valueOf(randomNumber);
-					
-					// 확장자 구하기
-					
-					int pos = file.getOriginalFilename().lastIndexOf(".");
-
-					String ext = file.getOriginalFilename().substring(pos);
-					
-					fileName = newfileName + ext;
-					content.setImage(fileName);
-					//파일경로를 itrbok 객체에 넣어줌
-					filePath = filePath + "/" + fileName;
-
-					content.setImage(fileName);
-					
-					// 해당 폴더에 파일 생성
-					file.transferTo(new File(filePath));
 					
 			} catch (IllegalStateException e1) {
 				e1.printStackTrace();
