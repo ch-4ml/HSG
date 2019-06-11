@@ -70,42 +70,6 @@ public class EmpLecController {
 	public ModelAndView view(ModelAndView mv) {
 		try {
 			List<Contents> cs = csi.findByPageId(pageId);
-			for(Contents c: cs) {
-				String contents = "";
-				String imageWithTag = "";
-				if(c.getText().indexOf("data:image/jpeg;base64") != -1) {
-					contents = c.getText().substring(c.getText().indexOf("data:image/jpeg;base64")).substring(0, c.getText().substring(c.getText().indexOf("data:image/jpeg;base64")).indexOf("\" alt=\""));
-					imageWithTag = c.getText().substring(c.getText().indexOf("<img ")).substring(0, c.getText().substring(c.getText().indexOf("<img ")).indexOf("\" />") + 4);
-				}
-				if(c.getText().indexOf("data:image/png;base64") != -1) {
-					contents = c.getText().substring(c.getText().indexOf("data:image/png;base64")).substring(0, c.getText().substring(c.getText().indexOf("data:image/png;base64")).indexOf("\" alt=\""));
-					imageWithTag = c.getText().substring(c.getText().indexOf("<img ")).substring(0, c.getText().substring(c.getText().indexOf("<img ")).indexOf("\" />") + 4);
-				}
-				if(c.getText().indexOf("data:image/jpg;base64") != -1) {
-					contents = c.getText().substring(c.getText().indexOf("data:image/jpg;base64")).substring(0, c.getText().substring(c.getText().indexOf("data:image/jpg;base64")).indexOf("\" alt=\""));
-					imageWithTag = c.getText().substring(c.getText().indexOf("<img ")).substring(0, c.getText().substring(c.getText().indexOf("<img ")).indexOf("\" />") + 4);
-				}
-				if(c.getText().indexOf("https://") != -1) {
-					contents = c.getText().substring(c.getText().indexOf("https://")).substring(0, c.getText().substring(c.getText().indexOf("https")).indexOf("\" alt=\""));
-					imageWithTag = c.getText().substring(c.getText().indexOf("<img ")).substring(0, c.getText().substring(c.getText().indexOf("<img ")).indexOf("\" />") + 4);
-				}
-				if(c.getText().indexOf("http://") != -1) {
-					contents = c.getText().substring(c.getText().indexOf("http://")).substring(0, c.getText().substring(c.getText().indexOf("http")).indexOf("\" alt=\""));
-					imageWithTag = c.getText().substring(c.getText().indexOf("<img ")).substring(0, c.getText().substring(c.getText().indexOf("<img ")).indexOf("\" />") + 4);
-				}
-				if(c.getText().indexOf("ftp://") != -1) {
-					contents = c.getText().substring(c.getText().indexOf("ftp://")).substring(0, c.getText().substring(c.getText().indexOf("ftp")).indexOf("\" alt=\""));
-					imageWithTag = c.getText().substring(c.getText().indexOf("<img ")).substring(0, c.getText().substring(c.getText().indexOf("<img ")).indexOf("\" />") + 4);
-				}
-				if(c.getText().indexOf("ssh://") != -1) {
-					contents = c.getText().substring(c.getText().indexOf("ssh://")).substring(0, c.getText().substring(c.getText().indexOf("ssh")).indexOf("\" alt=\""));
-					imageWithTag = c.getText().substring(c.getText().indexOf("<img ")).substring(0, c.getText().substring(c.getText().indexOf("<img ")).indexOf("\" />") + 4);
-				}
-				// base64 형식의 이미지 src 부분 추출(태그 포함)
-				
-				c.setContents(contents);
-				c.setText(c.getText().replace(imageWithTag, ""));
-			}
 			mv.addObject("cs", cs);
 			mv.setViewName("emp/lec/emp_lec_00001");
 		} catch(ContentsException e) {
@@ -133,9 +97,8 @@ public class EmpLecController {
 	// 업데이트 폼
 	@RequestMapping(value="updateView.el")
 	public ModelAndView ubdateEmpLec(ModelAndView mv, @RequestParam(value="id") int id) {
-		Contents c;
 		try {
-			c = csi.findById(id);
+			Contents c = csi.findById(id);
 			mv.addObject("c", c);
 			mv.setViewName("emp/lec/emp_lec_00004");
 		} catch (ContentsException e) {
@@ -148,18 +111,15 @@ public class EmpLecController {
 	// 업데이트(검색한 페이지로 돌아가게 하려면 파라미터 추가)
 	@RequestMapping(value="update.el", method=RequestMethod.POST) // DI 의존성 주입
 	public ModelAndView updateEduEln(
-			Contents c, ModelAndView mv, 
-			@RequestParam(value="id") int id) {
+			Contents c, ModelAndView mv) {
 
 		String param = ""; // 검색 기록 남길 때
-		
-		c.setId(id);
 		c.setPageId(pageId);
 		c.setPostDate(postDate);
 
 		try {
 			csi.update(c);
-			mv.setViewName("redirect:viewDetail.el?id=" + id);
+			mv.setViewName("redirect:viewDetail.el?id=" + c.getId());
 		} catch (ContentsException e) {
 			mv.addObject("message",e.getMessage());
 			mv.setViewName("common/errorPage");

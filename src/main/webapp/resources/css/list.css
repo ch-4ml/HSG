@@ -2660,8 +2660,10 @@
 			}
 			
 			.spotlight .thumbnail img {
-				width: 18em;
-				height: 12em;
+			    width: auto;
+			    height: auto;
+			    max-width: 18em;
+			    max-height: 12em;
 			}
 		
 

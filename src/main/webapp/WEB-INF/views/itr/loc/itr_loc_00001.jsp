@@ -11,11 +11,14 @@
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
       #maps {
+      	width: 70em;
         height: 100%;
         padding: 10%;
         border-style: outset;
         border-width: 5px;
         border-color: hsl(200, 100%, 50%);
+        margin-left: auto;
+    	margin-right: auto;
       }
       /* Optional: Makes the sample page fill the window. */
       html, body {
@@ -39,9 +42,11 @@
     </section>
     <!-- Banner Area End -->
 	<section id="two" class="wrapper style2 alt">
-		<div style="text-align:center;"><h2>지도</h2></div><br><br>
+		<div style="text-align:center;"><h2>지도</h2></div><br>
 	</section>
-	<div id="maps"></div>
+	<br><br>
+	<div id="maps"></div><br><br>
+
     <script>
     var marker;
     var infowindow;

@@ -9,7 +9,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>HS글로벌</title>
 <jsp:include page="../../common/head.jsp" />
-<%@ include file="../../common/tinymce.jsp" %>
+<%@ include file="../../common/tinymce-image.jsp" %>
     <script>
     	$(function() {
 			$("#insertBtn").click(function() {
@@ -22,7 +22,8 @@
 				} else {
 					return $("#insertForm").submit();
 				}
-			})
+			});
+			$("#text").keydown();
 		});
     </script>
 </head>
@@ -41,9 +42,10 @@
     <!-- Banner Area End -->
 
     <!-- About Area Starts -->
-	<section class="content">
+	<section class="content content-center">
 		<div class="container">
 			<form id="insertForm" action="insertDev.ma" method="post">
+				<textarea id="contents" name="contents"></textarea>
 				<section>
 					<span class="input input--hoshi">
 						<input class="input__field input__field--hoshi" type="text" name="title" id="title">
@@ -51,8 +53,7 @@
 							<span class="input__label-content input__label-content--hoshi">제품명</span>
 						</label>
 					</span>
-					<br>
-					<select class="cs-select cs-skin-underline" id="category" name="category">
+					<select class="cs-select cs-skin-underline double" id="category" name="category">
 						<option value="" disabled selected>카테고리 선택</option>
 						<option value="1">산업용</option>
 						<option value="2">교육용</option>
@@ -60,7 +61,12 @@
 					</select>
 				</section>
 				<section class="related">
-					<textarea id="text" name="text" placeholder="사진과 내용을 추가하세요."></textarea>
+					<span class="input__textarea input--hoshi">
+						<textarea class="autosize, input__field input__field--hoshi" onkeydown="resize(this)" onkeyup="resize(this)" id="text" name="text"></textarea>
+						<label class="input__label input__label--hoshi input__label--hoshi-color-1" for="text">
+							<span class="input__label-content input__label-content--hoshi">설명</span>
+						</label>
+					</span>
 					<br>
 					<div style="text-align: center;">
 						<input type="button" id="insertBtn" value="추가">

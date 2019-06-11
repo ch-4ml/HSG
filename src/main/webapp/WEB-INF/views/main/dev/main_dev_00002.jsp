@@ -9,7 +9,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>HS글로벌</title>
 <jsp:include page="../../common/head.jsp" />
-<%@ include file="../../common/tinymce.jsp" %>
+<%@ include file="../../common/tinymce-image.jsp" %>
     <script>
     	$(function() {
 			$("#updateBtn").click(function() {
@@ -23,7 +23,8 @@
 				} else {
 					return $("#updateForm").submit();
 				}
-			})
+			});
+			$("#text").keydown();
 		});
     </script>
 </head>
@@ -42,25 +43,25 @@
 	<!-- Banner Area End -->
 
 	<!-- About Area Starts -->
-	<section class="content">
+	<section class="content content-center">
 		<div class="container">
 			<form id="updateForm" action="updateDev.ma" method="post">
+				<textarea id="contents" name="contents" placeholder="사진과 내용을 추가하세요.">${c.contents }</textarea>
 				<section>								
 					<span class="input input--hoshi">
-						<input class="input__field input__field--hoshi" type="text" name="title" id="title" value="${content.title }">
+						<input class="input__field input__field--hoshi" type="text" name="title" id="title" value="${c.title }">
 						<label class="input__label input__label--hoshi input__label--hoshi-color-1" for="title">
 							<span class="input__label-content input__label-content--hoshi">제품명</span>
 						</label>
 					</span>
-					<br>
-					<select class="cs-select cs-skin-underline" id="category" name="category">
+					<select class="cs-select cs-skin-underline double" id="category" name="category">
 						<c:choose>
-							<c:when test="${content.category == 1}">
+							<c:when test="${c.category == 1}">
 								<option value="1" selected>산업용</option>
 								<option value="2">교육용</option>
 								<option value="3">기타</option>
 							</c:when>
-							<c:when test="${content.category == 2}">
+							<c:when test="${c.category == 2}">
 								<option value="1">산업용</option>
 								<option value="2" selected>교육용</option>
 								<option value="3">기타</option>
@@ -74,9 +75,14 @@
 					</select>
 				</section>
 				<section class="related">
-					<textarea id="text" name="text" placeholder="사진과 내용을 추가하세요.">${content.text }</textarea>
+					<span class="input__textarea input--hoshi">
+						<textarea class="autosize, input__field input__field--hoshi" onkeydown="resize(this)" onkeyup="resize(this)" id="text" name="text">${c.text }</textarea>
+						<label class="input__label input__label--hoshi input__label--hoshi-color-1" for="text">
+							<span class="input__label-content input__label-content--hoshi">설명</span>
+						</label>
+					</span>
 					<br>
-					<input type="hidden" name="id" value="${content.id }">
+					<input type="hidden" name="id" value="${c.id }">
 					<div style="text-align: center;">
 						<input type="button" id="updateBtn" value="수정">
 					</div>

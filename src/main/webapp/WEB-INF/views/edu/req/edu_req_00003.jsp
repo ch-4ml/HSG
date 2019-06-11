@@ -53,24 +53,28 @@
     <!-- Banner Area End -->
 
     <!-- About Area Starts -->
-    <section id="two" class="wrapper style2 alt">
-    	<div style="text-align:center;"><h2>${content.title }</h2></div><br><br>
+    <section id="two" class="wrapper style2 alt content-center">
+    	<div><h2>${c.title }</h2></div>
     	<div class="inner">
 		    <form id="content_form" action="update.er" method="post">
 			    <div class="contents">
-			    	<span id="contents">${content.text }</span>
+			    	<span id="contents">
+						<br><br>
+	    				${c.contents }
+						<br><br>
+						${c.text }
+						<br><br>
+					</span>
 			    </div>
 			    <br>
-			    <div style="text-align: center;">
-				    <input type="button" id="list" value="목록">
-				    <input type="button" id="apply" value="신청">
-					<c:if test="${!empty loginUser }">
-						<input type="button" id="update" value="수정">
-						<input type="button" id="delete" value="삭제">
-					</c:if>
-				</div>
-				<input type="hidden" id="id" name="id" value="${content.id }">
-				<input type="hidden" id="title" name="title" value="${content.title }">
+			    <input type="button" id="list" value="목록">
+			    <input type="button" id="apply" value="신청">
+				<c:if test="${!empty loginUser }">
+					<input type="button" id="update" value="수정">
+					<input type="button" id="delete" value="삭제">
+				</c:if>
+				<input type="hidden" id="id" name="id" value="${c.id }">
+				<input type="hidden" id="title" name="title" value="${c.title }">
 		    </form>
 	    </div>
 	</section>

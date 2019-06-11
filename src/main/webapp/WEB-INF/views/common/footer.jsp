@@ -24,17 +24,24 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="col-xl-5 offset-xl-1 col-lg-3">
                     <!-- <div class="col-xl-5 offset-xl-1 col-lg-6"> -->
+                    <div class="col-xl-2 offset-xl-1 col-lg-3">
                         <div class="single-widget-home mb-5 mb-lg-0">
-                            <h3 class="mb-4">교육솔루션 / 강사 채용</h3>
+                            <h3 class="mb-4">교육솔루션</h3>
                              <ul>
                                 <li class="mb-2"><a href="view.ee">MOOC</a></li>
                                 <li class="mb-2"><a href="view.eh">하드웨어</a></li>
                                 <li class="mb-2"><a href="view.io">소프트웨어</a></li>
                                 <li class="mb-2"><a href="view.er">교육 컨설팅</a></li>
 								<li class="mb-2"><a href="view.er">교육 의뢰</a></li>
-                                <li><a href="view.el">강사 채용</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-xl-2 offset-xl-1 col-lg-3">
+                        <div class="single-widget-home mb-5 mb-lg-0">
+                            <h3 class="mb-4">강사 채용</h3>
+                             <ul>
+                                <li class="mb-2"><a href="view.el">채용 공고</a></li>
                             </ul>
                         </div>
                     </div>

@@ -57,21 +57,22 @@
 
     <!-- About Area Starts -->
     <section id="two" class="wrapper style2 alt content-center">
-	    <div style="text-align:center;"><h2>${c.title }</h2></div><br><br>
+	    <div><h2>${c.title }</h2></div>
    		<div class="inner">
     		<form action="update.ee" method="post">
 				<div class="contents">
-					<a href="redirect.ee?url=${c.url }" target="_blank">
-						${c.contents }
-					</a>
-					<br>
-					<br>
-					<span id="contents">${c.text }</span>
+					<span id="contents">
+					<br><br>
+						<a href="redirect.ee?url=${c.url }" target="_blank">
+							${c.contents }
+						</a>
+						<br><br>
+						${c.text }
+						<br><br>
+					</span>
 				</div>
-				<br>
-				<br>
 				<div style="text-align: center;">
-					<input type="button" id="list" value="목록 보기">
+					<input type="button" id="list" value="목록">
 					<c:if test="${!empty loginUser }">
 						<input type="button" id="update" value="수정">
 						<input type="button" id="delete" value="삭제">
