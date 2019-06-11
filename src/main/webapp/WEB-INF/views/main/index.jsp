@@ -201,7 +201,7 @@ $(function() {
 					<div class="row wow fadeIn" data-wow-delay="500ms">
 						<div class="col-lg-5 align-self-center">
 							<div class="welcome-img">
-								<span id="contentsGreImage">${gre.image }</span>
+								<span id="contentsGreImage">${gre.contents }</span>
 							</div>
 						</div>
 						<div class="col-lg-7">
@@ -236,7 +236,7 @@ $(function() {
 			<div class="row">
 				<div class="col-lg-5 align-self-center wow fadeInUp" data-wow-delay="250ms">
 					<div style="position: relative; max-width: 100%; padding-bottom: 75%; height: 0;">
-						<span id="contentsMoocImage">${mooc.image }</span>
+						<span id="contentsMoocImage">${mooc.contents }</span>
 					</div>
 				</div>
 				<div class="col-lg-7 wow fadeInUp" data-wow-delay="500ms">
@@ -285,7 +285,7 @@ $(function() {
 						<c:forEach var="d" items="${dev }" varStatus="status">
 							<div class="single-slide">
 								<div class="slide-img">
-									<img src="${d.image }" alt="" class="img-fluid">
+									<img src="${d.contents }" alt="" class="img-fluid">
 									<div class="hover-state">
 										<a href="#"><i class="fa fa-plus"></i></a>
 									</div>

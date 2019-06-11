@@ -37,19 +37,19 @@
 			<br>
 			<br>
 		</c:if>
-		<c:forEach var="cd" items="${cds }" varStatus="status">
-			<a href="viewDetail.ee?id=${cd.id }">
+		<c:forEach var="c" items="${cs }" varStatus="status">
+			<a href="viewDetail.ee?id=${c.id }">
 			<div class="spotlight">
 				<div class="thumbnail">
-					<img src="https://img.youtube.com/vi/${cd.image }/hqdefault.jpg" width="75%">
+					${c.contents }
 				</div>
 				<div class="list">
 					<div class="list-content-mooc">
-						<h3>${cd.title }</h3><br>
-						<h4>${cd.comment }</h4>
+						<h3>${c.title }</h3><br>
+						<h4>${c.text }</h4>
 					</div>
 					<div class="list-date">
-						<br>${cd.postDate }<br>
+						<br>${c.postDate }<br>
 					</div>
 				</div>
 			</div>

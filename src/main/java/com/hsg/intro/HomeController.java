@@ -25,7 +25,7 @@ import com.hsg.intro.common.contents.model.vo.Contents;
 public class HomeController {
 	
 	@Autowired
-	private ContentsServiceImpl cs;
+	private ContentsServiceImpl csi;
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
@@ -41,94 +41,96 @@ public class HomeController {
 		try {
 			// 메인 화면 인사말
 			pageId = "main/gre";
-			Contents content = cs.findOneByPageId(pageId);
+			Contents content = csi.findOneByPageId(pageId);
 			// 인사말 데이터 가공
-			String image = "";
+			String contents = "";
 			// 태그를 포함한 이미지 추출
-			String imageWithTag = "";
-			if(content.getText().indexOf("data:image/jpeg;base64") != -1) {
-				image = content.getText().substring(content.getText().indexOf("data:image/jpeg;base64")).substring(0, content.getText().substring(content.getText().indexOf("data:image/jpeg;base64")).indexOf("\" alt=\""));
-				imageWithTag = content.getText().substring(content.getText().indexOf("<img ")).substring(0, content.getText().substring(content.getText().indexOf("<img ")).indexOf("\" />") + 4);
+			String textWithTag = "";
+			if(content.getContents().indexOf("data:contents/jpeg;base64") != -1) {
+				contents = content.getContents().substring(content.getContents().indexOf("data:contents/jpeg;base64")).substring(0, content.getContents().substring(content.getContents().indexOf("data:contents/jpeg;base64")).indexOf("\" alt=\""));
+				textWithTag = content.getContents().substring(content.getContents().indexOf("<img ")).substring(0, content.getContents().substring(content.getContents().indexOf("<img ")).indexOf("\" />") + 4);
 			}
-			if(content.getText().indexOf("data:image/png;base64") != -1) {
-				image = content.getText().substring(content.getText().indexOf("data:image/png;base64")).substring(0, content.getText().substring(content.getText().indexOf("data:image/png;base64")).indexOf("\" alt=\""));
-				imageWithTag = content.getText().substring(content.getText().indexOf("<img ")).substring(0, content.getText().substring(content.getText().indexOf("<img ")).indexOf("\" />") + 4);
+			if(content.getContents().indexOf("data:contents/png;base64") != -1) {
+				contents = content.getContents().substring(content.getContents().indexOf("data:contents/png;base64")).substring(0, content.getContents().substring(content.getContents().indexOf("data:contents/png;base64")).indexOf("\" alt=\""));
+				textWithTag = content.getContents().substring(content.getContents().indexOf("<img ")).substring(0, content.getContents().substring(content.getContents().indexOf("<img ")).indexOf("\" />") + 4);
 			}
-			if(content.getText().indexOf("data:image/jpg;base64") != -1) {
-				image = content.getText().substring(content.getText().indexOf("data:image/jpg;base64")).substring(0, content.getText().substring(content.getText().indexOf("data:image/jpg;base64")).indexOf("\" alt=\""));
-				imageWithTag = content.getText().substring(content.getText().indexOf("<img ")).substring(0, content.getText().substring(content.getText().indexOf("<img ")).indexOf("\" />") + 4);
+			if(content.getContents().indexOf("data:contents/jpg;base64") != -1) {
+				contents = content.getContents().substring(content.getContents().indexOf("data:contents/jpg;base64")).substring(0, content.getContents().substring(content.getContents().indexOf("data:contents/jpg;base64")).indexOf("\" alt=\""));
+				textWithTag = content.getContents().substring(content.getContents().indexOf("<img ")).substring(0, content.getContents().substring(content.getContents().indexOf("<img ")).indexOf("\" />") + 4);
 			}
-			if(content.getText().indexOf("https://") != -1) {
-				image = content.getText().substring(content.getText().indexOf("https://")).substring(0, content.getText().substring(content.getText().indexOf("https")).indexOf("\" alt=\""));
-				imageWithTag = content.getText().substring(content.getText().indexOf("<img ")).substring(0, content.getText().substring(content.getText().indexOf("<img ")).indexOf("\" />") + 4);
+			if(content.getContents().indexOf("https://") != -1) {
+				contents = content.getContents().substring(content.getContents().indexOf("https://")).substring(0, content.getContents().substring(content.getContents().indexOf("https")).indexOf("\" alt=\""));
+				textWithTag = content.getContents().substring(content.getContents().indexOf("<img ")).substring(0, content.getContents().substring(content.getContents().indexOf("<img ")).indexOf("\" />") + 4);
 			}
-			if(content.getText().indexOf("http://") != -1) {
-				image = content.getText().substring(content.getText().indexOf("http://")).substring(0, content.getText().substring(content.getText().indexOf("http")).indexOf("\" alt=\""));
-				imageWithTag = content.getText().substring(content.getText().indexOf("<img ")).substring(0, content.getText().substring(content.getText().indexOf("<img ")).indexOf("\" />") + 4);
+			if(content.getContents().indexOf("http://") != -1) {
+				contents = content.getContents().substring(content.getContents().indexOf("http://")).substring(0, content.getContents().substring(content.getContents().indexOf("http")).indexOf("\" alt=\""));
+				textWithTag = content.getContents().substring(content.getContents().indexOf("<img ")).substring(0, content.getContents().substring(content.getContents().indexOf("<img ")).indexOf("\" />") + 4);
 			}
-			if(content.getText().indexOf("ftp://") != -1) {
-				image = content.getText().substring(content.getText().indexOf("ftp://")).substring(0, content.getText().substring(content.getText().indexOf("ftp")).indexOf("\" alt=\""));
-				imageWithTag = content.getText().substring(content.getText().indexOf("<img ")).substring(0, content.getText().substring(content.getText().indexOf("<img ")).indexOf("\" />") + 4);
-			}if(content.getText().indexOf("ssh://") != -1) {
-				image = content.getText().substring(content.getText().indexOf("ssh://")).substring(0, content.getText().substring(content.getText().indexOf("ssh")).indexOf("\" alt=\""));
-				imageWithTag = content.getText().substring(content.getText().indexOf("<img ")).substring(0, content.getText().substring(content.getText().indexOf("<img ")).indexOf("\" />") + 4);
+			if(content.getContents().indexOf("ftp://") != -1) {
+				contents = content.getContents().substring(content.getContents().indexOf("ftp://")).substring(0, content.getContents().substring(content.getContents().indexOf("ftp")).indexOf("\" alt=\""));
+				textWithTag = content.getContents().substring(content.getContents().indexOf("<img ")).substring(0, content.getContents().substring(content.getContents().indexOf("<img ")).indexOf("\" />") + 4);
+			}if(content.getContents().indexOf("ssh://") != -1) {
+				contents = content.getContents().substring(content.getContents().indexOf("ssh://")).substring(0, content.getContents().substring(content.getContents().indexOf("ssh")).indexOf("\" alt=\""));
+				textWithTag = content.getContents().substring(content.getContents().indexOf("<img ")).substring(0, content.getContents().substring(content.getContents().indexOf("<img ")).indexOf("\" />") + 4);
 			}
-			content.setImage(imageWithTag);
-			content.setText(content.getText().replace(imageWithTag, ""));
+			content.setText(textWithTag);
+			content.setContents(content.getContents().replace(textWithTag, ""));
 			mv.addObject("gre", content);
 			
 			// 메인 화면 MOOC
 			pageId = "main/mooc";
-			image = "";
-			content = cs.findOneByPageId(pageId);
+			contents = "";
+			content = csi.findOneByPageId(pageId);
 			// MOOC 데이터 가공
-			if(content.getText().indexOf("www.youtube.com/embed/") != -1) {
+			if(content.getContents().indexOf("www.youtube.com/embed/") != -1) {
 				// 유튜브 동영상 태그 추출
-				image = content.getText().substring(content.getText().indexOf("www.youtube.com/embed/") - 15, content.getText().lastIndexOf("allowfullscreen") + 26);
+				contents = content.getContents().substring(content.getContents().indexOf("www.youtube.com/embed/") - 15, content.getContents().lastIndexOf("allowfullscreen") + 26);
 			}
-			content.setImage(image);
-			content.setText(content.getText().replace(image, ""));
+			content.setText(contents);
+			content.setContents(content.getContents().replace(contents, ""));
 			mv.addObject("mooc", content);
 			
 			// 메인 화면 개발
 			pageId = "main/dev";
-			List<Contents> contents = cs.findByPageId(pageId);
-			for(Contents c: contents) {
+			List<Contents> cs = csi.findByPageId(pageId);
+			for(Contents c: cs) {
 				// 이미지 src 부분 추출
-				image = "";
+				contents = "";
 				// 태그를 포함한 이미지 추출
-				imageWithTag = "";
-				if(c.getText().indexOf("data:image/jpeg;base64") != -1) {
-					image = c.getText().substring(c.getText().indexOf("data:image/jpeg;base64")).substring(0, c.getText().substring(c.getText().indexOf("data:image/jpeg;base64")).indexOf("\" alt=\""));
-					imageWithTag = c.getText().substring(c.getText().indexOf("<img ")).substring(0, c.getText().substring(c.getText().indexOf("<img ")).indexOf("\" />") + 4);
-				}
-				if(c.getText().indexOf("data:image/png;base64") != -1) {
-					image = c.getText().substring(c.getText().indexOf("data:image/png;base64")).substring(0, c.getText().substring(c.getText().indexOf("data:image/png;base64")).indexOf("\" alt=\""));
-					imageWithTag = c.getText().substring(c.getText().indexOf("<img ")).substring(0, c.getText().substring(c.getText().indexOf("<img ")).indexOf("\" />") + 4);
-				}
-				if(c.getText().indexOf("data:image/jpg;base64") != -1) {
-					image = c.getText().substring(c.getText().indexOf("data:image/jpg;base64")).substring(0, c.getText().substring(c.getText().indexOf("data:image/jpg;base64")).indexOf("\" alt=\""));
-					imageWithTag = c.getText().substring(c.getText().indexOf("<img ")).substring(0, c.getText().substring(c.getText().indexOf("<img ")).indexOf("\" />") + 4);
-				}
-				if(c.getText().indexOf("https://") != -1) {
-					image = c.getText().substring(c.getText().indexOf("https://")).substring(0, c.getText().substring(c.getText().indexOf("https")).indexOf("\" alt=\""));
-					imageWithTag = c.getText().substring(c.getText().indexOf("<img ")).substring(0, c.getText().substring(c.getText().indexOf("<img ")).indexOf("\" />") + 4);
-				}
-				if(c.getText().indexOf("http://") != -1) {
-					image = c.getText().substring(c.getText().indexOf("http://")).substring(0, c.getText().substring(c.getText().indexOf("http")).indexOf("\" alt=\""));
-					imageWithTag = c.getText().substring(c.getText().indexOf("<img ")).substring(0, c.getText().substring(c.getText().indexOf("<img ")).indexOf("\" />") + 4);
-				}
-				if(c.getText().indexOf("ftp://") != -1) {
-					image = c.getText().substring(c.getText().indexOf("ftp://")).substring(0, c.getText().substring(c.getText().indexOf("ftp")).indexOf("\" alt=\""));
-					imageWithTag = c.getText().substring(c.getText().indexOf("<img ")).substring(0, c.getText().substring(c.getText().indexOf("<img ")).indexOf("\" />") + 4);
-				}if(c.getText().indexOf("ssh://") != -1) {
-					image = c.getText().substring(c.getText().indexOf("ssh://")).substring(0, c.getText().substring(c.getText().indexOf("ssh")).indexOf("\" alt=\""));
-					imageWithTag = c.getText().substring(c.getText().indexOf("<img ")).substring(0, c.getText().substring(c.getText().indexOf("<img ")).indexOf("\" />") + 4);
-				}
-				c.setImage(image);
-				c.setText(c.getText().replace(imageWithTag, ""));
+				textWithTag = "";
+				if(c.getContents() != null) {
+					if(c.getContents().indexOf("data:contents/jpeg;base64") != -1) {
+						contents = c.getContents().substring(c.getContents().indexOf("data:contents/jpeg;base64")).substring(0, c.getContents().substring(c.getContents().indexOf("data:contents/jpeg;base64")).indexOf("\" alt=\""));
+						textWithTag = c.getContents().substring(c.getContents().indexOf("<img ")).substring(0, c.getContents().substring(c.getContents().indexOf("<img ")).indexOf("\" />") + 4);
+					}
+					if(c.getContents().indexOf("data:contents/png;base64") != -1) {
+						contents = c.getContents().substring(c.getContents().indexOf("data:contents/png;base64")).substring(0, c.getContents().substring(c.getContents().indexOf("data:contents/png;base64")).indexOf("\" alt=\""));
+						textWithTag = c.getContents().substring(c.getContents().indexOf("<img ")).substring(0, c.getContents().substring(c.getContents().indexOf("<img ")).indexOf("\" />") + 4);
+					}
+					if(c.getContents().indexOf("data:contents/jpg;base64") != -1) {
+						contents = c.getContents().substring(c.getContents().indexOf("data:contents/jpg;base64")).substring(0, c.getContents().substring(c.getContents().indexOf("data:contents/jpg;base64")).indexOf("\" alt=\""));
+						textWithTag = c.getContents().substring(c.getContents().indexOf("<img ")).substring(0, c.getContents().substring(c.getContents().indexOf("<img ")).indexOf("\" />") + 4);
+					}
+					if(c.getContents().indexOf("https://") != -1) {
+						contents = c.getContents().substring(c.getContents().indexOf("https://")).substring(0, c.getContents().substring(c.getContents().indexOf("https")).indexOf("\" alt=\""));
+						textWithTag = c.getContents().substring(c.getContents().indexOf("<img ")).substring(0, c.getContents().substring(c.getContents().indexOf("<img ")).indexOf("\" />") + 4);
+					}
+					if(c.getContents().indexOf("http://") != -1) {
+						contents = c.getContents().substring(c.getContents().indexOf("http://")).substring(0, c.getContents().substring(c.getContents().indexOf("http")).indexOf("\" alt=\""));
+						textWithTag = c.getContents().substring(c.getContents().indexOf("<img ")).substring(0, c.getContents().substring(c.getContents().indexOf("<img ")).indexOf("\" />") + 4);
+					}
+					if(c.getContents().indexOf("ftp://") != -1) {
+						contents = c.getContents().substring(c.getContents().indexOf("ftp://")).substring(0, c.getContents().substring(c.getContents().indexOf("ftp")).indexOf("\" alt=\""));
+						textWithTag = c.getContents().substring(c.getContents().indexOf("<img ")).substring(0, c.getContents().substring(c.getContents().indexOf("<img ")).indexOf("\" />") + 4);
+					}if(c.getContents().indexOf("ssh://") != -1) {
+						contents = c.getContents().substring(c.getContents().indexOf("ssh://")).substring(0, c.getContents().substring(c.getContents().indexOf("ssh")).indexOf("\" alt=\""));
+						textWithTag = c.getContents().substring(c.getContents().indexOf("<img ")).substring(0, c.getContents().substring(c.getContents().indexOf("<img ")).indexOf("\" />") + 4);
+					}
+					c.setText(contents);
+					c.setContents(c.getContents().replace(textWithTag, ""));
+				}				
 			}
-			mv.addObject("dev", contents);
+			mv.addObject("dev", cs);
 			mv.setViewName("main/index");
 		} catch(ContentsException e) {
 			mv.addObject("message",e.getMessage());
@@ -147,7 +149,7 @@ public class HomeController {
 		pageId = "main/gre";
 		c.setPageId(pageId);
 		try {
-			cs.update(c);
+			csi.update(c);
 			mv.setViewName("redirect:/");
 		} catch (ContentsException e) {
 			mv.addObject("message", e.getMessage());
@@ -161,7 +163,7 @@ public class HomeController {
 		pageId = "main/mooc";
 		c.setPageId(pageId);
 		try {
-			cs.update(c);
+			csi.update(c);
 			mv.setViewName("redirect:/");
 		} catch (ContentsException e) {
 			mv.addObject("message", e.getMessage());
@@ -182,8 +184,10 @@ public class HomeController {
 		pageId = "main/dev";
 		c.setPageId(pageId);
 		c.setPostDate(postDate);
+		
+		System.out.println(c.toString());
 		try {
-			cs.insert(c);
+			csi.insert(c);
 			mv.setViewName("redirect:/");
 		} catch(ContentsException e) {
 			mv.addObject("message",e.getMessage());
@@ -194,10 +198,9 @@ public class HomeController {
 	
 	@RequestMapping(value="updateDevView.ma")
 	public ModelAndView updateDevView(
-			Contents c, ModelAndView mv,
-			@RequestParam(value="id") int id){
+			Contents c, ModelAndView mv){
 		try {
-			Contents content = cs.findById(id);
+			Contents content = csi.findById(c.getId());
 			mv.addObject("content", content);
 			mv.setViewName("main/dev/main_dev_00002");
 		} catch(ContentsException e) {
@@ -208,13 +211,13 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value="updateDev.ma", method=RequestMethod.POST)
-	public ModelAndView updateDev(
-			Contents c, ModelAndView mv) {
+	public ModelAndView updateDev(Contents c, ModelAndView mv) {
 		pageId = "main/dev";
 		c.setPageId(pageId);
 		c.setPostDate(postDate);
+		System.out.println("update : " + c.toString());
 		try {
-			cs.update(c);
+			csi.update(c);
 			mv.setViewName("redirect:/");
 		} catch(ContentsException e) {
 			mv.addObject("message",e.getMessage());
@@ -227,7 +230,7 @@ public class HomeController {
 	public ModelAndView deleteDev(ModelAndView mv,
 			@RequestParam(value="id") int id) {	
 		try {
-			cs.delete(id);
+			csi.delete(id);
 			mv.setViewName("redirect:/");
 		} catch(ContentsException e) {
 			mv.addObject("message",e.getMessage());

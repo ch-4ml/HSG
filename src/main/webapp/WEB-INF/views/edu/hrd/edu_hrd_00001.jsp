@@ -28,7 +28,7 @@
 			<form id="content_form" method="post" action="update.eh">
 				<div class="contents">
 					<br>
-					<span id="contents"> ${content.text } </span>
+					<span id="contents"> ${c.contents } </span>
 					<br>
 				</div>
 				<br>
@@ -40,7 +40,7 @@
 						<br>
 					</c:if>
 				</span>
-				<input type="hidden" name="id" value="${content.id }">
+				<input type="hidden" name="id" value="${c.id }">
 			</form>
 		</div>
 	</section>

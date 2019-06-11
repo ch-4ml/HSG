@@ -8,14 +8,15 @@
 		<result property="pageId" column="PAGE_ID"/>
 		<result property="category" column="CATEGORY" />
 		<result property="title" column="TITLE" />
+		<result property="contents" column="CONTENTS"/>
 		<result property="text" column="TEXT"/>
-		<result property="image" column="IMAGE"/>
+		<result property="url" column="URL" />
 		<result property="postDate" column="POST_DATE" />
 	</resultMap>
 	<insert id = "insert" parameterType="Contents">
 		INSERT INTO 
-		hsgbiz_contents(PAGE_ID, CATEGORY, TITLE, TEXT, IMAGE, POST_DATE) 
-		VALUES(#{pageId}, #{category}, #{title}, #{text}, #{image}, #{postDate})
+		hsgbiz_contents(PAGE_ID, CATEGORY, TITLE, CONTENTS, TEXT, URL, POST_DATE) 
+		VALUES(#{pageId}, #{category}, #{title}, #{contents}, #{text}, #{url}, #{postDate})
 	</insert>
 	<!-- 
 	<select id="findAll" resultMap="contentsResultSet" parameterType="Contents">
@@ -43,8 +44,8 @@
 				CATEGORY = #{category}, 
 				TITLE = #{title}, 
 				TEXT = #{text}, 
-				<if test="image != null">
-				IMAGE = #{image}, 
+				<if test="contents != null">
+				CONTENTS = #{contents}, 
 				</if>
 				POST_DATE = #{postDate} 			
 			</set>
@@ -53,7 +54,7 @@
 	<!-- IMAGE = IF(#{image} = '', IMAGE, #{image}),  -->
 	<update id="updateImage" parameterType="Contents">
 		UPDATE hsgbiz_contents SET 
-			IMAGE = #{image}
+			CONTENTS = #{contents}
 		WHERE ID = #{id};
 	</update>
 	<delete id="delete" parameterType="java.lang.Integer">

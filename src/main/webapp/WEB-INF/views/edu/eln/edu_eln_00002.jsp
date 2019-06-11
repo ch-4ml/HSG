@@ -9,7 +9,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>HS글로벌</title>
 <jsp:include page="../../common/head.jsp" />
-<%@ include file="../../common/tinymce.jsp" %>
+<%@ include file="../../common/tinymce-image.jsp" %>
 <script>
 	$(function() {
 		
@@ -28,7 +28,14 @@
 			return $("#insertForm").submit();
 			
 		});
+		$("#text").keydown();
 	});
+</script>
+<script>
+function resize(obj) {
+	  obj.style.height = "1px";
+	  obj.style.height = (12+obj.scrollHeight)+"px";
+	}
 </script>
 </head>
 <body>
@@ -46,28 +53,44 @@
     <!-- Banner Area End -->
 
     <!-- About Area Starts -->
-	<section class="content">
+	<section class="content content-center">
 	    <div class="container">
-		    <form id="insertForm" action="insert.ee" method="post">
-		    	<section>
-				<span class="input input--hoshi">
-					<input class="input__field input__field--hoshi" type="text" id="title" name="title">
-					<label class="input__label input__label--hoshi input__label--hoshi-color-1" for="title">
-						<span class="input__label-content input__label-content--hoshi">MOOC 제목</span>
-					</label>
-				</span>
-				<br>
-				<select class="cs-select cs-skin-underline" id="category" name="category">
-						<option value="" disabled selected>카테고리 선택</option>
-						<option value="1">빅데이터</option>
-						<option value="2">인공지능</option>
-						<option value="3">기타</option>
-				</select>
+		    <form id="insertForm" action="insert.ee" method="post" enctype="multipart/form-data">
+	    		<textarea id="contents" name="contents" readonly="readonly"></textarea>
+				<section>	
+					<span class="input input--hoshi">
+						<input class="input__field input__field--hoshi" type="text" id="title" name="title">
+						<label class="input__label input__label--hoshi input__label--hoshi-color-1" for="title">
+							<span class="input__label-content input__label-content--hoshi">MOOC 제목</span>
+						</label>
+					</span>
+					<select class="cs-select cs-skin-underline double" id="category" name="category">
+							<option value="" disabled selected>카테고리 선택</option>
+							<option value="1">빅데이터</option>
+							<option value="2">인공지능</option>
+							<option value="3">기타</option>
+					</select>
 				</section>
 				<section>
+				<span class="input input--hoshi">
+					<input class="input__field input__field--hoshi" type="text" id="url" name="url">
+					<label class="input__label input__label--hoshi input__label--hoshi-color-1" for="url">
+						<span class="input__label-content input__label-content--hoshi">동영상 URL</span>
+					</label>
+				</span>
+				<span class="input input--hoshi input--filled">
+			    	<input class="input__field input__field--hoshi" type="file" id="file" name="file" accept=".jpg, .jpeg, .png .gif">
+			    	<label class="input__label input__label--hoshi input__label--hoshi-color-1" for="file">
+			    		<span class="input__label-content input__label-content--hoshi">썸네일</span>
+			    	</label>
+				</span>
 				<br>
-				<textarea id="text" name="text" placeholder="동영상과 내용을 추가하세요."></textarea>
-				<br>
+				<span class="input__textarea input--hoshi">
+					<textarea class="autosize, input__field input__field--hoshi" onkeydown="resize(this)" onkeyup="resize(this)" id="text" name="text"></textarea>
+					<label class="input__label input__label--hoshi input__label--hoshi-color-1" for="text">
+						<span class="input__label-content input__label-content--hoshi">설명</span>
+					</label>
+				</span>
 				<div style="text-align:center;">
 					<input type="button" id="insertBtn" value="추가">
 				</div>

@@ -54,24 +54,24 @@ function deleteBtnClickEvent(id) {
 				<br>
 				<br>
 			</c:if>
-			<c:forEach var="cd" items="${cds}">
-				<c:if test="${cd.category eq 1 }">
+			<c:forEach var="c" items="${cs}">
+				<c:if test="${c.category eq 1 }">
 					<div class="spotlight">
 						<div class="image">
-							<img src="http://tbsko.cafe24.com/HSG/resources/uploadFiles/itrbok_upload_file/${cd.image}" alt="" />
+							<img src="http://tbsko.cafe24.com/HSG/resources/uploadFiles/itrbok_upload_file/${c.contents}" alt="" />
 						</div>
 						<div class="list">
-							<a href="redirect.ib?url=${cd.url }">
+							<a href="redirect.ib?url=${c.url }" target="_blank">
 								<div class="list-content">
-									<h3>${cd.title}</h3><br>
-									<p>${cd.text}</p>
+									<h3>${c.title}</h3><br>
+									<p>${c.text}</p>
 								</div>
 							</a>
 							<div class="list-button">
 								<c:if test="${!empty loginUser }">
 									<ul class="actions">
-										<li><input type="button" onclick="updateBtnClickEvent(${cd.id})" value="수정"></li>
-										<li><input type="button" onclick="deleteBtnClickEvent(${cd.id})" value="삭제"></li>
+										<li><input type="button" onclick="updateBtnClickEvent(${c.id})" value="수정"></li>
+										<li><input type="button" onclick="deleteBtnClickEvent(${c.id})" value="삭제"></li>
 									</ul>
 								</c:if>
 							</div>
@@ -84,22 +84,22 @@ function deleteBtnClickEvent(id) {
 	<section id="two" class="wrapper style2 alt">
 		<div style="text-align: center;"><h2>특허</h2></div><br><br>
 		<div class="inner">
-			<c:forEach var="cd" items="${cds}">
-				<c:if test="${cd.category eq 2 }">
+			<c:forEach var="c" items="${cs}">
+				<c:if test="${c.category eq 2 }">
 					<div class="spotlight">
 						<div class="image">
-							<img src="http://tbsko.cafe24.com/HSG/resources/uploadFiles/itrbok_upload_file/${cd.image}" alt="" />
+							<img src="http://tbsko.cafe24.com/HSG/resources/uploadFiles/itrbok_upload_file/${c.contents}" alt="" />
 						</div>
 						<div class="list">
 							<div class="list-content">
-								<h3>${cd.title}</h3>
-								<p>${cd.text}</p>
+								<h3>${c.title}</h3>
+								<p>${c.text}</p>
 							</div>
 							<div class="list-button">
 								<c:if test="${!empty loginUser }">
 									<ul class="actions">
-										<li><input type="button" onclick="updateBtnClickEvent(${cd.id})" value="수정"></li>
-										<li><input type="button" onclick="deleteBtnClickEvent(${cd.id})" value="삭제"></li>
+										<li><input type="button" onclick="updateBtnClickEvent(${c.id})" value="수정"></li>
+										<li><input type="button" onclick="deleteBtnClickEvent(${c.id})" value="삭제"></li>
 									</ul>
 								</c:if>
 							</div>

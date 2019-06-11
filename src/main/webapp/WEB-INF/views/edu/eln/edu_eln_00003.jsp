@@ -56,13 +56,19 @@
     <!-- Banner Area End -->
 
     <!-- About Area Starts -->
-    <section id="two" class="wrapper style2 alt">
-	    <div style="text-align:center;"><h2>${content.title }</h2></div><br><br>
+    <section id="two" class="wrapper style2 alt content-center">
+	    <div style="text-align:center;"><h2>${c.title }</h2></div><br><br>
    		<div class="inner">
     		<form action="update.ee" method="post">
 				<div class="contents">
-					<span id="contents">${content.text }</span>
+					<a href="redirect.ee?url=${c.url }" target="_blank">
+						${c.contents }
+					</a>
+					<br>
+					<br>
+					<span id="contents">${c.text }</span>
 				</div>
+				<br>
 				<br>
 				<div style="text-align: center;">
 					<input type="button" id="list" value="목록 보기">
@@ -71,8 +77,8 @@
 						<input type="button" id="delete" value="삭제">
 					</c:if>
 				</div>
-				<input type="hidden" id="category" name="category" value="${content.category }">
-				<input type="hidden" id="id" name="id" value="${content.id }">
+				<input type="hidden" id="category" name="category" value="${c.category }">
+				<input type="hidden" id="id" name="id" value="${c.id }">
     		</form>
    		</div>
     </section>	    

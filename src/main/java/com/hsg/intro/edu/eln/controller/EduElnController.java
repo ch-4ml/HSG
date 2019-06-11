@@ -1,10 +1,13 @@
 package com.hsg.intro.edu.eln.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,10 +15,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.hsg.intro.Exception.ContentsException;
-import com.hsg.intro.common.contents.model.domain.ContentsDomain;
 import com.hsg.intro.common.contents.model.service.ContentsServiceImpl;
 import com.hsg.intro.common.contents.model.vo.Contents;
 
@@ -24,7 +27,7 @@ import com.hsg.intro.common.contents.model.vo.Contents;
 public class EduElnController {
 	
 	@Autowired
-	private ContentsServiceImpl cs;
+	private ContentsServiceImpl csi;
 	
 	private String pageId = "edu/eln";
 	
@@ -41,20 +44,13 @@ public class EduElnController {
 	
 	// 추가
 	@RequestMapping(value="insert.ee", method=RequestMethod.POST)
-	public ModelAndView insertEduEln(Contents content, ModelAndView mv) {
+	public ModelAndView insertEduEln(Contents c, ModelAndView mv) {
 		
-		String image = content.getText().substring(
-				content.getText().indexOf("embed/") + 6, // 첫 번째에 위치한
-				content.getText().indexOf("embed/") + 17); // 유튜브 동영상 id 추출
-		
-		content.setPageId(pageId);
-		content.setImage(image);
-		content.setPostDate(postDate);
-		
-		System.out.println("in insert : " + content);
+		c.setPageId(pageId);
+		c.setPostDate(postDate);
 		
 		try {
-			cs.insert(content);
+			csi.insert(c);
 			mv.setViewName("redirect:view.ee");
 		} catch (Exception e) {
 			mv.addObject("message",e.getMessage());
@@ -67,36 +63,8 @@ public class EduElnController {
 	@RequestMapping(value="view.ee")
 	public ModelAndView viewEduEln(ModelAndView mv) {		
 		try {
-			List<Contents> contents = cs.findByPageId(pageId);
-			List<ContentsDomain> cds = new ArrayList<ContentsDomain>();
-			for(Contents content: contents) {
-				ContentsDomain cd = new ContentsDomain();
-				String comment = "";
-				String video = "";
-				String image = "";
-				if(content.getText().indexOf("www.youtube.com/embed/") != -1) {
-					video = content.getText().substring(content.getText().indexOf("www.youtube.com/embed/") - 15, content.getText().lastIndexOf("allowfullscreen") + 26);
-				}
-				if(content.getText().indexOf("data:image/jpeg;base64") != -1 ||
-				   content.getText().indexOf("data:image/jpg;base64") != -1 ||
-				   content.getText().indexOf("data:image/png;base64") != -1 || 
-				   content.getText().indexOf("https://") != -1 ||
-				   content.getText().indexOf("http://") != -1 || 
-				   content.getText().indexOf("ftp://") != -1 || 
-				   content.getText().indexOf("ssh://") != -1)
-					image = content.getText().substring(content.getText().indexOf("<img ")).substring(0, content.getText().substring(content.getText().indexOf("<img ")).indexOf("\" />") + 4);
-				comment = content.getText().replace(video, "").replace(image, "");
-
-				cd.setId(content.getId());
-				cd.setCategory(content.getCategory());
-				cd.setTitle(content.getTitle());
-				cd.setComment(comment);
-				cd.setText(content.getText());
-				cd.setImage(content.getImage());
-				cd.setPostDate(content.getPostDate());
-				cds.add(cd);
-			}
-			mv.addObject("cds", cds);
+			List<Contents> cs = csi.findByPageId(pageId);
+			mv.addObject("cs", cs);
 			mv.setViewName("edu/eln/edu_eln_00001");
 		} catch(ContentsException e) {
 			mv.addObject("message",e.getMessage());
@@ -110,8 +78,8 @@ public class EduElnController {
 	public ModelAndView viewEduElnDetail(ModelAndView mv,
 			@RequestParam(value="id") int id) {
 		try {
-			Contents content = cs.findById(id);
-			mv.addObject("content", content);
+			Contents c = csi.findById(id);
+			mv.addObject("c", c);
 			mv.setViewName("edu/eln/edu_eln_00003");
 		} catch(ContentsException e) {
 			mv.addObject("message",e.getMessage());
@@ -124,8 +92,8 @@ public class EduElnController {
 		@RequestMapping(value="updateView.ee")
 		public ModelAndView ubdateEmpLec(ModelAndView mv, @RequestParam(value="id") int id) {
 			try {
-				Contents content = cs.findById(id);
-				mv.addObject("content", content);
+				Contents c = csi.findById(id);
+				mv.addObject("c", c);
 				mv.setViewName("edu/eln/edu_eln_00004");
 			} catch (ContentsException e) {
 				mv.addObject("message",e.getMessage());
@@ -137,21 +105,15 @@ public class EduElnController {
 	// 업데이트(검색한 페이지로 돌아가게 하려면 파라미터 추가)
 	@RequestMapping(value="update.ee", method=RequestMethod.POST) // DI 의존성 주입
 	public ModelAndView updateEduEln(
-			Contents content, ModelAndView mv) {
-		String image = "";
+			Contents c, ModelAndView mv) {
+		
 		String param = ""; // 검색 기록 남길 때
-		if(content.getText().indexOf("embed/") != -1) {
-		image = content.getText().substring(
-				content.getText().indexOf("embed/") + 6, // 첫 번째에 위치한
-				content.getText().indexOf("embed/") + 17); // 유튜브 동영상 id 추출
-		} else image = "X";
-		content.setPageId(pageId);
-		content.setImage(image);
-		content.setPostDate(postDate);
+		c.setPageId(pageId);
+		c.setPostDate(postDate);
 		
 		try {
-			cs.update(content);
-			mv.setViewName("redirect:viewDetail.ee?id=" + content.getId());
+			csi.update(c);
+			mv.setViewName("redirect:viewDetail.ee?id=" + c.getId());
 		} catch (ContentsException e) {
 			mv.addObject("message",e.getMessage());
 			mv.setViewName("common/errorPage");
@@ -164,13 +126,26 @@ public class EduElnController {
 	public ModelAndView deleteEduEln(ModelAndView mv,
 		@RequestParam(value="id") int id) {
 		String param = ""; // 검색 기록 남길 때
+		
 		try {
-			cs.delete(id);
+			csi.delete(id);
 			mv.setViewName("redirect:view.ee");
 		} catch(ContentsException e) {
 			mv.addObject("message",e.getMessage());
 			mv.setViewName("common/errorPage");
 		}
 		return mv;
-	} 
+	}
+	
+	// 외부 url 접근
+	@RequestMapping(value = "redirect.ee", method = RequestMethod.GET) // DI 의존성 주입
+	public ModelAndView viewIbkBokDetail(ModelAndView mv, @RequestParam(value="url") String url){
+		if(url.indexOf("http://") != -1)
+			mv.setViewName("redirect:" + url);
+		else if(url.indexOf("https://") != -1)
+			mv.setViewName("redirect:" + url);
+		else	
+			mv.setViewName("redirect:http://" + url);
+		return mv;
+	}
 }

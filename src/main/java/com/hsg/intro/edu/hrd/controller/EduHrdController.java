@@ -15,7 +15,7 @@ import com.hsg.intro.common.contents.model.vo.Contents;
 @SessionAttributes("loginUser")
 public class EduHrdController {
 	@Autowired
-	private ContentsServiceImpl cs;
+	private ContentsServiceImpl csi;
 	// 주로 사용할 페이지의 이름입니다. contents 테이블의 page_id 컬럼에 들어갈 값입니다.
 	// page_id는 간단한 내용을 뿌려주는 단일 페이지에서 같은 테이블을 사용할 수 있도록 만든 컬럼입니다.
 	private String pageId = "edu/hrd";
@@ -24,8 +24,8 @@ public class EduHrdController {
 	@RequestMapping(value = "view.eh") // DI 의존성 주입
 	public ModelAndView viewContents(ModelAndView mv) {
 		try {
-			Contents content = cs.findOneByPageId(pageId);// select로 데이터 가져옴
-			mv.addObject("content", content);
+			Contents c = csi.findOneByPageId(pageId);// select로 데이터 가져옴
+			mv.addObject("c", c);
 			mv.setViewName("edu/hrd/edu_hrd_00001");
 		} catch (ContentsException e) {
 			mv.addObject("message", e.getMessage());
@@ -38,7 +38,7 @@ public class EduHrdController {
 	@RequestMapping(value = "update.eh", method = RequestMethod.POST) // DI 의존성 주입
 	public ModelAndView updateContents(Contents c, ModelAndView mv) {
 		try {
-			cs.update(c);
+			csi.update(c);
 			mv.setViewName("redirect:view.eh");
 		} catch (ContentsException e) {
 			mv.addObject("message", e.getMessage());
