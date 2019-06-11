@@ -90,7 +90,7 @@ public class ItrBokController {
 					System.out.println("#################### update.ib file : " + file + "####################");
 					System.out.println("#################### update.ib content : " + content + "####################");
 					
-					if(file == null) { // 颇老捞 null 老 版快
+					if(file != null) { // 颇老捞 null 老 版快
 						String root = request.getSession().getServletContext().getRealPath("resources");
 						String filePath = root + "/uploadFiles/itrbok_upload_file";
 						String fileName = "";
