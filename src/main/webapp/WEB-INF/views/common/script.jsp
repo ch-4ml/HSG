@@ -7,6 +7,14 @@
 </head>
 <body>
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+		
+	<script>
+	function resize(obj) {
+	  obj.style.height = "1px";
+	  obj.style.height = (12+obj.scrollHeight)+"px";
+	}
+	</script>
+	
 	<!-- input style 관련 스크립트 -->
 	<script src="./resources/js/classie.js"></script>
 	<script>

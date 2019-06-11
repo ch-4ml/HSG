@@ -70,42 +70,6 @@ public class EduReqController {
 	public ModelAndView view(ModelAndView mv) {
 		try {
 			List<Contents> cs = csi.findByPageId(pageId);
-			for(Contents c: cs) {
-				String contents = "";
-				String imageWithTag = "";
-				if(c.getContents().indexOf("data:text/jpeg;base64") != -1) {
-					contents = c.getContents().substring(c.getContents().indexOf("data:text/jpeg;base64")).substring(0, c.getContents().substring(c.getContents().indexOf("data:text/jpeg;base64")).indexOf("\" alt=\""));
-					imageWithTag = c.getContents().substring(c.getContents().indexOf("<img ")).substring(0, c.getContents().substring(c.getContents().indexOf("<img ")).indexOf("\" />") + 4);
-				}
-				if(c.getContents().indexOf("data:text/png;base64") != -1) {
-					contents = c.getContents().substring(c.getContents().indexOf("data:text/png;base64")).substring(0, c.getContents().substring(c.getContents().indexOf("data:text/png;base64")).indexOf("\" alt=\""));
-					imageWithTag = c.getContents().substring(c.getContents().indexOf("<img ")).substring(0, c.getContents().substring(c.getContents().indexOf("<img ")).indexOf("\" />") + 4);
-				}
-				if(c.getContents().indexOf("data:text/jpg;base64") != -1) {
-					contents = c.getContents().substring(c.getContents().indexOf("data:text/jpg;base64")).substring(0, c.getContents().substring(c.getContents().indexOf("data:text/jpg;base64")).indexOf("\" alt=\""));
-					imageWithTag = c.getContents().substring(c.getContents().indexOf("<img ")).substring(0, c.getContents().substring(c.getContents().indexOf("<img ")).indexOf("\" />") + 4);
-				}
-				if(c.getContents().indexOf("https://") != -1) {
-					contents = c.getContents().substring(c.getContents().indexOf("https://")).substring(0, c.getContents().substring(c.getContents().indexOf("https")).indexOf("\" alt=\""));
-					imageWithTag = c.getContents().substring(c.getContents().indexOf("<img ")).substring(0, c.getContents().substring(c.getContents().indexOf("<img ")).indexOf("\" />") + 4);
-				}
-				if(c.getContents().indexOf("http://") != -1) {
-					contents = c.getContents().substring(c.getContents().indexOf("http://")).substring(0, c.getContents().substring(c.getContents().indexOf("http")).indexOf("\" alt=\""));
-					imageWithTag = c.getContents().substring(c.getContents().indexOf("<img ")).substring(0, c.getContents().substring(c.getContents().indexOf("<img ")).indexOf("\" />") + 4);
-				}
-				if(c.getContents().indexOf("ftp://") != -1) {
-					contents = c.getContents().substring(c.getContents().indexOf("ftp://")).substring(0, c.getContents().substring(c.getContents().indexOf("ftp")).indexOf("\" alt=\""));
-					imageWithTag = c.getContents().substring(c.getContents().indexOf("<img ")).substring(0, c.getContents().substring(c.getContents().indexOf("<img ")).indexOf("\" />") + 4);
-				}
-				if(c.getContents().indexOf("ssh://") != -1) {
-					contents = c.getContents().substring(c.getContents().indexOf("ssh://")).substring(0, c.getContents().substring(c.getContents().indexOf("ssh")).indexOf("\" alt=\""));
-					imageWithTag = c.getContents().substring(c.getContents().indexOf("<img ")).substring(0, c.getContents().substring(c.getContents().indexOf("<img ")).indexOf("\" />") + 4);
-				}
-				// base64 형식의 이미지 src 부분 추출(태그 포함)
-				
-				c.setText(contents);
-				c.setContents(c.getContents().replace(imageWithTag, ""));
-			}
 			mv.addObject("cs", cs);
 			mv.setViewName("edu/req/edu_req_00001");
 		} catch(ContentsException e) {
@@ -133,9 +97,8 @@ public class EduReqController {
 	// 업데이트 폼
 	@RequestMapping(value="updateView.er")
 	public ModelAndView ubdateEmpLec(ModelAndView mv, @RequestParam(value="id") int id) {
-		Contents c;
 		try {
-			c = csi.findById(id);
+			Contents c = csi.findById(id);
 			mv.addObject("c", c);
 			mv.setViewName("edu/req/edu_req_00004");
 		} catch (ContentsException e) {
@@ -147,19 +110,15 @@ public class EduReqController {
 	
 	// 업데이트(검색한 페이지로 돌아가게 하려면 파라미터 추가)
 	@RequestMapping(value="update.er", method=RequestMethod.POST) // DI 의존성 주입
-	public ModelAndView updateEduEln(
-			Contents c, ModelAndView mv, 
-			@RequestParam(value="id") int id) {
-
+	public ModelAndView updateEduEln(Contents c, ModelAndView mv) {
 		String param = ""; // 검색 기록 남길 때
 		
-		c.setId(id);
 		c.setPageId(pageId);
 		c.setPostDate(postDate);
 		
 		try {
 			csi.update(c);
-			mv.setViewName("redirect:viewDetail.er?id=" + id);
+			mv.setViewName("redirect:viewDetail.er?id=" + c.getId());
 		} catch (ContentsException e) {
 			mv.addObject("message",e.getMessage());
 			mv.setViewName("common/errorPage");

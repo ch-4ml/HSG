@@ -31,12 +31,6 @@
 		$("#text").keydown();
 	});
 </script>
-<script>
-function resize(obj) {
-	  obj.style.height = "1px";
-	  obj.style.height = (12+obj.scrollHeight)+"px";
-	}
-</script>
 </head>
 <body>
 <jsp:include page="../../common/header-content.jsp" />
@@ -56,7 +50,7 @@ function resize(obj) {
 	<section class="content content-center">
 	    <div class="container">
 		    <form id="insertForm" action="insert.ee" method="post" enctype="multipart/form-data">
-	    		<textarea id="contents" name="contents" readonly="readonly"></textarea>
+	    		<textarea id="contents" name="contents"></textarea>
 				<section>	
 					<span class="input input--hoshi">
 						<input class="input__field input__field--hoshi" type="text" id="title" name="title">
@@ -72,17 +66,11 @@ function resize(obj) {
 					</select>
 				</section>
 				<section>
-				<span class="input input--hoshi">
+				<span class="input__textarea input--hoshi">
 					<input class="input__field input__field--hoshi" type="text" id="url" name="url">
 					<label class="input__label input__label--hoshi input__label--hoshi-color-1" for="url">
 						<span class="input__label-content input__label-content--hoshi">동영상 URL</span>
 					</label>
-				</span>
-				<span class="input input--hoshi input--filled">
-			    	<input class="input__field input__field--hoshi" type="file" id="file" name="file" accept=".jpg, .jpeg, .png .gif">
-			    	<label class="input__label input__label--hoshi input__label--hoshi-color-1" for="file">
-			    		<span class="input__label-content input__label-content--hoshi">썸네일</span>
-			    	</label>
 				</span>
 				<br>
 				<span class="input__textarea input--hoshi">

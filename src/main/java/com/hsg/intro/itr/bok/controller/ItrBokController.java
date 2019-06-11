@@ -28,33 +28,33 @@ public class ItrBokController {
 	private ContentsServiceImpl csi;
 	
 	private String pageId = "itr/bok";
-	// ì„œì /íŠ¹í—ˆ ì¶”ê°€
-	@RequestMapping(value = "insert.ib", method = RequestMethod.POST) // DI ì˜ì¡´ì„± ì£¼ì…
+	// ¼­Àû/Æ¯Çã Ãß°¡
+	@RequestMapping(value = "insert.ib", method = RequestMethod.POST) // DI ÀÇÁ¸¼º ÁÖÀÔ
 	public ModelAndView insertIbkBok(Contents c, ModelAndView mv
 			, @RequestParam(required=false) MultipartFile file
 			, HttpServletRequest request){
 
-		// ################### íŒŒì¼ ì—…ë¡œë“œ ###################
+		// ################### ÆÄÀÏ ¾÷·Îµå ###################
 		String root = request.getSession().getServletContext().getRealPath("resources");
 		String filePath = root + "/uploadFiles/itrbok_upload_file";
 		String fileName = "";
 		try {
-			// íŒŒì¼ëª… ìƒˆì´ë¦„ ì„¤ì •
+			// ÆÄÀÏ¸í »õÀÌ¸§ ¼³Á¤
 			int randomNumber = (int)((Math.random()*10000)+1);
 			SimpleDateFormat format = new SimpleDateFormat ( "yyyyMMddHHmmss");
 			Date nowTime = new Date();
 			String newfileName = format.format(nowTime) + String.valueOf(randomNumber);
 			
-			// í™•ì¥ì êµ¬í•˜ê¸°
+			// È®ÀåÀÚ ±¸ÇÏ±â
 			int pos = file.getOriginalFilename().lastIndexOf(".");
 			String ext = file.getOriginalFilename().substring(pos);
 			fileName = newfileName + ext;
 			c.setContents(fileName);
 			
-			//íŒŒì¼ê²½ë¡œë¥¼ itrbok ê°ì²´ì— ë„£ì–´ì¤Œ
+			//ÆÄÀÏ°æ·Î¸¦ itrbok °´Ã¼¿¡ ³Ö¾îÁÜ
 			filePath = filePath + "/" + fileName;
 
-			// í•´ë‹¹ í´ë”ì— íŒŒì¼ ìƒì„±
+			// ÇØ´ç Æú´õ¿¡ ÆÄÀÏ »ı¼º
 			file.transferTo(new File(filePath));
 			
 		} catch (IllegalStateException e1) {
@@ -62,7 +62,7 @@ public class ItrBokController {
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
-		// ################### íŒŒì¼ ì—…ë¡œë“œ ###################
+		// ################### ÆÄÀÏ ¾÷·Îµå ###################
 		
 		c.setPageId(pageId);
 		
@@ -79,8 +79,8 @@ public class ItrBokController {
 		
 	}
 	
-	// ì„œì /íŠ¹í—ˆ ìˆ˜ì •
-		@RequestMapping(value = "update.ib", method = RequestMethod.POST) // DI ì˜ì¡´ì„± ì£¼ì…
+	// ¼­Àû/Æ¯Çã ¼öÁ¤
+		@RequestMapping(value = "update.ib", method = RequestMethod.POST) // DI ÀÇÁ¸¼º ÁÖÀÔ
 		public ModelAndView updateIbkBok(Contents c, ModelAndView mv
 				, @RequestParam(required=false) MultipartFile file
 				, HttpServletRequest request) throws ContentsException{
@@ -94,16 +94,15 @@ public class ItrBokController {
 					String fileName = "";
 					String updatefilePath = "";
 					
-
-					if(file != null) { // íŒŒì¼ì´ null ì¼ ê²½ìš°
-						String root = request.getSession().getServletContext().getRealPath("resources");
-						String filePath = root + "/uploadFiles/itrbok_upload_file";
-						String fileName = "";
-						String updatefilePath = "";
-						// ##################### íŒŒì¼ ì‚­ì œ ì²˜ë¦¬ #######################
+					if(file != null) { // ÆÄÀÏÀÌ null ÀÏ °æ¿ì
+						root = request.getSession().getServletContext().getRealPath("resources");
+						filePath = root + "/uploadFiles/itrbok_upload_file";
+						fileName = "";
+						updatefilePath = "";
+						// ##################### ÆÄÀÏ »èÁ¦ Ã³¸® #######################
 						String deleteFileName = csi.findById(c.getId()).getContents();
 
-						// íŒŒì¼ëª… ìƒˆì´ë¦„ ì„¤ì •
+						// ÆÄÀÏ¸í »õÀÌ¸§ ¼³Á¤
 						int randomNumber = (int)((Math.random()*10000)+1);
 						
 						SimpleDateFormat format = new SimpleDateFormat ("yyyyMMddHHmmss");
@@ -112,7 +111,7 @@ public class ItrBokController {
 						
 						String newfileName = format.format(nowTime) + String.valueOf(randomNumber);	
 						
-						// í™•ì¥ì êµ¬í•˜ê¸°
+						// È®ÀåÀÚ ±¸ÇÏ±â
 						
 						int pos = file.getOriginalFilename().lastIndexOf(".");
 						
@@ -121,27 +120,27 @@ public class ItrBokController {
 						fileName = newfileName + ext;
 						
 						c.setContents(fileName);
-						//íŒŒì¼ê²½ë¡œë¥¼ itrbok ê°ì²´ì— ë„£ì–´ì¤Œ
+						//ÆÄÀÏ°æ·Î¸¦ itrbok °´Ã¼¿¡ ³Ö¾îÁÜ
 						updatefilePath = filePath + "/" + fileName;
 						
 						c.setContents(fileName);
 						
-						// í•´ë‹¹ í´ë”ì— íŒŒì¼ ìƒì„±
+						// ÇØ´ç Æú´õ¿¡ ÆÄÀÏ »ı¼º
 						file.transferTo(new File(updatefilePath));
-						// ##################### íŒŒì¼ ì‚­ì œ ì²˜ë¦¬ #######################
+						// ##################### ÆÄÀÏ »èÁ¦ Ã³¸® #######################
 						String deleteFilePath = filePath + "/" + deleteFileName;
 						
-						// ##################### íŒŒì¼ ì‚­ì œ ì²˜ë¦¬ #######################
-						File deleteFile = new File(deleteFilePath); // íŒŒì¼ URL
+						// ##################### ÆÄÀÏ »èÁ¦ Ã³¸® #######################
+						File deleteFile = new File(deleteFilePath); // ÆÄÀÏ URL
 						
 						if(deleteFile.exists()) {
 							if(deleteFile.delete()) {
-								System.out.println("íŒŒì¼ ì‚­ì œ ì™„ë£Œ");
+								System.out.println("ÆÄÀÏ »èÁ¦ ¿Ï·á");
 							} else {
-								System.out.println("íŒŒì¼ ì‚­ì œ ì‹¤íŒ¨");
+								System.out.println("ÆÄÀÏ »èÁ¦ ½ÇÆĞ");
 							}
 						} else {
-							System.out.println("íŒŒì¼ì´ ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
+							System.out.println("ÆÄÀÏÀÌ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.");
 						}
 					}
 					int randomNumber = (int)((Math.random()*10000)+1);
@@ -152,18 +151,18 @@ public class ItrBokController {
 					
 					String newfileName = format.format(nowTime) + String.valueOf(randomNumber);
 					
-					// í™•ì¥ì êµ¬í•˜ê¸°
+					// È®ÀåÀÚ ±¸ÇÏ±â
 					
 					int pos = file.getOriginalFilename().lastIndexOf(".");
 
 					String ext = file.getOriginalFilename().substring(pos);
 					
 					fileName = newfileName + ext;
-					//íŒŒì¼ê²½ë¡œë¥¼ itrbok ê°ì²´ì— ë„£ì–´ì¤Œ
+					//ÆÄÀÏ°æ·Î¸¦ itrbok °´Ã¼¿¡ ³Ö¾îÁÜ
 					filePath = filePath + "/" + fileName;
 					c.setContents(fileName);
 					
-					// í•´ë‹¹ í´ë”ì— íŒŒì¼ ìƒì„±
+					// ÇØ´ç Æú´õ¿¡ ÆÄÀÏ »ı¼º
 					file.transferTo(new File(filePath));
 					
 			} catch (IllegalStateException e1) {
@@ -188,8 +187,8 @@ public class ItrBokController {
 			return mv;
 		}
 	
-	// ì„œì /íŠ¹í—ˆ ì¶”ê°€ í¼ìœ¼ë¡œ ì´ë™
-	@RequestMapping(value = "insertView.ib", method = RequestMethod.GET) // DI ì˜ì¡´ì„± ì£¼ì…
+	// ¼­Àû/Æ¯Çã Ãß°¡ ÆûÀ¸·Î ÀÌµ¿
+	@RequestMapping(value = "insertView.ib", method = RequestMethod.GET) // DI ÀÇÁ¸¼º ÁÖÀÔ
 	public ModelAndView insertViewIbkBok(ModelAndView mv){
 		
 		mv.setViewName("itr/bok/itr_bok_00002");
@@ -198,8 +197,8 @@ public class ItrBokController {
 		
 	}
 	
-	// ì„œì /íŠ¹í—ˆ ìˆ˜ì •í¼ìœ¼ë¡œ ì´ë™
-	@RequestMapping(value = "updateView.ib", method = RequestMethod.GET) // DI ì˜ì¡´ì„± ì£¼ì…
+	// ¼­Àû/Æ¯Çã ¼öÁ¤ÆûÀ¸·Î ÀÌµ¿
+	@RequestMapping(value = "updateView.ib", method = RequestMethod.GET) // DI ÀÇÁ¸¼º ÁÖÀÔ
 	public ModelAndView updateViewIbkBok(Contents c, ModelAndView mv) {
 		try {
 			c = csi.findById(c.getId());
@@ -215,8 +214,8 @@ public class ItrBokController {
 		
 	}
 	
-	// ì„œì /íŠ¹í—ˆ ì‚­ì œ ì²˜ë¦¬
-	@RequestMapping(value = "delete.ib", method = RequestMethod.GET) // DI ì˜ì¡´ì„± ì£¼ì…
+	// ¼­Àû/Æ¯Çã »èÁ¦ Ã³¸®
+	@RequestMapping(value = "delete.ib", method = RequestMethod.GET) // DI ÀÇÁ¸¼º ÁÖÀÔ
 	public ModelAndView deleteIbkBok(
 			ModelAndView mv,
 			@RequestParam(value="id") int id){
@@ -231,8 +230,8 @@ public class ItrBokController {
 		return mv;
 	}
 	
-	// ì„œì /íŠ¹í—ˆ í˜ì´ì§€ ì´ë™
-	@RequestMapping(value = "view.ib", method = RequestMethod.GET) // DI ì˜ì¡´ì„± ì£¼ì…
+	// ¼­Àû/Æ¯Çã ÆäÀÌÁö ÀÌµ¿
+	@RequestMapping(value = "view.ib", method = RequestMethod.GET) // DI ÀÇÁ¸¼º ÁÖÀÔ
 	public ModelAndView viewIbkBok(ModelAndView mv){
 		try {
 			List<Contents> cs = csi.findByPageId(pageId);
@@ -246,8 +245,8 @@ public class ItrBokController {
 		
 	}
 	
-	// ì™¸ë¶€ url ì ‘ê·¼
-	@RequestMapping(value = "redirect.ib", method = RequestMethod.GET) // DI ì˜ì¡´ì„± ì£¼ì…
+	// ¿ÜºÎ url Á¢±Ù
+	@RequestMapping(value = "redirect.ib", method = RequestMethod.GET) // DI ÀÇÁ¸¼º ÁÖÀÔ
 	public ModelAndView viewIbkBokDetail(ModelAndView mv, @RequestParam(value="url") String url){
 		if(url.indexOf("http://") != -1)
 			mv.setViewName("redirect:" + url);

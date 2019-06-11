@@ -14,7 +14,7 @@ public class Contents implements Serializable {
 	private String text;
 	private String url;
 	private String postDate;
-	
+
 	public Contents() {
 		super();
 	}
@@ -22,15 +22,19 @@ public class Contents implements Serializable {
 	public int getId() {
 		return id;
 	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
+
 	public String getPageId() {
 		return pageId;
 	}
+
 	public void setPageId(String pageId) {
 		this.pageId = pageId;
 	}
+
 	public int getCategory() {
 		return category;
 	}
@@ -42,18 +46,23 @@ public class Contents implements Serializable {
 	public String getTitle() {
 		return title;
 	}
+
 	public void setTitle(String title) {
 		this.title = title;
 	}
+
 	public String getContents() {
 		return contents;
 	}
+
 	public void setContents(String contents) {
 		this.contents = contents;
 	}
+
 	public String getText() {
 		return text;
 	}
+
 	public void setText(String text) {
 		this.text = text;
 	}

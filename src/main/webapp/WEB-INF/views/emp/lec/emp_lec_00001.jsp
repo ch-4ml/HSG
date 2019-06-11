@@ -24,7 +24,7 @@
     <!-- Banner Area End -->
     <!-- About Area Starts -->
     <section id="two" class="wrapper style2 alt">
-		<div style="text-align:center;"><h2>진행 중인 강사 채용</h2></div><br><br>
+		<div style="text-align: center;"><h2>진행 중인 강사 채용</h2></div><br><br>
 		<div class="inner">
 			<c:if test="${!empty loginUser }">
 				<div style="text-align: center;">
@@ -35,19 +35,19 @@
 				<br>
 				<br>
 			</c:if>
-			<c:forEach var="content" items="${contents}">
-				<a href="viewDetail.el?id=${content.id }">
+			<c:forEach var="c" items="${cs}">
+				<a href="viewDetail.el?id=${c.id }">
 					<div class="spotlight match-size">
 						<div class="image">
-							<img src="${content.image }">
+							${c.contents }
 						</div>
 						<div class="list">
 							<div class="list-content-mooc">
-								<h3>${content.title }</h3>
-								<h4>${content.text }</h4>
+								<h3>${c.title }</h3>
+								<h4>${c.text }</h4>
 							</div>
 							<div class="list-date">
-								<h4>${content.postDate}</h4>
+								<h4>${c.postDate}</h4>
 							</div>
 						</div>
 					</div>

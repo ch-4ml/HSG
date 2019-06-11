@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>HS글로벌</title>
 <jsp:include page="../../common/head.jsp" />
-<%@ include file="../../common/tinymce.jsp" %>
+<%@ include file="../../common/tinymce-image.jsp" %>
 <script>
 	$(function() {
 		/* validation 처리 */
@@ -19,6 +19,7 @@
 			}
 			return $("#insertForm").submit();
 		});
+		$("#text").keydown();
 	});
 </script>
 </head>
@@ -40,6 +41,7 @@
     <section class="content">
 	    <div class="container">
 		    <form id="insertForm" action="insert.er" method="post">
+				<textarea id="contents" name="contents"></textarea>
 				<span class="input input--hoshi">
 					<input class="input__field input__field--hoshi" type="text" id="title" name="title">
 					<label class="input__label input__label--hoshi input__label--hoshi-color-1" for="title">
@@ -47,7 +49,12 @@
 					</label>
 				</span>
 				<br>
-				<textarea id="text" name="text" placeholder="내용을 추가하세요."></textarea>
+				<span class="input__textarea input--hoshi">
+					<textarea class="autosize, input__field input__field--hoshi" onkeydown="resize(this)" onkeyup="resize(this)" id="text" name="text"></textarea>
+					<label class="input__label input__label--hoshi input__label--hoshi-color-1" for="text">
+						<span class="input__label-content input__label-content--hoshi">내용</span>
+					</label>
+				</span>
 				<br>
 				<div style="text-align:center;">
 					<input type="button" id="insertBtn" value="추가">
