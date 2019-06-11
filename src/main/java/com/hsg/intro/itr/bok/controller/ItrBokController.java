@@ -3,7 +3,6 @@ package com.hsg.intro.itr.bok.controller;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -19,7 +18,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.hsg.intro.Exception.ContentsException;
-import com.hsg.intro.common.contents.model.domain.ContentsDomain;
 import com.hsg.intro.common.contents.model.service.ContentsServiceImpl;
 import com.hsg.intro.common.contents.model.vo.Contents;
 
@@ -81,19 +79,63 @@ public class ItrBokController {
 		@RequestMapping(value = "update.ib", method = RequestMethod.POST) // DI 의존성 주입
 		public ModelAndView updateIbkBok(Contents c, ModelAndView mv
 				, @RequestParam(required=false) MultipartFile file
-				, HttpServletRequest request){
+				, HttpServletRequest request) throws ContentsException{
 			
 			try {
-				// 현재 DB에 저장되어 있는 파일명 넘겨 받은 파일명이 일치할 경우, 이미지 링크를 지우지 않고 그대로 넘겨주어야함 
-				// 다를 경우, 해당 이미지를 삭제하고 새로운 이미지를 업로드 해야함
-
-					// 파일명 새이름 설정
+					System.out.println("#################### update.ib file : " + file + "####################");
+					System.out.println("#################### update.ib content : " + c + "####################");
+					
 					String root = request.getSession().getServletContext().getRealPath("resources");
-					
 					String filePath = root + "/uploadFiles/itrbok_upload_file";
-						
 					String fileName = "";
+					String updatefilePath = "";
 					
+					if(file == null) { // 파일이 null 일 경우
+						
+						// ##################### 파일 삭제 처리 #######################
+						String deleteFileName = csi.findById(c.getId()).getContents();
+
+						// 파일명 새이름 설정
+						int randomNumber = (int)((Math.random()*10000)+1);
+						
+						SimpleDateFormat format = new SimpleDateFormat ("yyyyMMddHHmmss");
+						
+						Date nowTime = new Date();
+						
+						String newfileName = format.format(nowTime) + String.valueOf(randomNumber);	
+						
+						// 확장자 구하기
+						
+						int pos = file.getOriginalFilename().lastIndexOf(".");
+						
+						String ext = file.getOriginalFilename().substring(pos);
+						
+						fileName = newfileName + ext;
+						
+						c.setContents(fileName);
+						//파일경로를 itrbok 객체에 넣어줌
+						updatefilePath = filePath + "/" + fileName;
+						
+						c.setContents(fileName);
+						
+						// 해당 폴더에 파일 생성
+						file.transferTo(new File(updatefilePath));
+						// ##################### 파일 삭제 처리 #######################
+						String deleteFilePath = filePath + "/" + deleteFileName;
+						
+						// ##################### 파일 삭제 처리 #######################
+						File deleteFile = new File(deleteFilePath); // 파일 URL
+						
+						if(deleteFile.exists()) {
+							if(deleteFile.delete()) {
+								System.out.println("파일 삭제 완료");
+							} else {
+								System.out.println("파일 삭제 실패");
+							}
+						} else {
+							System.out.println("파일이 존재하지 않습니다.");
+						}
+					}
 					int randomNumber = (int)((Math.random()*10000)+1);
 					
 					SimpleDateFormat format = new SimpleDateFormat ( "yyyyMMddHHmmss");
@@ -123,23 +165,19 @@ public class ItrBokController {
 			}
 			
 			c.setPageId(pageId);
-			c.setText("<URL - " + request.getParameter("url") + " - URLEND>" + c.getText());
 			
 			try {
 				csi.update(c);
 				
 				List<Contents> cs = csi.findByPageId(pageId);
 				mv.addObject("cs", cs);
-				
 				mv.setViewName("redirect:view.ib");
-				
 			} catch (Exception e) {
 				mv.addObject("message",e.getMessage());
 				mv.setViewName("redirect:/common/errorPage");
 
 			}
 			return mv;
-			
 		}
 	
 	// 서적/특허 추가 폼으로 이동
@@ -154,28 +192,11 @@ public class ItrBokController {
 	
 	// 서적/특허 수정폼으로 이동
 	@RequestMapping(value = "updateView.ib", method = RequestMethod.GET) // DI 의존성 주입
-	public ModelAndView updateViewIbkBok(
-			ModelAndView mv, 
-			@RequestParam(value="id") int id) {
-		Contents c;
-		ContentsDomain cd = new ContentsDomain();
+	public ModelAndView updateViewIbkBok(Contents c, ModelAndView mv) {
 		try {
-			c = csi.findById(id);
-			String url = "";
-			String urlWithTag = "";
-			if(c.getText().indexOf("<URL - ") != -1) {
-				url = c.getText().substring(c.getText().indexOf("<URL - ") + 7, c.getText().indexOf(" - URLEND>"));
-				urlWithTag = c.getText().substring(c.getText().indexOf("<URL - "), c.getText().indexOf(" - URLEND>") + 10);
-			}
-			cd.setId(c.getId());
-			cd.setCategory(c.getCategory());
-			cd.setTitle(c.getTitle());
-			cd.setUrl(url);
-			cd.setContents(c.getContents());
-			cd.setText(c.getText().replace(urlWithTag, ""));
-			cd.setPostDate(c.getPostDate());
+			c = csi.findById(c.getId());
 			
-			mv.addObject("cd", cd);
+			mv.addObject("c", c);
 			mv.setViewName("itr/bok/itr_bok_00003");
 			
 		} catch (ContentsException e) {
@@ -207,25 +228,7 @@ public class ItrBokController {
 	public ModelAndView viewIbkBok(ModelAndView mv){
 		try {
 			List<Contents> cs = csi.findByPageId(pageId);
-			List<ContentsDomain> cds = new ArrayList<ContentsDomain>();
-			for(Contents c: cs) {
-				ContentsDomain cd = new ContentsDomain();
-				String url = "";
-				String urlWithTag = "";
-				if(c.getContents().indexOf("<URL - ") != -1) {
-					url = c.getContents().substring(c.getContents().indexOf("<URL - ") + 7, c.getContents().indexOf(" - URLEND>"));
-					urlWithTag = c.getContents().substring(c.getContents().indexOf("<URL - "), c.getContents().indexOf(" - URLEND>") + 10);
-				}
-				cd.setId(c.getId());
-				cd.setCategory(c.getCategory());
-				cd.setTitle(c.getTitle());
-				cd.setUrl(url);
-				cd.setContents(c.getContents().replace(urlWithTag, ""));
-				cd.setText(c.getText());
-				cd.setPostDate(c.getPostDate());
-				cds.add(cd);
-			}
-			mv.addObject("cds", cds);
+			mv.addObject("cs", cs);
 			mv.setViewName("itr/bok/itr_bok_00001");
 		} catch (ContentsException e) {
 			mv.addObject("message",e.getMessage());
