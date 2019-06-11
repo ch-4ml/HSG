@@ -10,24 +10,13 @@ public class Contents implements Serializable {
 	private String pageId;
 	private int category;
 	private String title;
+	private String contents;
 	private String text;
-	private String image;
+	private String url;
 	private String postDate;
 	
 	public Contents() {
 		super();
-	}
-
-	public Contents(int id, String pageId, int category, String title, String text, String image,
-			String postDate) {
-		super();
-		this.id = id;
-		this.pageId = pageId;
-		this.category = category;
-		this.title = title;
-		this.text = text;
-		this.image = image;
-		this.postDate = postDate;
 	}
 
 	public int getId() {
@@ -56,17 +45,25 @@ public class Contents implements Serializable {
 	public void setTitle(String title) {
 		this.title = title;
 	}
+	public String getContents() {
+		return contents;
+	}
+	public void setContents(String contents) {
+		this.contents = contents;
+	}
 	public String getText() {
 		return text;
 	}
 	public void setText(String text) {
 		this.text = text;
 	}
-	public String getImage() {
-		return image;
+
+	public String getUrl() {
+		return url;
 	}
-	public void setImage(String image) {
-		this.image = image;
+
+	public void setUrl(String url) {
+		this.url = url;
 	}
 
 	public String getPostDate() {
@@ -79,7 +76,7 @@ public class Contents implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Contents [id=" + id + ", pageId=" + pageId + ", category=" + category + ", title="
-				+ title + ", text=" + text + ", image=" + image + ", postDate=" + postDate + "]";
+		return "Contents [id=" + id + ", pageId=" + pageId + ", category=" + category + ", title=" + title
+				+ ", contents=" + contents + ", text=" + text + ", url=" + url + ", postDate=" + postDate + "]";
 	}
 }

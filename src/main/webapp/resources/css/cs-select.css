@@ -245,7 +245,7 @@ div.cs-skin-underline {
 	height: 3px;
 	width: 100%;
 	background-color: #fff;
-	border-bottom: 2px solid hsl(200, 100%, 50%);
+	border-bottom: 1px solid hsl(200, 100%, 50%);
 	-webkit-transform: translate3d(200%,0,0);
 	transform: translate3d(200%,0,0);
 	-webkit-transition: -webkit-transform 0.3s;

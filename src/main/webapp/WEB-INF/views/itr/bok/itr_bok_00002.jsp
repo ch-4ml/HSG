@@ -32,7 +32,8 @@
 				} else {
 					return $("#insertForm").submit();
 				}
-			})
+			});
+			$("#text").keydown();
 		});
     </script>
     <script>
@@ -81,7 +82,7 @@ function resize(obj) {
 						</label>
 					</span>
 					<span class="input input--hoshi input--filled">
-				    	<input class="input__field input__field--hoshi" type="file" id="file" name="file" accept=".jpg, .jpeg, .png">
+				    	<input class="input__field input__field--hoshi" type="file" id="file" name="file" accept=".jpg, .jpeg, .png .gif">
 				    	<label class="input__label input__label--hoshi input__label--hoshi-color-1" for="file">
 				    		<span class="input__label-content input__label-content--hoshi">사진 첨부</span>
 				    	</label>

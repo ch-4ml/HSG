@@ -12,7 +12,7 @@
     		var oldContent = $('#contents').html();
     		$("#contents").html("<textarea id='text' name='text'>" + oldContent + "</textarea><br><div style='text-align:center;'><input type='submit' value='수정'></div>");
     		tinymce.init({
-    		    selector: 'textarea',
+    		    selector: '#text',
     		    menubar: false,
     		    language_url: 'tinymce/ko_KR.js',
     		    plugins: ['autolink autosave code link media table textcolor autoresize hr image imagetools fullpage'],

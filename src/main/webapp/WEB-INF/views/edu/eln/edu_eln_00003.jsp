@@ -57,11 +57,11 @@
 
     <!-- About Area Starts -->
     <section id="two" class="wrapper style2 alt">
-	    <div style="text-align:center;"><h2>${content.title }</h2></div><br><br>
+	    <div style="text-align:center;"><h2>${cd.title }</h2></div><br><br>
    		<div class="inner">
     		<form action="update.ee" method="post">
 				<div class="contents">
-					<span id="contents">${content.text }</span>
+					<span id="contents">${cd.text }</span>
 				</div>
 				<br>
 				<div style="text-align: center;">
@@ -71,8 +71,8 @@
 						<input type="button" id="delete" value="삭제">
 					</c:if>
 				</div>
-				<input type="hidden" id="category" name="category" value="${content.category }">
-				<input type="hidden" id="id" name="id" value="${content.id }">
+				<input type="hidden" id="category" name="category" value="${cd.category }">
+				<input type="hidden" id="id" name="id" value="${cd.id }">
     		</form>
    		</div>
     </section>	    

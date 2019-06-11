@@ -9,9 +9,9 @@ public class ContentsDomain {
 	private int category;
 	private String title;
 	private String url;
-	private String text;
+	private String contents;
 	private String comment;
-	private String image;
+	private String text;
 	private String postDate;
 	public int getId() {
 		return id;
@@ -43,11 +43,11 @@ public class ContentsDomain {
 	public void setUrl(String url) {
 		this.url = url;
 	}
-	public String getText() {
-		return text;
+	public String getContents() {
+		return contents;
 	}
-	public void setText(String text) {
-		this.text = text;
+	public void setContents(String contents) {
+		this.contents = contents;
 	}
 	public String getComment() {
 		return comment;
@@ -55,11 +55,11 @@ public class ContentsDomain {
 	public void setComment(String comment) {
 		this.comment = comment;
 	}
-	public String getImage() {
-		return image;
+	public String getText() {
+		return text;
 	}
-	public void setImage(String image) {
-		this.image = image;
+	public void setText(String text) {
+		this.text = text;
 	}
 	public String getPostDate() {
 		return postDate;
@@ -70,6 +70,6 @@ public class ContentsDomain {
 	@Override
 	public String toString() {
 		return "ContentsDto [id=" + id + ", pageId=" + pageId + ", category=" + category + ", title=" + title + ", url="
-				+ url + ", text=" + text + ", comment=" + comment + ", image=" + image + ", postDate=" + postDate + "]";
+				+ url + ", contents=" + contents + ", comment=" + comment + ", text=" + text + ", postDate=" + postDate + "]";
 	}	
 }

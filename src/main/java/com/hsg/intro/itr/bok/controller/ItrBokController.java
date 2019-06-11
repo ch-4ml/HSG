@@ -27,12 +27,12 @@ import com.hsg.intro.common.contents.model.vo.Contents;
 @SessionAttributes("loginUser")
 public class ItrBokController {
 	@Autowired
-	private ContentsServiceImpl cs;
+	private ContentsServiceImpl csi;
 	
 	private String pageId = "itr/bok";
 	// 서적/특허 추가
 	@RequestMapping(value = "insert.ib", method = RequestMethod.POST) // DI 의존성 주입
-	public ModelAndView insertIbkBok(Contents content, ModelAndView mv
+	public ModelAndView insertIbkBok(Contents c, ModelAndView mv
 			, @RequestParam(required=false) MultipartFile file
 			, HttpServletRequest request){
 
@@ -50,7 +50,7 @@ public class ItrBokController {
 			int pos = file.getOriginalFilename().lastIndexOf(".");
 			String ext = file.getOriginalFilename().substring(pos);
 			fileName = newfileName + ext;
-			content.setImage(fileName);
+			c.setContents(fileName);
 			//파일경로를 itrbok 객체에 넣어줌
 			filePath = filePath + "/" + fileName;
 
@@ -62,12 +62,10 @@ public class ItrBokController {
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
-		content.setPageId(pageId);
-		content.setText("<URL - " + request.getParameter("url") + " - URLEND>" + content.getText());
+		c.setPageId(pageId);
 		
-		System.out.println("controller bok : " + content);
 		try {
-			cs.insert(content);			
+			csi.insert(c);			
 			mv.setViewName("redirect:view.ib");
 			
 		} catch (Exception e) {
@@ -81,7 +79,7 @@ public class ItrBokController {
 	
 	// 서적/특허 수정
 		@RequestMapping(value = "update.ib", method = RequestMethod.POST) // DI 의존성 주입
-		public ModelAndView updateIbkBok(Contents content, ModelAndView mv
+		public ModelAndView updateIbkBok(Contents c, ModelAndView mv
 				, @RequestParam(required=false) MultipartFile file
 				, HttpServletRequest request){
 			
@@ -111,11 +109,9 @@ public class ItrBokController {
 					String ext = file.getOriginalFilename().substring(pos);
 					
 					fileName = newfileName + ext;
-					content.setImage(fileName);
 					//파일경로를 itrbok 객체에 넣어줌
 					filePath = filePath + "/" + fileName;
-
-					content.setImage(fileName);
+					c.setContents(fileName);
 					
 					// 해당 폴더에 파일 생성
 					file.transferTo(new File(filePath));
@@ -126,14 +122,14 @@ public class ItrBokController {
 				e1.printStackTrace();
 			}
 			
-			content.setPageId(pageId);
-			content.setText("<URL - " + request.getParameter("url") + " - URLEND>" + content.getText());
+			c.setPageId(pageId);
+			c.setText("<URL - " + request.getParameter("url") + " - URLEND>" + c.getText());
 			
 			try {
-				cs.update(content);
+				csi.update(c);
 				
-				List<Contents> contents = cs.findByPageId(pageId);
-				mv.addObject("contents", contents);
+				List<Contents> cs = csi.findByPageId(pageId);
+				mv.addObject("cs", cs);
 				
 				mv.setViewName("redirect:view.ib");
 				
@@ -161,23 +157,23 @@ public class ItrBokController {
 	public ModelAndView updateViewIbkBok(
 			ModelAndView mv, 
 			@RequestParam(value="id") int id) {
-		Contents content;
+		Contents c;
 		ContentsDomain cd = new ContentsDomain();
 		try {
-			content = cs.findById(id);
+			c = csi.findById(id);
 			String url = "";
 			String urlWithTag = "";
-			if(content.getText().indexOf("<URL - ") != -1) {
-				url = content.getText().substring(content.getText().indexOf("<URL - ") + 7, content.getText().indexOf(" - URLEND>"));
-				urlWithTag = content.getText().substring(content.getText().indexOf("<URL - "), content.getText().indexOf(" - URLEND>") + 10);
+			if(c.getText().indexOf("<URL - ") != -1) {
+				url = c.getText().substring(c.getText().indexOf("<URL - ") + 7, c.getText().indexOf(" - URLEND>"));
+				urlWithTag = c.getText().substring(c.getText().indexOf("<URL - "), c.getText().indexOf(" - URLEND>") + 10);
 			}
-			cd.setId(content.getId());
-			cd.setCategory(content.getCategory());
-			cd.setTitle(content.getTitle());
+			cd.setId(c.getId());
+			cd.setCategory(c.getCategory());
+			cd.setTitle(c.getTitle());
 			cd.setUrl(url);
-			cd.setText(content.getText().replace(urlWithTag, ""));
-			cd.setImage(content.getImage());
-			cd.setPostDate(content.getPostDate());
+			cd.setContents(c.getContents());
+			cd.setText(c.getText().replace(urlWithTag, ""));
+			cd.setPostDate(c.getPostDate());
 			
 			mv.addObject("cd", cd);
 			mv.setViewName("itr/bok/itr_bok_00003");
@@ -197,7 +193,7 @@ public class ItrBokController {
 			@RequestParam(value="id") int id){
 		
 		try {
-			cs.delete(id);
+			csi.delete(id);
 			mv.setViewName("redirect:view.ib");
 		} catch (ContentsException e) {
 			mv.addObject("message",e.getMessage());
@@ -210,23 +206,23 @@ public class ItrBokController {
 	@RequestMapping(value = "view.ib", method = RequestMethod.GET) // DI 의존성 주입
 	public ModelAndView viewIbkBok(ModelAndView mv){
 		try {
-			List<Contents> contents = cs.findByPageId(pageId);
+			List<Contents> cs = csi.findByPageId(pageId);
 			List<ContentsDomain> cds = new ArrayList<ContentsDomain>();
-			for(Contents content: contents) {
+			for(Contents c: cs) {
 				ContentsDomain cd = new ContentsDomain();
 				String url = "";
 				String urlWithTag = "";
-				if(content.getText().indexOf("<URL - ") != -1) {
-					url = content.getText().substring(content.getText().indexOf("<URL - ") + 7, content.getText().indexOf(" - URLEND>"));
-					urlWithTag = content.getText().substring(content.getText().indexOf("<URL - "), content.getText().indexOf(" - URLEND>") + 10);
+				if(c.getContents().indexOf("<URL - ") != -1) {
+					url = c.getContents().substring(c.getContents().indexOf("<URL - ") + 7, c.getContents().indexOf(" - URLEND>"));
+					urlWithTag = c.getContents().substring(c.getContents().indexOf("<URL - "), c.getContents().indexOf(" - URLEND>") + 10);
 				}
-				cd.setId(content.getId());
-				cd.setCategory(content.getCategory());
-				cd.setTitle(content.getTitle());
+				cd.setId(c.getId());
+				cd.setCategory(c.getCategory());
+				cd.setTitle(c.getTitle());
 				cd.setUrl(url);
-				cd.setText(content.getText().replace(urlWithTag, ""));
-				cd.setImage(content.getImage());
-				cd.setPostDate(content.getPostDate());
+				cd.setContents(c.getContents().replace(urlWithTag, ""));
+				cd.setText(c.getText());
+				cd.setPostDate(c.getPostDate());
 				cds.add(cd);
 			}
 			mv.addObject("cds", cds);

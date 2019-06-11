@@ -58,10 +58,10 @@ function deleteBtnClickEvent(id) {
 				<c:if test="${cd.category eq 1 }">
 					<div class="spotlight">
 						<div class="image">
-							<img src="http://tbsko.cafe24.com/HSG/resources/uploadFiles/itrbok_upload_file/${cd.image}" alt="" />
+							<img src="http://tbsko.cafe24.com/HSG/resources/uploadFiles/itrbok_upload_file/${cd.contents}" alt="" />
 						</div>
 						<div class="list">
-							<a href="redirect.ib?url=${cd.url }">
+							<a href="redirect.ib?url=${cd.url }" target="_blank">
 								<div class="list-content">
 									<h3>${cd.title}</h3><br>
 									<p>${cd.text}</p>
@@ -88,7 +88,7 @@ function deleteBtnClickEvent(id) {
 				<c:if test="${cd.category eq 2 }">
 					<div class="spotlight">
 						<div class="image">
-							<img src="http://tbsko.cafe24.com/HSG/resources/uploadFiles/itrbok_upload_file/${cd.image}" alt="" />
+							<img src="http://tbsko.cafe24.com/HSG/resources/uploadFiles/itrbok_upload_file/${cd.contents}" alt="" />
 						</div>
 						<div class="list">
 							<div class="list-content">

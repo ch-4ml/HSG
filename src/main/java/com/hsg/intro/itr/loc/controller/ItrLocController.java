@@ -16,15 +16,15 @@ import com.hsg.intro.common.contents.model.vo.Contents;
 public class ItrLocController {
 
 	@Autowired
-	private ContentsServiceImpl cs;
+	private ContentsServiceImpl csi;
 
 	private String pageId = "itr/loc";
 
 	@RequestMapping(value = "view.il", method = RequestMethod.GET) // DI 의존성 주입
 	public ModelAndView viewContents(ModelAndView mv) {
 		try {
-			Contents content = cs.findOneByPageId(pageId);
-			mv.addObject("content", content);
+			Contents c = csi.findOneByPageId(pageId);
+			mv.addObject("c", c);
 			mv.setViewName("itr/loc/itr_loc_00001");
 		} catch (ContentsException e) {
 			mv.addObject("message", e.getMessage());
@@ -36,7 +36,7 @@ public class ItrLocController {
 	@RequestMapping(value = "update.il", method = RequestMethod.POST)
 	public ModelAndView update(Contents c, ModelAndView mv) {
 		try {
-			cs.update(c);
+			csi.update(c);
 			mv.setViewName("redirect:view.il");
 		} catch (ContentsException e) {
 			mv.addObject("message", e.getMessage());

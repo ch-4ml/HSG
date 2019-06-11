@@ -31,6 +31,12 @@
 	});
 	
 </script>
+<script>
+function resize(obj) {
+	  obj.style.height = "1px";
+	  obj.style.height = (12+obj.scrollHeight)+"px";
+	}
+</script>
 </head>
 <body>
 <jsp:include page="../../common/header-content.jsp" />
@@ -71,20 +77,27 @@
 							<option value="3">기타</option>
 						</c:when>
 						<c:otherwise>
-							<option value="1" selected>빅데이터</option>
+							<option value="1">빅데이터</option>
 							<option value="2">인공지능</option>
-							<option value="3">기타</option>
+							<option value="3" selected>기타</option>
 						</c:otherwise>
 					</c:choose>
 				</select>
 				</section>
 				<section>
 				<br>
-				<textarea id="text" name="text" placeholder="동영상과 내용을 추가하세요.">${content.text }</textarea>
+				<textarea id="text" name="contents" placeholder="동영상과 내용을 추가하세요.">${content.text }</textarea>
 				<br>
 				<div style="text-align:center;">
 					<input type="button" id="updateBtn" value="수정">
 				</div>
+				<br>
+				<span class="input__textarea input--hoshi">
+					<textarea class="autosize, input__field input__field--hoshi" onkeydown="resize(this)" onkeyup="resize(this)" id="text" name="text"></textarea>
+					<label class="input__label input__label--hoshi input__label--hoshi-color-1" for="text">
+						<span class="input__label-content input__label-content--hoshi">설명</span>
+					</label>
+				</span>
 				</section>
 				<input type="hidden" id="id" name="id" value="${content.id }">
 			</form>
