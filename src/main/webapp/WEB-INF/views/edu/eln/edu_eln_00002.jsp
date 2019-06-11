@@ -9,6 +9,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>HS글로벌</title>
 <jsp:include page="../../common/head.jsp" />
+<%@ include file="../../common/tinymce-image.jsp" %>
 <script>
 	$(function() {
 		
@@ -54,8 +55,9 @@ function resize(obj) {
     <!-- About Area Starts -->
 	<section class="content content-center">
 	    <div class="container">
-		    <form id="insertForm" action="insert.ee" method="post">
-		    	<section>
+		    <form id="insertForm" action="insert.ee" method="post" enctype="multipart/form-data">
+	    		<textarea id="contents" name="contents" readonly="readonly"></textarea>
+				<section>	
 					<span class="input input--hoshi">
 						<input class="input__field input__field--hoshi" type="text" id="title" name="title">
 						<label class="input__label input__label--hoshi input__label--hoshi-color-1" for="title">
@@ -76,7 +78,14 @@ function resize(obj) {
 						<span class="input__label-content input__label-content--hoshi">동영상 URL</span>
 					</label>
 				</span>
-				<span class="input input--hoshi">
+				<span class="input input--hoshi input--filled">
+			    	<input class="input__field input__field--hoshi" type="file" id="file" name="file" accept=".jpg, .jpeg, .png .gif">
+			    	<label class="input__label input__label--hoshi input__label--hoshi-color-1" for="file">
+			    		<span class="input__label-content input__label-content--hoshi">썸네일</span>
+			    	</label>
+				</span>
+				<br>
+				<span class="input__textarea input--hoshi">
 					<textarea class="autosize, input__field input__field--hoshi" onkeydown="resize(this)" onkeyup="resize(this)" id="text" name="text"></textarea>
 					<label class="input__label input__label--hoshi input__label--hoshi-color-1" for="text">
 						<span class="input__label-content input__label-content--hoshi">설명</span>

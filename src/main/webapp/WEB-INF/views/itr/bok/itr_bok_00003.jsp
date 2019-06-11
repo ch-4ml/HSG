@@ -58,16 +58,16 @@ function resize(obj) {
 	<div class="container">
 	    <form id="updateForm" action="update.ib" method="post" enctype="multipart/form-data">
 			<section>
-			<input type="hidden" name="id" value="${cd.id} ">
+			<input type="hidden" name="id" value="${c.id} ">
 			<span class="input input--hoshi">
-				<input class="input__field input__field--hoshi" type="text" id="title" name="title" value="${cd.title }">
+				<input class="input__field input__field--hoshi" type="text" id="title" name="title" value="${c.title }">
 				<label class="input__label input__label--hoshi input__label--hoshi-color-1" for="title">
 					<span class="input__label-content input__label-content--hoshi">출판도서 / 특허명</span>
 				</label>
 			</span>
 			<select class="cs-select cs-skin-underline double" id="category" name="category">
 				<c:choose>
-					<c:when test="${cd.category eq '1'}">
+					<c:when test="${c.category eq '1'}">
 						<option value="1" selected>도서</option>
 						<option value="2">특허</option>
 					</c:when>
@@ -80,7 +80,7 @@ function resize(obj) {
 			</section>
 			<section class="related">
 			<span class="input input--hoshi">
-				<input class="input__field input__field--hoshi" type="text" id="url" name="url" value="${cd.url }">
+				<input class="input__field input__field--hoshi" type="text" id="url" name="url" value="${c.url }">
 				<label class="input__label input__label--hoshi input__label--hoshi-color-1" for="url">
 					<span class="input__label-content input__label-content--hoshi">연결할 URL (www.abcde.com)</span>
 				</label>
@@ -93,7 +93,7 @@ function resize(obj) {
 			</span>
 			<br>
 			<span class="input__textarea input--hoshi">
-				<textarea class="autosize, input__field input__field--hoshi" onkeydown="resize(this)" onkeyup="resize(this)" id="text" name="text">${cd.text}</textarea>
+				<textarea class="autosize, input__field input__field--hoshi" onkeydown="resize(this)" onkeyup="resize(this)" id="text" name="text">${c.text}</textarea>
 				<label class="input__label input__label--hoshi input__label--hoshi-color-1" for="text">
 					<span class="input__label-content input__label-content--hoshi">간단한 설명</span>
 				</label>

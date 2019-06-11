@@ -34,9 +34,9 @@ public class ItrBokController {
 			, @RequestParam(required=false) MultipartFile file
 			, HttpServletRequest request){
 
+		// ################### 파일 업로드 ###################
 		String root = request.getSession().getServletContext().getRealPath("resources");
 		String filePath = root + "/uploadFiles/itrbok_upload_file";
-		
 		String fileName = "";
 		try {
 			// 파일명 새이름 설정
@@ -44,11 +44,13 @@ public class ItrBokController {
 			SimpleDateFormat format = new SimpleDateFormat ( "yyyyMMddHHmmss");
 			Date nowTime = new Date();
 			String newfileName = format.format(nowTime) + String.valueOf(randomNumber);
+			
 			// 확장자 구하기
 			int pos = file.getOriginalFilename().lastIndexOf(".");
 			String ext = file.getOriginalFilename().substring(pos);
 			fileName = newfileName + ext;
 			c.setContents(fileName);
+			
 			//파일경로를 itrbok 객체에 넣어줌
 			filePath = filePath + "/" + fileName;
 
@@ -60,6 +62,8 @@ public class ItrBokController {
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
+		// ################### 파일 업로드 ###################
+		
 		c.setPageId(pageId);
 		
 		try {

@@ -41,7 +41,7 @@
 			<a href="viewDetail.ee?id=${c.id }">
 			<div class="spotlight">
 				<div class="thumbnail">
-					<!-- 이미지 -->
+					${c.contents }
 				</div>
 				<div class="list">
 					<div class="list-content-mooc">

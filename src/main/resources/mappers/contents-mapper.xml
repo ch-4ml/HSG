@@ -44,8 +44,8 @@
 				CATEGORY = #{category}, 
 				TITLE = #{title}, 
 				TEXT = #{text}, 
-				<if test="image != null">
-				IMAGE = #{image}, 
+				<if test="contents != null">
+				CONTENTS = #{contents}, 
 				</if>
 				POST_DATE = #{postDate} 			
 			</set>

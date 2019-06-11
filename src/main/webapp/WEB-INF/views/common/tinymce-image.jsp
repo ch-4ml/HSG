@@ -7,14 +7,12 @@
 <script src="https://cloud.tinymce.com/5/tinymce.min.js?apiKey=iiyaoh4ovlz6z3aafb6vdpqtllt555a3g3loxoh2dwetyw3e"></script>
 <script>
 	tinymce.init({
-	    selector: '#text',
+	    selector: 'textarea#contents',
 	    menubar: false,
 	    language_url: 'tinymce/ko_KR.js',
-	    plugins: ['autolink autosave code link media table textcolor autoresize hr image imagetools fullpage'],
-	    toolbar: "undo redo | fontsizeselect | forecolor bold underline italic code | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | table link media image code hr",
+	    plugins: ['image imagetools autoresize fullpage'],
+	    toolbar: "image",
 	    fullpage_default_font_family: "NanumSquareRound",
-	    font_formats: "나눔스퀘어라운드=NanumSquareRound;",
-	    fontsize_formats: "11px 12px 14px 16px 18px 24px 36px 48px",
 	    file_picker_types: 'image',
 	    file_picker_callback: function (cb, value, meta) {
 	        var input = document.createElement('input');
@@ -47,7 +45,7 @@
 	          reader.readAsDataURL(file);
 	        };
 	        input.click();
-	      }
+	    }
 	});
 </script>
 </head>

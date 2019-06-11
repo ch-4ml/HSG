@@ -2650,9 +2650,18 @@
 
 		.spotlight .thumbnail {
 			width: 30%;
+			height: 100%;
+			margin: 0.5rem;
 		}
-			.spotlight .thumnail img {
-				width: 50%;
+		
+			.spotlight .thumbnail p {
+				width: 30%;
+				margin: 0;
+			}
+			
+			.spotlight .thumbnail img {
+				width: 18em;
+				height: 12em;
 			}
 		
 
