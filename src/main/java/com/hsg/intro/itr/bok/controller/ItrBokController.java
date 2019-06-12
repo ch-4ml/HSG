@@ -57,7 +57,13 @@ public class ItrBokController {
 			fileName = newfileName + ext;
 			c.setContents(fileName);
 			
-			//파일경로를 itrbok 객체에 넣어줌
+			// 폴더 없으면 생성
+			File uploadPath = new File(filePath);
+			if(!uploadPath.exists()) {
+				uploadPath.mkdirs();
+			}
+			
+			// 파일경로를 itrbok 객체에 넣어줌
 			filePath = filePath + "/" + fileName;
 		
 			// 해당 폴더에 파일 생성

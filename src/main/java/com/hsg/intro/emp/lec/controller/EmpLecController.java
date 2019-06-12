@@ -75,6 +75,12 @@ public class EmpLecController {
 			fileName = newfileName + ext;
 			c.setContents(fileName);
 			
+			// 폴더 없으면 생성
+			File uploadPath = new File(filePath);
+			if(!uploadPath.exists()) {
+				uploadPath.mkdirs();
+			}
+			
 			//파일경로를 emplec 객체에 넣어줌
 			filePath = filePath + "/" + fileName;
 		
