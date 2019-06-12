@@ -30,7 +30,7 @@ div {
 h1 {
 	color: #fff;
 	font-family: 'NanumSquareRound',sans-serif;
-	font-size: 80px !important;
+	font-size: 5em !important;
 	font-weight: 700
 }
 
@@ -519,19 +519,40 @@ body.mobile-nav-active #mobile-nav-toggle {
 
 @media ( min-width : 768px) and (max-width: 991.98px) {
 	.banner-area {
-		padding: 280px 0
+		padding: 280px 50px;
+	}
+	
+	h1 {
+	    color: #fff;
+	    font-family: 'NanumSquareRound',sans-serif;
+	    font-size: 4em!important;
+	    font-weight: 700;
 	}
 }
 
 @media ( min-width : 576px) and (max-width: 767.98px) {
 	.banner-area {
-		padding: 250px 0
+		padding: 250px 0;
+	}
+	
+	h1 {
+	    color: #fff;
+	    font-family: 'NanumSquareRound',sans-serif;
+	    font-size: 4em!important;
+	    font-weight: 700;
 	}
 }
 
 @media ( max-width : 575.98px) {
 	.banner-area {
-		padding: 200px 0
+		padding: 200px 0;
+	}
+	
+	h1 {
+	    color: #fff;
+	    font-family: 'NanumSquareRound',sans-serif;
+	    font-size: 3em!important;
+	    font-weight: 700;
 	}
 }
 
