@@ -53,7 +53,7 @@ public class ItrBokController {
 			
 			//파일경로를 itrbok 객체에 넣어줌
 			filePath = filePath + "/" + fileName;
-
+		
 			// 해당 폴더에 파일 생성
 			file.transferTo(new File(filePath));
 			
@@ -86,19 +86,14 @@ public class ItrBokController {
 				, HttpServletRequest request) throws ContentsException{
 			
 			try {
-					System.out.println("#################### update.ib file : " + file + "####################");
+					System.out.println("#################### update.ib file.isEmpty() : " + file.isEmpty() + "####################");
 					System.out.println("#################### update.ib content : " + c + "####################");
 					
-					String root = request.getSession().getServletContext().getRealPath("resources");
-					String filePath = root + "/uploadFiles/itrbok_upload_file";
-					String fileName = "";
-					String updatefilePath = "";
-					
-					if(file != null) { // 파일이 null 일 경우
-						root = request.getSession().getServletContext().getRealPath("resources");
-						filePath = root + "/uploadFiles/itrbok_upload_file";
-						fileName = "";
-						updatefilePath = "";
+					if(!file.isEmpty()) { // 파일이 null 일 경우
+						String root = request.getSession().getServletContext().getRealPath("resources");
+						String filePath = root + "/uploadFiles/itrbok_upload_file";
+						String fileName = "";
+						String updatefilePath = "";
 						// ##################### 파일 삭제 처리 #######################
 						String deleteFileName = csi.findById(c.getId()).getContents();
 
@@ -121,10 +116,11 @@ public class ItrBokController {
 						
 						c.setContents(fileName);
 						//파일경로를 itrbok 객체에 넣어줌
+						
+						System.out.println("#################### update.ib content : " + c + "####################");
+						
 						updatefilePath = filePath + "/" + fileName;
-						
-						c.setContents(fileName);
-						
+						System.out.println("#################### update.ib updatefilePath : " + updatefilePath + "####################");
 						// 해당 폴더에 파일 생성
 						file.transferTo(new File(updatefilePath));
 						// ##################### 파일 삭제 처리 #######################
@@ -132,6 +128,8 @@ public class ItrBokController {
 						
 						// ##################### 파일 삭제 처리 #######################
 						File deleteFile = new File(deleteFilePath); // 파일 URL
+						
+						System.out.println("#################### update.ib deleteFilePath : " + deleteFilePath + "####################");
 						
 						if(deleteFile.exists()) {
 							if(deleteFile.delete()) {
@@ -143,27 +141,6 @@ public class ItrBokController {
 							System.out.println("파일이 존재하지 않습니다.");
 						}
 					}
-					int randomNumber = (int)((Math.random()*10000)+1);
-					
-					SimpleDateFormat format = new SimpleDateFormat ( "yyyyMMddHHmmss");
-					
-					Date nowTime = new Date();
-					
-					String newfileName = format.format(nowTime) + String.valueOf(randomNumber);
-					
-					// 확장자 구하기
-					
-					int pos = file.getOriginalFilename().lastIndexOf(".");
-
-					String ext = file.getOriginalFilename().substring(pos);
-					
-					fileName = newfileName + ext;
-					//파일경로를 itrbok 객체에 넣어줌
-					filePath = filePath + "/" + fileName;
-					c.setContents(fileName);
-					
-					// 해당 폴더에 파일 생성
-					file.transferTo(new File(filePath));
 					
 			} catch (IllegalStateException e1) {
 				e1.printStackTrace();
