@@ -37,7 +37,7 @@
 			</c:if>
 			<c:forEach var="c" items="${cs}" varStatus="status">
 				<a href="viewDetail.er?id=${c.id }">
-					<span class="spotlight match-size">
+					<span class="thumbnail">
 						<div class="image">
 							${c.contents }
 						</div>
