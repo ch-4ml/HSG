@@ -1,17 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html>
 <head>
 <title>HS글로벌</title>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-<%
-	String PATH = request.getContextPath();
-%>
-
-<jsp:include page="../../common/head.jsp" />
+<%@ include file="../../common/head.jsp" %>
 
 <script>   	
 function updateBtnClickEvent(id) {
@@ -58,7 +52,7 @@ function deleteBtnClickEvent(id) {
 				<c:if test="${c.category eq 1 }">
 					<div class="spotlight">
 						<div class="image">
-							<img src="http://tbsko.cafe24.com/HSG/resources/uploadFiles/itrbok_upload_file/${c.contents}" alt="" />
+							<img src="<%= uploadPath %>/itrbok_upload_file/${c.contents}" alt="" />
 						</div>
 						<div class="list">
 							<a href="redirect.ib?url=${c.url }" target="_blank">
@@ -88,7 +82,7 @@ function deleteBtnClickEvent(id) {
 				<c:if test="${c.category eq 2 }">
 					<div class="spotlight">
 						<div class="image">
-							<img src="http://tbsko.cafe24.com/HSG/resources/uploadFiles/itrbok_upload_file/${c.contents}" alt="" />
+							<img src="<%= uploadPath %>/itrbok_upload_file/${c.contents}" alt="" />
 						</div>
 						<div class="list">
 							<div class="list-content">
