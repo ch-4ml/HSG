@@ -37,22 +37,24 @@
 			<br>
 		</c:if>
 		<c:forEach var="c" items="${cs }" varStatus="status">
-			<a href="viewDetail.ee?id=${c.id }">
-			<div class="spotlight">
-				<div class="thumbnail">
-					<img src="<%= uploadPath %>/edueln_upload_file/${c.contents}" alt="" />
-				</div>
-				<div class="list">
-					<div class="list-content-mooc">
-						<h3>${c.title }</h3><br>
-						<h4>${c.text }</h4>
-					</div>
-					<div class="list-date">
-						<br>${c.postDate }<br>
-					</div>
-				</div>
-			</div>
-			</a>
+			<table>
+					<tr class="landscape">
+						<td class="landscape-image">
+						<a href="viewDetail.ee?id=${c.id }">
+							<img src="<%= uploadPath %>/edueln_upload_file/${c.contents}" alt="" />
+						</a>
+						</td>
+						<td class="landscape-contents">
+						<a href="viewDetail.ee?id=${c.id }">
+							<h3>${c.title }</h3><br>
+							<h4>${c.text }</h4>
+						</a>
+						</td>
+						<td class="landscape-date">
+							${c.postDate }
+						</td>
+					</tr>
+			</table>
 		</c:forEach>
 	</div>
 	</section>
