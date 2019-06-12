@@ -10,9 +10,9 @@
     $(function() {
     	$("#update").click(function() {
     		var oldContent = $('#contents').html();
-    		$("#contents").html("<textarea id='text' name='text'>" + oldContent + "</textarea><br><div style='text-align:center;'><input type='submit' value='수정'></div>");
+    		$("#contents").html("<textarea id='content' name='contents'>" + oldContent + "</textarea><br><div style='text-align:center;'><input type='submit' value='수정'></div>");
     		tinymce.init({
-    		    selector: '#text',
+    		    selector: 'textarea#content',
     		    menubar: false,
     		    language_url: 'tinymce/ko_KR.js',
     		    plugins: ['autolink autosave code link media table textcolor autoresize hr image imagetools fullpage'],

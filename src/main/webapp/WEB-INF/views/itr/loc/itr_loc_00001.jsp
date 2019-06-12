@@ -11,7 +11,8 @@
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
       #maps {
-      	width: 70em;
+      	max-width: 70em;
+      	width: 100%;
         height: 100%;
         padding: 10%;
         border-style: outset;
