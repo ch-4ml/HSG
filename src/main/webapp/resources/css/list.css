@@ -2635,20 +2635,21 @@
 	}
 
 		.spotlight .image {
-			width: 30%;
+
+			width: 28%;
 			height: 100%;
 			margin: 0.5rem;
 		}
-		
+			.spotlight .image p {
+			margin: 0;
+		}
 			.spotlight .image img {
-				width: auto;
-				height: auto;
+				width: 75%;
+				height: 100%;
+				margin-left: 0;
+				margin-right: 0;
 				max-width: 12em;
-				max-height: 18em;
-			}
-			
-		.spotlight .image p {
-				margin: 0;
+				max-height: 15em;
 			}
 
 		.spotlight .thumbnail {

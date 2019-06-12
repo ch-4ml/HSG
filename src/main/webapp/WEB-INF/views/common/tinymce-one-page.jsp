@@ -10,13 +10,13 @@
     $(function() {
     	$("#update").click(function() {
     		var oldContent = $('#contents').html();
-    		$("#contents").html("<textarea id='text' name='text'>" + oldContent + "</textarea><br><div style='text-align:center;'><input type='submit' value='수정'></div>");
+    		$("#contents").html("<textarea id='content' name='contents'>" + oldContent + "</textarea><br><div style='text-align:center;'><input type='submit' value='수정'></div>");
     		tinymce.init({
-    		    selector: '#text',
+    		    selector: 'textarea#content',
     		    menubar: false,
     		    language_url: 'tinymce/ko_KR.js',
-    		    plugins: ['autolink autosave code link media table textcolor autoresize hr image imagetools fullpage'],
-    		    toolbar: "undo redo | fontsizeselect | forecolor bold underline italic code | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | table link media image code hr",
+    		    plugins: ['autolink autosave code link table textcolor autoresize hr image imagetools fullpage'],
+    		    toolbar: "undo redo | fontsizeselect | forecolor bold underline italic code | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | table link image code hr",
     		    fullpage_default_font_family: "NanumSquareRound",
     		    font_formats: "나눔스퀘어라운드=NanumSquareRound;",
     		    fontsize_formats: "11px 12px 14px 16px 18px 24px 36px 48px",

@@ -38,7 +38,7 @@
 			<c:forEach var="c" items="${cs}">
 				<a href="viewDetail.el?id=${c.id }">
 					<div class="spotlight">
-						<div class="thumbnail">
+						<div class="image">
 							${c.contents }
 						</div>
 						<div class="list">

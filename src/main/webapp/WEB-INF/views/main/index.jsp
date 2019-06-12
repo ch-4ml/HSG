@@ -245,17 +245,17 @@ $(function() {
 							</div>
 						</c:if>
 						<c:forEach var="d" items="${dev }" varStatus="status">
-							<div class="single-slide" style="text-align: center;">
+							<div class="single-slide">
 								<div class="slide-img">
 									<img src="${d.contents }" alt="" class="img-fluid">
 									<div class="hover-state">
-										<a href="#"><i class="fa fa-plus"></i></a>
+										<i class="fa fa-plus"></i>
 									</div>
 								</div>
 								<div class="single-department item-padding text-center">
 									<h3>${d.title }</h3>
 									<br>
-									<p>${d.text }</p>
+									<p style="text-align: center;">${d.text }</p>
 									<c:if test="${!empty loginUser }">
 										<input type="button" value="수정" onclick="location.href='updateDevView.ma?id=${d.id}'">
 										<input type="button" value="삭제" onclick="deleteBtnClickEvent(${d.id})">

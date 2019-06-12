@@ -44,8 +44,6 @@ public class HomeController {
 			pageId = "main/gre";
 			Contents c = csi.findOneByPageId(pageId);
 			
-			System.out.println("왜 안되지 : " + c.toString());
-			
 			// 태그를 포함한 이미지 추출
 			if(c.getContents().indexOf("data:image/jpeg;base64") != -1) {
 				contents = c.getContents().substring(c.getContents().indexOf("<img ")).substring(0, c.getContents().substring(c.getContents().indexOf("<img ")).indexOf("\" />") + 4);
@@ -73,8 +71,6 @@ public class HomeController {
 			}
 			c.setText(c.getContents().replace(contents, ""));
 			c.setContents(contents);
-			
-			System.out.println("왜 안되지 진짜 : " + c.toString());
 			
 			mv.addObject("gre", c);
 			
@@ -185,6 +181,8 @@ public class HomeController {
 		pageId = "main/dev";
 		c.setPageId(pageId);
 		c.setPostDate(postDate);
+		
+		System.out.println("insertdev c : " + c.toString());
 		
 		try {
 			csi.insert(c);
