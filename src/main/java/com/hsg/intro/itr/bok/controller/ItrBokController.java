@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -28,11 +29,16 @@ public class ItrBokController {
 	private ContentsServiceImpl csi;
 	
 	private String pageId = "itr/bok";
+	
+	SimpleDateFormat formatter = new SimpleDateFormat ("yyyy.MM.dd HH:mm", Locale.KOREA);
+	Date currentDate = new Date();
+	String postDate = formatter.format (currentDate);
+	
 	// 서적/특허 추가
 	@RequestMapping(value = "insert.ib", method = RequestMethod.POST) // DI 의존성 주입
-	public ModelAndView insertIbkBok(Contents c, ModelAndView mv
-			, @RequestParam(required=false) MultipartFile file
-			, HttpServletRequest request){
+	public ModelAndView insertIbkBok(Contents c, ModelAndView mv, 
+			@RequestParam(required=false) MultipartFile file, 
+			HttpServletRequest request) {
 
 		// ################### 파일 업로드 ###################
 		String root = request.getSession().getServletContext().getRealPath("resources");
@@ -65,6 +71,7 @@ public class ItrBokController {
 		// ################### 파일 업로드 ###################
 		
 		c.setPageId(pageId);
+		c.setPostDate(postDate);
 		
 		try {
 			csi.insert(c);			
@@ -81,10 +88,9 @@ public class ItrBokController {
 	
 	// 서적/특허 수정
 		@RequestMapping(value = "update.ib", method = RequestMethod.POST) // DI 의존성 주입
-		public ModelAndView updateIbkBok(Contents c, ModelAndView mv
-				, @RequestParam(required=false) MultipartFile file
-				, HttpServletRequest request) throws ContentsException{
-			
+		public ModelAndView updateIbkBok(Contents c, ModelAndView mv, 
+				@RequestParam(required=false) MultipartFile file, 
+				HttpServletRequest request) throws ContentsException {
 			try {
 					System.out.println("#################### update.ib file.isEmpty() : " + file.isEmpty() + "####################");
 					System.out.println("#################### update.ib content : " + c + "####################");
@@ -99,30 +105,24 @@ public class ItrBokController {
 
 						// 파일명 새이름 설정
 						int randomNumber = (int)((Math.random()*10000)+1);
-						
 						SimpleDateFormat format = new SimpleDateFormat ("yyyyMMddHHmmss");
-						
 						Date nowTime = new Date();
-						
 						String newfileName = format.format(nowTime) + String.valueOf(randomNumber);	
 						
 						// 확장자 구하기
-						
 						int pos = file.getOriginalFilename().lastIndexOf(".");
-						
 						String ext = file.getOriginalFilename().substring(pos);
-						
 						fileName = newfileName + ext;
-						
 						c.setContents(fileName);
+						
 						//파일경로를 itrbok 객체에 넣어줌
-						
 						System.out.println("#################### update.ib content : " + c + "####################");
-						
 						updatefilePath = filePath + "/" + fileName;
 						System.out.println("#################### update.ib updatefilePath : " + updatefilePath + "####################");
+						
 						// 해당 폴더에 파일 생성
 						file.transferTo(new File(updatefilePath));
+						
 						// ##################### 파일 삭제 처리 #######################
 						String deleteFilePath = filePath + "/" + deleteFileName;
 						
@@ -149,6 +149,7 @@ public class ItrBokController {
 			}
 			
 			c.setPageId(pageId);
+			c.setPostDate(postDate);
 			
 			try {
 				csi.update(c);
@@ -195,9 +196,31 @@ public class ItrBokController {
 	@RequestMapping(value = "delete.ib", method = RequestMethod.GET) // DI 의존성 주입
 	public ModelAndView deleteIbkBok(
 			ModelAndView mv,
-			@RequestParam(value="id") int id){
+			@RequestParam(value="id") int id,
+			HttpServletRequest request){
 		
 		try {
+			String root = request.getSession().getServletContext().getRealPath("resources");
+			String filePath = root + "/uploadFiles/itrbok_upload_file";
+			String deleteFileName = csi.findById(id).getContents();
+			// ##################### 파일 삭제 처리 #######################
+			String deleteFilePath = filePath + "/" + deleteFileName;
+			
+			// ##################### 파일 삭제 처리 #######################
+			File deleteFile = new File(deleteFilePath); // 파일 URL
+			
+			System.out.println("#################### update.ib deleteFilePath : " + deleteFilePath + "####################");
+			
+			if(deleteFile.exists()) {
+				if(deleteFile.delete()) {
+					System.out.println("파일 삭제 완료");
+				} else {
+					System.out.println("파일 삭제 실패");
+				}
+			} else {
+				System.out.println("파일이 존재하지 않습니다.");
+			}
+			
 			csi.delete(id);
 			mv.setViewName("redirect:view.ib");
 		} catch (ContentsException e) {

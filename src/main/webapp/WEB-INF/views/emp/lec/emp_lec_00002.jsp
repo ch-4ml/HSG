@@ -5,8 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>HS글로벌</title>
-<jsp:include page="../../common/head.jsp" />
-<%@ include file="../../common/tinymce-image.jsp" %>
+<%@ include file="../../common/head.jsp" %>
 <script>
 	$(function() {		
 		/* validation 처리 */
@@ -42,14 +41,19 @@
     <!-- About Area Starts -->
     <section class="content content-center">
 	    <div class="container">
-		    <form id="insertForm" action="insert.el" method="post">
-			    <textarea id="contents" name="contents"></textarea>
+		    <form id="insertForm" action="insert.el" method="post" enctype="multipart/form-data">
 			    <span class="input input--hoshi">
 					<input class="input__field input__field--hoshi" type="text" id="title" name="title">
 					<label class="input__label input__label--hoshi input__label--hoshi-color-1" for="title">
 						<span class="input__label-content input__label-content--hoshi">채용 공고 제목</span>
 					</label>
 				</span>
+				<span class="input input--hoshi input--filled">
+				    	<input class="input__field input__field--hoshi" type="file" id="file" name="file" accept=".jpg, .jpeg, .png .gif">
+				    	<label class="input__label input__label--hoshi input__label--hoshi-color-1" for="file">
+				    		<span class="input__label-content input__label-content--hoshi">사진 첨부</span>
+				    	</label>
+					</span>
 				<br>
 				<span class="input__textarea input--hoshi">
 					<textarea class="autosize, input__field input__field--hoshi" onkeydown="resize(this)" onkeyup="resize(this)" id="text" name="text"></textarea>
@@ -58,7 +62,7 @@
 					</label>
 				</span>
 				<br>
-				<div style="text-align:center;">
+				<div>
 					<input type="button" id="insertBtn" value="추가">
 				</div>	
 			</form>

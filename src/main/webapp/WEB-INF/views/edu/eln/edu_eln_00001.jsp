@@ -1,13 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>HS글로벌</title>
-<jsp:include page="../../common/head.jsp" />
+<%@ include file="../../common/head.jsp" %>
 </head>
 <body>
 <jsp:include page="../../common/header-content.jsp" />
@@ -41,7 +40,7 @@
 			<a href="viewDetail.ee?id=${c.id }">
 			<div class="spotlight">
 				<div class="thumbnail">
-					${c.contents }
+					<img src="<%= uploadPath %>/edueln_upload_file/${c.contents}" alt="" />
 				</div>
 				<div class="list">
 					<div class="list-content-mooc">
