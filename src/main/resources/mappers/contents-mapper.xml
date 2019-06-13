@@ -12,11 +12,20 @@
 		<result property="text" column="TEXT"/>
 		<result property="url" column="URL" />
 		<result property="postDate" column="POST_DATE" />
+		<result property="origin" column="ORIGIN" />
 	</resultMap>
 	<insert id = "insert" parameterType="Contents">
 		INSERT INTO 
-		hsgbiz_contents(PAGE_ID, CATEGORY, TITLE, CONTENTS, TEXT, URL, POST_DATE) 
-		VALUES(#{pageId}, #{category}, #{title}, #{contents}, #{text}, #{url}, #{postDate})
+		hsgbiz_contents(PAGE_ID, CATEGORY, TITLE, CONTENTS, TEXT, URL, POST_DATE
+		<if test="origin != null">
+			, ORIGIN		
+		</if>
+		) 
+		VALUES(#{pageId}, #{category}, #{title}, #{contents}, #{text}, #{url}, #{postDate}
+		<if test="origin != null">
+			, #{origin}		
+		</if>
+		)
 	</insert>
 	<!-- 
 	<select id="findAll" resultMap="contentsResultSet" parameterType="Contents">
@@ -48,7 +57,10 @@
 				CONTENTS = #{contents}, 
 				</if>
 				URL = #{url},
-				POST_DATE = #{postDate} 			
+				POST_DATE = #{postDate},
+				<if test="origin != null">
+				ORIGIN = #{origin}		
+				</if> 			
 			</set>
 		WHERE ID = #{id};
 	</update>
