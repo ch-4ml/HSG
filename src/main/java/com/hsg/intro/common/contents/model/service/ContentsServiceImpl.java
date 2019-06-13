@@ -1,6 +1,5 @@
 package com.hsg.intro.common.contents.model.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +34,12 @@ public class ContentsServiceImpl implements ContentsService {
 	}
 	
 	@Override
+	public List<Contents> findByPageId(String pageId, PageInfo pi) throws ContentsException {
+		List<Contents> contents = cd.findByPageId(pageId);		
+		return contents;
+	}
+	
+	@Override
 	public Contents findById(int id) throws ContentsException {
 		Contents content = cd.findById(id);
 		return content;
@@ -58,10 +63,5 @@ public class ContentsServiceImpl implements ContentsService {
 	public int getListCount(String pageId) throws ContentsException {
 		
 		return cd.getListCount(pageId);
-	}
-
-	public ArrayList<Contents> getPagingContentList(Contents c, PageInfo pi) throws ContentsException {
-	
-		return cd.getPagingContentList(c, pi);
 	}
 }
