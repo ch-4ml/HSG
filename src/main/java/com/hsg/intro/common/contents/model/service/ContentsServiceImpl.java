@@ -1,11 +1,13 @@
 package com.hsg.intro.common.contents.model.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hsg.intro.Exception.ContentsException;
+import com.hsg.intro.common.PageInfo;
 import com.hsg.intro.common.contents.model.dao.ContentsDaoImpl;
 import com.hsg.intro.common.contents.model.vo.Contents;
 
@@ -51,5 +53,15 @@ public class ContentsServiceImpl implements ContentsService {
 	@Override
 	public void delete(int id) throws ContentsException {
 		cd.delete(id);
+	}
+
+	public int getListCount(String pageId) throws ContentsException {
+		
+		return cd.getListCount(pageId);
+	}
+
+	public ArrayList<Contents> getPagingContentList(Contents c, PageInfo pi) throws ContentsException {
+	
+		return cd.getPagingContentList(c, pi);
 	}
 }

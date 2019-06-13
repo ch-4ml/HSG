@@ -62,4 +62,15 @@
 		DELETE FROM hsgbiz_contents 
 		WHERE ID = #{id}
 	</delete>
+	
+	<select id="getListCount" resultType="java.lang.Integer" parameterType="java.lang.String">
+		SELECT COUNT(*) FROM hsgbiz_contents 
+		WHERE PAGE_ID = #{pageId}
+	</select>
+	
+	<select id="getPagingContentList" resultMap="Contents" parameterMap="Contents">
+		SELECT * FROM hsgbiz_contents 
+		WHERE PAGE_ID = #{pageId}
+	</select>
+	
 </mapper>
