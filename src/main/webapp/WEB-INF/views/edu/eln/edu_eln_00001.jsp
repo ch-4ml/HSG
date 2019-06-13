@@ -38,22 +38,22 @@
 		</c:if>
 		<c:forEach var="c" items="${cs }" varStatus="status">
 			<table>
-					<tr class="landscape">
-						<td class="landscape-image">
-						<a href="viewDetail.ee?id=${c.id }">
-							<img src="<%= uploadPath %>/edueln_upload_file/${c.contents}" alt="" />
-						</a>
-						</td>
-						<td class="landscape-contents">
-						<a href="viewDetail.ee?id=${c.id }">
-							<h3>${c.title }</h3><br>
-							<h4>${c.text }</h4>
-						</a>
-						</td>
-						<td class="landscape-date">
-							${c.postDate }
-						</td>
-					</tr>
+				<tr class="landscape">
+					<td class="landscape-image">
+					<a href="viewDetail.ee?id=${c.id }">
+						<img src="<%= uploadPath %>/edueln_upload_file/${c.contents}" alt="" />
+					</a>
+					</td>
+					<td class="landscape-contents">
+					<a href="viewDetail.ee?id=${c.id }">
+						<h3>${c.title }</h3><br>
+						<h4>${c.text }</h4>
+					</a>
+					</td>
+					<td class="landscape-date">
+						${c.postDate }
+					</td>
+				</tr>
 			</table>
 		</c:forEach>
 	</div>
