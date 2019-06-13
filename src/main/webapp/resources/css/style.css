@@ -516,7 +516,14 @@ body.mobile-nav-active #mobile-nav-toggle {
 	background-size: cover;
 	position: relative
 }
-
+@media ( min-width : 991.98px) {
+	h1 {
+	    color: #fff;
+	    font-family: 'NanumSquareRound',sans-serif;
+	    font-size: 5em!important;
+	    font-weight: 700;
+	}
+}
 @media ( min-width : 768px) and (max-width: 991.98px) {
 	.banner-area {
 		padding: 280px 50px;

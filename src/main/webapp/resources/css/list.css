@@ -2681,6 +2681,10 @@
 			.spotlight .image {
 				width: 55%;
 			}
+			
+			.spotlight .thumbnail {
+				width: 55%;
+			}
 
 			.spotlight .content {
 				padding: 1.5em 2em 0.1em 2em;
@@ -2699,6 +2703,14 @@
 				.spotlight .image {
 					width: 100%;
 				}
+				
+				.spotlight .thumbnail {
+					width: 100%;
+				}
+				
+				.spotlight .list {
+					width: 50%;
+				}
 
 				.spotlight .content {
 					padding: 1em 2em 0.1em 2em;
@@ -2714,6 +2726,68 @@
 			}
 
 		}
+		
+.list {
+	width: 70%;
+	padding-top: 1em;
+	padding-left: 1em;
+	display: inline;
+	float: left;
+}
+
+.list-content-mooc h3 {
+	display: inline-block;
+	width: calc(90%);
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.list-content-mooc h4 {
+	text-overflow: ellipsis;
+	width: calc(90%);
+	overflow: hidden;
+	white-space: normal;
+	line-height: 1.2;
+	height: 3.6em;
+	text-align: left;
+	word-wrap: break-word;
+	display: -webkit-box;
+	-webkit-line-clamp: 3;
+	-webkit-box-orient: vertical;
+}
+
+.list-content p {
+	text-overflow: ellipsis;
+	width: calc(90%);
+	word-wrap: normal;
+	display: inline-block;
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+.list div {
+	float: left;
+}
+
+.list-content {
+	width: 50%;
+}
+
+.list-button li {
+	float: left;
+	margin-right: 0.3em;
+	margin-bottom: 0.5em;
+}
+
+.list-content-mooc {
+	width: 80%;
+}
+
+.list-date {
+	float: left;
+	margin: 0.5em 0.3em;
+}
 
 /* Wrapper */
 
