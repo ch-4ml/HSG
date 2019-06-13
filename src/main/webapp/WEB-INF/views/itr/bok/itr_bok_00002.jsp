@@ -3,13 +3,8 @@
     
 <!DOCTYPE html>
 <head>
-    <title>HS글로벌</title>
-    
-    <%
-		String PATH = request.getContextPath();
-	%>
-	
-    <jsp:include page="../../common/head.jsp" />
+    <title>HS글로벌</title>	
+    <%@ include file="../../common/head.jsp" %>
     <script>
     	$(function() {
 			$("#insertBtn").click(function() {

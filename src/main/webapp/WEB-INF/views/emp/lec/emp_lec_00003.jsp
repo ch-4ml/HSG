@@ -1,16 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>HS글로벌</title>
-<jsp:include page="../../common/head.jsp" />
-<link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900|Quicksand:400,700|Questrial" rel="stylesheet" />
-<link href="./resources/css/detail-default.css" rel="stylesheet" type="text/css" media="all" />
-<script src="https://cloud.tinymce.com/5/tinymce.min.js?apiKey=iiyaoh4ovlz6z3aafb6vdpqtllt555a3g3loxoh2dwetyw3e"></script>
+<%@ include file="../../common/head.jsp" %>
 <script>
 $(function() {
 	$("#delete").click(function() {
@@ -60,25 +56,21 @@ $(function() {
     <section id="two" class="wrapper style2 alt content-center">
 	    <div><h2>${c.title }</h2></div>
 	    <div class="inner">
-	    	<form action="update.el" method="post">
-	    		<div class="contents">
-	    			<span id="contents">
-	    				<br><br>
-	    				${c.contents }
-						<br><br>
-						${c.text }
-						<br><br>
-	    			</span>
-	    		</div>
-	    		<br>
-	    		<input type="button" id="list" value="목록">
-	    		<input type="button" id="apply" value="지원">
-	    		<c:if test="${!empty loginUser }">
-	    			<input type="button" id="update" value="수정">
-	    			<input type="button" id="delete" value="삭제">
-	    		</c:if>
-	    		<input type="hidden" id="id" name="id" value="${c.id }">
-	   		</form>
+    		<div class="contents">
+   				<br><br>
+   				<img src="<%= uploadPath %>/emplec_upload_file/${c.contents }" alt="">
+				<br><br>
+				${c.text }
+				<br><br>
+    		</div>
+    		<br>
+    		<input type="button" id="list" value="목록">
+    		<input type="button" id="apply" value="지원">
+    		<c:if test="${!empty loginUser }">
+    			<input type="button" id="update" value="수정">
+    			<input type="button" id="delete" value="삭제">
+    		</c:if>
+    		<input type="hidden" id="id" name="id" value="${c.id }">
 	    </div>
 	</section>
     <!-- About Area End -->

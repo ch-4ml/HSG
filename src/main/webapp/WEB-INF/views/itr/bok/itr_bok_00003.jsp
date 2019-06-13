@@ -1,17 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-
 <!DOCTYPE html>
 <head>
     <title>HS글로벌</title>
-    
-    <jsp:include page="../../common/head.jsp" />
-    <%
-		String PATH = request.getContextPath();
-	%>
-    <script>
+    <%@ include file="../../common/head.jsp" %>
+<script>
 function resize(obj) {
 	  obj.style.height = "1px";
 	  obj.style.height = (12+obj.scrollHeight)+"px";

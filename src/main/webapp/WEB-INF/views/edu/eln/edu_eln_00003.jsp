@@ -1,7 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,7 +7,7 @@
 <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900|Quicksand:400,700|Questrial" rel="stylesheet" />
 <link href="./resources/css/detail-default.css" rel="stylesheet" type="text/css" media="all" />
 <title>HS글로벌</title>
-<jsp:include page="../../common/head.jsp" />
+<%@ include file="../../common/head.jsp" %>
 <script>
     $(function() {
     	$("#delete").click(function() {
@@ -64,7 +62,7 @@
 					<span id="contents">
 					<br><br>
 						<a href="redirect.ee?url=${c.url }" target="_blank">
-							${c.contents }
+							<img src="<%= uploadPath %>/edueln_upload_file/${c.contents }" alt="">
 						</a>
 						<br><br>
 						${c.text }

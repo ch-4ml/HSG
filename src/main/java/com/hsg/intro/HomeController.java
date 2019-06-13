@@ -1,9 +1,13 @@
 package com.hsg.intro;
 
+import java.io.File;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.hsg.intro.Exception.ContentsException;
@@ -40,48 +45,13 @@ public class HomeController {
 		logger.info("Welcome home! The client locale is {}.", locale);	
 		String contents = "";
 		try {
-			// 메인 화면 인사말
-			pageId = "main/gre";
-			Contents c = csi.findOneByPageId(pageId);
+			// 메인 화면 소개 영상
+			pageId = "main/itr";
+			Contents c = csi.findOneByPageId(pageId);	
 			
-			// 태그를 포함한 이미지 추출
-			if(c.getContents().indexOf("data:image/jpeg;base64") != -1) {
-				contents = c.getContents().substring(c.getContents().indexOf("<img ")).substring(0, c.getContents().substring(c.getContents().indexOf("<img ")).indexOf("\" />") + 4);
-			}
-			if(c.getContents().indexOf("data:image/png;base64") != -1) {
-				contents = c.getContents().substring(c.getContents().indexOf("<img ")).substring(0, c.getContents().substring(c.getContents().indexOf("<img ")).indexOf("\" />") + 4);
-			}
-			if(c.getContents().indexOf("data:image/jpg;base64") != -1) {
-				contents = c.getContents().substring(c.getContents().indexOf("<img ")).substring(0, c.getContents().substring(c.getContents().indexOf("<img ")).indexOf("\" />") + 4);
-			}
-			if(c.getContents().indexOf("data:image/gif;base64") != -1) {
-				contents = c.getContents().substring(c.getContents().indexOf("<img ")).substring(0, c.getContents().substring(c.getContents().indexOf("<img ")).indexOf("\" />") + 4);
-			}
-			if(c.getContents().indexOf("https://") != -1) {
-				contents = c.getContents().substring(c.getContents().indexOf("<img ")).substring(0, c.getContents().substring(c.getContents().indexOf("<img ")).indexOf("\" />") + 4);
-			}
-			if(c.getContents().indexOf("http://") != -1) {
-				contents = c.getContents().substring(c.getContents().indexOf("<img ")).substring(0, c.getContents().substring(c.getContents().indexOf("<img ")).indexOf("\" />") + 4);
-			}
-			if(c.getContents().indexOf("ftp://") != -1) {
-				contents = c.getContents().substring(c.getContents().indexOf("<img ")).substring(0, c.getContents().substring(c.getContents().indexOf("<img ")).indexOf("\" />") + 4);
-			}
-			if(c.getContents().indexOf("ssh://") != -1) {
-				contents = c.getContents().substring(c.getContents().indexOf("<img ")).substring(0, c.getContents().substring(c.getContents().indexOf("<img ")).indexOf("\" />") + 4);
-			}
-			c.setText(c.getContents().replace(contents, ""));
-			c.setContents(contents);
+			System.out.println("c : " + c.toString());
 			
-			mv.addObject("gre", c);
-			
-			// 메인 화면 MOOC
-			pageId = "main/mooc";
-			contents = "";
-			c = csi.findOneByPageId(pageId);
-			
-			//System.out.println("c : " + c.toString());
-			
-			// MOOC 데이터 가공
+			// 소개 영상 데이터 가공
 			if(c.getContents() != null) {
 				if(c.getContents().indexOf("www.youtube.com/embed/") != -1) {
 					// 유튜브 동영상 태그 추출
@@ -90,43 +60,12 @@ public class HomeController {
 			}
 			c.setText(c.getContents().replace(contents, ""));
 			c.setContents(contents);
-			mv.addObject("mooc", c);
+			mv.addObject("itr", c);
 			
 			// 메인 화면 개발
 			pageId = "main/dev";
 			List<Contents> cs = csi.findByPageId(pageId);
-			for(Contents c1: cs) {
-				// 이미지 src 부분 추출
-				contents = "";
-				// 태그를 포함한 이미지 추출
-				if(c1.getContents() != null) {
-					if(c1.getContents().indexOf("data:image/jpeg;base64") != -1) {
-						contents = c1.getContents().substring(c1.getContents().indexOf("data:image/jpeg;base64")).substring(0, c1.getContents().substring(c1.getContents().indexOf("data:image/jpeg;base64")).indexOf("\" alt=\""));
-					}
-					if(c1.getContents().indexOf("data:image/png;base64") != -1) {
-						contents = c1.getContents().substring(c1.getContents().indexOf("data:image/png;base64")).substring(0, c1.getContents().substring(c1.getContents().indexOf("data:image/png;base64")).indexOf("\" alt=\""));
-					}
-					if(c1.getContents().indexOf("data:image/jpg;base64") != -1) {
-						contents = c1.getContents().substring(c1.getContents().indexOf("data:image/jpg;base64")).substring(0, c1.getContents().substring(c1.getContents().indexOf("data:image/jpg;base64")).indexOf("\" alt=\""));
-					}
-					if(c1.getContents().indexOf("data:image/gif;base64") != -1) {
-						contents = c1.getContents().substring(c1.getContents().indexOf("data:image/gif;base64")).substring(0, c1.getContents().substring(c1.getContents().indexOf("data:image/gif;base64")).indexOf("\" alt=\""));
-					}
-					if(c1.getContents().indexOf("https://") != -1) {
-						contents = c1.getContents().substring(c1.getContents().indexOf("https://")).substring(0, c1.getContents().substring(c1.getContents().indexOf("https")).indexOf("\" alt=\""));
-					}
-					if(c1.getContents().indexOf("http://") != -1) {
-						contents = c1.getContents().substring(c1.getContents().indexOf("http://")).substring(0, c1.getContents().substring(c1.getContents().indexOf("http")).indexOf("\" alt=\""));
-					}
-					if(c1.getContents().indexOf("ftp://") != -1) {
-						contents = c1.getContents().substring(c1.getContents().indexOf("ftp://")).substring(0, c1.getContents().substring(c1.getContents().indexOf("ftp")).indexOf("\" alt=\""));
-					}
-					if(c1.getContents().indexOf("ssh://") != -1) {
-						contents = c1.getContents().substring(c1.getContents().indexOf("ssh://")).substring(0, c1.getContents().substring(c1.getContents().indexOf("ssh")).indexOf("\" alt=\""));
-					}
-					c1.setContents(contents);
-				}				
-			}
+			
 			mv.addObject("dev", cs);
 			mv.setViewName("main/index");
 		} catch(ContentsException e) {
@@ -139,20 +78,6 @@ public class HomeController {
 	@RequestMapping(value="view.ma")
 	public String view() {
 		return "redirect:/";
-	}
-	
-	@RequestMapping(value="updateGre.ma")
-	public ModelAndView updateGre(Contents c, ModelAndView mv) {
-		pageId = "main/gre";
-		c.setPageId(pageId);
-		try {
-			csi.update(c);
-			mv.setViewName("redirect:/");
-		} catch (ContentsException e) {
-			mv.addObject("message", e.getMessage());
-			mv.setViewName("common/errorPage");
-		}
-		return mv;
 	}
 	
 	@RequestMapping(value="updateMooc.ma")
@@ -177,8 +102,47 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value="insertDev.ma", method=RequestMethod.POST)
-	public ModelAndView insertDev(Contents c, ModelAndView mv) {
+	public ModelAndView insertDev(Contents c, ModelAndView mv, 
+			@RequestParam(required=false) MultipartFile file,
+			HttpServletRequest request) {
 		pageId = "main/dev";
+		
+		// ################### 파일 업로드 ###################
+		String root = request.getSession().getServletContext().getRealPath("resources");
+		String filePath = root + "/uploadFiles/maindev_upload_file";
+		String fileName = "";
+		try {
+			// 파일명 새이름 설정
+			int randomNumber = (int)((Math.random()*10000)+1);
+			SimpleDateFormat format = new SimpleDateFormat ( "yyyyMMddHHmmss");
+			Date nowTime = new Date();
+			String newfileName = format.format(nowTime) + String.valueOf(randomNumber);
+			
+			// 확장자 구하기
+			int pos = file.getOriginalFilename().lastIndexOf(".");
+			String ext = file.getOriginalFilename().substring(pos);
+			fileName = newfileName + ext;
+			c.setContents(fileName);
+			
+			// 폴더 없으면 생성
+			File uploadPath = new File(filePath);
+			if(!uploadPath.exists()) {
+				uploadPath.mkdirs();
+			}
+			
+			//파일경로를 maindev 객체에 넣어줌
+			filePath = filePath + "/" + fileName;
+		
+			// 해당 폴더에 파일 생성
+			file.transferTo(new File(filePath));
+			
+		} catch (IllegalStateException e1) {
+			e1.printStackTrace();
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		// ################### 파일 업로드 ###################
+		
 		c.setPageId(pageId);
 		c.setPostDate(postDate);
 		
@@ -209,8 +173,69 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value="updateDev.ma", method=RequestMethod.POST)
-	public ModelAndView updateDev(Contents c, ModelAndView mv) {
+	public ModelAndView updateDev(Contents c, ModelAndView mv, 
+			@RequestParam(required=false) MultipartFile file,
+			HttpServletRequest request) throws ContentsException {
 		pageId = "main/dev";
+		
+		try {
+			System.out.println("#################### update.ib file.isEmpty() : " + file.isEmpty() + "####################");
+			System.out.println("#################### update.ib content : " + c + "####################");
+			
+			if(!file.isEmpty()) { // 파일이 null 일 경우
+				String root = request.getSession().getServletContext().getRealPath("resources");
+				System.out.println(root);
+				String filePath = root + "/uploadFiles/maindev_upload_file";
+				String fileName = "";
+				String updatefilePath = "";
+				// ##################### 파일 삭제 처리 #######################
+				String deleteFileName = csi.findById(c.getId()).getContents();
+
+				// 파일명 새이름 설정
+				int randomNumber = (int)((Math.random()*10000)+1);
+				SimpleDateFormat format = new SimpleDateFormat ("yyyyMMddHHmmss");
+				Date nowTime = new Date();
+				String newfileName = format.format(nowTime) + String.valueOf(randomNumber);	
+				
+				// 확장자 구하기
+				int pos = file.getOriginalFilename().lastIndexOf(".");
+				String ext = file.getOriginalFilename().substring(pos);
+				fileName = newfileName + ext;
+				c.setContents(fileName);
+				
+				//파일경로를 maindev 객체에 넣어줌
+				System.out.println("#################### update.ib content : " + c + "####################");
+				updatefilePath = filePath + "/" + fileName;
+				System.out.println("#################### update.ib updatefilePath : " + updatefilePath + "####################");
+				
+				// 해당 폴더에 파일 생성
+				file.transferTo(new File(updatefilePath));
+				
+				// ##################### 파일 삭제 처리 #######################
+				String deleteFilePath = filePath + "/" + deleteFileName;
+				
+				// ##################### 파일 삭제 처리 #######################
+				File deleteFile = new File(deleteFilePath); // 파일 URL
+				
+				System.out.println("#################### update.ib deleteFilePath : " + deleteFilePath + "####################");
+				
+				if(deleteFile.exists()) {
+					if(deleteFile.delete()) {
+						System.out.println("파일 삭제 완료");
+					} else {
+						System.out.println("파일 삭제 실패");
+					}
+				} else {
+					System.out.println("파일이 존재하지 않습니다.");
+				}
+			}
+			
+		} catch (IllegalStateException e1) {
+			e1.printStackTrace();
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		
 		c.setPageId(pageId);
 		c.setPostDate(postDate);
 		try {
@@ -225,8 +250,30 @@ public class HomeController {
 	
 	@RequestMapping(value="deleteDev.ma")
 	public ModelAndView deleteDev(ModelAndView mv,
-			@RequestParam(value="id") int id) {	
+			@RequestParam(value="id") int id,
+			HttpServletRequest request) {	
 		try {
+			String root = request.getSession().getServletContext().getRealPath("resources");
+			String filePath = root + "/uploadFiles/maindev_upload_file";
+			String deleteFileName = csi.findById(id).getContents();
+			// ##################### 파일 삭제 처리 #######################
+			String deleteFilePath = filePath + "/" + deleteFileName;
+			
+			// ##################### 파일 삭제 처리 #######################
+			File deleteFile = new File(deleteFilePath); // 파일 URL
+			
+			System.out.println("#################### update.ib deleteFilePath : " + deleteFilePath + "####################");
+			
+			if(deleteFile.exists()) {
+				if(deleteFile.delete()) {
+					System.out.println("파일 삭제 완료");
+				} else {
+					System.out.println("파일 삭제 실패");
+				}
+			} else {
+				System.out.println("파일이 존재하지 않습니다.");
+			}
+			
 			csi.delete(id);
 			mv.setViewName("redirect:/");
 		} catch(ContentsException e) {

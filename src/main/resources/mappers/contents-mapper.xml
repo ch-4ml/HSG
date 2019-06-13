@@ -47,6 +47,7 @@
 				<if test="contents != null">
 				CONTENTS = #{contents}, 
 				</if>
+				URL = #{url},
 				POST_DATE = #{postDate} 			
 			</set>
 		WHERE ID = #{id};
