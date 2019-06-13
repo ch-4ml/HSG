@@ -35,21 +35,25 @@
 				<br>
 			</c:if>
 			<c:forEach var="c" items="${cs}">
-				<a href="viewDetail.el?id=${c.id }">
-					<div class="spotlight">
-						<div class="image">
-							<img src="<%= uploadPath %>/emplec_upload_file/${c.contents }" alt="">
-						</div>
-						<div class="list">
-							<div class="list-content-mooc">
-								<h3>${c.title }</h3>
-								<h4>${c.text }</h4>
-							</div>
-							<div class="list-date">
+				<table>
+					<tr class="portrait">
+						<td class="portrait-image">
+							<a href="viewDetail.el?id=${c.id }">
+								<img src="<%= uploadPath %>/emplec_upload_file/${c.contents }" alt="">
+							</a>
+						</td>
+						<td class="portrait-contents">
+						<a href="viewDetail.el?id=${c.id }">
+							<h3></h3>
+						</a>
+						
+				</table>
+				
+					
+
+						
 								<h4>${c.postDate}</h4>
-							</div>
-						</div>
-					</div>
+
 				</a>
 			</c:forEach>
 		</div>

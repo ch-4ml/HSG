@@ -25,8 +25,19 @@
                             </ul>
                         </div>
                     </div>
+                    <div class="col-xl-2 col-lg-3">
+                        <div class="single-widget-home mb-5 mb-lg-0">
+                            <h3 class="mb-4">오픈소스</h3>
+                            <ul>
+                                <li class="mb-2"><a href="view.ol">최신기술</a></li>
+                                <li class="mb-2"><a href="view.ot">기술노트</a></li>
+                                <li><a href="view.os">오픈소스</a></li>
+                            </ul>
+                        </div>
+                    </div>
                     <!-- <div class="col-xl-5 offset-xl-1 col-lg-6"> -->
-                    <div class="col-xl-2 offset-xl-1 col-lg-3">
+                    <!-- <div class="col-xl-2 offset-xl-1 col-lg-3"> -->
+                    <div class="col-xl-2 col-lg-3">
                         <div class="single-widget-home mb-5 mb-lg-0">
                             <h3 class="mb-4">교육솔루션</h3>
                              <ul>
@@ -38,7 +49,8 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="col-xl-2 offset-xl-1 col-lg-3">
+                    <!-- <div class="col-xl-2 offset-xl-1 col-lg-3"> -->
+                    <div class="col-xl-2 col-lg-3">
                         <div class="single-widget-home mb-5 mb-lg-0">
                             <h3 class="mb-4">인재 채용</h3>
                              <ul>

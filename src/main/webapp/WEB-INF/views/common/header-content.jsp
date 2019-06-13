@@ -36,6 +36,13 @@
 								<li><a href="view.il">회사위치</a></li>
                             </ul>
                         </li>
+                        <li class="menu-has-children"><a href="view.ol">오픈소스</a>
+                            <ul>
+                                <li><a href="view.ol">최신기술</a></li>
+                                <li><a href="view.ot">기술노트</a></li>
+                                <li><a href="view.os">오픈소스</a></li>
+                            </ul>
+                        </li>
                         <li class="menu-has-children"><a href="view.ee">교육솔루션</a>
                             <ul>
                                 <li><a href="view.ee">MOOC</a></li>
