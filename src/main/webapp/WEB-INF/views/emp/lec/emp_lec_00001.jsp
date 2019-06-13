@@ -23,7 +23,7 @@
     <!-- Banner Area End -->
     <!-- About Area Starts -->
     <section id="two" class="wrapper style2 alt">
-		<div style="text-align: center;"><h2>진행 중인 강사 채용</h2></div><br><br>
+		<div style="text-align: center;"><h2>채용 공고</h2></div><br><br>
 		<div class="inner">
 			<c:if test="${!empty loginUser }">
 				<div style="text-align: center;">
@@ -44,17 +44,15 @@
 						</td>
 						<td class="portrait-contents">
 						<a href="viewDetail.el?id=${c.id }">
-							<h3></h3>
+							<h3>${c.title }</h3>
+							<h4>${c.text}</h4>
 						</a>
-						
+						</td>
+						<td class="portrait-date">
+							${c.postDate }
+						</td>
+					</tr>
 				</table>
-				
-					
-
-						
-								<h4>${c.postDate}</h4>
-
-				</a>
 			</c:forEach>
 		</div>
 	</section>
