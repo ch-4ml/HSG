@@ -1,5 +1,6 @@
 package com.hsg.intro.common.contents.model.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.RowBounds;
@@ -94,5 +95,29 @@ public class ContentsDaoImpl implements ContentsDao {
 		}
 		
 		return result;
+	}
+
+	public int getListCount(HashMap<String, String> hmap) throws ContentsException{
+		Integer result = 0;
+		try {
+			result = sqlSession.selectOne("Contents.getListCount", hmap);
+			
+			if(result == null) {
+				result = 0;
+			}
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+
+	public List<Contents> findByPageId(HashMap<String, String> hmap, PageInfo pi) throws ContentsException {
+		
+		int offset = (pi.getCurrentPage() - 1) * pi.getLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getLimit());
+		List<Contents> cList = sqlSession.selectList("Contents.findByPageIdMap", hmap, rowBounds);
+		return cList;
 	}
 }

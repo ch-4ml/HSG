@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
@@ -45,7 +46,6 @@ public class OpnLatController {
 
 		Contents c = new Contents();
 
-		System.out.println("noticeController noticeSelectList");
 		int limit;
 		int maxPage;
 		int startPage;
@@ -56,7 +56,6 @@ public class OpnLatController {
 		System.out.println("currentPage : " + currentPage);
 
 		int listCount = 0;
-		System.out.println("noticeController noticeSelectList getLstCount");
 
 		try {
 			listCount = csi.getListCount(pageId); // 총페이지수
@@ -262,6 +261,57 @@ public class OpnLatController {
 			
 			csi.delete(id);
 			mv.setViewName("redirect:view.ib");
+		} catch (ContentsException e) {
+			mv.addObject("message",e.getMessage());
+			mv.setViewName("redirect:/common/errorPage");
+		}
+		return mv;
+	}
+	
+	// contents 삭제 
+	@RequestMapping(value = "find.lt", method = RequestMethod.GET) // DI 의존성 주입
+	public ModelAndView findOpnLat(
+			ModelAndView mv,
+			@RequestParam(defaultValue="1") String con,
+			@RequestParam(defaultValue="") String value,
+			@RequestParam(defaultValue = "1") Integer currentPage){
+			
+			HashMap<String, String> hmap = new HashMap<String, String>();
+			
+			hmap.put("pageId", pageId);
+			hmap.put("con", con); // 조건 : 1 : 제목 2 : 내용 3 : 제목+내용
+			hmap.put("value", value); // 검색어
+			
+		try {
+		
+			
+			int limit;
+			int maxPage;
+			int startPage;
+			int endPage;
+			int listCount = 0;
+
+			limit = 10; //
+
+			System.out.println("currentPage : " + currentPage);
+			
+			listCount = csi.getListCount(hmap); // 총페이지수
+
+			maxPage = (int) ((double) listCount / limit + 0.9);
+			startPage = ((int) ((double) currentPage / limit + 0.9) - 1) * limit + 1;
+			endPage = startPage + limit - 1;
+			if (maxPage < endPage) {
+				endPage = maxPage;
+			}
+
+			PageInfo pi = new PageInfo(currentPage, listCount, limit, maxPage, startPage, endPage, currentPage);
+			
+			List<Contents> cList = csi.findByPageId(hmap, pi);
+			
+			mv.addObject("pi", pi);
+			mv.addObject("cList", cList);
+			
+			mv.setViewName("redirect:view.lt");
 		} catch (ContentsException e) {
 			mv.addObject("message",e.getMessage());
 			mv.setViewName("redirect:/common/errorPage");

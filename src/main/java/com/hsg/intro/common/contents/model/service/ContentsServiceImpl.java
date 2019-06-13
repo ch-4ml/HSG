@@ -1,5 +1,6 @@
 package com.hsg.intro.common.contents.model.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,4 +65,22 @@ public class ContentsServiceImpl implements ContentsService {
 		
 		return cd.getListCount(pageId);
 	}
+
+	public int getListCount(HashMap<String, String> hmap) throws ContentsException {
+		
+		return cd.getListCount(hmap);
+	}
+
+	public List<Contents> findByPageId(HashMap<String, String> hmap, PageInfo pi)  {
+		
+		return cd.findByPageId(hmap, pi);
+	}
 }
+
+
+
+
+
+
+
+
