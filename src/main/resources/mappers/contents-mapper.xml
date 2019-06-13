@@ -34,6 +34,24 @@
 		WHERE PAGE_ID = #{pageId}
 		ORDER BY ID DESC;
 	</select>
+	
+	<select id="findByPageIdMap" resultMap="contentsResultSet" parameterType="java.util.HashMap">
+		SELECT * FROM hsgbiz_contents 
+		WHERE 1 = 1 
+		AND PAGE_ID = #{pageId}
+		<if test="con == 1">
+		AND TITLE LIKE '%' || #{value} || '%'
+		</if>
+		<if test="con == 2">
+		AND CONTENTS LIKE '%' || #{value} || '%'
+		</if>
+		<if test="con == 3">
+		AND TITLE LIKE '%' || #{value} || '%'
+		AND CONTENTS LIKE '%' || #{value} || '%'
+		</if>	
+		ORDER BY ID DESC
+	</select>
+	
 	<select id="findById" resultMap="contentsResultSet" parameterType="Contents">
 		SELECT * FROM hsgbiz_contents 
 		WHERE ID = #{id};
@@ -68,4 +86,19 @@
 		WHERE PAGE_ID = #{pageId}
 	</select>
 	
+	<select id="getListCountsetMap" resultType="java.lang.Integer" parameterType="java.util.HashMap">
+		SELECT COUNT(*) FROM hsgbiz_contents 
+		WHERE 1 = 1 
+		AND PAGE_ID = #{pageId}
+		<if test="con == 1">
+		AND TITLE LIKE '%' || #{value} || '%'
+		</if>
+		<if test="con == 2">
+		AND CONTENTS LIKE '%' || #{value} || '%'
+		</if>
+		<if test="con == 3">
+		AND TITLE LIKE '%' || #{value} || '%'
+		AND CONTENTS LIKE '%' || #{value} || '%'
+		</if>	
+	</select>
 </mapper>
