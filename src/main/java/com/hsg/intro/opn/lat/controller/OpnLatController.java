@@ -89,46 +89,63 @@ public class OpnLatController {
 		
 		return mv;
 	}
-
-	/*
-	 * @RequestMapping(value = "pagingContentList.lt", method = RequestMethod.POST)
-	 * // DI 의존성 주입 public ModelAndView insertIbkBok(Contents c, ModelAndView mv,
-	 * 
-	 * @RequestParam(required=false) MultipartFile file, HttpServletRequest request)
-	 * {
-	 * 
-	 * // ################### 파일 업로드 ################### String root =
-	 * request.getSession().getServletContext().getRealPath("resources"); String
-	 * filePath = root + "/uploadFiles/itrbok_upload_file"; String fileName = "";
-	 * try { // 파일명 새이름 설정 int randomNumber = (int)((Math.random()*10000)+1);
-	 * SimpleDateFormat format = new SimpleDateFormat ( "yyyyMMddHHmmss"); Date
-	 * nowTime = new Date(); String newfileName = format.format(nowTime) +
-	 * String.valueOf(randomNumber);
-	 * 
-	 * // 확장자 구하기 int pos = file.getOriginalFilename().lastIndexOf("."); String ext
-	 * = file.getOriginalFilename().substring(pos); fileName = newfileName + ext;
-	 * c.setContents(fileName);
-	 * 
-	 * // 폴더 없으면 생성 File uploadPath = new File(filePath); if(!uploadPath.exists()) {
-	 * uploadPath.mkdirs(); }
-	 * 
-	 * // 파일경로를 itrbok 객체에 넣어줌 filePath = filePath + "/" + fileName;
-	 * 
-	 * // 해당 폴더에 파일 생성 file.transferTo(new File(filePath));
-	 * 
-	 * } catch (IllegalStateException e1) { e1.printStackTrace(); } catch
-	 * (IOException e1) { e1.printStackTrace(); } // ################### 파일 업로드
-	 * ###################
-	 * 
-	 * c.setPageId(pageId); c.setPostDate(postDate);
-	 * 
-	 * try { csi.insert(c); mv.setViewName("redirect:view.ib");
-	 * 
-	 * } catch (Exception e) { mv.addObject("message",e.getMessage());
-	 * mv.setViewName("common/errorPage");
-	 * 
-	 * } return mv;
-	 * 
-	 * }
-	 */
+	
+	@RequestMapping(value = "insert.lt", method = RequestMethod.POST) // DI 의존성 주입 
+	public ModelAndView insertOpnLat(Contents c, ModelAndView mv,
+	  @RequestParam(required=false) MultipartFile file, HttpServletRequest request) {
+	  
+		  // ################### 파일 업로드 ################### 
+		  String root = request.getSession().getServletContext().getRealPath("resources"); 
+		  String filePath = root + "/uploadFiles/opnlat_upload_file"; 
+		  String fileName = "";
+		  String originFileName = "";
+		  try { // 파일명 새이름 설정 
+			  int randomNumber = (int)((Math.random()*10000)+1);
+			  SimpleDateFormat format = new SimpleDateFormat ( "yyyyMMddHHmmss"); 
+			  Date nowTime = new Date(); String newfileName = format.format(nowTime) + String.valueOf(randomNumber);
+			  
+			  // 확장자 구하기 
+			  int pos = file.getOriginalFilename().lastIndexOf("."); 
+			  String ext = file.getOriginalFilename().substring(pos); 
+			  fileName = newfileName + ext;
+			  originFileName = file.getOriginalFilename();
+			  
+			  c.setContents(fileName);
+			  c.setOrigin(originFileName);
+			  
+			  // 폴더 없으면 생성 
+			  File uploadPath = new File(filePath); 
+			  if(!uploadPath.exists()) {
+				  uploadPath.mkdirs(); 
+			  }
+			  
+			  // 파일경로를 itrbok 객체에 넣어줌 
+			  filePath = filePath + "/" + fileName;
+			  
+			  // 해당 폴더에 파일 생성 
+			  file.transferTo(new File(filePath));
+			  
+		  } catch (IllegalStateException e1) { 
+			  e1.printStackTrace(); 
+		  } catch (IOException e1) { 
+			  e1.printStackTrace(); 
+		  } 
+		  // ################### 파일 업로드###################
+		  
+		  c.setPageId(pageId); c.setPostDate(postDate);
+		  
+		  try { 
+			  csi.insert(c); 
+			  mv.setViewName("redirect:view.lt");
+		  
+		  } catch (Exception e) { mv.addObject("message",e.getMessage());
+		  	  mv.setViewName("common/errorPage");
+		  
+		  } 
+		  return mv;
+	  
+	  }
+	
+	  
+	 
 }
