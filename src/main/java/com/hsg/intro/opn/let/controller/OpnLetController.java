@@ -85,7 +85,7 @@ public class OpnLetController {
 			
 		} catch (Exception e) {
 			mv.addObject("message",e.getMessage());
-			mv.setViewName("common/errorPage");
+			mv.setViewName("jsonView");
 
 		}
 		return mv;
