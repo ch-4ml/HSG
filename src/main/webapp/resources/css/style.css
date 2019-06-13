@@ -237,7 +237,7 @@ opacity
 
 .sf-arrows .sf-with-ul, .sf-arrows .sf-main {
 	padding-right: 30px;
-	text-shadow: 0 0 10px #000000;
+	text-shadow: 2px 2px 5px #000000;
 }
 
 .sf-arrows .sf-with-ul:after {
@@ -269,7 +269,7 @@ opacity
 	display: inline-block;
 	color: #ffffff;
 	font-weight: 500;
-	font-size: 14px;
+	font-size: 16px;
 	text-transform: uppercase;
 	outline: none;
 }
@@ -294,7 +294,7 @@ opacity
 	color: #333;
 	transition: 0.3s;
 	display: block;
-	font-size: 12px;
+	font-size: 14px;
 	text-transform: none
 }
 
