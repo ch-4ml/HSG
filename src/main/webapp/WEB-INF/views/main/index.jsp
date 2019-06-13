@@ -50,10 +50,10 @@ $(function() {
 			<div class="row">
 				<div class="col-lg-8">
 					<div class="col-lg-10">
-						<h1 class="text-shadow-banner">HW/SW 시스템 융합 솔루션 기업</h1>
+						<h1 class="text-shadow-banner">HW/SW 시스템<br>융합 솔루션 기업</h1>
 					</div>
 					<p class="text-shadow-p">
-						HS글로벌은 하드웨어/소프트웨어 융합 시스템 솔루션 전문 기업으로 시작하여 <BR>미래 글로벌 IT 융합 기업을 목표로 힘차게 나아가겠습니다.
+						HS글로벌은 하드웨어/소프트웨어 융합 시스템 솔루션 전문 기업으로 시작하여 미래 글로벌 IT 융합 기업을 목표로 힘차게 나아가겠습니다.
 					</p>
 					<!-- <a href="" class="template-btn mt-3">자세히보기</a>  -->
 				</div>
@@ -68,25 +68,23 @@ $(function() {
 			<div class="row">
 				<div class="col-lg-4 col-md-6">
 					<div class="single-feature text-center item-padding wow fadeInUp" data-wow-delay="250ms">
-						<img src="./resources/images/feature1.png" alt="">
-						<h3>교육 솔루션</h3>
-						<p class="pt-3">기업에 근무하는 R&D 인력을 대상으로 신규 프로젝트 진행이나, 개발자의 직무향상을 위하여 기업이 컨설팅 및 교육을 위탁하여 진행되는 서비스입니다.</p>
+						<img src="./resources/images/feature3.png" alt="">
+						<h3>개발</h3>
+						<p class="pt-3">산업용 PC 기반의 사용자 인터페이스 프로그램과 교육용 Kocoafab 지니어스키트 스타터 팩 및 보드 등을 개발합니다.<br></p>
 					</div>
 				</div>
 				<div class="col-lg-4 col-md-6">
 					<div class="single-feature text-center item-padding mt-4 mt-md-0 wow fadeInUp" data-wow-delay="500ms">
-						<img src="./resources/images/feature3.png" alt="">
-						<h3>개발</h3>
-						<p class="pt-3">
-							산업용 pc 기반의 사용자 인터페이스 프로그램과 교육용 Kocoafab 지니어스키트 스타터 팩 및 보드 등을 개발합니다.<br>
-						</p>
+						<img src="./resources/images/feature2.png" alt="">
+						<h3>컨설팅</h3>
+						<p class="pt-3">다양한 사업 분야에서 최적의 솔루션을 제공합니다.</p>
 					</div>
 				</div>
 				<div class="col-lg-4 col-md-6">
 					<div class="single-feature text-center item-padding mt-4 mt-lg-0 wow fadeInUp" data-wow-delay="750ms">
-						<img src="./resources/images/feature2.png" alt="">
-						<h3>컨설팅</h3>
-						<p class="pt-3">다양한 사업 분야에서 최적의 솔루션을 제공합니다.</p>
+						<img src="./resources/images/feature1.png" alt="">
+						<h3>교육 솔루션</h3>
+						<p class="pt-3">기업에 근무하는 R&D 인력을 대상으로 신규 프로젝트 진행이나, 개발자의 직무향상을 위하여 기업이 컨설팅 및 교육을 위탁하여 진행되는 서비스입니다.</p>
 					</div>
 				</div>
 
@@ -135,7 +133,7 @@ $(function() {
 			<div class="row">
 				<div class="col-lg-6 offset-lg-3">
 					<div class="section-top text-center">
-						<h2>교육용/산업용 개발</h2>
+						<h2>Products</h2>
 					</div>
 				</div>
 			</div>

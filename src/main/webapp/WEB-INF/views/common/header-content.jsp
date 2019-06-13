@@ -31,7 +31,8 @@
                                 <li><a href="view.ih">일반 현황 및 연혁</a></li>
 								<li><a href="view.io">조직 및 사업 분야</a></li>
 								<li><a href="view.ib">출판 도서/특허</a></li>
-								<li><a href="view.ic">컨설팅 및 검증 실적</a></li>
+								<li><a href="view.ic">컨설팅 및 개발 실적</a></li>
+								<li><a href="view.ip">Partner & Customer</a></li>
 								<li><a href="view.il">회사위치</a></li>
                             </ul>
                         </li>
@@ -44,9 +45,10 @@
 								<li><a href="view.er">교육 의뢰</a></li>
                             </ul>
                         </li>
-						<li class="menu-has-children"><a href="view.el">강사채용</a>
+						<li class="menu-has-children"><a href="view.en">인재 채용</a>
                             <ul>
-                                <li><a href="view.el">채용 공고</a></li>
+                            	<li><a href="view.en">공지사항</a></li>
+                                <li><a href="view.el">분야별 채용 공고</a></li>
                             </ul>
                         </li>
                         <c:choose>

@@ -1,27 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>HS글로벌</title>
 <jsp:include page="../../common/head.jsp" />
-<script>
-	$(function() {
-		/* validation 처리 */
-		$("#insertBtn").click(function() {
-			
-			var title = $("#title").val();
-			
-			if(title == ""){
-				return alert("제목을 입력해주세요.");
-			}
-			return $("#insertForm").submit();
-		});
-		$("#text").keydown();
-	});
-</script>
-</head>
 <body>
 <jsp:include page="../../common/header-content.jsp" />
     <!-- Banner Area Starts -->
@@ -29,46 +15,23 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1>교육 등록</h1>
+                    <h1>교육 의뢰</h1>
                 </div>
             </div>
         </div>
     </section>
     <!-- Banner Area End -->
-
-    <!-- About Area Starts -->
-    <section class="content content-center">
-	    <div class="container">
-		    <form id="insertForm" action="insert.er" method="post" enctype="multipart/form-data">
-				<span class="input input--hoshi">
-					<input class="input__field input__field--hoshi" type="text" id="title" name="title">
-					<label class="input__label input__label--hoshi input__label--hoshi-color-1" for="title">
-						<span class="input__label-content input__label-content--hoshi">진행할 교육 프로그램명</span>
-					</label>
-				</span>
-				<span class="input input--hoshi input--filled">
-			    	<input class="input__field input__field--hoshi" type="file" id="file" name="file" accept=".jpg, .jpeg, .png .gif">
-			    	<label class="input__label input__label--hoshi input__label--hoshi-color-1" for="file">
-			    		<span class="input__label-content input__label-content--hoshi">사진 첨부</span>
-			    	</label>
-				</span>
-				<br>
-				<span class="input__textarea input--hoshi">
-					<textarea class="autosize, input__field input__field--hoshi" onkeydown="resize(this)" onkeyup="resize(this)" id="text" name="text"></textarea>
-					<label class="input__label input__label--hoshi input__label--hoshi-color-1" for="text">
-						<span class="input__label-content input__label-content--hoshi">내용</span>
-					</label>
-				</span>
-				<br>
-				<div>
-					<input type="button" id="insertBtn" value="추가">
-				</div>	
-			</form>
-		</div>
-	</section>
-    <!-- About Area End -->
     
-    <jsp:include page="../../common/footer.jsp" />
+    <!-- About Area Starts -->
+    <section id="two" class="wrapper style2 alt content-center">
+    	<h2>메일을 전송하였습니다.</h2>
+    	<div class="inner">
+    		<a href="view.ma">GO TO MAIN</a>
+    	</div>
+    </section>
+     
+    <!-- About Area End -->    
+<jsp:include page="../../common/footer.jsp" />
     <!-- footer -->
 </body>
 </html>

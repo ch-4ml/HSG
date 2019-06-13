@@ -8,42 +8,45 @@
 @import
 	url("https://fonts.googleapis.com/css?family=Ubuntu:400,500,700");
 
-@import url('https://cdn.rawgit.com/innks/NanumSquareRound/master/nanumsquareround.min.css');
+@import
+	url('https://cdn.rawgit.com/innks/NanumSquareRound/master/nanumsquareround.min.css')
+	;
+
 body {
 	color: #777;
-	font-family: 'NanumSquareRound',sans-serif;
+	font-family: 'NanumSquareRound', sans-serif;
 	font-size: 15px;
 	font-weight: 400
 }
 
 p {
 	color: #000;
-	font-family: 'NanumSquareRound',sans-serif;
+	font-family: 'NanumSquareRound', sans-serif;
 	font-size: 15px !important;
 	font-weight: 100
 }
 
 div {
-	font-family: 'NanumSquareRound',sans-serif;
+	font-family: 'NanumSquareRound', sans-serif;
 }
 
 h1 {
 	color: #fff;
-	font-family: 'NanumSquareRound',sans-serif;
+	font-family: 'NanumSquareRound', sans-serif;
 	font-size: 5em !important;
 	font-weight: 700
 }
 
 h2 {
 	/*color: #222;*/
-	font-family: 'NanumSquareRound',sans-serif;
+	font-family: 'NanumSquareRound', sans-serif;
 	font-size: 36px !important;
 	font-weight: 700
 }
 
 h3 {
 	color: #222;
-	font-family: 'NanumSquareRound',sans-serif;
+	font-family: 'NanumSquareRound', sans-serif;
 	font-size: 18px !important;
 	font-weight: 700;
 	text-transform: uppercase
@@ -51,14 +54,14 @@ h3 {
 
 h4 {
 	color: #222;
-	font-family: 'NanumSquareRound',sans-serif;
+	font-family: 'NanumSquareRound', sans-serif;
 	font-size: 16px !important;
 	font-weight: 400
 }
 
 h5 {
 	color: #777;
-	font-family: 'NanumSquareRound',sans-serif;
+	font-family: 'NanumSquareRound', sans-serif;
 	text-transform: capitalize;
 	font-size: 14px !important;
 	font-weight: 400
@@ -67,7 +70,7 @@ h5 {
 h6 {
 	color: #777;
 	font-size: 12px !important;
-	font-family: 'NanumSquareRound',sans-serif;
+	font-family: 'NanumSquareRound', sans-serif;
 	text-transform: uppercase;
 	font-weight: 500
 }
@@ -103,9 +106,26 @@ input:focus, textarea:focus {
 
 100%{
 -webkit-transform
+
+
+
+
 :scale(1)
-;opacity
+
+
+
+
+;
+opacity
+
+
+
+
 :
+
+
+
+
 0
 }
 }
@@ -117,11 +137,37 @@ keyframes sk-scaleout { 0%{
 
 100%{
 -webkit-transform
+
+
+
+
 :scale(1)
-;transform
+
+
+
+
+;
+transform
+
+
+
+
 :scale(1)
-;opacity
+
+
+
+
+;
+opacity
+
+
+
+
 :
+
+
+
+
 0
 }
 }
@@ -198,7 +244,7 @@ keyframes sk-scaleout { 0%{
 	content: "\f107";
 	position: absolute;
 	right: 15px;
-	font-family: 'FontAwesome',sans-serif;
+	font-family: 'FontAwesome', sans-serif;
 	font-style: normal;
 	font-weight: normal
 }
@@ -219,14 +265,13 @@ keyframes sk-scaleout { 0%{
 
 .nav-menu a {
 	padding: 7px 10px;
-    text-decoration: none;
-    display: inline-block;
-    color: #ffffff;
-    font-weight: 500;
-    font-size: 14px;
-    text-transform: uppercase;
-    outline: none;
-    
+	text-decoration: none;
+	display: inline-block;
+	color: #ffffff;
+	font-weight: 500;
+	font-size: 14px;
+	text-transform: uppercase;
+	outline: none;
 }
 
 .nav-menu>li {
@@ -516,50 +561,156 @@ body.mobile-nav-active #mobile-nav-toggle {
 	background-size: cover;
 	position: relative
 }
-@media ( min-width : 991.98px) {
+
+@media ( min-width : 1200px) {
 	h1 {
-	    color: #fff;
-	    font-family: 'NanumSquareRound',sans-serif;
-	    font-size: 5em!important;
-	    font-weight: 700;
+		color: #fff;
+		font-family: 'NanumSquareRound', sans-serif;
+		font-size: 5em !important;
+		font-weight: 700;
+	}
+	.text-shadow-p {
+		display: inline-block;
+		width: 850px;
+		white-space: normal;
+		line-height: 1.2;
+		height: 2.4em;
+		font-size: 1.2em !important;
 	}
 }
-@media ( min-width : 768px) and (max-width: 991.98px) {
+
+@media ( min-width : 992px) and ( max-width : 1200px) {
+	h1 {
+		color: #fff;
+		font-family: 'NanumSquareRound', sans-serif;
+		font-size: 4.2em !important;
+		font-weight: 700;
+	}
+	.text-shadow-p {
+		display: inline-block;
+		width: 600px;
+		white-space: normal;
+		line-height: 1.2;
+		height: 2.4em;
+		font-size: 1.2em !important;
+	}
+}
+
+@media ( min-width : 768px) and ( max-width : 992px) {
 	.banner-area {
 		padding: 280px 50px;
 	}
-	
 	h1 {
-	    color: #fff;
-	    font-family: 'NanumSquareRound',sans-serif;
-	    font-size: 4em!important;
-	    font-weight: 700;
+		color: #fff;
+		font-family: 'NanumSquareRound', sans-serif;
+		font-size: 4em !important;
+		font-weight: 700;
+	}
+	.text-shadow-p {
+		display: inline-block;
+		width: 580px;
+		white-space: normal;
+		line-height: 1.2;
+		height: 2.4em;
+		font-size: 1.2em !important;
 	}
 }
 
-@media ( min-width : 576px) and (max-width: 767.98px) {
+@media ( min-width : 576px) and ( max-width : 768px) {
 	.banner-area {
 		padding: 250px 0;
 	}
-	
 	h1 {
-	    color: #fff;
-	    font-family: 'NanumSquareRound',sans-serif;
-	    font-size: 4em!important;
-	    font-weight: 700;
+		color: #fff;
+		font-family: 'NanumSquareRound', sans-serif;
+		font-size: 4em !important;
+		font-weight: 700;
+	}
+	.text-shadow-p {
+		display: inline-block;
+		width: 550px;
+		white-space: normal;
+		line-height: 1.2;
+		height: 2.4em;
+		font-size: 1.2em !important;
 	}
 }
 
-@media ( max-width : 575.98px) {
+@media ( min-width : 411px) and ( max-width : 576px) {
 	.banner-area {
-		padding: 200px 0;
+		padding: 130px 0;
 	}
-	
 	h1 {
-	    color: #fff;
-	    font-family: 'NanumSquareRound',sans-serif;
-	    font-size: 3em!important;
-	    font-weight: 700;
+		color: #fff;
+		font-family: 'NanumSquareRound', sans-serif;
+		font-size: 3em !important;
+		font-weight: 700;
+	}
+	.text-shadow-p {
+		display: inline-block;
+		width: 375px;
+		white-space: normal;
+		line-height: 1.2;
+		height: 2.4em;
+		font-size: 1.2em !important;
+	}
+}
+
+@media ( min-width : 332px) and ( max-width : 411px) {
+	.banner-area {
+		padding: 130px 0;
+	}
+	h1 {
+		color: #fff;
+		font-family: 'NanumSquareRound', sans-serif;
+		font-size: 2em !important;
+		font-weight: 700;
+	}
+	.text-shadow-p {
+		display: inline-block;
+		width: 290px;
+		white-space: normal;
+		line-height: 1.2;
+		height: 2.4em;
+		font-size: 1.2em !important;
+	}
+}
+
+@media ( min-width : 299px) and ( max-width : 332px) {
+	.banner-area {
+		padding: 130px 0;
+	}
+	h1 {
+		color: #fff;
+		font-family: 'NanumSquareRound', sans-serif;
+		font-size: 2em !important;
+		font-weight: 700;
+	}
+	.text-shadow-p {
+		display: inline-block;
+		width: 290px;
+		white-space: normal;
+		line-height: 1.2;
+		height: 2.4em;
+	}
+}
+
+@media ( max-width : 299px) {
+	.banner-area {
+		padding: 130px 0;
+	}
+	h1 {
+		color: #fff;
+		font-family: 'NanumSquareRound', sans-serif;
+		font-size: 1.5em !important;
+		font-weight: 700;
+	}
+	.text-shadow-p {
+		display: inline-block;
+		width: 220px;
+		white-space: normal;
+		line-height: 1.2;
+		height: 2.4em;
 	}
 }
 
@@ -656,15 +807,15 @@ body.mobile-nav-active #mobile-nav-toggle {
 	-moz-transition: .5s;
 	-o-transition: .5s;
 	transition: .5s;
-	
-	display: inline-block; 
-	width: calc(100%); 
-	white-space: nowrap; 
-	overflow: hidden; 
-	text-overflow: ellipsis; 
-	/* 여러 줄 자르기 추가 스타일 */ 
-	height: 14em; 
+	display: inline-block;
+	width: calc(100%);
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	/* 여러 줄 자르기 추가 스타일 */
+	height: 14em;
 }
+
 .department-area .single-slide .item-padding h3 {
 	display: inline-block;
 	width: calc(100%);
@@ -672,24 +823,27 @@ body.mobile-nav-active #mobile-nav-toggle {
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
-.department-area .single-slide .item-padding p, .department-area .single-slide .item-padding div {
-	display: inline-block; 
-	width: calc(100%); 
-	white-space: nowrap; 
-	overflow: hidden; 
-	text-overflow: ellipsis; 
-	/* 여러 줄 자르기 추가 스타일 */ 
-	white-space: normal; 
-	line-height: 1.2; 
-	text-align: left; 
-	word-wrap: break-word; 
-	display: -webkit-box; 
-	-webkit-line-clamp: 3; 
+
+.department-area .single-slide .item-padding p, .department-area .single-slide .item-padding div
+	{
+	display: inline-block;
+	width: calc(100%);
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	/* 여러 줄 자르기 추가 스타일 */
+	white-space: normal;
+	line-height: 1.2;
+	text-align: left;
+	word-wrap: break-word;
+	display: -webkit-box;
+	-webkit-line-clamp: 3;
 	-webkit-box-orient: vertical;
 }
 
-.department-area .single-slide .item-padding #container #wrap #body #body_contents div ul{
-
+.department-area .single-slide .item-padding #container #wrap #body #body_contents div ul
+	{
+	
 }
 
 @media ( max-width : 575.98px) {
@@ -981,7 +1135,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 
 .hotline-area span {
 	font-size: 56px;
-	font-family: 'NanumSquareRound',sans-serif;
+	font-family: 'NanumSquareRound', sans-serif;
 	font-weight: 900
 }
 
@@ -3348,7 +3502,7 @@ h6 {
 .template-btn {
 	color: #fff;
 	background: linear-gradient(to right, #244cfd, #15e4fd);
-	font-family: 'NanumSquareRound',sans-serif;
+	font-family: 'NanumSquareRound', sans-serif;
 	text-transform: uppercase;
 	font-size: 12px;
 	font-weight: 400;
@@ -3443,11 +3597,11 @@ h6 {
 	padding: 40px 20px
 }
 
-.text-shadow-banner{	
-    text-shadow: 0 0 14px #ffffffb0;
+.text-shadow-banner {
+	text-shadow: 0 0 14px #ffffffb0;
 }
 
-.text-shadow-p{	
-	color:#fff!important;
-    text-shadow: 0 0 9px #000000;
+.text-shadow-p {
+	color: #fff !important;
+	text-shadow: 0 0 9px #000000;
 }

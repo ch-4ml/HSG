@@ -80,8 +80,8 @@ public class HomeController {
 		return "redirect:/";
 	}
 	
-	@RequestMapping(value="updateMooc.ma")
-	public ModelAndView updateMooc(Contents c, ModelAndView mv) {
+	@RequestMapping(value="updateItr.ma")
+	public ModelAndView updateItr(Contents c, ModelAndView mv) {
 		pageId = "main/mooc";
 		c.setPageId(pageId);
 		try {
