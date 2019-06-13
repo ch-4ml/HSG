@@ -1,6 +1,5 @@
 package com.hsg.intro.common.contents.model.dao;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.ibatis.session.RowBounds;
@@ -40,6 +39,14 @@ public class ContentsDaoImpl implements ContentsDao {
 	}
 	
 	@Override
+	public List<Contents> findByPageId(String pageId, PageInfo pi) throws ContentsException {
+		int offset = (pi.getCurrentPage() - 1) * pi.getLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getLimit());
+		List<Contents> contents = sqlSession.selectList("Contents.findByPageId", pageId, rowBounds);
+		return contents;
+	}
+	
+	@Override
 	public Contents findById(int id) throws ContentsException {
 		Contents content = sqlSession.selectOne("Contents.findById", id);
 		return content;
@@ -74,7 +81,6 @@ public class ContentsDaoImpl implements ContentsDao {
 	}
 
 	public int getListCount(String pageId) throws ContentsException {
-		
 		Integer result = 0;
 		try {
 			result = sqlSession.selectOne("Contents.getListCount", pageId);
@@ -89,22 +95,4 @@ public class ContentsDaoImpl implements ContentsDao {
 		
 		return result;
 	}
-
-	public ArrayList<Contents> getPagingContentList(Contents c, PageInfo pi) throws ContentsException {
-		
-		ArrayList<Contents> clist = null;
-		
-		int offset = (pi.getCurrentPage() - 1) * pi.getLimit();
-		RowBounds rowBounds = new RowBounds(offset, pi.getLimit());
-		try {
-			clist = (ArrayList)sqlSession.selectList("Contents.getPagingContentList", c, rowBounds);
-			
-			System.out.println("##########noticeDao noticeSelectList clist"  + clist + "##########");
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-
-		return clist;
-	}
-
 }

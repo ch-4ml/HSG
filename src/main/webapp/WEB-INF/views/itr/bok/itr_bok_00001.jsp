@@ -36,7 +36,7 @@ function deleteBtnClickEvent(id) {
 	</section>
 	<!-- Banner Area End -->
 
-	<section id="two" class="wrapper style2 alt">
+	<section id="one" class="wrapper style2 alt">
 		<div style="text-align: center;"><h2>출판 도서</h2></div><br><br>		
 		<div class="inner">
 			<c:if test="${!empty loginUser }">
