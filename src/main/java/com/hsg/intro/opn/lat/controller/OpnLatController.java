@@ -36,7 +36,6 @@ public class OpnLatController {
 	Date currentDate = new Date();
 	String postDate = formatter.format(currentDate);
 
-	//
 	@RequestMapping(value = "view.lt", method = RequestMethod.POST) // DI 의존성 주입
 	public ModelAndView pagingContentList(ModelAndView mv, @RequestParam(defaultValue = "1") Integer currentPage) {
 		/**
