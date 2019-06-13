@@ -12,20 +12,11 @@
 		<result property="text" column="TEXT"/>
 		<result property="url" column="URL" />
 		<result property="postDate" column="POST_DATE" />
-		<result property="origin" column="ORIGIN" />
 	</resultMap>
 	<insert id = "insert" parameterType="Contents">
 		INSERT INTO 
-		hsgbiz_contents(PAGE_ID, CATEGORY, TITLE, CONTENTS, TEXT, URL, POST_DATE
-		<if test="origin != null">
-			, ORIGIN		
-		</if>
-		) 
-		VALUES(#{pageId}, #{category}, #{title}, #{contents}, #{text}, #{url}, #{postDate}
-		<if test="origin != null">
-			, #{origin}		
-		</if>
-		)
+		hsgbiz_contents(PAGE_ID, CATEGORY, TITLE, CONTENTS, TEXT, URL, POST_DATE) 
+		VALUES(#{pageId}, #{category}, #{title}, #{contents}, #{text}, #{url}, #{postDate})
 	</insert>
 	<!-- 
 	<select id="findAll" resultMap="contentsResultSet" parameterType="Contents">
@@ -43,6 +34,24 @@
 		WHERE PAGE_ID = #{pageId}
 		ORDER BY ID DESC;
 	</select>
+	
+	<select id="findByPageIdMap" resultMap="contentsResultSet" parameterType="java.util.HashMap">
+		SELECT * FROM hsgbiz_contents 
+		WHERE 1 = 1 
+		AND PAGE_ID = #{pageId}
+		<if test="con == 1">
+		AND TITLE LIKE '%' || #{value} || '%'
+		</if>
+		<if test="con == 2">
+		AND CONTENTS LIKE '%' || #{value} || '%'
+		</if>
+		<if test="con == 3">
+		AND TITLE LIKE '%' || #{value} || '%'
+		AND CONTENTS LIKE '%' || #{value} || '%'
+		</if>	
+		ORDER BY ID DESC
+	</select>
+	
 	<select id="findById" resultMap="contentsResultSet" parameterType="Contents">
 		SELECT * FROM hsgbiz_contents 
 		WHERE ID = #{id};
@@ -57,10 +66,7 @@
 				CONTENTS = #{contents}, 
 				</if>
 				URL = #{url},
-				POST_DATE = #{postDate},
-				<if test="origin != null">
-				ORIGIN = #{origin}		
-				</if> 			
+				POST_DATE = #{postDate} 			
 			</set>
 		WHERE ID = #{id};
 	</update>
@@ -80,4 +86,19 @@
 		WHERE PAGE_ID = #{pageId}
 	</select>
 	
+	<select id="getListCountsetMap" resultType="java.lang.Integer" parameterType="java.util.HashMap">
+		SELECT COUNT(*) FROM hsgbiz_contents 
+		WHERE 1 = 1 
+		AND PAGE_ID = #{pageId}
+		<if test="con == 1">
+		AND TITLE LIKE '%' || #{value} || '%'
+		</if>
+		<if test="con == 2">
+		AND CONTENTS LIKE '%' || #{value} || '%'
+		</if>
+		<if test="con == 3">
+		AND TITLE LIKE '%' || #{value} || '%'
+		AND CONTENTS LIKE '%' || #{value} || '%'
+		</if>	
+	</select>
 </mapper>
