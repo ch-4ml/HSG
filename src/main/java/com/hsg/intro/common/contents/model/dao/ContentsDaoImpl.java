@@ -97,7 +97,7 @@ public class ContentsDaoImpl implements ContentsDao {
 		int offset = (pi.getCurrentPage() - 1) * pi.getLimit();
 		RowBounds rowBounds = new RowBounds(offset, pi.getLimit());
 		try {
-			clist = (ArrayList)sqlSession.selectList("Contents.getPagingContentList", c, rowBounds);
+			clist = (ArrayList)sqlSession.selectList("Contents.findByPageId", c, rowBounds);
 			
 			System.out.println("##########noticeDao noticeSelectList clist"  + clist + "##########");
 		} catch (Exception e) {

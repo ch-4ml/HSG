@@ -38,7 +38,7 @@ public class OpnLetController {
 	
 	// 
 	@RequestMapping(value = "pagingContentList.lt", method = RequestMethod.POST) // DI 의존성 주입
-	public ModelAndView insertIbkBok(ModelAndView mv, @RequestParam(defaultValue="1") Integer currentPage) {
+	public ModelAndView pagingContentList(ModelAndView mv, @RequestParam(defaultValue="1") Integer currentPage) {
 		/**
 		 * param  
 		 * currentPage : 현재페이지 (defaultValue : 1)
@@ -89,17 +89,16 @@ public class OpnLetController {
 
 		}
 		return mv;
-		
 	}
 	
-	/*@RequestMapping(value = "pagingContentList.lt", method = RequestMethod.POST) // DI 의존성 주입
-	public ModelAndView insertIbkBok(Contents c, ModelAndView mv, 
+	@RequestMapping(value = "insertContent.lt", method = RequestMethod.POST) // DI 의존성 주입
+	public ModelAndView insertContent(Contents c, ModelAndView mv, 
 			@RequestParam(required=false) MultipartFile file, 
 			HttpServletRequest request) {
 
 		// ################### 파일 업로드 ###################
 		String root = request.getSession().getServletContext().getRealPath("resources");
-		String filePath = root + "/uploadFiles/itrbok_upload_file";
+		String filePath = root + "/uploadFiles/opnlet_upload_file";
 		String fileName = "";
 		try {
 			// 파일명 새이름 설정
@@ -147,5 +146,5 @@ public class OpnLetController {
 		}
 		return mv;
 		
-	}*/
+	}
 }

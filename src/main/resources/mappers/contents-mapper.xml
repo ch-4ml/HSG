@@ -67,10 +67,6 @@
 		SELECT COUNT(*) FROM hsgbiz_contents 
 		WHERE PAGE_ID = #{pageId}
 	</select>
-	
-	<select id="getPagingContentList" resultMap="Contents" parameterMap="Contents">
-		SELECT * FROM hsgbiz_contents 
-		WHERE PAGE_ID = #{pageId}
-	</select>
+
 	
 </mapper>
