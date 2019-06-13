@@ -71,10 +71,10 @@ public class ContentsServiceImpl implements ContentsService {
 		return cd.getListCount(hmap);
 	}
 
-	public List<Contents> findByPageId(HashMap<String, String> hmap, PageInfo pi)  {
+	//public List<Contents> findByPageId(HashMap<String, String> hmap, PageInfo pi)  {
 		
-		return cd.findByPageId(hmap, pi);
-	}
+		//return cd.findByPageId(hmap, pi);
+	//}
 }
 
 
