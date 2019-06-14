@@ -9,7 +9,7 @@
 	tinymce.init({
 	    selector: '#text',
 	    menubar: false,
-	    language_url: 'tinymce/ko_KR.js',
+	    language: 'ko_KR',
 	    plugins: ['autolink autosave code link media table textcolor autoresize hr image imagetools fullpage'],
 	    toolbar: "undo redo | fontsizeselect | forecolor bold underline italic code | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | table link media image code hr",
 	    fullpage_default_font_family: "NanumSquareRound",

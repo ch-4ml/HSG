@@ -7,14 +7,12 @@
 <script>
 
     $(function() {
-    	var url = $("#content_form").attr("action");
     	$("#update").click(function() {
     		var oldContent = $('#contents').html();
     		$("#contents").html("<textarea id='content' name='contents'>" + oldContent + "</textarea><br><div style='text-align:center;'><input type='submit' value='수정'></div>");
     		tinymce.init({
     		    selector: 'textarea#content',
     		    menubar: false,
-    		    language_url: 'tinymce/ko_KR.js',
     		    plugins: ['autolink autosave code link table textcolor autoresize hr image imagetools fullpage lists advlist'],
     		    toolbar: "undo redo | fontsizeselect | forecolor bold underline italic code | alignleft aligncenter alignright alignjustify | numlist bullist outdent indent | table link image code hr",
     		    fullpage_default_font_family: "NanumSquareRound",
@@ -25,6 +23,7 @@
    			        var input = document.createElement('input');
    			        input.setAttribute('type', 'file');
    			        input.setAttribute('accept', 'image/*');
+   			        input.setAttribute('enctype', 'multipart/form-data');
    			        input.onchange = function () {
    			        	var file = this.files[0];
 
@@ -44,25 +43,26 @@
    			        };
    			        input.click();
    			    },
-   			    images_upload_url: url,
-   			    images_reuse_filename: true,
-   			    language: 'ko-KR',
-   			    setup: function(editor) {
-   			    	geditor = editor;
-   			    	editor.on('change', function(e) {
-   			    		editor.save();
+   			  	setup: function (editor) {
+	   			    geditor = editor;
+	   			    editor.on('change', function (e) {
+	   			    	editor.save();
    			    	});
-   			    }
-    		});
+   			  	},
+   			    images_upload_url: 'update.co',
+   			    images_reuse_filename: true,
+   			    automatic_uploads: false,
+    		});    		
     		$("#updateButton").html("");
     	});
     });
+    
     
     $(function() {
     	$('#content_form').submit(function(e) {
     		e.preventDefault();
     		geditor.uploadImages(function(success) {
-    			
+   				alert("업로드 성공");
     		});
     	});
     });
