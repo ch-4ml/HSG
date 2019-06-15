@@ -27,7 +27,7 @@ public class CommonController {
 			if(!file.isEmpty()) { // 파일이 null 일 경우
 				String root = request.getSession().getServletContext().getRealPath("resources");
 				String filePath = root + "/uploadFiles/common_upload_file";
-				String fileName = "";
+				String fileName = file.getOriginalFilename();
 				String updatefilePath = "";
 
 				// 파일명 새이름 설정
@@ -35,11 +35,6 @@ public class CommonController {
 //				SimpleDateFormat format = new SimpleDateFormat ("yyyyMMddHHmmss");
 //				Date nowTime = new Date();
 //				String newfileName = format.format(nowTime) + String.valueOf(randomNumber);	
-				
-				// 확장자 구하기
-				int pos = file.getOriginalFilename().lastIndexOf(".");
-				String ext = file.getOriginalFilename().substring(pos);
-				fileName = file.getOriginalFilename() + ext;
 				
 				// 폴더 없으면 생성
 				File uploadPath = new File(filePath);
