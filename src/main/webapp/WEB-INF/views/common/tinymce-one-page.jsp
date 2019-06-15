@@ -60,10 +60,10 @@
     
     $(function() {
     	$('#content_form').submit(function(e) {
-    		e.preventDefault();
-    		geditor.uploadImages(function(success) {
-   				alert("업로드 성공");
-    		});
+   			//e.preventDefault();
+   			geditor.uploadImages(function(success) {
+    			alert("업로드 성공");
+       		});
     	});
     });
     

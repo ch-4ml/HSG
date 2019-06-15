@@ -269,7 +269,7 @@ opacity
 	display: inline-block;
 	color: #ffffff;
 	font-weight: 500;
-	font-size: 16px;
+	font-size: 17px;
 	text-transform: uppercase;
 	outline: none;
 }
@@ -294,7 +294,7 @@ opacity
 	color: #333;
 	transition: 0.3s;
 	display: block;
-	font-size: 14px;
+	font-size: 15px;
 	text-transform: none
 }
 
@@ -3604,4 +3604,5 @@ h6 {
 .text-shadow-p {
 	color: #fff !important;
 	text-shadow: 0 0 9px #000000;
+	padding-left: 15px;
 }
