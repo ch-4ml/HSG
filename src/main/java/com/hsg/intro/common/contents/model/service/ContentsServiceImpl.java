@@ -41,6 +41,12 @@ public class ContentsServiceImpl implements ContentsService {
 	}
 	
 	@Override
+	public List<Contents> findByPageId(HashMap<String, String> hmap, PageInfo pi) throws ContentsException {
+		List<Contents> contents = cd.findByPageId(hmap, pi);
+		return contents;
+	}
+	
+	@Override
 	public Contents findById(int id) throws ContentsException {
 		Contents content = cd.findById(id);
 		return content;
@@ -70,11 +76,6 @@ public class ContentsServiceImpl implements ContentsService {
 		
 		return cd.getListCount(hmap);
 	}
-
-	//public List<Contents> findByPageId(HashMap<String, String> hmap, PageInfo pi)  {
-		
-		//return cd.findByPageId(hmap, pi);
-	//}
 }
 
 

@@ -15,7 +15,7 @@
     <title>HS글로벌</title>
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="./resources/images/logo/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="./resources/icon/favicon-96x96.png" type="image/x-icon">
 
     <!-- CSS Files -->
      

@@ -29,7 +29,7 @@ public class MemberController {
 		try {
 			String result = ms.loginMember(m);
 			
-			mv.addObject("result",result);
+			mv.addObject("result", result);
 			System.out.println("Controller - try. result : " + mv.getModel());
 		} catch (LoginException e) {
 			mv.addObject("message",e.getMessage());
