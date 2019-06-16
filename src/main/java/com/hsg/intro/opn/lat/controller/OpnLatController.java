@@ -306,16 +306,16 @@ public class OpnLatController {
 
 			PageInfo pi = new PageInfo(currentPage, listCount, limit, maxPage, startPage, endPage, currentPage);
 			
-			/*
+
 			try {
 				List<Contents> cList = csi.findByPageId(hmap, pi);
+				mv.addObject("cList", cList);
 			} catch(ContentsException e) {
 				e.printStackTrace();
 			}
-			*/
 			
 			mv.addObject("pi", pi);
-			//mv.addObject("cList", cList);
+
 			
 			mv.setViewName("redirect:view.lt");
 		} catch (ContentsException e) {
