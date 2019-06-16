@@ -36,7 +36,7 @@ public class ContentsServiceImpl implements ContentsService {
 	
 	@Override
 	public List<Contents> findByPageId(String pageId, PageInfo pi) throws ContentsException {
-		List<Contents> contents = cd.findByPageId(pageId);		
+		List<Contents> contents = cd.findByPageId(pageId, pi);		
 		return contents;
 	}
 	

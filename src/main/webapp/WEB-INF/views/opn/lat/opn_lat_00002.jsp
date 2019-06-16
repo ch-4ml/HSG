@@ -20,14 +20,10 @@
 			
 			if(title == ""){
 				return alert("제목을 입력해주세요.");
-			} else if(!category){
-				return alert("카테고리를 선택해주세요.");
-			}
-			
-			return $("#insertForm").submit();
+			} 			
+			return $("#content_form").submit();
 			
 		});
-		$("#text").keydown();
 	});
 </script>
 </head>
@@ -38,7 +34,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1>MOOC 등록</h1>
+                    <h1>최신 기술</h1>
                 </div>
             </div>
         </div>
@@ -53,18 +49,20 @@
 					<span class="input input--hoshi">
 						<input class="input__field input__field--hoshi" type="text" id="title" name="title">
 						<label class="input__label input__label--hoshi input__label--hoshi-color-1" for="title">
-							<span class="input__label-content input__label-content--hoshi">MOOC 제목</span>
+							<span class="input__label-content input__label-content--hoshi">제목</span>
 						</label>
 					</span>
+					 
 					<span class="input input--hoshi input--filled">
 						<input class="input__field input__field--hoshi" type="file" id="file" name="file">
 						<label class="input__label input__label--hoshi input__label--hoshi-color-1" for="name">
 							<span class="input__label-content input__label-content--hoshi">첨부파일</span>
 						</label>
 					</span>
-					<textarea id="content"></textarea>
+					 
+					<textarea id="content" name="contents"></textarea>
 					<input type="button" id="insertBtn" value="추가">
-					</section>
+				</section>
 			</form>
 		</div>
 	</section>
