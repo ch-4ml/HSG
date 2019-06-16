@@ -236,17 +236,17 @@
   </servlet-mapping>
   
   <servlet>
-  	<servlet-name>opn-let</servlet-name>
+  	<servlet-name>opn-lat</servlet-name>
   	<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
   	<init-param>
   	  <param-name>contextConfigLocation</param-name>
-  	  <param-value>/WEB-INF/config/opn-let-servlet.xml</param-value>
+  	  <param-value>/WEB-INF/config/opn-lat-servlet.xml</param-value>
   	</init-param>
   	<load-on-startup>1</load-on-startup>
   </servlet>
   <servlet-mapping>
-    <servlet-name>opn-let</servlet-name>
-    <url-pattern>*.lt</url-pattern>
+    <servlet-name>opn-lat</servlet-name>
+    <url-pattern>*.ol</url-pattern>
   </servlet-mapping>
   
   <filter>

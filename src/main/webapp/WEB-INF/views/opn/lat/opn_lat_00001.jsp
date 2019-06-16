@@ -18,17 +18,17 @@
 			let $window = $(this);
 			let scrollTop = $window.scrollTop();
 			let windowHeight = $window.height();
-			let documentHeight = $('body').height();
+			let documentHeight = $('section#two').height();
 			
 			if(scrollTop + windowHeight + 30 > documentHeight) {
 				currentPage += 1;
-				getList();
+				getList(currentPage);
 			}
 		});
-		getList();
+		getList(currentPage);
 	});
 	
-	let getList = function() {
+	let getList = function(currentPage) {
 		if(isEnd) return;
 		
 		$.ajax({
@@ -41,6 +41,7 @@
 					isEnd = true;
 				}
 				$.each(data.cs, function(index, c) {
+					index = data.pi.limit*(currentPage-1) + index;
 					renderList(index, c);
 				});
 			}
@@ -48,11 +49,12 @@
 	}
 	
 	let renderList = function(index, c) {
-		let html = "<table><tr class='simpleboard'>" +
+		index += 1;
+		let html = "<a href=detail.ol?id=" + c.id + "><table class='simple'><tr class='simpleboard'>" +
 				   "<td class='simpleboard-index'>" + index + "</td>" +
 				   "<td class='simpleboard-contents'>" + c.title + "</td>" +
 				   "<td class='simpleboard-date'>" + c.postDate + "</td>" +
-				   "</tr></table>";
+				   "</tr></table></a>";
 		let old = $('.inner').html();
 		$('.inner').html(old + html);
 	}

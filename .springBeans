@@ -7,8 +7,10 @@
 	</configSuffixes>
 	<enableImports><![CDATA[true]]></enableImports>
 	<configs>
+		<config>src/main/webapp/WEB-INF/config/opn-lat-servlet.xml</config>
 	</configs>
 	<autoconfigs>
+		<config>src/main/webapp/WEB-INF/config/common-servlet.xml</config>
 		<config>src/main/webapp/WEB-INF/config/spring-security.xml</config>
 		<config>src/main/resources/root-context.xml</config>
 		<config>src/main/webapp/WEB-INF/config/emp-lec-servlet.xml</config>

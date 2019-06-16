@@ -2,15 +2,17 @@ package com.hsg.intro.opn.lat.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,12 +33,13 @@ public class OpnLatController {
 	@Autowired
 	private ContentsServiceImpl csi;
 
-	private String pageId = "opn/let";
+	private String pageId = "opn/lat";
 
 	SimpleDateFormat formatter = new SimpleDateFormat("yyyy.MM.dd HH:mm", Locale.KOREA);
 	Date currentDate = new Date();
 	String postDate = formatter.format(currentDate);
 
+	// 페이지 이동
 	@RequestMapping(value = "view.ol")
 	public ModelAndView view(ModelAndView mv) {
 		
@@ -44,8 +47,9 @@ public class OpnLatController {
 		return mv;		
 	}
 	
-	@RequestMapping(value = "get.ol") // DI 의존성 주입
-	public ModelAndView pagingContentList(ModelAndView mv, @RequestParam(defaultValue = "1") Integer currentPage) {
+	// 데이터 ajax call
+	@RequestMapping(value = "get.ol", produces = "application/json;charset=utf8") // DI 의존성 주입
+	public ModelAndView get(ModelAndView mv, @RequestParam(defaultValue = "1") Integer currentPage) {
 		/**
 		 * param currentPage : 현재페이지 (defaultValue : 1)
 		 * 
@@ -57,21 +61,21 @@ public class OpnLatController {
 		int startPage;
 		int endPage;
 
-		limit = 10; //
+		limit = 5; // 페이지 당 row 수 / 블록 당 페이지 수
 
 		System.out.println("currentPage : " + currentPage);
 
 		int listCount = 0;
 
 		try {
-			listCount = csi.getListCount(pageId); // 총페이지수
+			listCount = csi.getListCount(pageId); // 총 row 수
 		} catch (ContentsException e) {
 			e.printStackTrace();
 		}
 
-		maxPage = (int) ((double) listCount / limit + 0.9);
-		startPage = ((int) ((double) currentPage / limit + 0.9) - 1) * limit + 1;
-		endPage = startPage + limit - 1;
+		maxPage = (int) ((double) listCount / limit + 0.9); // 총 페이지 수
+		startPage = ((int) ((double) currentPage / limit + 0.9) - 1) * limit + 1; // 해당 블록의 시작 페이지
+		endPage = startPage + limit - 1; // 해당 블록의 끝 페이지
 		if (maxPage < endPage) {
 			endPage = maxPage;
 		}
@@ -94,7 +98,77 @@ public class OpnLatController {
 		return mv;
 	}
 	
-	@RequestMapping(value = "insert.ol", method = RequestMethod.GET) // DI 의존성 주입
+	// contents 검색
+	@RequestMapping(value = "find.ol", method = RequestMethod.GET) // DI 의존성 주입
+	public ModelAndView find(
+			ModelAndView mv,
+			@RequestParam(defaultValue="1") String con,
+			@RequestParam(defaultValue="") String value,
+			@RequestParam(defaultValue = "1") Integer currentPage){
+			
+			HashMap<String, String> hmap = new HashMap<String, String>();
+			
+			hmap.put("pageId", pageId);
+			hmap.put("con", con); // 조건 : 1 : 제목 2 : 내용 3 : 제목+내용
+			hmap.put("value", value); // 검색어
+			
+		try {
+			int limit;
+			int maxPage;
+			int startPage;
+			int endPage;
+			int listCount = 0;
+
+			limit = 10; //
+
+			System.out.println("currentPage : " + currentPage);
+			
+			listCount = csi.getListCount(hmap); // 총페이지수
+
+			maxPage = (int) ((double) listCount / limit + 0.9);
+			startPage = ((int) ((double) currentPage / limit + 0.9) - 1) * limit + 1;
+			endPage = startPage + limit - 1;
+			if (maxPage < endPage) {
+				endPage = maxPage;
+			}
+
+			PageInfo pi = new PageInfo(currentPage, listCount, limit, maxPage, startPage, endPage, currentPage);
+			
+
+			try {
+				List<Contents> cList = csi.findByPageId(hmap, pi);
+				mv.addObject("cList", cList);
+			} catch(ContentsException e) {
+				e.printStackTrace();
+			}
+			
+			mv.addObject("pi", pi);
+
+			
+			mv.setViewName("redirect:view.ol");
+		} catch (ContentsException e) {
+			mv.addObject("message",e.getMessage());
+			mv.setViewName("redirect:/common/errorPage");
+		}
+		return mv;
+	}
+
+	// contents 상세
+	@RequestMapping(value = "detail.ol")
+	public ModelAndView detail(ModelAndView mv, @RequestParam(value="id") int id) {
+		try {
+			Contents c = csi.findById(id);
+			mv.addObject("c", c);
+			mv.setViewName("opn/lat/opn_lat_00003");
+		} catch (ContentsException e) {
+			mv.addObject("message",e.getMessage());
+			mv.setViewName("common/errorPage");	  
+		}
+		return mv;
+	}
+	
+	// contents 추가 폼
+	@RequestMapping(value = "insertView.ol", method = RequestMethod.GET) // DI 의존성 주입
 	public ModelAndView insertView(ModelAndView mv) {
 		
 		mv.setViewName("opn/lat/opn_lat_00002");
@@ -103,46 +177,51 @@ public class OpnLatController {
 	
 	// contents 추가
 	@RequestMapping(value = "insert.ol", method = RequestMethod.POST) // DI 의존성 주입 
-	public ModelAndView insertOpnLat(Contents c, ModelAndView mv,
+	public ModelAndView insert(Contents c, ModelAndView mv,
 			@RequestParam(required=false) MultipartFile file, HttpServletRequest request) {
 	  
 		// ################### 파일 업로드 ################### 
-		String root = request.getSession().getServletContext().getRealPath("resources"); 
-		String filePath = root + "/uploadFiles/opnlat_upload_file"; 
-		String fileName = "";
-		String originFileName = "";
-		
-		try { // 파일명 새이름 설정 
-			int randomNumber = (int)((Math.random()*10000)+1);
-			SimpleDateFormat format = new SimpleDateFormat ( "yyyyMMddHHmmss"); 
-			Date nowTime = new Date(); String newfileName = format.format(nowTime) + String.valueOf(randomNumber);
+		if(!file.isEmpty()) { 
+			String root = request.getSession().getServletContext().getRealPath("resources"); 
+			String filePath = root + "/uploadFiles/opnlat_upload_file"; 
+			String fileName = "";
+			String originFileName = "";
+			
+			try { // 파일명 새이름 설정 
+				
+				int randomNumber = (int)((Math.random()*10000)+1);
+				SimpleDateFormat format = new SimpleDateFormat ( "yyyyMMddHHmmss"); 
+				Date nowTime = new Date(); String newfileName = format.format(nowTime) + String.valueOf(randomNumber);
+				  
+				// 확장자 구하기 
+				int pos = file.getOriginalFilename().lastIndexOf("."); 
+				String ext = file.getOriginalFilename().substring(pos); 
+				fileName = newfileName + ext;
+				originFileName = file.getOriginalFilename();
+				  
+				c.setText(fileName);
+				c.setOrigin(originFileName);
+				  
+				// 폴더 없으면 생성 
+				File uploadPath = new File(filePath); 
+			if(!uploadPath.exists()) {
+				uploadPath.mkdirs(); 
+			}
 			  
-			// 확장자 구하기 
-			int pos = file.getOriginalFilename().lastIndexOf("."); 
-			String ext = file.getOriginalFilename().substring(pos); 
-			fileName = newfileName + ext;
-			originFileName = file.getOriginalFilename();
+			// 파일경로를 itrbok 객체에 넣어줌 
+			filePath = filePath + "/" + fileName;
 			  
-			c.setContents(fileName);
-			c.setOrigin(originFileName);
-			  
-			// 폴더 없으면 생성 
-			File uploadPath = new File(filePath); 
-		if(!uploadPath.exists()) {
-			uploadPath.mkdirs(); 
+			// 해당 폴더에 파일 생성 
+			file.transferTo(new File(filePath));
+				  
+			} catch (IllegalStateException e) { 
+				mv.addObject("message",e.getMessage());
+				mv.setViewName("common/errorPage");	  
+			} catch (IOException e) { 
+				mv.addObject("message",e.getMessage());
+				mv.setViewName("common/errorPage");	  
+			} 
 		}
-		  
-		// 파일경로를 itrbok 객체에 넣어줌 
-		filePath = filePath + "/" + fileName;
-		  
-		// 해당 폴더에 파일 생성 
-		file.transferTo(new File(filePath));
-			  
-		} catch (IllegalStateException e1) { 
-			e1.printStackTrace(); 
-		} catch (IOException e1) { 
-			e1.printStackTrace(); 
-		} 
 		// ################### 파일 업로드###################
 		  
 		c.setPageId(pageId); c.setPostDate(postDate);
@@ -151,17 +230,30 @@ public class OpnLatController {
 			csi.insert(c); 
 			mv.setViewName("redirect:view.ol");
 		  
-		} catch (Exception e) { mv.addObject("message",e.getMessage());
-			mv.setViewName("common/errorPage");
-				  
+		} catch (Exception e) { 
+			mv.addObject("message",e.getMessage());
+			mv.setViewName("common/errorPage");	  
 		} 
 		
 		return mv;  
 	}
 	
+	// contents 수정 폼
+	@RequestMapping(value = "updateView.ol")
+	public ModelAndView updateView(ModelAndView mv, @RequestParam(value="id") int id) {
+		try {
+			Contents c = csi.findById(id);
+			mv.addObject("c", c);
+			mv.setViewName("opn/lat/opn_lat_00004");
+		} catch (ContentsException e) {
+			mv.addObject("message",e.getMessage());
+			mv.setViewName("common/errorPage");	  
+		}
+		return mv;
+	}
 	// contents 수정
 	@RequestMapping(value = "update.ol", method = RequestMethod.POST) // DI 의존성 주입
-	public ModelAndView updateOpnLat(Contents c, ModelAndView mv, 
+	public ModelAndView update(Contents c, ModelAndView mv, 
 			@RequestParam(required=false) MultipartFile file, 
 			HttpServletRequest request) throws ContentsException {
 		try {
@@ -191,7 +283,7 @@ public class OpnLatController {
 					originFileName = file.getOriginalFilename();
 					
 					//파일경로를 contents 객체에 넣어줌
-					c.setContents(fileName);
+					c.setText(fileName);
 					c.setOrigin(originFileName);
 					
 					System.out.println("#################### update.lt content : " + c + "####################");
@@ -245,7 +337,7 @@ public class OpnLatController {
 	
 	// contents 삭제 
 	@RequestMapping(value = "delete.ol", method = RequestMethod.GET) // DI 의존성 주입
-	public ModelAndView deleteOpnLat(
+	public ModelAndView delete(
 			ModelAndView mv,
 			@RequestParam(value="id") int id,
 			HttpServletRequest request){
@@ -281,58 +373,31 @@ public class OpnLatController {
 		return mv;
 	}
 	
-	// contents 삭제 
-	@RequestMapping(value = "find.ol", method = RequestMethod.GET) // DI 의존성 주입
-	public ModelAndView findOpnLat(
-			ModelAndView mv,
-			@RequestParam(defaultValue="1") String con,
-			@RequestParam(defaultValue="") String value,
-			@RequestParam(defaultValue = "1") Integer currentPage){
-			
-			HashMap<String, String> hmap = new HashMap<String, String>();
-			
-			hmap.put("pageId", pageId);
-			hmap.put("con", con); // 조건 : 1 : 제목 2 : 내용 3 : 제목+내용
-			hmap.put("value", value); // 검색어
-			
+	@RequestMapping(value="download.ol")
+	public void download(HttpServletRequest request,
+			HttpServletResponse response,
+			@RequestParam(value="id") int id) {
+		String root = request.getSession().getServletContext().getRealPath("resources");
+		String filePath = root + "/uploadFiles/opnlat_upload_file";
+	
 		try {
-			int limit;
-			int maxPage;
-			int startPage;
-			int endPage;
-			int listCount = 0;
-
-			limit = 10; //
-
-			System.out.println("currentPage : " + currentPage);
+			Contents c = csi.findById(id);
+			String downloadFileName = c.getText();
+			// ##################### 파일 삭제 처리 #######################
+			String downloadFilePath = filePath + "/" + downloadFileName;
+			byte fileByte[] = FileUtils.readFileToByteArray(new File(downloadFilePath));
 			
-			listCount = csi.getListCount(hmap); // 총페이지수
-
-			maxPage = (int) ((double) listCount / limit + 0.9);
-			startPage = ((int) ((double) currentPage / limit + 0.9) - 1) * limit + 1;
-			endPage = startPage + limit - 1;
-			if (maxPage < endPage) {
-				endPage = maxPage;
-			}
-
-			PageInfo pi = new PageInfo(currentPage, listCount, limit, maxPage, startPage, endPage, currentPage);
-			
-
-			try {
-				List<Contents> cList = csi.findByPageId(hmap, pi);
-				mv.addObject("cList", cList);
-			} catch(ContentsException e) {
-				e.printStackTrace();
-			}
-			
-			mv.addObject("pi", pi);
-
-			
-			mv.setViewName("redirect:view.ol");
-		} catch (ContentsException e) {
-			mv.addObject("message",e.getMessage());
-			mv.setViewName("redirect:/common/errorPage");
+			response.setContentType("application/octet-stream");
+			response.setHeader("Content-Disposition", "attachment; fileName='" + URLEncoder.encode(c.getOrigin(), "UTF-8") + "';");
+			response.setHeader("Content-Transfer-Encoding", "binary");
+			response.getOutputStream().write(fileByte);
+			response.getOutputStream().flush();
+			response.getOutputStream().close();
+		} catch(ContentsException e) {
+			e.printStackTrace();
+		} catch(IOException e) {
+			e.printStackTrace();
 		}
-		return mv;
 	}
+	
 }
