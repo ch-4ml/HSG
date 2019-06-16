@@ -50,6 +50,8 @@ public class EduElnController {
 		
 		// ################### 파일 업로드 ###################
 		String root = request.getSession().getServletContext().getRealPath("resources");
+
+		
 		String filePath = root + "/uploadFiles/edueln_upload_file";
 		String fileName = "";
 		try {

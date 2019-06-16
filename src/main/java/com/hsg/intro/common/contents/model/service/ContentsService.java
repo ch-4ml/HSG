@@ -1,5 +1,6 @@
 package com.hsg.intro.common.contents.model.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.hsg.intro.Exception.ContentsException;
@@ -11,6 +12,7 @@ public interface ContentsService {
 	Contents findOneByPageId(String pageId) throws ContentsException;
 	List<Contents> findByPageId(String pageId) throws ContentsException;
 	List<Contents> findByPageId(String pageId, PageInfo pi) throws ContentsException;
+	List<Contents> findByPageId(HashMap<String, String> hmap, PageInfo pi) throws ContentsException;
 	Contents findById(int id) throws ContentsException;
 	void update(Contents c) throws ContentsException;
 	void updateImage(Contents c) throws ContentsException;

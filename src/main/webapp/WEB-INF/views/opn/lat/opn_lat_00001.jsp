@@ -9,51 +9,79 @@
 <%@ include file="../../common/head.jsp" %>
 </head>
 <body>
+<script>
+	let isEnd = false;
+	let currentPage = 1;
+
+	$(function() {
+		$(window).scroll(function() {
+			let $window = $(this);
+			let scrollTop = $window.scrollTop();
+			let windowHeight = $window.height();
+			let documentHeight = $('body').height();
+			
+			if(scrollTop + windowHeight + 30 > documentHeight) {
+				currentPage += 1;
+				getList();
+			}
+		});
+		getList();
+	});
+	
+	let getList = function() {
+		if(isEnd) return;
+		
+		$.ajax({
+			url: "get.ol",
+			data: {"currentPage": currentPage},
+			dataType: "json",
+			success: function(data) {
+				let length = data.cs.length;
+				if(length < 5) {
+					isEnd = true;
+				}
+				$.each(data.cs, function(index, c) {
+					renderList(index, c);
+				});
+			}
+		});
+	}
+	
+	let renderList = function(index, c) {
+		let html = "<table><tr class='simpleboard'>" +
+				   "<td class='simpleboard-index'>" + index + "</td>" +
+				   "<td class='simpleboard-contents'>" + c.title + "</td>" +
+				   "<td class='simpleboard-date'>" + c.postDate + "</td>" +
+				   "</tr></table>";
+		let old = $('.inner').html();
+		$('.inner').html(old + html);
+	}
+	
+	
+</script>
 <jsp:include page="../../common/header-content.jsp" />
     <!-- Banner Area Starts -->
     <section class="banner-area other-page">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1>채용 공고</h1>
+                    <h1>최신 기술</h1>
                 </div>
             </div>
         </div>
     </section>
     <!-- Banner Area End -->
     <!-- About Area Starts -->
-    <section id="two" class="wrapper style2 alt">
-		<div style="text-align: center;"><h2>채용 공고</h2></div><br><br>
+    <section id="two" class="wrapper style2 alt content-center">
+		<h2>최신 기술</h2><br><br>
 		<div class="inner">
 			<c:if test="${!empty loginUser }">
-				<div style="text-align: center;">
 					<ul class="actions special">
-						<li><input type="button" id="insert" onclick="location.href='insertView.el'" value="추가"></li>
+						<li><input type="button" id="insert" onclick="location.href='insertView.ol'" value="추가"></li>
 					</ul>
-				</div>
 				<br>
 				<br>
 			</c:if>
-			<c:forEach var="c" items="${cs}">
-				<table>
-					<tr class="portrait">
-						<td class="portrait-image">
-							<a href="viewDetail.el?id=${c.id }">
-								<img src="<%= uploadPath %>/emplec_upload_file/${c.contents }" alt="">
-							</a>
-						</td>
-						<td class="portrait-contents">
-						<a href="viewDetail.el?id=${c.id }">
-							<h3>${c.title }</h3>
-							<h4>${c.text}</h4>
-						</a>
-						</td>
-						<td class="portrait-date">
-							${c.postDate }
-						</td>
-					</tr>
-				</table>
-			</c:forEach>
 		</div>
 	</section>
 

@@ -48,6 +48,15 @@ public class ContentsDaoImpl implements ContentsDao {
 	}
 	
 	@Override
+	public List<Contents> findByPageId(HashMap<String, String> hmap, PageInfo pi) throws ContentsException {
+		
+		int offset = (pi.getCurrentPage() - 1) * pi.getLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getLimit());
+		List<Contents> contents = sqlSession.selectList("Contents.findByPageIdMap", hmap, rowBounds);
+		return contents;
+	}
+	
+	@Override
 	public Contents findById(int id) throws ContentsException {
 		Contents content = sqlSession.selectOne("Contents.findById", id);
 		return content;
@@ -111,13 +120,5 @@ public class ContentsDaoImpl implements ContentsDao {
 		}
 		
 		return result;
-	}
-
-	public List<Contents> findByPageId(HashMap<String, String> hmap, PageInfo pi) throws ContentsException {
-		
-		int offset = (pi.getCurrentPage() - 1) * pi.getLimit();
-		RowBounds rowBounds = new RowBounds(offset, pi.getLimit());
-		List<Contents> cList = sqlSession.selectList("Contents.findByPageIdMap", hmap, rowBounds);
-		return cList;
 	}
 }

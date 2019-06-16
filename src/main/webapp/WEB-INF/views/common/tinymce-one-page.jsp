@@ -44,28 +44,33 @@
    			        input.click();
    			    },
    			  	setup: function (editor) {
-	   			    geditor = editor;
+	   			    //geditor = editor;
 	   			    editor.on('change', function (e) {
 	   			    	editor.save();
    			    	});
+		   			 $('#content_form').click(function(e) {
+		   	   			//e.preventDefault();
+		   	   			editor.uploadImages(function(success) {
+		   	       		});
+		   	    	});
    			  	},
    			    images_upload_url: 'update.co',
+   			    images_upload_base_path: 'http://tbsko.cafe24.com/HSG/resources/uploadFiles/common_upload_file/',
    			    images_reuse_filename: true,
-   			    automatic_uploads: false,
     		});    		
     		$("#updateButton").html("");
     	});
     });
     
     
-    $(function() {
-    	$('#content_form').submit(function(e) {
+//    $(function() {
+    //$('#content_form').click(function(e) {
    			//e.preventDefault();
-   			geditor.uploadImages(function(success) {
-    			alert("업로드 성공");
-       		});
-    	});
-    });
+   	//		geditor.uploadImages(function(success) {
+    	//		alert("업로드 성공");
+       		//});
+    	//});
+    //});
     
 </script>
 </head>

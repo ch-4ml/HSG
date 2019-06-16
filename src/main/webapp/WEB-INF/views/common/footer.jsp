@@ -59,7 +59,7 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="col-xl-3 col-lg-3">
+                    <div class="col-xl-3 col-lg-3 footer-map">
                         <div class="single-widge-home">
                             <h3 class="mb-4">LOCATION</h3>
                             <div id="overlay" class="map">
@@ -74,21 +74,23 @@
         <div class="footer-copyright">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-8 col-md-6">
-                        <span>
+                    <div class="col-lg-8 col-md-6 footer-location">
+                        <span class="copyright">
 
 18471 경기도 화성시 동탄순환대로 823, 709호 (영천동, 에이팩시티 지식산업센터) <br>
-TEL : 031.5183.5222　　　FAX : 031.5183.5223 <br><br>
+TEL : 031.5183.5222　　FAX : 031.5183.5223 <br><br>
+</span>
+<span class="copyright">
+COPYRIGHT(C) 2015, FUNAVER-ROMARIUS, ALL RIGHTS RESERVED.<br>
 </span>
 <span>
-COPYRIGHT(C) 2015, FUNAVER-ROMARIUS, ALL RIGHTS RESERVED.<br>
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 </span>
                     </div>
-                    <div class="col-xl-2 offset-xl-1 col-lg-2">
-                        <a href="view.ma"><img src="./resources/images/logo/logo.png" alt="" width="100%" height="100%"></a>
+                    <div class="col-xl-2 offset-xl-1 col-lg-3">
+                        <a href="view.ma"><img src="./resources/images/logo/HSG_LOGO.png" alt="" width="100%" height="auto"></a>
                     </div>
                 </div>
             </div>

@@ -12,20 +12,22 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @SessionAttributes("loginUser")
 public class CommonController {
 	
 	@RequestMapping(value="update.co", method=RequestMethod.POST)
-	public void updateCommon(
+	public ModelAndView updateCommon(ModelAndView mv,
 			@RequestParam(required=false) MultipartFile file ,
 			HttpServletRequest request) {
 		try {
 			System.out.println("#################### update.ee file.isEmpty() : " + file.isEmpty() + "####################");
 			
-			if(!file.isEmpty()) { // 파일이 null 일 경우
-				String root = request.getSession().getServletContext().getRealPath("resources");
+			if(!file.isEmpty()) {
+				String root = request.getSession().getServletContext().getRealPath("resources");				
+				System.out.println(root);
 				String filePath = root + "/uploadFiles/common_upload_file";
 				String fileName = file.getOriginalFilename();
 				String updatefilePath = "";
@@ -47,6 +49,9 @@ public class CommonController {
 				
 				// 해당 폴더에 파일 생성
 				file.transferTo(new File(updatefilePath));
+				
+				mv.addObject("location", fileName);
+				mv.setViewName("jsonView");
 			}
 			
 		} catch (IllegalStateException e1) {
@@ -54,5 +59,6 @@ public class CommonController {
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
+		return mv;
 	}
 }

@@ -37,13 +37,19 @@ public class OpnLatController {
 	Date currentDate = new Date();
 	String postDate = formatter.format(currentDate);
 
-	@RequestMapping(value = "view.lt", method = RequestMethod.POST) // DI 의존성 주입
+	@RequestMapping(value = "view.ol")
+	public ModelAndView view(ModelAndView mv) {
+		
+		mv.setViewName("opn/lat/opn_lat_00001");
+		return mv;		
+	}
+	
+	@RequestMapping(value = "get.ol") // DI 의존성 주입
 	public ModelAndView pagingContentList(ModelAndView mv, @RequestParam(defaultValue = "1") Integer currentPage) {
 		/**
 		 * param currentPage : 현재페이지 (defaultValue : 1)
 		 * 
 		 */
-
 		Contents c = new Contents();
 
 		int limit;
@@ -88,8 +94,15 @@ public class OpnLatController {
 		return mv;
 	}
 	
+	@RequestMapping(value = "insert.ol", method = RequestMethod.GET) // DI 의존성 주입
+	public ModelAndView insertView(ModelAndView mv) {
+		
+		mv.setViewName("opn/lat/opn_lat_00002");
+		return mv;
+	}
+	
 	// contents 추가
-	@RequestMapping(value = "insert.lt", method = RequestMethod.POST) // DI 의존성 주입 
+	@RequestMapping(value = "insert.ol", method = RequestMethod.POST) // DI 의존성 주입 
 	public ModelAndView insertOpnLat(Contents c, ModelAndView mv,
 			@RequestParam(required=false) MultipartFile file, HttpServletRequest request) {
 	  
@@ -136,7 +149,7 @@ public class OpnLatController {
 		  
 		try { 
 			csi.insert(c); 
-			mv.setViewName("redirect:view.lt");
+			mv.setViewName("redirect:view.ol");
 		  
 		} catch (Exception e) { mv.addObject("message",e.getMessage());
 			mv.setViewName("common/errorPage");
@@ -147,7 +160,7 @@ public class OpnLatController {
 	}
 	
 	// contents 수정
-	@RequestMapping(value = "update.lt", method = RequestMethod.POST) // DI 의존성 주입
+	@RequestMapping(value = "update.ol", method = RequestMethod.POST) // DI 의존성 주입
 	public ModelAndView updateOpnLat(Contents c, ModelAndView mv, 
 			@RequestParam(required=false) MultipartFile file, 
 			HttpServletRequest request) throws ContentsException {
@@ -221,7 +234,7 @@ public class OpnLatController {
 			
 			List<Contents> cs = csi.findByPageId(pageId);
 			mv.addObject("cs", cs);
-			mv.setViewName("redirect:view.lt");
+			mv.setViewName("redirect:view.ol");
 		} catch (Exception e) {
 			mv.addObject("message",e.getMessage());
 			mv.setViewName("redirect:/common/errorPage");
@@ -231,7 +244,7 @@ public class OpnLatController {
 	}
 	
 	// contents 삭제 
-	@RequestMapping(value = "delete.lt", method = RequestMethod.GET) // DI 의존성 주입
+	@RequestMapping(value = "delete.ol", method = RequestMethod.GET) // DI 의존성 주입
 	public ModelAndView deleteOpnLat(
 			ModelAndView mv,
 			@RequestParam(value="id") int id,
@@ -269,7 +282,7 @@ public class OpnLatController {
 	}
 	
 	// contents 삭제 
-	@RequestMapping(value = "find.lt", method = RequestMethod.GET) // DI 의존성 주입
+	@RequestMapping(value = "find.ol", method = RequestMethod.GET) // DI 의존성 주입
 	public ModelAndView findOpnLat(
 			ModelAndView mv,
 			@RequestParam(defaultValue="1") String con,
@@ -283,8 +296,6 @@ public class OpnLatController {
 			hmap.put("value", value); // 검색어
 			
 		try {
-		
-			
 			int limit;
 			int maxPage;
 			int startPage;
@@ -306,18 +317,18 @@ public class OpnLatController {
 
 			PageInfo pi = new PageInfo(currentPage, listCount, limit, maxPage, startPage, endPage, currentPage);
 			
-			/*
+
 			try {
 				List<Contents> cList = csi.findByPageId(hmap, pi);
+				mv.addObject("cList", cList);
 			} catch(ContentsException e) {
 				e.printStackTrace();
 			}
-			*/
 			
 			mv.addObject("pi", pi);
-			//mv.addObject("cList", cList);
+
 			
-			mv.setViewName("redirect:view.lt");
+			mv.setViewName("redirect:view.ol");
 		} catch (ContentsException e) {
 			mv.addObject("message",e.getMessage());
 			mv.setViewName("redirect:/common/errorPage");
