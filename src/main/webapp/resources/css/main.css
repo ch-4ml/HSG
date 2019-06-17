@@ -266,6 +266,8 @@ iframe {
 
 .simple {
 	margin: 0 0 1em 0;
+	table-layout: fixed;
+	width: 100%;
 }
 
 .simpleboard {
@@ -281,6 +283,7 @@ iframe {
 
 .simpleboard .simpleboard-contents {
 	width: 70%;
+	max-width: 70%;
 	height: auto;
 	padding: 0.75em;
 	display: inline-block;
@@ -301,6 +304,10 @@ iframe {
 	}
 	.landscape .landscape-date, .portrait .portrait-date, .simpleboard .simpleboard-date {
 		display: none;
+	}
+	.simpleboard .simpleboard-contents {
+		width: 90%;
+		max-width: 90%;
 	}
 }
 

@@ -13,20 +13,20 @@
     	$("#delete").click(function() {
     		var id = $("#id").val();
     		if(!confirm("삭제하시겠습니까?")) return false;
-    		else location.href="delete.ol?id=" + id;
+    		else location.href="delete.os?id=" + id;
     	});
     });
     
     $(function() {
     	$("#update").click(function() {
     		var id = $("#id").val();
-    		location.href="updateView.ol?id=" + id;
+    		location.href="updateView.os?id=" + id;
     	});
     });
     
     $(function() {
     	$("#list").click(function() {
-    		location.href="view.ol";
+    		location.href="view.os";
     	});
     });
  
@@ -52,7 +52,7 @@
    		<div class="inner">
 			<div class="contents">
 				<div style="text-align: right;"><br>
-					첨부 파일 : <a href="download.ol?id=${c.id }">${c.origin }</a>
+					첨부 파일 : <a href="download.os?id=${c.id }">${c.origin }</a>
 				</div>
 				<span id="contents">
 					${c.contents }

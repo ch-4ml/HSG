@@ -15,8 +15,8 @@
 	</resultMap>
 	<insert id = "insert" parameterType="Contents">
 		INSERT INTO 
-		hsgbiz_contents(PAGE_ID, CATEGORY, TITLE, CONTENTS, TEXT, URL, POST_DATE) 
-		VALUES(#{pageId}, #{category}, #{title}, #{contents}, #{text}, #{url}, #{postDate})
+		hsgbiz_contents(PAGE_ID, CATEGORY, TITLE, CONTENTS, ORIGIN, TEXT, URL, POST_DATE) 
+		VALUES(#{pageId}, #{category}, #{title}, #{contents}, #{origin}, #{text}, #{url}, #{postDate})
 	</insert>
 	<!-- 
 	<select id="findAll" resultMap="contentsResultSet" parameterType="Contents">
@@ -61,6 +61,7 @@
 			<set>
 				CATEGORY = #{category}, 
 				TITLE = #{title}, 
+				ORIGIN = #{origin},
 				TEXT = #{text}, 
 				<if test="contents != null">
 				CONTENTS = #{contents}, 

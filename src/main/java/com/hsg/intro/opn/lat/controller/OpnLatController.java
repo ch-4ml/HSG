@@ -268,7 +268,7 @@ public class OpnLatController {
 					String originFileName = "";
 					
 					// ##################### 파일 삭제 처리 #######################
-					String deleteFileName = csi.findById(c.getId()).getContents();
+					// String deleteFileName = csi.findById(c.getId()).getContents();
 
 					// 파일명 새이름 설정
 					int randomNumber = (int)((Math.random()*10000)+1);
@@ -294,13 +294,14 @@ public class OpnLatController {
 					file.transferTo(new File(updatefilePath));
 					
 					// ##################### 파일 삭제 처리 #######################
-					String deleteFilePath = filePath + "/" + deleteFileName;
+					// String deleteFilePath = filePath + "/" + deleteFileName;
 					
 					// ##################### 파일 삭제 처리 #######################
-					File deleteFile = new File(deleteFilePath); // 파일 URL
+					// File deleteFile = new File(deleteFilePath); // 파일 URL
 					
-					System.out.println("#################### update.lt deleteFilePath : " + deleteFilePath + "####################");
+					// System.out.println("#################### update.lt deleteFilePath : " + deleteFilePath + "####################");
 					
+					/*
 					if(deleteFile.exists()) {
 						if(deleteFile.delete()) {
 							System.out.println("파일 삭제 완료");
@@ -310,6 +311,7 @@ public class OpnLatController {
 					} else {
 						System.out.println("파일이 존재하지 않습니다.");
 					}
+					*/
 				}
 				
 		} catch (IllegalStateException e1) {
@@ -325,8 +327,8 @@ public class OpnLatController {
 			csi.update(c);
 			
 			List<Contents> cs = csi.findByPageId(pageId);
-			mv.addObject("cs", cs);
-			mv.setViewName("redirect:view.ol");
+			mv.addObject("c", c);
+			mv.setViewName("redirect:detailView.ol?id=" + c.getId());
 		} catch (Exception e) {
 			mv.addObject("message",e.getMessage());
 			mv.setViewName("redirect:/common/errorPage");
@@ -365,7 +367,7 @@ public class OpnLatController {
 			}
 			
 			csi.delete(id);
-			mv.setViewName("redirect:view.ib");
+			mv.setViewName("redirect:view.ol");
 		} catch (ContentsException e) {
 			mv.addObject("message",e.getMessage());
 			mv.setViewName("redirect:/common/errorPage");
@@ -383,12 +385,11 @@ public class OpnLatController {
 		try {
 			Contents c = csi.findById(id);
 			String downloadFileName = c.getText();
-			// ##################### 파일 삭제 처리 #######################
 			String downloadFilePath = filePath + "/" + downloadFileName;
 			byte fileByte[] = FileUtils.readFileToByteArray(new File(downloadFilePath));
 			
 			response.setContentType("application/octet-stream");
-			response.setHeader("Content-Disposition", "attachment; fileName='" + URLEncoder.encode(c.getOrigin(), "UTF-8") + "';");
+			response.setHeader("Content-Disposition", "attachment; fileName=" + URLEncoder.encode(c.getOrigin(), "UTF-8") + ";");
 			response.setHeader("Content-Transfer-Encoding", "binary");
 			response.getOutputStream().write(fileByte);
 			response.getOutputStream().flush();

@@ -14,53 +14,52 @@
 	let currentPage = 1;
 
 	$(function() {
-		let getList = function(currentPage) {
-			if(isEnd) return;
-			
-			$.ajax({
-				url: "get.ol",
-				data: {"currentPage": currentPage},
-				dataType: "json",
-				success: function(data) {
-					let length = data.cs.length;
-					if(length < data.pi.limit) {
-						isEnd = true;
-					}
-					$.each(data.cs, function(index, c) {
-						index = data.pi.limit*(currentPage-1) + index;
-						renderList(index, c);
-					});
-					$(window).on('scroll');
-				}
-			});
-		}
-		
-		let renderList = function(index, c) {
-			index += 1;
-			let html = "<a href=detail.ol?id=" + c.id + "><table class='simple'><tr class='simpleboard'>" +
-					   "<td class='simpleboard-index'>" + index + "</td>" +
-					   "<td class='simpleboard-contents'>" + c.title + "</td>" +
-					   "<td class='simpleboard-date'>" + c.postDate + "</td>" +
-					   "</tr></table></a>";
-			let old = $('.inner').html();
-			$('.inner').html(old + html);
-		}
-		
 		$(window).scroll(function() {
 			let $window = $(this);
 			let scrollTop = $window.scrollTop(); // 요소의 스크롤바 수직 위치
-			// let windowHeight = $window.height(); // 요소의 세로 크기
+			let windowHeight = $window.height(); // 요소의 세로 크기
 			let documentHeight = $('section#two').height();
 			
-			if(scrollTop > documentHeight) {
+			if(scrollTop + 30 > documentHeight) {
 				currentPage += 1;
 				getList(currentPage);
-				$(window).off('scroll');
+				$(window).unbind('scroll');
 			}
 		});
 		getList(currentPage);
-		
 	});
+	
+	let getList = function(currentPage) {
+		if(isEnd) return;
+		
+		$.ajax({
+			url: "get.os",
+			data: {"currentPage": currentPage},
+			dataType: "json",
+			success: function(data) {
+				let length = data.cs.length;
+				if(length < 5) {
+					isEnd = true;
+				}
+				$.each(data.cs, function(index, c) {
+					index = data.pi.limit*(currentPage-1) + index;
+					renderList(index, c);
+				});
+				$(window).bind('scroll');
+			}
+		});
+	}
+	
+	let renderList = function(index, c) {
+		index += 1;
+		let html = "<a href=detail.ol?id=" + c.id + "><table class='simple'><tr class='simpleboard'>" +
+				   "<td class='simpleboard-index'>" + index + "</td>" +
+				   "<td class='simpleboard-contents'>" + c.title + "</td>" +
+				   "<td class='simpleboard-date'>" + c.postDate + "</td>" +
+				   "</tr></table></a>";
+		let old = $('.inner').html();
+		$('.inner').html(old + html);
+	}
 	
 	
 </script>
