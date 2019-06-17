@@ -119,7 +119,7 @@ public class OpnLatController {
 			int endPage;
 			int listCount = 0;
 
-			limit = 10; //
+			limit = 5; //
 
 			System.out.println("currentPage : " + currentPage);
 			
