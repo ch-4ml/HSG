@@ -10,25 +10,11 @@
 </head>
 <body>
 <script>
-	let isEnd = false;
-	let currentPage = 1;
+let isEnd = false;
+let flag = true; // 스크롤 이벤트가 연속으로 발생하는 것을 방지하기 위한 플래그 
+let currentPage = 1;
 
-	$(function() {
-		$(window).scroll(function() {
-			let $window = $(this);
-			let scrollTop = $window.scrollTop(); // 요소의 스크롤바 수직 위치
-			let windowHeight = $window.height(); // 요소의 세로 크기
-			let documentHeight = $('section#two').height();
-			
-			if(scrollTop + 30 > documentHeight) {
-				currentPage += 1;
-				getList(currentPage);
-				$(window).unbind('scroll');
-			}
-		});
-		getList(currentPage);
-	});
-	
+$(function() {
 	let getList = function(currentPage) {
 		if(isEnd) return;
 		
@@ -38,21 +24,21 @@
 			dataType: "json",
 			success: function(data) {
 				let length = data.cs.length;
-				if(length < 5) {
+				if(length < data.pi.limit) {
 					isEnd = true;
 				}
 				$.each(data.cs, function(index, c) {
 					index = data.pi.limit*(currentPage-1) + index;
 					renderList(index, c);
 				});
-				$(window).bind('scroll');
+				flag = true;
 			}
 		});
 	}
 	
 	let renderList = function(index, c) {
 		index += 1;
-		let html = "<a href=detail.ol?id=" + c.id + "><table class='simple'><tr class='simpleboard'>" +
+		let html = "<a href=detail.os?id=" + c.id + "><table class='simple'><tr class='simpleboard'>" +
 				   "<td class='simpleboard-index'>" + index + "</td>" +
 				   "<td class='simpleboard-contents'>" + c.title + "</td>" +
 				   "<td class='simpleboard-date'>" + c.postDate + "</td>" +
@@ -61,7 +47,22 @@
 		$('.inner').html(old + html);
 	}
 	
+	$(window).scroll(function() {
+		let $window = $(this);
+		let scrollTop = $window.scrollTop(); // 요소의 스크롤바 수직 위치
+		let documentHeight = $('section#two').height();
+		
+		if(scrollTop > documentHeight && flag) {
+			currentPage += 1;
+			getList(currentPage);
+			flag = false;
+		}
+	});
+	getList(currentPage);
 	
+});
+
+
 </script>
 <jsp:include page="../../common/header-content.jsp" />
     <!-- Banner Area Starts -->
@@ -69,7 +70,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1>최신 기술</h1>
+                    <h1>오픈소스</h1>
                 </div>
             </div>
         </div>
@@ -77,11 +78,11 @@
     <!-- Banner Area End -->
     <!-- About Area Starts -->
     <section id="two" class="wrapper style2 alt content-center">
-		<h2>최신 기술</h2><br><br>
+		<h2>오픈소스</h2><br><br>
 		<div class="inner">
 			<c:if test="${!empty loginUser }">
 					<ul class="actions special">
-						<li><input type="button" id="insert" onclick="location.href='insertView.ol'" value="추가"></li>
+						<li><input type="button" id="insert" onclick="location.href='insertView.os'" value="추가"></li>
 					</ul>
 				<br>
 				<br>

@@ -19,7 +19,6 @@
 		<config>src/main/webapp/WEB-INF/config/itr-gre-servlet.xml</config>
 		<config>src/main/webapp/WEB-INF/config/edu-hrd-servlet.xml</config>
 		<config>src/main/webapp/WEB-INF/config/edu-sft-servlet.xml</config>
-		<config>src/main/webapp/WEB-INF/config/member-servlet.xml</config>
 		<config>src/main/webapp/WEB-INF/config/edu-eln-servlet.xml</config>
 		<config>src/main/webapp/WEB-INF/config/itr-bok-servlet.xml</config>
 		<config>src/main/webapp/WEB-INF/config/itr-his-servlet.xml</config>

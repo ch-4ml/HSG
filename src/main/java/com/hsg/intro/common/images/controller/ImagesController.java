@@ -1,4 +1,4 @@
-package com.hsg.intro.common.controller;
+package com.hsg.intro.common.images.controller;
 
 import java.io.File;
 import java.io.IOException;
@@ -16,9 +16,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @SessionAttributes("loginUser")
-public class CommonController {
+public class ImagesController {
 	
-	@RequestMapping(value="update.co", method=RequestMethod.POST)
+	@RequestMapping(value="updateImg.co", method=RequestMethod.POST)
 	public ModelAndView updateCommon(ModelAndView mv,
 			@RequestParam(required=false) MultipartFile file ,
 			HttpServletRequest request) {

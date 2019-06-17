@@ -34,7 +34,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1>최신 기술</h1>
+                    <h1>오픈소스</h1>
                 </div>
             </div>
         </div>

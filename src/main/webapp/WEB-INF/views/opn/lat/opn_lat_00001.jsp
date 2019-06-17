@@ -11,6 +11,7 @@
 <body>
 <script>
 	let isEnd = false;
+	let flag = true; // 스크롤 이벤트가 연속으로 발생하는 것을 방지하기 위한 플래그 
 	let currentPage = 1;
 
 	$(function() {
@@ -30,7 +31,7 @@
 						index = data.pi.limit*(currentPage-1) + index;
 						renderList(index, c);
 					});
-					$(window).on('scroll');
+					flag = true;
 				}
 			});
 		}
@@ -52,10 +53,10 @@
 			// let windowHeight = $window.height(); // 요소의 세로 크기
 			let documentHeight = $('section#two').height();
 			
-			if(scrollTop > documentHeight) {
+			if(scrollTop > documentHeight && flag) {
 				currentPage += 1;
 				getList(currentPage);
-				$(window).off('scroll');
+				flag = false;
 			}
 		});
 		getList(currentPage);
@@ -70,7 +71,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1>최신 기술</h1>
+                    <h1>최신기술</h1>
                 </div>
             </div>
         </div>
@@ -78,7 +79,7 @@
     <!-- Banner Area End -->
     <!-- About Area Starts -->
     <section id="two" class="wrapper style2 alt content-center">
-		<h2>최신 기술</h2><br><br>
+		<h2>최신기술</h2><br><br>
 		<div class="inner">
 			<c:if test="${!empty loginUser }">
 					<ul class="actions special">

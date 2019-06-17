@@ -69,21 +69,21 @@ $(function() {
 				<div class="col-lg-4 col-md-6">
 					<div class="single-feature text-center item-padding wow fadeInUp" data-wow-delay="250ms">
 						<img src="./resources/images/feature3.png" alt="">
-						<h3>개발</h3>
+						<h3>Development</h3>
 						<p class="pt-3">산업용 PC 기반의 사용자 인터페이스 프로그램과 교육용 Kocoafab 지니어스키트 스타터 팩 및 보드 등을 개발합니다.<br></p>
 					</div>
 				</div>
 				<div class="col-lg-4 col-md-6">
 					<div class="single-feature text-center item-padding mt-4 mt-md-0 wow fadeInUp" data-wow-delay="500ms">
 						<img src="./resources/images/feature2.png" alt="">
-						<h3>컨설팅</h3>
+						<h3>Consulting</h3>
 						<p class="pt-3">다양한 사업 분야에서 최적의 솔루션을 제공합니다.</p>
 					</div>
 				</div>
 				<div class="col-lg-4 col-md-6">
 					<div class="single-feature text-center item-padding mt-4 mt-lg-0 wow fadeInUp" data-wow-delay="750ms">
 						<img src="./resources/images/feature1.png" alt="">
-						<h3>교육 솔루션</h3>
+						<h3>Training Solutions</h3>
 						<p class="pt-3">기업에 근무하는 R&D 인력을 대상으로 신규 프로젝트 진행이나, 개발자의 직무향상을 위하여 기업이 컨설팅 및 교육을 위탁하여 진행되는 서비스입니다.</p>
 					</div>
 				</div>
@@ -98,7 +98,7 @@ $(function() {
 			<div class="row">
 				<div class="col-lg-6 offset-lg-3">
 					<div class="section-top text-center ">
-						<h2>회사 소개 영상</h2>
+						<h2>Introduce</h2>
 					</div>
 				</div>
 			</div>

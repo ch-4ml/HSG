@@ -39,7 +39,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1>최신 기술</h1>
+                    <h1>최신기술</h1>
                 </div>
             </div>
         </div>
@@ -52,7 +52,7 @@
    		<div class="inner">
 			<div class="contents">
 				<div style="text-align: right;"><br>
-					첨부 파일 : <a href="download.ol?id=${c.id }">${c.origin }</a>
+					<a href="download.ol?id=${c.id }">${c.origin }</a>
 				</div>
 				<span id="contents">
 					${c.contents }

@@ -138,6 +138,20 @@
   </servlet-mapping>
   
   <servlet>
+  	<servlet-name>itr-ptn</servlet-name>
+  	<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+  	<init-param>
+  	  <param-name>contextConfigLocation</param-name>
+  	  <param-value>/WEB-INF/config/itr-ptn-servlet.xml</param-value>
+  	</init-param>
+  	<load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>itr-ptn</servlet-name>
+    <url-pattern>*.ip</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
   	<servlet-name>itr-loc</servlet-name>
   	<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
   	<init-param>
@@ -247,6 +261,34 @@
   <servlet-mapping>
     <servlet-name>opn-lat</servlet-name>
     <url-pattern>*.ol</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>opn-src</servlet-name>
+  	<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+  	<init-param>
+  	  <param-name>contextConfigLocation</param-name>
+  	  <param-value>/WEB-INF/config/opn-src-servlet.xml</param-value>
+  	</init-param>
+  	<load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>opn-src</servlet-name>
+    <url-pattern>*.os</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>opn-tec</servlet-name>
+  	<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+  	<init-param>
+  	  <param-name>contextConfigLocation</param-name>
+  	  <param-value>/WEB-INF/config/opn-tec-servlet.xml</param-value>
+  	</init-param>
+  	<load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>opn-tec</servlet-name>
+    <url-pattern>*.ot</url-pattern>
   </servlet-mapping>
   
   <filter>
