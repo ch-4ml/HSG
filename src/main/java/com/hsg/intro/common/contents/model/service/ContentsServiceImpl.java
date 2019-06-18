@@ -58,11 +58,6 @@ public class ContentsServiceImpl implements ContentsService {
 	}
 
 	@Override
-	public void updateImage(Contents c) throws ContentsException {		
-		cd.updateImage(c);
-	}
-
-	@Override
 	public void delete(int id) throws ContentsException {
 		cd.delete(id);
 	}

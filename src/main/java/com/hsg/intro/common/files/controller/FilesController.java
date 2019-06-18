@@ -1,4 +1,4 @@
-package com.hsg.intro.common.images.controller;
+package com.hsg.intro.common.files.controller;
 
 import java.io.File;
 import java.io.IOException;
@@ -16,7 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @SessionAttributes("loginUser")
-public class ImagesController {
+public class FilesController {
 	
 	@RequestMapping(value="updateImg.co", method=RequestMethod.POST)
 	public ModelAndView updateCommon(ModelAndView mv,

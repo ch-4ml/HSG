@@ -15,6 +15,5 @@ public interface ContentsService {
 	List<Contents> findByPageId(HashMap<String, String> hmap, PageInfo pi) throws ContentsException;
 	Contents findById(int id) throws ContentsException;
 	void update(Contents c) throws ContentsException;
-	void updateImage(Contents c) throws ContentsException;
 	void delete(int id) throws ContentsException;
 }
