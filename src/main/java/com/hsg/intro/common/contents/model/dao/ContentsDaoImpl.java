@@ -71,15 +71,6 @@ public class ContentsDaoImpl implements ContentsDao {
 		}
 
 	}
-	
-	@Override
-	public void updateImage(Contents c) throws ContentsException {
-		try {
-			sqlSession.update("Contents.updateImage", c);
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
-	}
 
 	@Override
 	public void delete(int id) throws ContentsException {

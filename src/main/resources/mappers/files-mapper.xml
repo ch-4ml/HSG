@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="Files">
+  	<resultMap type="Files" id="filesResultSet">
+  		<id property="id" column="ID" />
+  		<result property="contentsId" column="CONTENTS_ID" />
+  		<result property="pageId" column="PAGE_ID" />
+  		<result property="origin" column="ORIGIN" />
+  		<result property="stored" column="STORED" />
+  		<result property="size" column="SIZE" />
+  		<result property="category" column="CATEGORY" />
+  		<result property="postDate" column="POST_DATE" />
+  	</resultMap>
+  	<insert id="insert" parameterType="Files">
+  		INSERT INTO 
+  		hsgbiz_files(CONTENTS_ID, PAGE_ID, ORIGIN, STORED, SIZE, CATEGORY, POST_DATE) 
+  		VALUES(#{contentsId, pageId, origin, stored, size, category, postDate)
+  	</insert>
+  	<select id="findById" resultMap="filesResultSet" parameterType="Files">
+  		SELECT * FROM hsgbiz_files
+  		WHERE ID = #{id}
+  		ORDER BY POST_DATE DESC
+  	</select>
+  	<select id="findByContentsId" resultMap="filesResultSet" parameterType="Files">
+  		SELECT * FROM hsgbiz_files
+  		WHERE ID = #{contentsId}
+  		ORDER BY POST_DATE DESC
+  	</select>
+  	<select id="findByPageId" resultMap="filesResultSet" parameterType="Files">
+  		SELECT * FROM hsgbiz_files
+  		WHERE ID = #{pageId}
+  		ORDER BY POST_DATE DESC
+  	</select>
+  	<update id="update" parameterType="Files">
+  		UPDATE hsgbiz_files
+  		<set>
+  			CONTENTS_ID = #{contentsId},
+  			PAGE_ID = #{pageId},
+  			ORIGIN = #{origin},
+  			STORED = #{stored},
+  			SIZE = #{size},
+  			CATEGORY = #{category},
+  			POST_DATE = #{postDate}
+  		</set>
+  		WHERE ID = #{id}
+  	</update>
+  	<delete id="delete" parameterType="java.lang.Integer">
+		DELETE FROM hsgbiz_files 
+		WHERE ID = #{id}
+	</delete>
+  </mapper>

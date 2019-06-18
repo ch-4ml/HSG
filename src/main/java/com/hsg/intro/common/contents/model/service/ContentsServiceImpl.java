@@ -15,66 +15,61 @@ import com.hsg.intro.common.contents.model.vo.Contents;
 public class ContentsServiceImpl implements ContentsService {
 
 	@Autowired
-	private ContentsDaoImpl cd;
+	private ContentsDaoImpl cdi;
 	
 	@Override
 	public void insert(Contents c) throws ContentsException {
-		cd.insert(c);
+		cdi.insert(c);
 	}
 	
 	@Override
 	public Contents findOneByPageId(String pageId) throws ContentsException {
-		Contents content = cd.findOneByPageId(pageId);
+		Contents content = cdi.findOneByPageId(pageId);
 		return content;
 	}
 	
 	@Override
 	public List<Contents> findByPageId(String pageId) throws ContentsException {
-		List<Contents> contents = cd.findByPageId(pageId);		
+		List<Contents> contents = cdi.findByPageId(pageId);		
 		return contents;
 	}
 	
 	@Override
 	public List<Contents> findByPageId(String pageId, PageInfo pi) throws ContentsException {
-		List<Contents> contents = cd.findByPageId(pageId, pi);		
+		List<Contents> contents = cdi.findByPageId(pageId, pi);		
 		return contents;
 	}
 	
 	@Override
 	public List<Contents> findByPageId(HashMap<String, String> hmap, PageInfo pi) throws ContentsException {
-		List<Contents> contents = cd.findByPageId(hmap, pi);
+		List<Contents> contents = cdi.findByPageId(hmap, pi);
 		return contents;
 	}
 	
 	@Override
 	public Contents findById(int id) throws ContentsException {
-		Contents content = cd.findById(id);
+		Contents content = cdi.findById(id);
 		return content;
 	}
 	
 	@Override
 	public void update(Contents c) throws ContentsException {		
-		cd.update(c);
-	}
-
-	@Override
-	public void updateImage(Contents c) throws ContentsException {		
-		cd.updateImage(c);
+		cdi.update(c);
 	}
 
 	@Override
 	public void delete(int id) throws ContentsException {
-		cd.delete(id);
+		cdi.delete(id);
 	}
 
 	public int getListCount(String pageId) throws ContentsException {
 		
-		return cd.getListCount(pageId);
+		return cdi.getListCount(pageId);
 	}
 
 	public int getListCount(HashMap<String, String> hmap) throws ContentsException {
 		
-		return cd.getListCount(hmap);
+		return cdi.getListCount(hmap);
 	}
 }
 
