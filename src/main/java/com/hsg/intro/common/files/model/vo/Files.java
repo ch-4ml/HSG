@@ -6,7 +6,7 @@ public class Files {
 	private String pageId;
 	private String origin;
 	private String stored;
-	private int size;
+	private double size;
 	private int category;
 	private String postDate;
 	public int getId() {
@@ -39,10 +39,10 @@ public class Files {
 	public void setStored(String stored) {
 		this.stored = stored;
 	}
-	public int getSize() {
+	public double getSize() {
 		return size;
 	}
-	public void setSize(int size) {
+	public void setSize(double size) {
 		this.size = size;
 	}
 	public int getCategory() {

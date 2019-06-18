@@ -2,10 +2,12 @@ package com.hsg.intro.common.files.model.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.hsg.intro.Exception.ContentsException;
 import com.hsg.intro.Exception.FilesException;
 import com.hsg.intro.common.files.model.vo.Files;
 
@@ -39,6 +41,14 @@ public class FilesDaoImpl implements FilesDao {
 	}
 
 	@Override
+	public List<Files> findByPageId(String pageId, Integer currentCount) throws FilesException {
+		
+		RowBounds rowBounds = new RowBounds(currentCount, 1);
+		List<Files> files = sqlSession.selectList("Files.findByPageId", pageId, rowBounds);
+		return files;
+	}
+	
+	@Override
 	public void update(Files f) throws FilesException {
 		sqlSession.update("Files.update", f);
 	}
@@ -47,5 +57,15 @@ public class FilesDaoImpl implements FilesDao {
 	public void delete(int id) throws FilesException {
 		sqlSession.delete("Files.delete", id);
 	}
-
+	
+	public int getListCount(String pageId) throws ContentsException {
+		Integer result = 0;
+		try {
+			result = sqlSession.selectOne("Files.getListCount", pageId);
+			if(result == null) result = 0;
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
 }
