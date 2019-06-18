@@ -54,6 +54,7 @@ public class FilesController {
 					uploadPath.mkdirs();
 				}
 				
+				// 파일 경로를 객체에 넣어줌
 				updatefilePath = filePath + "/" + fileName;
 				
 				// 해당 폴더에 파일 생성
