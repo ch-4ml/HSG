@@ -224,7 +224,8 @@ public class OpnLatController {
 		}
 		// ################### 파일 업로드###################
 		  
-		c.setPageId(pageId); c.setPostDate(postDate);
+		c.setPageId(pageId);
+		c.setPostDate(postDate);
 		  
 		try { 
 			csi.insert(c); 
