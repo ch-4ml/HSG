@@ -6,10 +6,12 @@
 	<typeAliases>
 		<typeAlias alias="MEMBER" type="com.hsg.intro.member.model.vo.Member"/>
 		<typeAlias alias="CONTENTS" type="com.hsg.intro.common.contents.model.vo.Contents"/>
+		<typeAlias alias="FILES" type="com.hsg.intro.common.files.model.vo.Files"/>
 	</typeAliases>
 	<mappers>
 		<mapper resource="mappers/member-mapper.xml"/>
 		<mapper resource="mappers/contents-mapper.xml"/>
+		<mapper resource="mappers/files-mapper.xml"/>
 	</mappers>
 	
 	

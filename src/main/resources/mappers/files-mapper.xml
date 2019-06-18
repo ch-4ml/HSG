@@ -16,23 +16,24 @@
   	<insert id="insert" parameterType="Files">
   		INSERT INTO 
   		hsgbiz_files(CONTENTS_ID, PAGE_ID, ORIGIN, STORED, SIZE, CATEGORY, POST_DATE) 
-  		VALUES(#{contentsId, pageId, origin, stored, size, category, postDate)
+  		VALUES(#{contentsId}, #{pageId}, #{origin}, #{stored}, #{size}, #{category}, #{postDate})
   	</insert>
   	<select id="findById" resultMap="filesResultSet" parameterType="Files">
   		SELECT * FROM hsgbiz_files
   		WHERE ID = #{id}
-  		ORDER BY POST_DATE DESC
   	</select>
   	<select id="findByContentsId" resultMap="filesResultSet" parameterType="Files">
   		SELECT * FROM hsgbiz_files
-  		WHERE ID = #{contentsId}
-  		ORDER BY POST_DATE DESC
+  		WHERE CONTENTS_ID = #{contentsId}
   	</select>
   	<select id="findByPageId" resultMap="filesResultSet" parameterType="Files">
   		SELECT * FROM hsgbiz_files
-  		WHERE ID = #{pageId}
-  		ORDER BY POST_DATE DESC
+  		WHERE PAGE_ID = #{pageId}
   	</select>
+	<select id="getListCount" resultType="java.lang.Integer" parameterType="java.lang.String">
+		SELECT COUNT(*) FROM hsgbiz_files 
+		WHERE PAGE_ID = #{pageId}
+	</select>
   	<update id="update" parameterType="Files">
   		UPDATE hsgbiz_files
   		<set>

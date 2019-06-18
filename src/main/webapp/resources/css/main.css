@@ -356,3 +356,23 @@ iframe {
 	margin: 1em;
 }
 
+.insert-in-partner-customer {
+	margin-top: 2.5em;
+}
+
+.partner-customer {
+	padding: 0 5%;
+	overflow: auto;
+}
+
+.partner-customer-li {
+	width: 11.5%;
+	float: left;
+	margin: 1%;
+	border: 1px solid;
+	overflow: auto;
+}
+
+.partner-customer-li img {
+	
+}
