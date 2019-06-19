@@ -37,19 +37,21 @@ $(function() {
 });
 
 function deleteImg(id) {
-	if(confirm("정말로 삭제하시겠습니까?")) {
-		$.ajax({
-			url: 'delete.ip',
-			data: {'id': id},
-			dataType: 'json',
-			success: function(data) {
-				let temp = '#img' + id;
-				$(temp).remove();
-			},
-			error: function(error) {
-				alert(error);
-			}
-		});
+	if(user == 'admin') {
+		if(confirm("정말 삭제하시겠습니까?")) {
+			$.ajax({
+				url: 'delete.ip',
+				data: {'id': id},
+				dataType: 'json',
+				success: function(data) {
+					let temp = '#img' + id;
+					$(temp).remove();
+				},
+				error: function(error) {
+					alert(error);
+				}
+			});
+		}
 	}
 }
 </script>
@@ -67,16 +69,19 @@ function deleteImg(id) {
     <!-- Banner Area End -->
     <section class="content content-center">
     	<div class="container">
-		  	<h2>Partner & Customer</h2>
-		  	<form id="insertForm" enctype="multipart/form-data">
-		  		<span class="input input--hoshi input--filled">
-			    	<input class="input__field input__field--hoshi" type="file" id="file" name="file" accept=".jpg, .jpeg, .png .gif">
-			    	<label class="input__label input__label--hoshi input__label--hoshi-color-1" for="file">
-			    		<span class="input__label-content input__label-content--hoshi">로고 추가</span>
-			    	</label>
-				</span> <input type="button" id="insertBtn" class="insert-in-partner-customer" value="추가">
-				<br>
-		  	</form>
+		  	<h2 style="color: black;">Partner & Customer</h2>
+		  	<input type="hidden" id="user" value="${loginUser.userId }">
+		  	<c:if test="${!empty loginUser }">
+			  	<form id="insertForm" enctype="multipart/form-data">
+			  		<span class="input input--hoshi input--filled">
+				    	<input class="input__field input__field--hoshi" type="file" id="file" name="file" accept=".jpg, .jpeg, .png .gif">
+				    	<label class="input__label input__label--hoshi input__label--hoshi-color-1" for="file">
+				    		<span class="input__label-content input__label-content--hoshi">로고 추가</span>
+				    	</label>
+					</span> <input type="button" id="insertBtn" class="insert-in-partner-customer" value="추가">
+					<br>
+			  	</form>
+		  	</c:if>
 		  	<ul class="partner-customer">
 		  	<c:forEach var="f" items="${fs }">
 		  		<li id="img${f.id }"class="partner-customer-li"><a href="javascript:deleteImg(${f.id});"><img src="${f.stored }"></a></li>
