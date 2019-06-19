@@ -54,7 +54,7 @@
 		   	       		});
 		   	    	});
    			  	},
-   			    images_upload_url: 'updateImg.co',
+   			    images_upload_url: 'update.fi',
    			    images_upload_base_path: 'http://tbsko.cafe24.com/HSG/resources/uploadFiles/common_upload_file/',
    			    images_reuse_filename: true,
     		});    		

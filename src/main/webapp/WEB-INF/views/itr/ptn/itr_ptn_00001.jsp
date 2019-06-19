@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <head>
     <title>HS글로벌</title>
-    <jsp:include page="../../common/head.jsp" />
+   <%@ include file="../../common/head.jsp" %>
 </head>
 <body>
 <script>
@@ -22,7 +22,7 @@ $(function() {
 				type: 'post',
 				success: function(data) {
 					$.each(data.fs, function(index, f) {
-						let html = "<li id='img" + f.id + "'class='partner-customer-li'><a href='javascript:delete(" + f.id + ");'><img src='" + f.stored + "'></a></li>"
+						let html = "<li id='img" + f.id + "'class='partner-customer-li'><a href='javascript:deleteImg(" + f.id + ");'><img src='" + $('#uploadPath').val() + f.stored + "'></a></li>"
 						let old = $('.partner-customer').html();
 						$('.partner-customer').html(old + html);
 					});
@@ -37,6 +37,7 @@ $(function() {
 });
 
 function deleteImg(id) {
+	var user = $('#user').val();
 	if(user == 'admin') {
 		if(confirm("정말 삭제하시겠습니까?")) {
 			$.ajax({
@@ -71,6 +72,7 @@ function deleteImg(id) {
     	<div class="container">
 		  	<h2 style="color: black;">Partner & Customer</h2>
 		  	<input type="hidden" id="user" value="${loginUser.userId }">
+		  	<input type="hidden" id="uploadPath" value="<%= uploadPath %>">
 		  	<c:if test="${!empty loginUser }">
 			  	<form id="insertForm" enctype="multipart/form-data">
 			  		<span class="input input--hoshi input--filled">
@@ -84,7 +86,7 @@ function deleteImg(id) {
 		  	</c:if>
 		  	<ul class="partner-customer">
 		  	<c:forEach var="f" items="${fs }">
-		  		<li id="img${f.id }"class="partner-customer-li"><a href="javascript:deleteImg(${f.id});"><img src="${f.stored }"></a></li>
+		  		<li id="img${f.id }"class="partner-customer-li"><a href="javascript:deleteImg(${f.id});"><img src="<%= uploadPath %>${f.stored }"></a></li>
 		  	</c:forEach>
 		  	</ul>
 	  	</div>

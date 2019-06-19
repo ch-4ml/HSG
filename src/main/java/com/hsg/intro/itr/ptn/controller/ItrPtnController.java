@@ -27,7 +27,8 @@ public class ItrPtnController {
 	private FilesServiceImpl fsi;
 
 	private String pageId = "itr/ptn";
-
+	private String pagePath = "/itrptn_upload_file"; // 페이지 별로 변경되는 저장 경로
+	
 	SimpleDateFormat formatter = new SimpleDateFormat("yyyy.MM.dd HH:mm", Locale.KOREA);
 	Date currentDate = new Date();
 	String postDate = formatter.format(currentDate);
@@ -54,9 +55,10 @@ public class ItrPtnController {
 		// ################### 파일 업로드 ################### 
 		if(!file.isEmpty()) { 
 			String root = request.getSession().getServletContext().getRealPath("resources"); 
-			String filePath = root + "/uploadFiles/itrptn_upload_file"; 
-			String fileName = "";
-			double fileSize = file.getSize();
+			String uploadPath = root + "/uploadFiles";
+			String filePath = uploadPath + pagePath; // 파일이 저장되는 경로
+			String fileName = file.getOriginalFilename(); // 파일 명
+			long fileSize = file.getSize(); // 파일 크기
 			
 			try { // 파일명 새이름 설정 
 				
@@ -69,20 +71,22 @@ public class ItrPtnController {
 				int pos = file.getOriginalFilename().lastIndexOf("."); 
 				String ext = file.getOriginalFilename().substring(pos); 
 				
-				fileName = filePath + "/" + newFileName + ext;
+				String storedFileName = pagePath + "/" + newFileName + ext;
+				String originFileName = pagePath + "/" + fileName + ext;
+				String storedFile = filePath + "/" + newFileName + ext;
 				
-				f.setOrigin(filePath + "/" + file.getOriginalFilename() + ext);
-				f.setStored(fileName);
+				f.setStored(storedFileName);
+				f.setOrigin(originFileName);
 				f.setSize(fileSize);
 
 				// 폴더 없으면 생성 
-				File uploadPath = new File(filePath); 
-				if(!uploadPath.exists()) {
-					uploadPath.mkdirs(); 
+				File uploadFilePath = new File(storedFile); 
+				if(!uploadFilePath.exists()) {
+					uploadFilePath.mkdirs(); 
 				}
 				  
 				// 해당 폴더에 파일 생성 
-				file.transferTo(new File(fileName));
+				file.transferTo(new File(storedFile));
 					  
 			} catch (IllegalStateException e) { 
 				mv.addObject("message",e.getMessage());
@@ -119,7 +123,7 @@ public class ItrPtnController {
 			int count = fs.size();
 			mv.addObject("fs", fs);
 			mv.addObject("count", count);
-			mv.setViewName("jsonView");
+			mv.setViewName("itr/ptn/itr_ptn_00001");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -132,7 +136,9 @@ public class ItrPtnController {
 			@RequestParam(value="id") int id,
 			HttpServletRequest request) throws FilesException {
 		try {
-			String deleteFileName = fsi.findById(id).getStored();
+			String root = request.getSession().getServletContext().getRealPath("resources"); 
+			String uploadPath = root + "/uploadFiles";
+			String deleteFileName = uploadPath + fsi.findById(id).getStored();
 			File deleteFile = new File(deleteFileName); // 파일 URL
 			
 			if(deleteFile.exists()) {
