@@ -44,6 +44,21 @@ tinymce.init({
 	    editor.on('change', function (e) {
 	    	editor.save();
     	});
+	    editor.on('KeyDown', function (e) {
+	        if ((e.keyCode == 8 || e.keyCode == 46) && editor.selection) { // delete & backspace keys
+	            var selectedNode = editor.selection.getNode(); // get the selected node (element) in the editor
+	            if (selectedNode && selectedNode.nodeName == 'IMG') {
+	                $.ajax({
+	                	url: "delete.fi",
+	                	data {"origin": selectedNode.src},
+	                	dataType: "json",
+	                	success: function(data) {
+							alert("됐다")	;
+	                	}
+	                }); // A callback that will let me invoke the deletion of the image on the server if appropriate for the image source.
+	            }
+	        }
+	    });
 		 $('#content_form').click(function(e) {
    			//e.preventDefault();
    			editor.uploadImages(function(success) {
@@ -51,7 +66,7 @@ tinymce.init({
     	});
   	},
     images_upload_url: 'update.fi',
-    images_upload_base_path: 'http://tbsko.cafe24.com/HSG/resources/uploadFiles/common_upload_file/',
+    images_upload_base_path: 'http://ark9659.cafe24.com/HSG/resources/uploadFiles/common_upload_files/',
     images_reuse_filename: true
 });
 </script>

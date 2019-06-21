@@ -328,7 +328,7 @@ public class EmpNtcController {
 			
 			List<Contents> cs = csi.findByPageId(pageId);
 			mv.addObject("c", c);
-			mv.setViewName("redirect:detailView.en?id=" + c.getId());
+			mv.setViewName("redirect:detail.en?id=" + c.getId());
 		} catch (Exception e) {
 			mv.addObject("message",e.getMessage());
 			mv.setViewName("redirect:/common/errorPage");

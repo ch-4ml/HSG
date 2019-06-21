@@ -12,9 +12,9 @@
  	<bean id="dataSource"
         class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="org.mariadb.jdbc.Driver"/>
-        <property name="url" value="jdbc:mariadb://tbsko.cafe24.com:3306/tbsko"/>
-        <property name="username" value="tbsko"/>
-        <property name="password" value="dk1-10kcs06919"/>
+        <property name="url" value="jdbc:mariadb://ark9659.cafe24.com:3306/ark9659"/>
+        <property name="username" value="ark9659"/>
+        <property name="password" value="chpark!965976"/>
     </bean> 
 	
 	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionFactoryBean">

@@ -62,6 +62,10 @@ public class ContentsServiceImpl implements ContentsService {
 		cdi.delete(id);
 	}
 
+	public int getListCount() throws ContentsException {
+		return cdi.getListCount();
+	}
+	
 	public int getListCount(String pageId) throws ContentsException {
 		
 		return cdi.getListCount(pageId);

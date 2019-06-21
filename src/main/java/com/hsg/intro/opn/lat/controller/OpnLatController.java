@@ -20,20 +20,27 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.hsg.intro.Exception.ContentsException;
 import com.hsg.intro.common.PageInfo;
 import com.hsg.intro.common.contents.model.service.ContentsServiceImpl;
 import com.hsg.intro.common.contents.model.vo.Contents;
+import com.hsg.intro.common.files.model.dao.FilesDaoImpl;
+import com.hsg.intro.common.files.model.service.FilesServiceImpl;
+import com.hsg.intro.common.files.model.vo.Files;
 
 @Controller
 @SessionAttributes("loginUser")
 public class OpnLatController {
 	@Autowired
 	private ContentsServiceImpl csi;
+	@Autowired
+	private FilesServiceImpl fsi;
 
 	private String pageId = "opn/lat";
+	private String dirName = pageId.replace("/", "") + "_upload_files";
 
 	SimpleDateFormat formatter = new SimpleDateFormat("yyyy.MM.dd HH:mm", Locale.KOREA);
 	Date currentDate = new Date();
@@ -178,56 +185,17 @@ public class OpnLatController {
 	// contents 추가
 	@RequestMapping(value = "insert.ol", method = RequestMethod.POST) // DI 의존성 주입 
 	public ModelAndView insert(Contents c, ModelAndView mv,
-			@RequestParam(required=false) MultipartFile file, HttpServletRequest request) {
-	  
-		// ################### 파일 업로드 ################### 
-		if(!file.isEmpty()) { 
-			String root = request.getSession().getServletContext().getRealPath("resources"); 
-			String filePath = root + "/uploadFiles/opnlat_upload_file"; 
-			String fileName = "";
-			String originFileName = "";
-			
-			try { // 파일명 새이름 설정 
-				
-				int randomNumber = (int)((Math.random()*10000)+1);
-				SimpleDateFormat format = new SimpleDateFormat ( "yyyyMMddHHmmss"); 
-				Date nowTime = new Date(); String newfileName = format.format(nowTime) + String.valueOf(randomNumber);
-				  
-				// 확장자 구하기 
-				int pos = file.getOriginalFilename().lastIndexOf("."); 
-				String ext = file.getOriginalFilename().substring(pos); 
-				fileName = newfileName + ext;
-				originFileName = file.getOriginalFilename();
-				  
-				c.setText(fileName);
-				c.setOrigin(originFileName);
-				  
-				// 폴더 없으면 생성 
-				File uploadPath = new File(filePath); 
-			if(!uploadPath.exists()) {
-				uploadPath.mkdirs(); 
-			}
-			  
-			// 파일경로를 itrbok 객체에 넣어줌 
-			filePath = filePath + "/" + fileName;
-			  
-			// 해당 폴더에 파일 생성 
-			file.transferTo(new File(filePath));
-				  
-			} catch (IllegalStateException e) { 
-				mv.addObject("message",e.getMessage());
-				mv.setViewName("common/errorPage");	  
-			} catch (IOException e) { 
-				mv.addObject("message",e.getMessage());
-				mv.setViewName("common/errorPage");	  
-			} 
-		}
-		// ################### 파일 업로드###################
-		  
+			MultipartHttpServletRequest request) {
+		
 		c.setPageId(pageId);
 		c.setPostDate(postDate);
+		
+		List<MultipartFile> files = request.getFiles("file");	
 		  
-		try { 
+		try {
+			if(!files.isEmpty()) { 
+				fsi.insertFile(files, csi.getListCount() + 1, dirName);
+			}
 			csi.insert(c); 
 			mv.setViewName("redirect:view.ol");
 		  
@@ -261,7 +229,7 @@ public class OpnLatController {
 				System.out.println("#################### update.lt file.isEmpty() : " + file.isEmpty() + "####################");
 				System.out.println("#################### update.lt content : " + c + "####################");
 				
-				if(!file.isEmpty()) { // 파일이 null 일 경우
+				if(!file.isEmpty()) { //
 					String root = request.getSession().getServletContext().getRealPath("resources");
 					String filePath = root + "/uploadFiles/opnlat_upload_file";
 					String fileName = "";
@@ -329,7 +297,7 @@ public class OpnLatController {
 			
 			List<Contents> cs = csi.findByPageId(pageId);
 			mv.addObject("c", c);
-			mv.setViewName("redirect:detailView.ol?id=" + c.getId());
+			mv.setViewName("redirect:detail.ol?id=" + c.getId());
 		} catch (Exception e) {
 			mv.addObject("message",e.getMessage());
 			mv.setViewName("redirect:/common/errorPage");

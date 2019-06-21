@@ -13,4 +13,5 @@ public interface FilesDao {
 	List<Files> findByPageId(String pageId, Integer currentCount) throws FilesException;
 	void update(Files f) throws FilesException;
 	void delete(int id) throws FilesException;
+	void deleteByStored(String stored) throws FilesException;
 }

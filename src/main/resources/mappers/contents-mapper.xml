@@ -80,8 +80,10 @@
 	</delete>
 	
 	<select id="getListCount" resultType="java.lang.Integer" parameterType="java.lang.String">
-		SELECT COUNT(*) FROM hsgbiz_contents 
+		SELECT COUNT(*) FROM hsgbiz_contents
+		<if test="pageId != null">
 		WHERE PAGE_ID = #{pageId}
+		</if>
 	</select>
 	
 	<select id="getListCountsetMap" resultType="java.lang.Integer" parameterType="java.util.HashMap">

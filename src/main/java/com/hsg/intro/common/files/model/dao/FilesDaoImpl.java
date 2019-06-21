@@ -58,6 +58,11 @@ public class FilesDaoImpl implements FilesDao {
 		sqlSession.delete("Files.delete", id);
 	}
 	
+	@Override
+	public void deleteByStored(String stored) throws FilesException {
+		sqlSession.delete("Files.deleteByStored", stored);
+	}
+	
 	public int getListCount(String pageId) throws ContentsException {
 		Integer result = 0;
 		try {

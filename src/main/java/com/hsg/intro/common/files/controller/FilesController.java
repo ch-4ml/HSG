@@ -13,43 +13,37 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.hsg.intro.common.files.model.vo.Files;
+
 @Controller
 @SessionAttributes("loginUser")
 public class FilesController {
 	
 	@RequestMapping(value="update.fi", method=RequestMethod.POST)
-	public ModelAndView updateCommon(ModelAndView mv,
+	public ModelAndView update(ModelAndView mv,
 			@RequestParam(required=false) MultipartFile file ,
 			HttpServletRequest request) {
 		try {
-			System.out.println("#################### update.ee file.isEmpty() : " + file.isEmpty() + "####################");
-			
 			if(!file.isEmpty()) {
-				String root = request.getSession().getServletContext().getRealPath("resources");				
-				System.out.println(root);
-				String filePath = root + "/uploadFiles/common_upload_file";
-				String fileName = file.getOriginalFilename();
-				String updatefilePath = "";
+				Files f = new Files();
 				
-				// 파일명 새이름 설정
-//				int randomNumber = (int)((Math.random()*10000)+1);
-//				SimpleDateFormat format = new SimpleDateFormat ("yyyyMMddHHmmss");
-//				Date nowTime = new Date();
-//				String newfileName = format.format(nowTime) + String.valueOf(randomNumber);	
-				
+				String root = "/ark9659/var/webapps/uploadFiles";
+				String filePath = root + "/common_upload_file";
+				String storedFileName = file.getOriginalFilename();
+					
 				// 폴더 없으면 생성
 				File uploadPath = new File(filePath);
 				if(!uploadPath.exists()) {
 					uploadPath.mkdirs();
 				}
 				
-				updatefilePath = filePath + "/" + fileName;
-				System.out.println("#################### update.ee updatefilePath : " + updatefilePath + "####################");
+				String storedfilePath = filePath + "/" + storedFileName;
+				f.setStored(storedFileName);
 				
 				// 해당 폴더에 파일 생성
-				file.transferTo(new File(updatefilePath));
+				file.transferTo(new File(storedfilePath));
 				
-				mv.addObject("location", fileName);
+				mv.addObject("location", storedFileName);
 				mv.setViewName("jsonView");
 			}
 			
@@ -58,6 +52,26 @@ public class FilesController {
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
+		return mv;
+	}
+	
+	@RequestMapping(value="delete.fi")
+	public ModelAndView delete(ModelAndView mv, @RequestParam String stored) {
+		if(stored.indexOf("?") != -1) {
+			stored.substring(0, stored.indexOf("?"));
+			stored.substring(stored.indexOf("blobid"));
+		}
+		File deleteFile = new File(stored);
+		if(deleteFile.exists()) {
+			if(deleteFile.delete()) {
+				System.out.println("파일 삭제 완료");
+			} else {
+				System.out.println("파일 삭제 실패");
+			}
+		} else {
+			System.out.println("파일이 존재하지 않습니다.");
+		}
+		mv.setViewName("jsonView");
 		return mv;
 	}
 }

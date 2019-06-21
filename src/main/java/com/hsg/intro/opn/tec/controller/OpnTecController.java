@@ -328,7 +328,7 @@ public class OpnTecController {
 			
 			List<Contents> cs = csi.findByPageId(pageId);
 			mv.addObject("c", c);
-			mv.setViewName("redirect:detailView.ot?id=" + c.getId());
+			mv.setViewName("redirect:detail.ot?id=" + c.getId());
 		} catch (Exception e) {
 			mv.addObject("message",e.getMessage());
 			mv.setViewName("redirect:/common/errorPage");

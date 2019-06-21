@@ -81,6 +81,19 @@ public class ContentsDaoImpl implements ContentsDao {
 		}
 	}
 
+	public int getListCount() throws ContentsException {
+		Integer result = 0;
+		try {
+			result = sqlSession.selectOne("Contents.getListCount");
+			if(result == null) {
+				result = 0;
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
 	public int getListCount(String pageId) throws ContentsException {
 		Integer result = 0;
 		try {
@@ -89,11 +102,9 @@ public class ContentsDaoImpl implements ContentsDao {
 			if(result == null) {
 				result = 0;
 			}
-			
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
-		
 		return result;
 	}
 

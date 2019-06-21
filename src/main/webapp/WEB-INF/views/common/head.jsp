@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<% String uploadPath = "http://tbsko.cafe24.com/HSG/resources/uploadFiles"; %>
+<% String uploadPath = "http://ark9659.cafe24.com/HSG/resources/uploadFiles"; %>
 <!DOCTYPE html>
 <html>
 <head>

@@ -34,6 +34,7 @@ public class OpnSrcController {
 	private ContentsServiceImpl csi;
 
 	private String pageId = "opn/src";
+	private String root = "/ark9659/var/webapps/uploadFiles";
 
 	SimpleDateFormat formatter = new SimpleDateFormat("yyyy.MM.dd HH:mm", Locale.KOREA);
 	Date currentDate = new Date();
@@ -181,8 +182,7 @@ public class OpnSrcController {
 			@RequestParam(required=false) MultipartFile file, HttpServletRequest request) {
 	  
 		// ################### 파일 업로드 ################### 
-		if(!file.isEmpty()) { 
-			String root = request.getSession().getServletContext().getRealPath("resources"); 
+		if(!file.isEmpty()) {  
 			String filePath = root + "/uploadFiles/opnsrc_upload_file"; 
 			String fileName = "";
 			String originFileName = "";
@@ -261,7 +261,6 @@ public class OpnSrcController {
 				System.out.println("#################### update.lt content : " + c + "####################");
 				
 				if(!file.isEmpty()) { // 파일이 null 일 경우
-					String root = request.getSession().getServletContext().getRealPath("resources");
 					String filePath = root + "/uploadFiles/opnsrc_upload_file";
 					String fileName = "";
 					String updatefilePath = "";
@@ -328,7 +327,7 @@ public class OpnSrcController {
 			
 			List<Contents> cs = csi.findByPageId(pageId);
 			mv.addObject("c", c);
-			mv.setViewName("redirect:detailView.os?id=" + c.getId());
+			mv.setViewName("redirect:detail.os?id=" + c.getId());
 		} catch (Exception e) {
 			mv.addObject("message",e.getMessage());
 			mv.setViewName("redirect:/common/errorPage");
@@ -345,7 +344,6 @@ public class OpnSrcController {
 			HttpServletRequest request){
 		
 		try {
-			String root = request.getSession().getServletContext().getRealPath("resources");
 			String filePath = root + "/uploadFiles/opnsrc_upload_file";
 			String deleteFileName = csi.findById(id).getContents();
 			// ##################### 파일 삭제 처리 #######################
@@ -379,7 +377,6 @@ public class OpnSrcController {
 	public void download(HttpServletRequest request,
 			HttpServletResponse response,
 			@RequestParam(value="id") int id) {
-		String root = request.getSession().getServletContext().getRealPath("resources");
 		String filePath = root + "/uploadFiles/opnsrc_upload_file";
 	
 		try {
