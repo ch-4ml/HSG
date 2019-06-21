@@ -50,7 +50,7 @@ tinymce.init({
 	            if (selectedNode && selectedNode.nodeName == 'IMG') {
 	                $.ajax({
 	                	url: "delete.fi",
-	                	data {"origin": selectedNode.src},
+	                	data: {"origin": selectedNode.src},
 	                	dataType: "json",
 	                	success: function(data) {
 							alert("됐다")	;

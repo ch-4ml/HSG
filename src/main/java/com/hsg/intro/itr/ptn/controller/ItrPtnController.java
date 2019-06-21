@@ -27,7 +27,7 @@ public class ItrPtnController {
 	private FilesServiceImpl fsi;
 
 	private String pageId = "itr/ptn";
-	private String pagePath = "/itrptn_upload_file"; // 페이지 별로 변경되는 저장 경로
+	private String pagePath = "/itrptn_upload_files"; // 페이지 별로 변경되는 저장 경로
 	
 	SimpleDateFormat formatter = new SimpleDateFormat("yyyy.MM.dd HH:mm", Locale.KOREA);
 	Date currentDate = new Date();
