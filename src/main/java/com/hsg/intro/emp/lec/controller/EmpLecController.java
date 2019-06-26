@@ -41,9 +41,12 @@ public class EmpLecController {
 	
 	private String pageId = "emp/lec";
 
-	SimpleDateFormat formatter = new SimpleDateFormat ("yyyy.MM.dd HH:mm", Locale.KOREA);
-	Date currentDate = new Date();
-	String postDate = formatter.format (currentDate);
+	private SimpleDateFormat formatter = new SimpleDateFormat ("yyyy.MM.dd HH:mm", Locale.KOREA);
+	private Date currentDate = new Date();
+	private String postDate = formatter.format (currentDate);
+	
+	private String root = "/ark9659/tomcat/webapps/var/HSG/uploadFiles";
+	private String filePath = "/emplec_upload_files";
 	
 	// 추가 페이지
 	@RequestMapping(value="insertView.el")
@@ -59,8 +62,6 @@ public class EmpLecController {
 			HttpServletRequest request) {
 		
 		// ################### 파일 업로드 ###################
-		String root = request.getSession().getServletContext().getRealPath("resources");
-		String filePath = root + "/uploadFiles/emplec_upload_file";
 		String fileName = "";
 		try {
 			// 파일명 새이름 설정
@@ -72,20 +73,19 @@ public class EmpLecController {
 			// 확장자 구하기
 			int pos = file.getOriginalFilename().lastIndexOf(".");
 			String ext = file.getOriginalFilename().substring(pos);
-			fileName = newfileName + ext;
+			
+			// /xxxxxx_upload_files/파일명.ext 형태로 객체에 넣음 
+			fileName = filePath + "/" + newfileName + ext;
 			c.setContents(fileName);
 			
 			// 폴더 없으면 생성
-			File uploadPath = new File(filePath);
+			File uploadPath = new File(root + filePath);
 			if(!uploadPath.exists()) {
 				uploadPath.mkdirs();
 			}
-			
-			// 파일경로를 emplec 객체에 넣어줌
-			filePath = filePath + "/" + fileName;
 		
 			// 해당 폴더에 파일 생성
-			file.transferTo(new File(filePath));
+			file.transferTo(new File(root + fileName));
 			
 		} catch (IllegalStateException e1) {
 			e1.printStackTrace();
@@ -160,10 +160,7 @@ public class EmpLecController {
 			System.out.println("#################### update.el content : " + c + "####################");
 			
 			if(!file.isEmpty()) { // 파일이 null 일 경우
-				String root = request.getSession().getServletContext().getRealPath("resources");
-				String filePath = root + "/uploadFiles/emplec_upload_file";
 				String fileName = "";
-				String updatefilePath = "";
 				// ##################### 파일 삭제 처리 #######################
 				String deleteFileName = csi.findById(c.getId()).getContents();
 
@@ -176,30 +173,27 @@ public class EmpLecController {
 				// 확장자 구하기
 				int pos = file.getOriginalFilename().lastIndexOf(".");
 				String ext = file.getOriginalFilename().substring(pos);
-				fileName = newfileName + ext;
+				
+				// /xxxxxx_upload_files/파일명.ext 형태로 객체에 넣음 
+				fileName = filePath + "/" + newfileName + ext;
 				c.setContents(fileName);
 				
 				// 폴더 없으면 생성
-				File uploadPath = new File(filePath);
+				File uploadPath = new File(root + filePath);
 				if(!uploadPath.exists()) {
 					uploadPath.mkdirs();
 				}
-				
-				//파일경로를 emplec 객체에 넣어줌
-				System.out.println("#################### update.el content : " + c + "####################");
-				updatefilePath = filePath + "/" + fileName;
-				System.out.println("#################### update.el updatefilePath : " + updatefilePath + "####################");
-				
+			
 				// 해당 폴더에 파일 생성
-				file.transferTo(new File(updatefilePath));
+				file.transferTo(new File(root + fileName));
 				
 				// ##################### 파일 삭제 처리 #######################
-				String deleteFilePath = filePath + "/" + deleteFileName;
+				String deleteFilePath = root + deleteFileName;
 				
 				// ##################### 파일 삭제 처리 #######################
 				File deleteFile = new File(deleteFilePath); // 파일 URL
 				
-				System.out.println("#################### update.el deleteFilePath : " + deleteFilePath + "####################");
+				System.out.println("#################### update.ee deleteFilePath : " + deleteFilePath + "####################");
 				
 				if(deleteFile.exists()) {
 					if(deleteFile.delete()) {
@@ -239,11 +233,9 @@ public class EmpLecController {
 		HttpServletRequest request) {
 		String param = ""; // 검색 기록 남길 때
 		try {
-			String root = request.getSession().getServletContext().getRealPath("resources");
-			String filePath = root + "/uploadFiles/emplec_upload_file";
 			String deleteFileName = csi.findById(id).getContents();
 			// ##################### 파일 삭제 처리 #######################
-			String deleteFilePath = filePath + "/" + deleteFileName;
+			String deleteFilePath = root + deleteFileName;
 			
 			// ##################### 파일 삭제 처리 #######################
 			File deleteFile = new File(deleteFilePath); // 파일 URL

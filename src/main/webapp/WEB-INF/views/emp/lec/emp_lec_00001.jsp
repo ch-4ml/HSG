@@ -39,7 +39,7 @@
 					<tr class="portrait">
 						<td class="portrait-image">
 							<a href="viewDetail.el?id=${c.id }">
-								<img src="<%= uploadPath %>/emplec_upload_file/${c.contents }" alt="">
+								<img src="<%= uploadPath %>${c.contents }" alt="">
 							</a>
 						</td>
 						<td class="portrait-contents">

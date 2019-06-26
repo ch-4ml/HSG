@@ -19,6 +19,9 @@ import com.hsg.intro.common.files.model.vo.Files;
 @SessionAttributes("loginUser")
 public class FilesController {
 	
+	private String root = "/ark9659/tomcat/webapps/var/HSG/uploadFiles";
+	private String filePath = "/common_upload_files";
+	
 	@RequestMapping(value="update.fi", method=RequestMethod.POST)
 	public ModelAndView update(ModelAndView mv,
 			@RequestParam(required=false) MultipartFile file ,
@@ -27,23 +30,24 @@ public class FilesController {
 			if(!file.isEmpty()) {
 				Files f = new Files();
 				
-				String root = "/ark9659/var/webapps/uploadFiles";
-				String filePath = root + "/common_upload_file";
+				// 확장자 구하기 시큐어 코딩때 사용
+				// int pos = file.getOriginalFilename().lastIndexOf(".");
+				// String ext = file.getOriginalFilename().substring(pos);
+				
 				String storedFileName = file.getOriginalFilename();
 					
 				// 폴더 없으면 생성
-				File uploadPath = new File(filePath);
+				File uploadPath = new File(root + filePath);
 				if(!uploadPath.exists()) {
 					uploadPath.mkdirs();
 				}
 				
-				String storedfilePath = filePath + "/" + storedFileName;
-				f.setStored(storedFileName);
+				String storedFilePath = filePath + storedFileName;
 				
 				// 해당 폴더에 파일 생성
-				file.transferTo(new File(storedfilePath));
+				file.transferTo(new File(root + storedFilePath));
 				
-				mv.addObject("location", storedFileName);
+				mv.addObject("location", storedFilePath);
 				mv.setViewName("jsonView");
 			}
 			

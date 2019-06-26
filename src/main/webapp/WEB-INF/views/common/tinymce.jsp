@@ -50,7 +50,7 @@ tinymce.init({
 	            if (selectedNode && selectedNode.nodeName == 'IMG') {
 	                $.ajax({
 	                	url: "delete.fi",
-	                	data: {"origin": selectedNode.src},
+	                	data: {"stored": selectedNode.src},
 	                	dataType: "json",
 	                	success: function(data) {
 							alert("됐다")	;
@@ -66,7 +66,7 @@ tinymce.init({
     	});
   	},
     images_upload_url: 'update.fi',
-    images_upload_base_path: 'http://ark9659.cafe24.com/HSG/resources/uploadFiles/common_upload_files/',
+    images_upload_base_path: 'http://ark9659.cafe24.com/HSG/resources/uploadFiles',
     images_reuse_filename: true
 });
 </script>

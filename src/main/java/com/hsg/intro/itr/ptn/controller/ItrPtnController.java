@@ -27,12 +27,14 @@ public class ItrPtnController {
 	private FilesServiceImpl fsi;
 
 	private String pageId = "itr/ptn";
-	private String pagePath = "/itrptn_upload_files"; // 페이지 별로 변경되는 저장 경로
 	
-	SimpleDateFormat formatter = new SimpleDateFormat("yyyy.MM.dd HH:mm", Locale.KOREA);
-	Date currentDate = new Date();
-	String postDate = formatter.format(currentDate);
+	private SimpleDateFormat formatter = new SimpleDateFormat("yyyy.MM.dd HH:mm", Locale.KOREA);
+	private Date currentDate = new Date();
+	private String postDate = formatter.format(currentDate);
 
+	private String root = "/ark9659/tomcat/webapps/var/HSG/uploadFiles";
+	private String filePath = "/itrptn_upload_files";
+	
 	// 페이지 이동
 	@RequestMapping(value = "view.ip")
 	public ModelAndView view(ModelAndView mv) {
@@ -54,9 +56,6 @@ public class ItrPtnController {
 	  
 		// ################### 파일 업로드 ################### 
 		if(!file.isEmpty()) { 
-			String root = request.getSession().getServletContext().getRealPath("resources"); 
-			String uploadPath = root + "/uploadFiles";
-			String filePath = uploadPath + pagePath; // 파일이 저장되는 경로
 			String fileName = file.getOriginalFilename(); // 파일 명
 			long fileSize = file.getSize(); // 파일 크기
 			
@@ -71,22 +70,21 @@ public class ItrPtnController {
 				int pos = file.getOriginalFilename().lastIndexOf("."); 
 				String ext = file.getOriginalFilename().substring(pos); 
 				
-				String storedFileName = pagePath + "/" + newFileName + ext;
-				String originFileName = pagePath + "/" + fileName + ext;
-				String storedFile = filePath + "/" + newFileName + ext;
+				String storedFileName = filePath + "/" + newFileName + ext;
+				String originFileName = filePath + "/" + fileName + ext;
 				
 				f.setStored(storedFileName);
 				f.setOrigin(originFileName);
 				f.setSize(fileSize);
 
 				// 폴더 없으면 생성 
-				File uploadFilePath = new File(storedFile); 
-				if(!uploadFilePath.exists()) {
-					uploadFilePath.mkdirs(); 
+				File uploadPath = new File(root + filePath); 
+				if(!uploadPath.exists()) {
+					uploadPath.mkdirs(); 
 				}
 				  
 				// 해당 폴더에 파일 생성 
-				file.transferTo(new File(storedFile));
+				file.transferTo(new File(root + storedFileName));
 					  
 			} catch (IllegalStateException e) { 
 				mv.addObject("message",e.getMessage());
@@ -136,10 +134,8 @@ public class ItrPtnController {
 			@RequestParam(value="id") int id,
 			HttpServletRequest request) throws FilesException {
 		try {
-			String root = request.getSession().getServletContext().getRealPath("resources"); 
-			String uploadPath = root + "/uploadFiles";
-			String deleteFileName = uploadPath + fsi.findById(id).getStored();
-			File deleteFile = new File(deleteFileName); // 파일 URL
+			String deleteFilePath = root + fsi.findById(id).getStored();
+			File deleteFile = new File(deleteFilePath); // 파일 URL
 			
 			if(deleteFile.exists()) {
 				if(deleteFile.delete()) {

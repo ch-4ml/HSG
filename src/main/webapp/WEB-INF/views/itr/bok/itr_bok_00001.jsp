@@ -5,7 +5,7 @@
 <title>HS글로벌</title>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<%@ include file="../../common/head.jsp" %>
+<%@ include file="../../common/head.jsp"%>
 
 <script>   	
 function updateBtnClickEvent(id) {
@@ -37,7 +37,11 @@ function deleteBtnClickEvent(id) {
 	<!-- Banner Area End -->
 
 	<section id="one" class="wrapper style2 alt">
-		<div style="text-align: center;"><h2>출판 도서</h2></div><br><br>		
+		<div style="text-align: center;">
+			<h2>출판 도서</h2>
+		</div>
+		<br>
+		<br>
 		<div class="inner">
 			<c:if test="${!empty loginUser }">
 				<div style="text-align: center;">
@@ -52,12 +56,13 @@ function deleteBtnClickEvent(id) {
 				<c:if test="${c.category eq 1 }">
 					<div class="spotlight">
 						<div class="image">
-							<img src="<%= uploadPath %>/itrbok_upload_file/${c.contents}" alt="" />
+							<img src="<%= uploadPath %>${c.contents}" alt="" />
 						</div>
 						<div class="list">
 							<a href="redirect.ib?url=${c.url }" target="_blank">
 								<div class="list-content">
-									<h3>${c.title}</h3><br>
+									<h3>${c.title}</h3>
+									<br>
 									<p>${c.text}</p>
 								</div>
 							</a>
@@ -76,13 +81,17 @@ function deleteBtnClickEvent(id) {
 		</div>
 	</section>
 	<section id="two" class="wrapper style2 alt">
-		<div style="text-align: center;"><h2>특허</h2></div><br><br>
+		<div style="text-align: center;">
+			<h2>특허</h2>
+		</div>
+		<br>
+		<br>
 		<div class="inner">
 			<c:forEach var="c" items="${cs}">
 				<c:if test="${c.category eq 2 }">
 					<div class="spotlight">
 						<div class="image">
-							<img src="<%= uploadPath %>/itrbok_upload_file/${c.contents}" alt="" />
+							<img src="<%= uploadPath %>${c.contents}" alt="" />
 						</div>
 						<div class="list">
 							<div class="list-content">
@@ -104,7 +113,5 @@ function deleteBtnClickEvent(id) {
 			</c:forEach>
 		</div>
 	</section>
-
 	<jsp:include page="../../common/footer.jsp" />
-
 </body>

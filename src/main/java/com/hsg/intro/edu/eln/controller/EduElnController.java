@@ -31,9 +31,12 @@ public class EduElnController {
 	
 	private String pageId = "edu/eln";
 	
-	SimpleDateFormat formatter = new SimpleDateFormat ("yyyy.MM.dd HH:mm", Locale.KOREA);
-	Date currentDate = new Date();
-	String postDate = formatter.format (currentDate);
+	private SimpleDateFormat formatter = new SimpleDateFormat ("yyyy.MM.dd HH:mm", Locale.KOREA);
+	private Date currentDate = new Date();
+	private String postDate = formatter.format (currentDate);
+	
+	private String root = "/ark9659/tomcat/webapps/var/HSG/uploadFiles";
+	private String filePath = "/edueln_upload_files";
 	
 	// 추가 페이지
 	@RequestMapping(value="insertView.ee")
@@ -47,12 +50,7 @@ public class EduElnController {
 	public ModelAndView insertEduEln(Contents c, ModelAndView mv, 
 			@RequestParam(required=false) MultipartFile file, 
 			HttpServletRequest request){
-		
 		// ################### 파일 업로드 ###################
-		String root = request.getSession().getServletContext().getRealPath("resources");
-
-		
-		String filePath = root + "/uploadFiles/edueln_upload_file";
 		String fileName = "";
 		try {
 			// 파일명 새이름 설정
@@ -64,20 +62,19 @@ public class EduElnController {
 			// 확장자 구하기
 			int pos = file.getOriginalFilename().lastIndexOf(".");
 			String ext = file.getOriginalFilename().substring(pos);
-			fileName = newfileName + ext;
+
+			// /xxxxxx_upload_files/파일명.ext 형태로 객체에 넣음 
+			fileName = filePath + "/" + newfileName + ext;
 			c.setContents(fileName);
 			
 			// 폴더 없으면 생성
-			File uploadPath = new File(filePath);
+			File uploadPath = new File(root + filePath);
 			if(!uploadPath.exists()) {
 				uploadPath.mkdirs();
 			}
-			
-			//파일경로를 edueln 객체에 넣어줌
-			filePath = filePath + "/" + fileName;
 		
 			// 해당 폴더에 파일 생성
-			file.transferTo(new File(filePath));
+			file.transferTo(new File(root + fileName));
 			
 		} catch (IllegalStateException e1) {
 			e1.printStackTrace();
@@ -152,10 +149,7 @@ public class EduElnController {
 			System.out.println("#################### update.ee content : " + c + "####################");
 			
 			if(!file.isEmpty()) { // 파일이 null 일 경우
-				String root = request.getSession().getServletContext().getRealPath("resources");
-				String filePath = root + "/uploadFiles/edueln_upload_file";
 				String fileName = "";
-				String updatefilePath = "";
 				// ##################### 파일 삭제 처리 #######################
 				String deleteFileName = csi.findById(c.getId()).getContents();
 
@@ -168,25 +162,22 @@ public class EduElnController {
 				// 확장자 구하기
 				int pos = file.getOriginalFilename().lastIndexOf(".");
 				String ext = file.getOriginalFilename().substring(pos);
-				fileName = newfileName + ext;
+				
+				// /xxxxxx_upload_files/파일명.ext 형태로 객체에 넣음 
+				fileName = filePath + "/" + newfileName + ext;
 				c.setContents(fileName);
 				
 				// 폴더 없으면 생성
-				File uploadPath = new File(filePath);
+				File uploadPath = new File(root + filePath);
 				if(!uploadPath.exists()) {
 					uploadPath.mkdirs();
 				}
-				
-				//파일경로를 edueln 객체에 넣어줌
-				System.out.println("#################### update.ee content : " + c + "####################");
-				updatefilePath = filePath + "/" + fileName;
-				System.out.println("#################### update.ee updatefilePath : " + updatefilePath + "####################");
-				
+			
 				// 해당 폴더에 파일 생성
-				file.transferTo(new File(updatefilePath));
+				file.transferTo(new File(root + fileName));
 				
 				// ##################### 파일 삭제 처리 #######################
-				String deleteFilePath = filePath + "/" + deleteFileName;
+				String deleteFilePath = root + deleteFileName;
 				
 				// ##################### 파일 삭제 처리 #######################
 				File deleteFile = new File(deleteFilePath); // 파일 URL
@@ -229,14 +220,12 @@ public class EduElnController {
 	public ModelAndView deleteEduEln(ModelAndView mv,
 		@RequestParam(value="id") int id, 
 		HttpServletRequest request) {
-		String param = ""; // 검색 기록 남길 때
 		
+		String param = ""; // 검색 기록 남길 때
 		try {
-			String root = request.getSession().getServletContext().getRealPath("resources");
-			String filePath = root + "/uploadFiles/edueln_upload_file";
 			String deleteFileName = csi.findById(id).getContents();
 			// ##################### 파일 삭제 처리 #######################
-			String deleteFilePath = filePath + "/" + deleteFileName;
+			String deleteFilePath = root + deleteFileName;
 			
 			// ##################### 파일 삭제 처리 #######################
 			File deleteFile = new File(deleteFilePath); // 파일 URL

@@ -62,7 +62,7 @@
 					<span id="contents">
 					<br><br>
 						<a href="redirect.ee?url=${c.url }" target="_blank">
-							<img src="<%= uploadPath %>/edueln_upload_file/${c.contents }" alt="">
+							<img src="<%= uploadPath %>${c.contents }" alt="">
 						</a>
 						<br><br>
 						${c.text }

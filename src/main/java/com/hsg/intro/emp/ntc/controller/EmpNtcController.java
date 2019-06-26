@@ -35,10 +35,13 @@ public class EmpNtcController {
 
 	private String pageId = "emp/ntc";
 
-	SimpleDateFormat formatter = new SimpleDateFormat("yyyy.MM.dd HH:mm", Locale.KOREA);
-	Date currentDate = new Date();
-	String postDate = formatter.format(currentDate);
+	private SimpleDateFormat formatter = new SimpleDateFormat("yyyy.MM.dd HH:mm", Locale.KOREA);
+	private Date currentDate = new Date();
+	private String postDate = formatter.format(currentDate);
 
+	private String root = "/ark9659/tomcat/webapps/var/HSG/uploadFiles";
+	private String filePath = "/empntc_upload_files";
+	
 	// 페이지 이동
 	@RequestMapping(value = "view.en")
 	public ModelAndView view(ModelAndView mv) {
@@ -182,13 +185,11 @@ public class EmpNtcController {
 	  
 		// ################### 파일 업로드 ################### 
 		if(!file.isEmpty()) { 
-			String root = request.getSession().getServletContext().getRealPath("resources"); 
-			String filePath = root + "/uploadFiles/empntc_upload_file"; 
 			String fileName = "";
 			String originFileName = "";
 			
-			try { // 파일명 새이름 설정 
-				
+		try { // 파일명 새이름 설정 
+			
 				int randomNumber = (int)((Math.random()*10000)+1);
 				SimpleDateFormat format = new SimpleDateFormat ( "yyyyMMddHHmmss"); 
 				Date nowTime = new Date(); String newfileName = format.format(nowTime) + String.valueOf(randomNumber);
@@ -196,23 +197,21 @@ public class EmpNtcController {
 				// 확장자 구하기 
 				int pos = file.getOriginalFilename().lastIndexOf("."); 
 				String ext = file.getOriginalFilename().substring(pos); 
-				fileName = newfileName + ext;
+				
+				// /xxxxxx_upload_files/파일명.ext 형태로 객체에 넣음 
+				fileName = filePath + "/" + newfileName + ext;
 				originFileName = file.getOriginalFilename();
-				  
-				c.setText(fileName);
+				c.setContents(fileName);
 				c.setOrigin(originFileName);
-				  
-				// 폴더 없으면 생성 
-				File uploadPath = new File(filePath); 
-			if(!uploadPath.exists()) {
-				uploadPath.mkdirs(); 
-			}
-			  
-			// 파일경로를 itrbok 객체에 넣어줌 
-			filePath = filePath + "/" + fileName;
-			  
-			// 해당 폴더에 파일 생성 
-			file.transferTo(new File(filePath));
+				
+				// 폴더 없으면 생성
+				File uploadPath = new File(root + filePath);
+				if(!uploadPath.exists()) {
+					uploadPath.mkdirs();
+				}
+			
+				// 해당 폴더에 파일 생성
+				file.transferTo(new File(root + fileName));
 				  
 			} catch (IllegalStateException e) { 
 				mv.addObject("message",e.getMessage());
@@ -224,7 +223,8 @@ public class EmpNtcController {
 		}
 		// ################### 파일 업로드###################
 		  
-		c.setPageId(pageId); c.setPostDate(postDate);
+		c.setPageId(pageId);
+		c.setPostDate(postDate);
 		  
 		try { 
 			csi.insert(c); 
@@ -261,10 +261,7 @@ public class EmpNtcController {
 				System.out.println("#################### update.lt content : " + c + "####################");
 				
 				if(!file.isEmpty()) { // 파일이 null 일 경우
-					String root = request.getSession().getServletContext().getRealPath("resources");
-					String filePath = root + "/uploadFiles/empntc_upload_file";
 					String fileName = "";
-					String updatefilePath = "";
 					String originFileName = "";
 					
 					// ##################### 파일 삭제 처리 #######################
@@ -275,33 +272,35 @@ public class EmpNtcController {
 					SimpleDateFormat format = new SimpleDateFormat ("yyyyMMddHHmmss");
 					Date nowTime = new Date();
 					String newfileName = format.format(nowTime) + String.valueOf(randomNumber);	
+					String deleteFileName = csi.findById(c.getId()).getContents();
 					
 					// 확장자 구하기
 					int pos = file.getOriginalFilename().lastIndexOf(".");
 					String ext = file.getOriginalFilename().substring(pos);
-					fileName = newfileName + ext;
-					originFileName = file.getOriginalFilename();
 					
-					//파일경로를 contents 객체에 넣어줌
-					c.setText(fileName);
+					fileName = filePath + "/" + newfileName + ext;
+					originFileName = file.getOriginalFilename();
+					c.setContents(fileName);
 					c.setOrigin(originFileName);
 					
-					System.out.println("#################### update.lt content : " + c + "####################");
-					updatefilePath = filePath + "/" + fileName;
-					System.out.println("#################### update.lt updatefilePath : " + updatefilePath + "####################");
 					
+					// 폴더 없으면 생성
+					File uploadPath = new File(root + filePath);
+					if(!uploadPath.exists()) {
+						uploadPath.mkdirs();
+					}
+				
 					// 해당 폴더에 파일 생성
-					file.transferTo(new File(updatefilePath));
+					file.transferTo(new File(root + fileName));
 					
 					// ##################### 파일 삭제 처리 #######################
-					// String deleteFilePath = filePath + "/" + deleteFileName;
+					String deleteFilePath = root + deleteFileName;
 					
 					// ##################### 파일 삭제 처리 #######################
-					// File deleteFile = new File(deleteFilePath); // 파일 URL
+					File deleteFile = new File(deleteFilePath); // 파일 URL
 					
-					// System.out.println("#################### update.lt deleteFilePath : " + deleteFilePath + "####################");
+					System.out.println("#################### update.ee deleteFilePath : " + deleteFilePath + "####################");
 					
-					/*
 					if(deleteFile.exists()) {
 						if(deleteFile.delete()) {
 							System.out.println("파일 삭제 완료");
@@ -311,7 +310,6 @@ public class EmpNtcController {
 					} else {
 						System.out.println("파일이 존재하지 않습니다.");
 					}
-					*/
 				}
 				
 		} catch (IllegalStateException e1) {
@@ -326,7 +324,7 @@ public class EmpNtcController {
 		try {
 			csi.update(c);
 			
-			List<Contents> cs = csi.findByPageId(pageId);
+			c = csi.findById(c.getId());
 			mv.addObject("c", c);
 			mv.setViewName("redirect:detail.en?id=" + c.getId());
 		} catch (Exception e) {
@@ -345,11 +343,9 @@ public class EmpNtcController {
 			HttpServletRequest request){
 		
 		try {
-			String root = request.getSession().getServletContext().getRealPath("resources");
-			String filePath = root + "/uploadFiles/empntc_upload_file";
 			String deleteFileName = csi.findById(id).getContents();
 			// ##################### 파일 삭제 처리 #######################
-			String deleteFilePath = filePath + "/" + deleteFileName;
+			String deleteFilePath = root + deleteFileName;
 			
 			// ##################### 파일 삭제 처리 #######################
 			File deleteFile = new File(deleteFilePath); // 파일 URL
@@ -379,13 +375,11 @@ public class EmpNtcController {
 	public void download(HttpServletRequest request,
 			HttpServletResponse response,
 			@RequestParam(value="id") int id) {
-		String root = request.getSession().getServletContext().getRealPath("resources");
-		String filePath = root + "/uploadFiles/empntc_upload_file";
 	
 		try {
 			Contents c = csi.findById(id);
 			String downloadFileName = c.getText();
-			String downloadFilePath = filePath + "/" + downloadFileName;
+			String downloadFilePath = root + downloadFileName;
 			byte fileByte[] = FileUtils.readFileToByteArray(new File(downloadFilePath));
 			
 			response.setContentType("application/octet-stream");
