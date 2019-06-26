@@ -45,7 +45,7 @@ public class EmpLecController {
 	private Date currentDate = new Date();
 	private String postDate = formatter.format (currentDate);
 	
-	private String root = "/ark9659/tomcat/webapps/var/HSG/uploadFiles";
+	private String root = "/hsglobal03/tomcat/webapps/var/HSG/uploadFiles";
 	private String filePath = "/emplec_upload_files";
 	
 	// 추가 페이지

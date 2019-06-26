@@ -34,7 +34,7 @@ public class ItrBokController {
 	private Date currentDate = new Date();
 	private String postDate = formatter.format (currentDate);
 	
-	private String root = "/ark9659/tomcat/webapps/var/HSG/uploadFiles";
+	private String root = "/hsglobal03/tomcat/webapps/var/HSG/uploadFiles";
 	private String filePath = "/itrbok_upload_files";
 	
 	// 서적/특허 추가

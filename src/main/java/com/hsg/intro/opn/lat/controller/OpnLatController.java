@@ -20,14 +20,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.hsg.intro.Exception.ContentsException;
 import com.hsg.intro.common.PageInfo;
 import com.hsg.intro.common.contents.model.service.ContentsServiceImpl;
 import com.hsg.intro.common.contents.model.vo.Contents;
-import com.hsg.intro.common.files.model.dao.FilesDaoImpl;
 import com.hsg.intro.common.files.model.service.FilesServiceImpl;
 import com.hsg.intro.common.files.model.vo.Files;
 
@@ -46,7 +44,7 @@ public class OpnLatController {
 	Date currentDate = new Date();
 	String postDate = formatter.format(currentDate);
 
-	private String root = "/ark9659/tomcat/webapps/var/HSG/uploadFiles";
+	private String root = "/hsglobal03/tomcat/webapps/var/HSG/uploadFiles";
 	String filePath = "/" + dirName;
 	
 	// 페이지 이동

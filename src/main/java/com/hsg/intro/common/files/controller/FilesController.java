@@ -19,7 +19,7 @@ import com.hsg.intro.common.files.model.vo.Files;
 @SessionAttributes("loginUser")
 public class FilesController {
 	
-	private String root = "/ark9659/tomcat/webapps/var/HSG/uploadFiles";
+	private String root = "/hsglobal03/tomcat/webapps/var/HSG/uploadFiles";
 	private String filePath = "/common_upload_files";
 	
 	@RequestMapping(value="update.fi", method=RequestMethod.POST)

@@ -39,7 +39,7 @@ public class OpnTecController {
 	private Date currentDate = new Date();
 	private String postDate = formatter.format(currentDate);
 
-	private String root = "/ark9659/tomcat/webapps/var/HSG/uploadFiles";
+	private String root = "/hsglobal03/tomcat/webapps/var/HSG/uploadFiles";
 	private String filePath = "/opntec_upload_files";
 	
 	// 페이지 이동

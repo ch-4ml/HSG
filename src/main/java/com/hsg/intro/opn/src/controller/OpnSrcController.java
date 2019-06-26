@@ -42,7 +42,7 @@ public class OpnSrcController {
 	private String postDate = formatter.format(currentDate);
 
 	// 업로드 경로
-	private String root = "/ark9659/tomcat/webapps/var/HSG/uploadFiles";
+	private String root = "/hsglobal03/tomcat/webapps/var/HSG/uploadFiles";
 	private String filePath = "/opnsrc_upload_files";
 	
 	// 페이지 이동

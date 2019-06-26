@@ -40,6 +40,9 @@ public class HomeController {
 	Date currentDate = new Date();
 	String postDate = formatter.format (currentDate);
 	
+	private String root = "/hsglobal03/tomcat/webapps/var/HSG/uploadFiles";
+	
+	
 	@RequestMapping(value = "/")
 	public ModelAndView home(ModelAndView mv, Locale locale) {
 		logger.info("Welcome home! The client locale is {}.", locale);	
@@ -108,8 +111,7 @@ public class HomeController {
 		pageId = "main/dev";
 		
 		// ################### 파일 업로드 ###################
-		String root = request.getSession().getServletContext().getRealPath("resources");
-		String filePath = root + "/uploadFiles/maindev_upload_file";
+		String filePath = "/maindev_upload_file";
 		String fileName = "";
 		try {
 			// 파일명 새이름 설정
@@ -121,20 +123,18 @@ public class HomeController {
 			// 확장자 구하기
 			int pos = file.getOriginalFilename().lastIndexOf(".");
 			String ext = file.getOriginalFilename().substring(pos);
-			fileName = newfileName + ext;
+			// /xxxxxx_upload_files/파일명.ext 형태로 객체에 넣음 
+			fileName = filePath + "/" + newfileName + ext;
 			c.setContents(fileName);
 			
 			// 폴더 없으면 생성
-			File uploadPath = new File(filePath);
+			File uploadPath = new File(root + filePath);
 			if(!uploadPath.exists()) {
 				uploadPath.mkdirs();
 			}
-			
-			//파일경로를 maindev 객체에 넣어줌
-			filePath = filePath + "/" + fileName;
 		
 			// 해당 폴더에 파일 생성
-			file.transferTo(new File(filePath));
+			file.transferTo(new File(root + fileName));
 			
 		} catch (IllegalStateException e1) {
 			e1.printStackTrace();
@@ -183,11 +183,8 @@ public class HomeController {
 			System.out.println("#################### update.ib content : " + c + "####################");
 			
 			if(!file.isEmpty()) { // 파일이 null 일 경우
-				String root = request.getSession().getServletContext().getRealPath("resources");
-				System.out.println(root);
-				String filePath = root + "/uploadFiles/maindev_upload_file";
+				String filePath = "/maindev_upload_file";
 				String fileName = "";
-				String updatefilePath = "";
 				// ##################### 파일 삭제 처리 #######################
 				String deleteFileName = csi.findById(c.getId()).getContents();
 
@@ -200,30 +197,26 @@ public class HomeController {
 				// 확장자 구하기
 				int pos = file.getOriginalFilename().lastIndexOf(".");
 				String ext = file.getOriginalFilename().substring(pos);
-				fileName = newfileName + ext;
+				// /xxxxxx_upload_files/파일명.ext 형태로 객체에 넣음 
+				fileName = filePath + "/" + newfileName + ext;
 				c.setContents(fileName);
 				
 				// 폴더 없으면 생성
-				File uploadPath = new File(filePath);
+				File uploadPath = new File(root + filePath);
 				if(!uploadPath.exists()) {
 					uploadPath.mkdirs();
 				}
-				
-				//파일경로를 maindev 객체에 넣어줌
-				System.out.println("#################### update.ib content : " + c + "####################");
-				updatefilePath = filePath + "/" + fileName;
-				System.out.println("#################### update.ib updatefilePath : " + updatefilePath + "####################");
-				
+			
 				// 해당 폴더에 파일 생성
-				file.transferTo(new File(updatefilePath));
+				file.transferTo(new File(root + fileName));
 				
 				// ##################### 파일 삭제 처리 #######################
-				String deleteFilePath = filePath + "/" + deleteFileName;
+				String deleteFilePath = root + deleteFileName;
 				
 				// ##################### 파일 삭제 처리 #######################
 				File deleteFile = new File(deleteFilePath); // 파일 URL
 				
-				System.out.println("#################### update.ib deleteFilePath : " + deleteFilePath + "####################");
+				System.out.println("#################### update.ee deleteFilePath : " + deleteFilePath + "####################");
 				
 				if(deleteFile.exists()) {
 					if(deleteFile.delete()) {
@@ -259,11 +252,9 @@ public class HomeController {
 			@RequestParam(value="id") int id,
 			HttpServletRequest request) {	
 		try {
-			String root = request.getSession().getServletContext().getRealPath("resources");
-			String filePath = root + "/uploadFiles/maindev_upload_file";
 			String deleteFileName = csi.findById(id).getContents();
 			// ##################### 파일 삭제 처리 #######################
-			String deleteFilePath = filePath + "/" + deleteFileName;
+			String deleteFilePath = root + deleteFileName;
 			
 			// ##################### 파일 삭제 처리 #######################
 			File deleteFile = new File(deleteFilePath); // 파일 URL
