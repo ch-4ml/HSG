@@ -58,7 +58,7 @@ $(function() {
 	    <div class="inner">
     		<div class="contents">
    				<br><br>
-   				<img src="<%= uploadPath %>/emplec_upload_file/${c.contents }" alt="">
+   				<img src="<%= uploadPath %>${c.contents }" alt="">
 				<br><br>
 				${c.text }
 				<br><br>

@@ -10,15 +10,18 @@
 		<config>src/main/webapp/WEB-INF/config/opn-lat-servlet.xml</config>
 	</configs>
 	<autoconfigs>
-		<config>src/main/webapp/WEB-INF/config/common-servlet.xml</config>
 		<config>src/main/webapp/WEB-INF/config/spring-security.xml</config>
 		<config>src/main/resources/root-context.xml</config>
 		<config>src/main/webapp/WEB-INF/config/emp-lec-servlet.xml</config>
 		<config>src/main/webapp/WEB-INF/config/action-servlet.xml</config>
 		<config>src/main/webapp/WEB-INF/config/edu-req-servlet.xml</config>
+		<config>src/main/webapp/WEB-INF/config/opn-src-servlet.xml</config>
 		<config>src/main/webapp/WEB-INF/config/itr-gre-servlet.xml</config>
+		<config>src/main/webapp/WEB-INF/config/itr-ptn-servlet.xml</config>
 		<config>src/main/webapp/WEB-INF/config/edu-hrd-servlet.xml</config>
 		<config>src/main/webapp/WEB-INF/config/edu-sft-servlet.xml</config>
+		<config>src/main/webapp/WEB-INF/config/opn-tec-servlet.xml</config>
+		<config>src/main/webapp/WEB-INF/config/member-servlet.xml</config>
 		<config>src/main/webapp/WEB-INF/config/edu-eln-servlet.xml</config>
 		<config>src/main/webapp/WEB-INF/config/itr-bok-servlet.xml</config>
 		<config>src/main/webapp/WEB-INF/config/itr-his-servlet.xml</config>

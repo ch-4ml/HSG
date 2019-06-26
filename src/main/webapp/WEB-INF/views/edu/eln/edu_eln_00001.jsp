@@ -41,7 +41,7 @@
 				<tr class="landscape">
 					<td class="landscape-image">
 					<a href="viewDetail.ee?id=${c.id }">
-						<img src="<%= uploadPath %>/edueln_upload_file/${c.contents}" alt="" />
+						<img src="<%= uploadPath %>${c.contents}" alt="" />
 					</a>
 					</td>
 					<td class="landscape-contents">

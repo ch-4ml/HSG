@@ -157,7 +157,7 @@ $(function() {
 						<c:forEach var="d" items="${dev }" varStatus="status">
 							<div class="single-slide">
 								<div class="slide-img">
-									<img src="<%= uploadPath %>/maindev_upload_file/${d.contents }" alt="" class="img-fluid">
+									<img src="<%= uploadPath %>${d.contents }" alt="" class="img-fluid">
 									<div class="hover-state">
 										<i class="fa fa-plus"></i>
 									</div>
