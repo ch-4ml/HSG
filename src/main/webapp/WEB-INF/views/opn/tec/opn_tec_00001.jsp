@@ -28,7 +28,7 @@
 						isEnd = true;
 					}
 					$.each(data.cs, function(index, c) {
-						index = data.pi.limit*(currentPage-1) + index;
+						index = data.cs.length - (data.pi.limit*(currentPage-1) + index);
 						renderList(index, c);
 					});
 					flag = true;
@@ -37,7 +37,6 @@
 		}
 		
 		let renderList = function(index, c) {
-			index += 1;
 			let html = "<a href=detail.ot?id=" + c.id + "><table class='simple'><tr class='simpleboard'>" +
 					   "<td class='simpleboard-index'>" + index + "</td>" +
 					   "<td class='simpleboard-contents'>" + c.title + "</td>" +
@@ -77,9 +76,11 @@
     </section>
     <!-- Banner Area End -->
     <!-- About Area Starts -->
-    <section id="two" class="wrapper style2 alt content-center">
-		<h2>기술노트</h2><br><br>
-		<div class="inner">
+    <section id="two" class="wrapper style2 alt content">
+		<div style="text-align: center;">
+			<h2>기술노트</h2><br><br>
+		</div>
+		<div style="text-align: center;" class="inner">
 			<c:if test="${!empty loginUser }">
 					<ul class="actions special">
 						<li><input type="button" id="insert" onclick="location.href='insertView.ot'" value="추가"></li>

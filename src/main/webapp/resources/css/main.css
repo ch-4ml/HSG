@@ -296,6 +296,7 @@ iframe {
 .simpleboard .simpleboard-date {
 	width: 25%;
 	height: auto;
+	text-align: right;
 }
 
 @media screen and (max-width: 800px) {
