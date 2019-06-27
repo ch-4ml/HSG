@@ -290,13 +290,13 @@ iframe {
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
-	text-align: left
+	text-align: left !important;
 }
 
 .simpleboard .simpleboard-date {
 	width: 25%;
 	height: auto;
-	text-align: right;
+	text-align: right !important;
 }
 
 @media screen and (max-width: 800px) {

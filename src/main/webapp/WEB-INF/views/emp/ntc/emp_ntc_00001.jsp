@@ -77,10 +77,8 @@
     <!-- Banner Area End -->
     <!-- About Area Starts -->
     <section id="two" class="wrapper style2 alt content-center">
-		<div style="text-align: center;">
-			<h2>공지사항</h2><br><br>
-		</div>		
-		<div style="text-align: center;" class="inner">
+		<h2>공지사항</h2><br><br>	
+		<div class="inner">
 			<c:if test="${!empty loginUser }">
 					<ul class="actions special">
 						<li><input type="button" id="insert" onclick="location.href='insertView.en'" value="추가"></li>

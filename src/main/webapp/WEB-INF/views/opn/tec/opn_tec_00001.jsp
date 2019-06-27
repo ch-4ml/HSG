@@ -76,11 +76,9 @@
     </section>
     <!-- Banner Area End -->
     <!-- About Area Starts -->
-    <section id="two" class="wrapper style2 alt content">
-		<div style="text-align: center;">
-			<h2>기술노트</h2><br><br>
-		</div>
-		<div style="text-align: center;" class="inner">
+    <section id="two" class="wrapper style2 alt content-center">
+		<h2>기술노트</h2><br><br>
+		<div class="inner">
 			<c:if test="${!empty loginUser }">
 					<ul class="actions special">
 						<li><input type="button" id="insert" onclick="location.href='insertView.ot'" value="추가"></li>
