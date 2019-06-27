@@ -28,7 +28,7 @@
 						isEnd = true;
 					}
 					$.each(data.cs, function(index, c) {
-						index = data.pi.limit*(currentPage-1) + index;
+						index = data.cs.length - (data.pi.limit*(currentPage-1) + index);
 						renderList(index, c);
 					});
 					flag = true;

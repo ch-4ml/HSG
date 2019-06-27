@@ -51,9 +51,9 @@ public class ItrPtnController {
 	
 	// contents 추가
 	@RequestMapping(value = "insert.ip", method = RequestMethod.POST) // DI 의존성 주입 
-	public ModelAndView insert(Files f, ModelAndView mv,
+	public ModelAndView insert(ModelAndView mv,
 			@RequestParam(required=false) MultipartFile file, HttpServletRequest request) {
-	  
+		Files f = new Files();
 		// ################### 파일 업로드 ################### 
 		if(!file.isEmpty()) { 
 			String fileName = file.getOriginalFilename(); // 파일 명
@@ -71,7 +71,7 @@ public class ItrPtnController {
 				String ext = file.getOriginalFilename().substring(pos); 
 				
 				String storedFileName = filePath + "/" + newFileName + ext;
-				String originFileName = filePath + "/" + fileName + ext;
+				String originFileName = fileName;
 				
 				f.setStored(storedFileName);
 				f.setOrigin(originFileName);
@@ -99,10 +99,11 @@ public class ItrPtnController {
 		f.setPostDate(postDate);
 		f.setCategory(0); // 0: 이미지 / 1: 파일
 		
+		System.out.println(f.toString());
+		
 		try {
-			int currentRows = fsi.getListCount(pageId);
 			fsi.insert(f);
-			List<Files> fs = fsi.findByPageId(pageId, currentRows);
+			List<Files> fs = fsi.findByPageId(pageId);
 			mv.addObject("fs", fs);
 			mv.setViewName("jsonView");		  
 		} catch (Exception e) { 

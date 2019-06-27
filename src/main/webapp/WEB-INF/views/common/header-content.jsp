@@ -46,8 +46,8 @@
                         <li class="menu-has-children"><a href="view.ee">교육솔루션</a>
                             <ul>
                                 <li><a href="view.ee">MOOC</a></li>
-                                <li><a href="view.eh">하드웨어</a></li>
-								<li><a href="view.es">소프트웨어</a></li>
+                                <li><a href="view.eh">하드웨어 분야</a></li>
+								<li><a href="view.es">소프트웨어 분야</a></li>
 								<li><a href="view.ec">교육 컨설팅</a></li>
 								<li><a href="view.er">교육 의뢰</a></li>
                             </ul>

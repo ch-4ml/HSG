@@ -15,7 +15,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12">
-					<h1>교육솔루션 - 소프트웨어</h1>
+					<h1>소프트웨어 분야</h1>
 				</div>
 			</div>
 		</div>

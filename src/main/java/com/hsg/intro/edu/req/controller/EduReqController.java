@@ -70,7 +70,7 @@ public class EduReqController {
 		List<String> toAddress = new ArrayList<String>();
 		// 대표님과 관리자 이메일로 변경, 추가 가능
 		toAddress.add("ark9659@gmail.com");
-		toAddress.add("cksgud1350@naver.com");
+		toAddress.add("junho.seo@hsgbiz.com");
 		String subject = "[HS글로벌 교육 의뢰] " + request.getParameter("company");
 		String contents = "회사명 : " + request.getParameter("company") + "\r\n" +  
 					  	  "선택강좌 : " + category + "\r\n" +

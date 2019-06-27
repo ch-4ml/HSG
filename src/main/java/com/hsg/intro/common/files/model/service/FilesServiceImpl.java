@@ -21,10 +21,11 @@ public class FilesServiceImpl implements FilesService {
 	@Autowired
 	private FilesDaoImpl fdi;
 	
+	private String root = "/hsglobal03/tomcat/webapps/var/HSG/uploadFiles";
+	
 	public void insertFile(List<MultipartFile> files, int contentsId, String dirName) {
 		Files f = new Files();
 		
-		String root = "/ark9659/var/webapps/uploadFiles/";
 		String filePath = root + dirName;
 		for(MultipartFile file: files) {
 		
@@ -41,7 +42,7 @@ public class FilesServiceImpl implements FilesService {
 			String ext = file.getOriginalFilename().substring(pos);
 			System.out.println(pos + " " + ext);
 			originFileName = originFileName + ext;
-			storedFileName = storedFileName + ext;
+			storedFileName = dirName + "/" + storedFileName + ext;
 	
 			f.setContentsId(contentsId);
 			// f.setPageId(pageId);
@@ -57,7 +58,7 @@ public class FilesServiceImpl implements FilesService {
 			}
 			
 			// 파일 생성 경로 + 이름
-			String uploadFilePath = filePath + "/" + storedFileName;
+			String uploadFilePath = root + storedFileName;
 			
 			// 파일 생성 및 DB에 파일 정보 저장
 			try {
@@ -73,7 +74,6 @@ public class FilesServiceImpl implements FilesService {
 	
 	public void updateFile(List<MultipartFile> files, int contentsId, String dirName) {
 		
-		String root = "/ark9659/var/webapps/uploadFiles/";
 		String filePath = root + dirName;
 		
 		// 삭제
@@ -81,7 +81,7 @@ public class FilesServiceImpl implements FilesService {
 			List<Files> fs = fdi.findByContentsId(contentsId);
 			for(Files f: fs) {
 				String deleteFileName = findById(f.getId()).getStored();
-				String deleteFilePath = filePath + "/" + deleteFileName;
+				String deleteFilePath = root + deleteFileName;
 				File deleteFile = new File(deleteFilePath);
 				
 				if(deleteFile.exists()) {
@@ -102,7 +102,7 @@ public class FilesServiceImpl implements FilesService {
 					String ext = file.getOriginalFilename().substring(pos);
 					System.out.println(pos + " " + ext);
 					originFileName = originFileName + ext;
-					storedFileName = storedFileName + ext;
+					storedFileName = dirName + "/" + storedFileName + ext;
 					
 					f.setContentsId(contentsId);
 					// f.setPageId(pageId);
@@ -118,7 +118,7 @@ public class FilesServiceImpl implements FilesService {
 					}
 					
 					// 파일 생성 경로 + 이름
-					String uploadFilePath = filePath + "/" + storedFileName;
+					String uploadFilePath = root + storedFileName;
 					
 					// 파일 생성 및 DB에 파일 정보 저장
 					try {
@@ -136,16 +136,13 @@ public class FilesServiceImpl implements FilesService {
 		}
 	}
 	
-	public void deleteFile(int contentsId, String dirName) {
-		String root = "/ark9659/var/webapps/uploadFiles/";
-		String filePath = root + dirName;
-		
+	public void deleteFile(int contentsId, String dirName) {		
 		// 삭제
 		try {
 			List<Files> fs = fdi.findByContentsId(contentsId);
 			for(Files f: fs) {
 				String deleteFileName = findById(f.getId()).getStored();
-				String deleteFilePath = filePath + "/" + deleteFileName;
+				String deleteFilePath = root + deleteFileName;
 				File deleteFile = new File(deleteFilePath);
 				
 				if(deleteFile.exists()) {

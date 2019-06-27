@@ -40,8 +40,7 @@ function deleteBtnClickEvent(id) {
 		<div style="text-align: center;">
 			<h2>출판 도서</h2>
 		</div>
-		<br>
-		<br>
+		<br> <br>
 		<div class="inner">
 			<c:if test="${!empty loginUser }">
 				<div style="text-align: center;">
@@ -63,7 +62,7 @@ function deleteBtnClickEvent(id) {
 								<div class="list-content">
 									<h3>${c.title}</h3>
 									<br>
-									<p>${c.text}</p>
+									<h4>${c.text}</h4>
 								</div>
 							</a>
 							<div class="list-button">
@@ -84,8 +83,7 @@ function deleteBtnClickEvent(id) {
 		<div style="text-align: center;">
 			<h2>특허</h2>
 		</div>
-		<br>
-		<br>
+		<br> <br>
 		<div class="inner">
 			<c:forEach var="c" items="${cs}">
 				<c:if test="${c.category eq 2 }">
@@ -94,10 +92,13 @@ function deleteBtnClickEvent(id) {
 							<img src="<%= uploadPath %>${c.contents}" alt="" />
 						</div>
 						<div class="list">
-							<div class="list-content">
-								<h3>${c.title}</h3>
-								<p>${c.text}</p>
-							</div>
+							<a href="redirect.ib?url=${c.url }" target="_blank">
+								<div class="list-content">
+									<h3>${c.title}</h3>
+									<br>
+									<h4>${c.text}</h4>
+								</div>
+							</a>
 							<div class="list-button">
 								<c:if test="${!empty loginUser }">
 									<ul class="actions">

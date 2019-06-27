@@ -2,15 +2,13 @@
 	url('https://fonts.googleapis.com/css?family=Do+Hyeon&subset=korean');
 
 @import
-	url("https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900")
-	;
+	url("https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900");
 
 @import
 	url("https://fonts.googleapis.com/css?family=Ubuntu:400,500,700");
 
 @import
-	url('https://cdn.rawgit.com/innks/NanumSquareRound/master/nanumsquareround.min.css')
-	;
+	url('https://cdn.rawgit.com/innks/NanumSquareRound/master/nanumsquareround.min.css');
 
 body {
 	color: #777;
@@ -544,7 +542,8 @@ div #logo {
 
 #header #logo img {
 	padding: 0;
-	margin: 0
+	margin: 0;
+	border: 5px solid white;
 }
 
 @media ( max-width : 768px) {

@@ -42,8 +42,8 @@
                             <h3 class="mb-4">교육솔루션</h3>
                              <ul>
                                 <li class="mb-2"><a href="view.ee">MOOC</a></li>
-                                <li class="mb-2"><a href="view.eh">하드웨어</a></li>
-                                <li class="mb-2"><a href="view.io">소프트웨어</a></li>
+                                <li class="mb-2"><a href="view.eh">하드웨어 분야</a></li>
+                                <li class="mb-2"><a href="view.io">소프트웨어 분야</a></li>
                                 <li class="mb-2"><a href="view.ec">교육 컨설팅</a></li>
 								<li class="mb-2"><a href="view.er">교육 의뢰</a></li>
                             </ul>

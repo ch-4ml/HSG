@@ -27,13 +27,7 @@ public class FilesController {
 			@RequestParam(required=false) MultipartFile file ,
 			HttpServletRequest request) {
 		try {
-			if(!file.isEmpty()) {
-				Files f = new Files();
-				
-				// 확장자 구하기 시큐어 코딩때 사용
-				// int pos = file.getOriginalFilename().lastIndexOf(".");
-				// String ext = file.getOriginalFilename().substring(pos);
-				
+			if(!file.isEmpty()) {				
 				String storedFileName = file.getOriginalFilename();
 					
 				// 폴더 없으면 생성
