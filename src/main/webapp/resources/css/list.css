@@ -2728,7 +2728,7 @@
 		}
 		
 .list {
-	width: 70%;
+	width: 85%;
 	padding-top: 1em;
 	padding-left: 1em;
 	display: inline;
@@ -2772,12 +2772,12 @@
 }
 
 .list-content {
-	width: 50%;
+	width: 80%;
 }
 
 .list-button li {
-	float: left;
-	margin-right: 0.3em;
+	/*float: left;
+	margin-right: 0.3em;*/
 	margin-bottom: 0.5em;
 }
 

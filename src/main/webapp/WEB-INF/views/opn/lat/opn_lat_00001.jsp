@@ -77,11 +77,11 @@
     </section>
     <!-- Banner Area End -->
     <!-- About Area Starts -->
-    <section id="two" class="wrapper style2 alt content-center">
-		<h2>최신기술</h2><br><br>
+    <section id="two" class="wrapper style2 alt">
+		<div class="content-center"><h2>최신기술</h2><br><br></div>
 		<div class="inner">
 			<c:if test="${!empty loginUser }">
-					<ul class="actions special">
+					<ul class="actions special content-center">
 						<li><input type="button" id="insert" onclick="location.href='insertView.ol'" value="추가"></li>
 					</ul>
 				<br>
