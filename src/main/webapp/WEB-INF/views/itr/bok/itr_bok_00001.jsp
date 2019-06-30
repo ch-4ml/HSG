@@ -6,7 +6,6 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <%@ include file="../../common/head.jsp"%>
-
 <script>   	
 function updateBtnClickEvent(id) {
    	location.href='updateView.ib?id=' + id;
@@ -35,7 +34,6 @@ function deleteBtnClickEvent(id) {
 		</div>
 	</section>
 	<!-- Banner Area End -->
-
 	<section id="one" class="wrapper style2 alt">
 		<div style="text-align: center;">
 			<h2>출판 도서</h2>
@@ -53,28 +51,23 @@ function deleteBtnClickEvent(id) {
 			</c:if>
 			<c:forEach var="c" items="${cs}">
 				<c:if test="${c.category eq 1 }">
-					<div class="spotlight">
-						<div class="image">
-							<img src="<%= uploadPath %>${c.contents}" alt="" />
-						</div>
-						<div class="list">
-							<a href="redirect.ib?url=${c.url }" target="_blank">
-								<div class="list-content">
+					<table class="simple">
+						<tr class="portrait">
+							<td class="portrait-image"><a href="redirect.ib?url=${c.url }" target="_blank"> <img src="<%= uploadPath %>${c.contents}" alt="" />
+							</a></td>
+							<td class="portrait-contents"><a href="redirect.ib?url=${c.url }" target="_blank">
 									<h3>${c.title}</h3>
-									<br>
-									<h4>${c.text}</h4>
-								</div>
-							</a>
-							<div class="list-button">
-								<c:if test="${!empty loginUser }">
+									<p>${c.text}</p>
+							</a></td>
+							<td class="portrait-button"><c:if test="${!empty loginUser }">
 									<ul class="actions">
 										<li><input type="button" onclick="updateBtnClickEvent(${c.id})" value="수정"></li>
+										<li>&nbsp;</li>
 										<li><input type="button" onclick="deleteBtnClickEvent(${c.id})" value="삭제"></li>
 									</ul>
-								</c:if>
-							</div>
-						</div>
-					</div>
+								</c:if></td>
+						</tr>
+					</table>
 				</c:if>
 			</c:forEach>
 		</div>
@@ -87,29 +80,23 @@ function deleteBtnClickEvent(id) {
 		<div class="inner">
 			<c:forEach var="c" items="${cs}">
 				<c:if test="${c.category eq 2 }">
-					<div class="spotlight">
-						<div class="image">
-							<img src="<%= uploadPath %>${c.contents}" alt="" />
-						</div>
-						<div class="list">
-							<a href="redirect.ib?url=${c.url }" target="_blank">
-								<div class="list-content">
+					<table class="simple">
+						<tr class="portrait">
+							<td class="portrait-image"><a href="redirect.ib?url=${c.url }" target="_blank"> <img src="<%= uploadPath %>${c.contents}" alt="" />
+							</a></td>
+							<td class="portrait-contents"><a href="redirect.ib?url=${c.url }" target="_blank">
 									<h3>${c.title}</h3>
-									<br>
-									<h4>${c.text}</h4>
-								</div>
-							</a>
-							<div class="list-button">
-								<c:if test="${!empty loginUser }">
+									<p>${c.text}</p>
+							</a></td>
+							<td class="portrait-button"><c:if test="${!empty loginUser }">
 									<ul class="actions">
 										<li><input type="button" onclick="updateBtnClickEvent(${c.id})" value="수정"></li>
+										<li>&nbsp;</li>
 										<li><input type="button" onclick="deleteBtnClickEvent(${c.id})" value="삭제"></li>
 									</ul>
-								</c:if>
-							</div>
-						</div>
-						<br>
-					</div>
+								</c:if></td>
+						</tr>
+					</table>
 				</c:if>
 			</c:forEach>
 		</div>

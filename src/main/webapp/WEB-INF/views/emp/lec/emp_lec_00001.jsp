@@ -35,7 +35,7 @@
 				<br>
 			</c:if>
 			<c:forEach var="c" items="${cs}">
-				<table>
+				<table class="simple">
 					<tr class="portrait">
 						<td class="portrait-image">
 							<a href="viewDetail.el?id=${c.id }">
@@ -45,7 +45,7 @@
 						<td class="portrait-contents">
 						<a href="viewDetail.el?id=${c.id }">
 							<h3>${c.title }</h3>
-							<h4>${c.text}</h4>
+							<p>${c.text}</p>
 						</a>
 						</td>
 						<td class="portrait-date">

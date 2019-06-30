@@ -197,7 +197,7 @@ iframe {
 	text-overflow: ellipsis;
 }
 
-.landscape .landscape-contents h4 {
+.landscape .landscape-contents h4, .landscape .landscape-contents p {
 	width: 100%;
 	overflow: hidden;
 	text-overflow: ellipsis;
@@ -222,17 +222,17 @@ iframe {
 }
 
 .portrait .portrait-image {
-	width: 20%;
+	width: 25%;
 	height: auto;
 }
 
 .portrait .portrait-image img {
-	width: 100%;
+	width: 12em;
 	height: auto;
 }
 
 .portrait .portrait-contents {
-	max-width: 60%;
+	max-width: 55%;
 	height: auto;
 	padding: 0 5%;
 }
@@ -246,21 +246,30 @@ iframe {
 	text-overflow: ellipsis;
 }
 
-.portrait .portrait-contents h4 {
+.portrait. .portrait-contents p {
+	font-size: 16px !important;
+    font-weight: normal;
+}
+
+.portrait .portrait-contents h4, .portrait .portrait-contents p {
 	width: 100%;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: normal;
 	line-height: 1.2;
-	height: 3.6em;
+	height: 4.8em;
 	text-align: left;
 	word-wrap: break-word;
 	display: -webkit-box;
-	-webkit-line-clamp: 3;
+	-webkit-line-clamp: 4;
 	-webkit-box-orient: vertical;
 }
 
 .portrait .portrait-date {
+	width: 20%;
+}
+
+.portrait .portrait-button {
 	width: 20%;
 }
 
@@ -282,8 +291,7 @@ iframe {
 }
 
 .simpleboard .simpleboard-contents {
-	width: 70%;
-	max-width: 70%;
+	width: 115%;
 	height: auto;
 	padding: 0.75em;
 	display: inline-block;
@@ -299,17 +307,22 @@ iframe {
 	text-align: right !important;
 }
 
+@media screen and (max-width: 991px) {
+	.simpleboard .simpleboard-contents {
+		width: 105%;
+	}
+}
+
 @media screen and (max-width: 800px) {
-	.landscape .landscape-image, .portrait .portrait-image {
+	.landscape .landscape-image {
 		width: 50%;
 		height: auto;
 	}
-	.landscape .landscape-date, .portrait .portrait-date {
+	.landscape .landscape-date, .portrait .portrait-date, .portrait .portrait-button {
 		display: none;
 	}
 	.simpleboard .simpleboard-contents {
-		width: 70%;
-		max-width: 70%;
+		width: 100%;
 	}
 }
 
@@ -329,7 +342,7 @@ iframe {
 		padding-top: 5%;
 	}
 	
-	.landscape .landscape-contents h4, .portrait .portrait-contents h4 {
+	.landscape .landscape-contents h4, .portrait .portrait-contents h4, .landscape .landscape-contents p, .portrait .portrait-contents p {
 		text-align: center;
 		padding-bottom: 5%;
 	}

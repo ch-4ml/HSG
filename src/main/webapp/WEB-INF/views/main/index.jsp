@@ -8,7 +8,7 @@
 <html>
 <!--<![endif]-->
 <head>
-<%@ include file="../common/head.jsp" %>
+<%@ include file="../common/head.jsp"%>
 <title>HS글로벌</title>
 <script>
 function deleteBtnClickEvent(id) {
@@ -40,7 +40,6 @@ $(function() {
 	});
 });
 </script>
-
 </head>
 <body>
 	<jsp:include page="../common/header-content.jsp" />
@@ -50,49 +49,63 @@ $(function() {
 			<div class="row">
 				<div class="col-lg-8">
 					<div class="col-lg-10">
-						<h1 class="text-shadow-banner">HW/SW 시스템<br>융합 솔루션 기업</h1>
+						<h1 class="text-shadow-banner">HW/SW 시스템<br>융합 솔루션 기업
+						</h1>
 					</div>
-					<p class="text-shadow-p">
-						HS글로벌은 하드웨어/소프트웨어 융합 시스템 솔루션 전문 기업으로 시작하여 미래 글로벌 IT 융합 기업을 목표로 힘차게 나아가겠습니다.
-					</p>
-					<!-- <a href="" class="template-btn mt-3">자세히보기</a>  -->
+					<p class="text-shadow-p">${ban.text }</p>
+					<c:if test="${!empty loginUser }">
+						<a href="updateBanView.ma" class="template-btn mt-3">수정</a>
+					</c:if>
 				</div>
 			</div>
 		</div>
 	</section>
 	<!-- Banner Area End -->
-
 	<!-- Feature Area Starts -->
 	<section class="feature-area section-padding">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-4 col-md-6">
+					<c:if test="${!empty loginUser }"><a href="updateCatView.ma?id=${cat[0].id }"></c:if>
 					<div class="single-feature text-center item-padding wow fadeInUp" data-wow-delay="250ms">
 						<img src="./resources/images/feature3.png" alt="">
-						<h3>Development</h3>
-						<p class="pt-3">산업용 PC 기반의 사용자 인터페이스 프로그램과 교육용 Kocoafab 지니어스키트 스타터 팩 및 보드 등을 개발합니다.<br></p>
+						<h3>${cat[0].title }</h3>
+						<p class="pt-3">${cat[0].text }</p>
 					</div>
+					<c:if test="${!empty loginUser }"></a></c:if>
 				</div>
+				
 				<div class="col-lg-4 col-md-6">
+					<c:if test="${!empty loginUser }">
+						<a href="updateCatView.ma?id=${cat[1].id }">
+					</c:if>
 					<div class="single-feature text-center item-padding mt-4 mt-md-0 wow fadeInUp" data-wow-delay="500ms">
 						<img src="./resources/images/feature2.png" alt="">
-						<h3>Consulting</h3>
-						<p class="pt-3">다양한 사업 분야에서 최적의 솔루션을 제공합니다.</p>
+						<h3>${cat[1].title }</h3>
+						<p class="pt-3">${cat[1].text }</p>
 					</div>
+					<c:if test="${!empty loginUser }">
+						</a>
+					</c:if>
 				</div>
+				
 				<div class="col-lg-4 col-md-6">
+				<c:if test="${!empty loginUser }">
+					<a href="updateCatView.ma?id=${cat[2].id }">
+				</c:if>
 					<div class="single-feature text-center item-padding mt-4 mt-lg-0 wow fadeInUp" data-wow-delay="750ms">
 						<img src="./resources/images/feature1.png" alt="">
-						<h3>Training Solutions</h3>
-						<p class="pt-3">기업에 근무하는 R&D 인력을 대상으로 신규 프로젝트 진행이나, 개발자의 직무향상을 위하여 기업이 컨설팅 및 교육을 위탁하여 진행되는 서비스입니다.</p>
+						<h3>${cat[2].title }</h3>
+						<p class="pt-3">${cat[2].text }</p>
 					</div>
+				<c:if test="${!empty loginUser }">
+					</a>
+				</c:if>
 				</div>
-
 			</div>
 		</div>
 	</section>
 	<!-- Feature Area End -->
-
 	<section class="mooc-area section-padding3">
 		<div class="container">
 			<div class="row">
@@ -103,29 +116,28 @@ $(function() {
 				</div>
 			</div>
 			<form id="updateItrForm" action="updateItr.ma" method="post">
-			<span id="updateItrSection">
-			<div class="row">
-				<div class="col-lg-5 align-self-center wow fadeInUp" data-wow-delay="250ms">
-					<div style="position: relative; max-width: 100%; padding-bottom: 75%; height: 0;">
-						<span id="contentsItrImage">${itr.contents }</span>
-					</div>
-				</div>
-				<div class="col-lg-7 wow fadeInUp" data-wow-delay="500ms">
-					<div class="youtube-text mt-5 mt-lg-0">
-						<span id="contentsItr">${itr.text }</span>
-						<c:if test="${!empty loginUser }">
-							<div style="text-align: center;">
-								<input type="button" id="updateItrButton" value="수정">
+				<span id="updateItrSection">
+					<div class="row">
+						<div class="col-lg-5 align-self-center wow fadeInUp" data-wow-delay="250ms">
+							<div style="position: relative; max-width: 100%; padding-bottom: 75%; height: 0;">
+								<span id="contentsItrImage">${itr.contents }</span>
 							</div>
-						</c:if>
+						</div>
+						<div class="col-lg-7 wow fadeInUp" data-wow-delay="500ms">
+							<div class="youtube-text mt-5 mt-lg-0">
+								<span id="contentsItr">${itr.text }</span>
+								<c:if test="${!empty loginUser }">
+									<div style="text-align: center;">
+										<input type="button" id="updateItrButton" value="수정">
+									</div>
+								</c:if>
+							</div>
+						</div>
 					</div>
-				</div>
-			</div>
-			</span> <input type="hidden" name="id" value="${itr.id }">
+				</span> <input type="hidden" name="id" value="${itr.id }">
 			</form>
 		</div>
 	</section>
-
 	<span id="updateItrSection"></span>
 	<!-- Department Area Starts -->
 	<section class="department-area section-padding4">
@@ -163,8 +175,7 @@ $(function() {
 									</div>
 								</div>
 								<div class="single-department item-padding text-center">
-									<h3>${d.title }</h3>
-									<br>
+									<h3>${d.title }</h3> <br>
 									<p style="text-align: center;">${d.text }</p>
 									<c:if test="${!empty loginUser }">
 										<input type="button" value="수정" onclick="location.href='updateDevView.ma?id=${d.id}'">
@@ -179,9 +190,7 @@ $(function() {
 		</div>
 	</section>
 	<!-- Department Area Starts -->
-
 	<jsp:include page="../common/footer.jsp" />
 	<!-- footer -->
-
 </body>
 </html>

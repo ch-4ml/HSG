@@ -37,7 +37,7 @@
 			<br>
 		</c:if>
 		<c:forEach var="c" items="${cs }" varStatus="status">
-			<table>
+			<table class="simple">
 				<tr class="landscape">
 					<td class="landscape-image">
 					<a href="viewDetail.ee?id=${c.id }">

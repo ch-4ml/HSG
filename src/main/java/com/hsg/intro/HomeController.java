@@ -48,11 +48,20 @@ public class HomeController {
 		logger.info("Welcome home! The client locale is {}.", locale);	
 		String contents = "";
 		try {
+			// banner area 데이터 추출
+			pageId = "main/ban";
+			Contents c = csi.findOneByPageId(pageId);
+			mv.addObject("ban", c);
+			
+			// feature area(cat) 데이터 추출
+			pageId = "main/cat";
+			List<Contents> cs = csi.findByPageId(pageId);
+			mv.addObject("cat", cs);
+			
+			
 			// 메인 화면 소개 영상
 			pageId = "main/itr";
-			Contents c = csi.findOneByPageId(pageId);	
-			
-			System.out.println("c : " + c.toString());
+			c = csi.findOneByPageId(pageId);	
 			
 			// 소개 영상 데이터 가공
 			if(c.getContents() != null) {
@@ -67,7 +76,7 @@ public class HomeController {
 			
 			// 메인 화면 개발
 			pageId = "main/dev";
-			List<Contents> cs = csi.findByPageId(pageId);
+			cs = csi.findByPageId(pageId);
 			
 			mv.addObject("dev", cs);
 			mv.setViewName("main/index");
@@ -83,9 +92,64 @@ public class HomeController {
 		return "redirect:/";
 	}
 	
+	@RequestMapping(value="updateBanView.ma")
+	public ModelAndView updateBanView(ModelAndView mv) {
+		pageId = "main/ban";
+		try {
+			Contents c = csi.findOneByPageId(pageId);
+			mv.addObject("c", c);
+			mv.setViewName("main/ban/main_ban_00001");
+		} catch(ContentsException e) {
+			mv.addObject("message", e.getMessage());
+			mv.setViewName("common/errorPage");
+		}
+		return mv;
+	}
+	
+	@RequestMapping(value="updateBan.ma")
+	public ModelAndView updateBan(Contents c, ModelAndView mv) {
+		pageId = "main/ban";
+		c.setPageId(pageId);
+		try {
+			csi.update(c);
+			mv.setViewName("redirect:/");
+		} catch (ContentsException e) {
+			mv.addObject("message", e.getMessage());
+			mv.setViewName("common/errorPage");
+		}
+		return mv;
+	}
+	
+	@RequestMapping(value="updateCatView.ma")
+	public ModelAndView updateCatView(ModelAndView mv, @RequestParam(value="id") int id) {
+		try {
+			Contents c = csi.findById(id);
+			mv.addObject("c", c);
+			mv.setViewName("main/cat/main_cat_00001");
+		} catch(ContentsException e) {
+			mv.addObject("message", e.getMessage());
+			mv.setViewName("common/errorPage");
+		}
+		return mv;
+	}
+	
+	@RequestMapping(value="updateCat.ma")
+	public ModelAndView updateCat(Contents c, ModelAndView mv) {
+		pageId = "main/cat";
+		c.setPageId(pageId);
+		try {
+			csi.update(c);
+			mv.setViewName("redirect:/");
+		} catch (ContentsException e) {
+			mv.addObject("message", e.getMessage());
+			mv.setViewName("common/errorPage");
+		}
+		return mv;
+	}
+	
 	@RequestMapping(value="updateItr.ma")
 	public ModelAndView updateItr(Contents c, ModelAndView mv) {
-		pageId = "main/mooc";
+		pageId = "main/itr";
 		c.setPageId(pageId);
 		try {
 			csi.update(c);
