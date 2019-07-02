@@ -431,3 +431,16 @@ iframe {
 	}
 }
 /* ------------------------------------------------------------------ */
+@media screen and (min-width: 992px) {
+	.footer-logo img {
+		width: 100%;
+		height: auto;
+	}
+}
+
+@media screen and (max-width: 992px) {
+	.footer-logo img {
+		width: 50%;
+		height: auto;
+	}
+}

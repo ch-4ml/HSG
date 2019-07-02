@@ -81,7 +81,7 @@
 TEL : 031.5183.5222　　FAX : 031.5183.5223 <br><br>
 </span>
 <span class="copyright">
-COPYRIGHT(C) 2015, FUNAVER-ROMARIUS, ALL RIGHTS RESERVED.<br>
+COPYRIGHT(C) 2015, FUNAVR-ROMARIUS, ALL RIGHTS RESERVED.<br>
 </span>
 <span>
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
@@ -89,8 +89,8 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 </span>
                     </div>
-                    <div class="col-xl-2 offset-xl-1 col-lg-3">
-                        <a href="view.ma"><img src="./resources/images/logo/HSG_LOGO.png" alt="" width="100%" height="auto"></a>
+                    <div style="text-align: center;" class="col-xl-2 offset-xl-1 col-lg-3 footer-logo">
+                        <a href="view.ma"><img src="./resources/images/logo/HSG_LOGO.png" alt=""></a>
                     </div>
                 </div>
             </div>
