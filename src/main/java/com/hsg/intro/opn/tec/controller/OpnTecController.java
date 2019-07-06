@@ -45,8 +45,14 @@ public class OpnTecController {
 	// 페이지 이동
 	@RequestMapping(value = "view.ot")
 	public ModelAndView view(ModelAndView mv) {
-		
-		mv.setViewName("opn/tec/opn_tec_00001");
+		try {
+			int count = csi.getListCount(pageId);
+			mv.addObject("count", count);
+			mv.setViewName("opn/tec/opn_tec_00001");
+		} catch(ContentsException e) {
+			mv.addObject("message",e.getMessage());
+			mv.setViewName("redirect:/common/errorPage");
+		}
 		return mv;		
 	}
 	
@@ -382,7 +388,7 @@ public class OpnTecController {
 			byte fileByte[] = FileUtils.readFileToByteArray(new File(downloadFilePath));
 			
 			response.setContentType("application/octet-stream");
-			response.setHeader("Content-Disposition", "attachment; fileName=" + URLEncoder.encode(c.getOrigin(), "UTF-8") + ";");
+			response.setHeader("Content-Disposition", "attachment; fileName=" + URLEncoder.encode(c.getOrigin(), "UTF-8").replace("+", " ") + ";");
 			response.setHeader("Content-Transfer-Encoding", "binary");
 			response.getOutputStream().write(fileByte);
 			response.getOutputStream().flush();

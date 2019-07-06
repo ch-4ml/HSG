@@ -45,8 +45,14 @@ public class EmpNtcController {
 	// 페이지 이동
 	@RequestMapping(value = "view.en")
 	public ModelAndView view(ModelAndView mv) {
-		
-		mv.setViewName("emp/ntc/emp_ntc_00001");
+		try {
+			int count = csi.getListCount(pageId);
+			mv.addObject("count", count);
+			mv.setViewName("emp/ntc/emp_ntc_00001");
+		} catch(ContentsException e) {
+			mv.addObject("message",e.getMessage());
+			mv.setViewName("redirect:/common/errorPage");
+		}
 		return mv;		
 	}
 	
@@ -201,7 +207,7 @@ public class EmpNtcController {
 				// /xxxxxx_upload_files/파일명.ext 형태로 객체에 넣음 
 				fileName = filePath + "/" + newfileName + ext;
 				originFileName = file.getOriginalFilename();
-				c.setContents(fileName);
+				c.setText(fileName);
 				c.setOrigin(originFileName);
 				
 				// 폴더 없으면 생성
@@ -280,7 +286,7 @@ public class EmpNtcController {
 					
 					fileName = filePath + "/" + newfileName + ext;
 					originFileName = file.getOriginalFilename();
-					c.setContents(fileName);
+					c.setText(fileName);
 					c.setOrigin(originFileName);
 					
 					
@@ -343,7 +349,7 @@ public class EmpNtcController {
 			HttpServletRequest request){
 		
 		try {
-			String deleteFileName = csi.findById(id).getContents();
+			String deleteFileName = csi.findById(id).getText();
 			// ##################### 파일 삭제 처리 #######################
 			String deleteFilePath = root + deleteFileName;
 			
@@ -383,7 +389,7 @@ public class EmpNtcController {
 			byte fileByte[] = FileUtils.readFileToByteArray(new File(downloadFilePath));
 			
 			response.setContentType("application/octet-stream");
-			response.setHeader("Content-Disposition", "attachment; fileName=" + URLEncoder.encode(c.getOrigin(), "UTF-8") + ";");
+			response.setHeader("Content-Disposition", "attachment; fileName=" + URLEncoder.encode(c.getOrigin(), "UTF-8").replace("+", " ") + ";");
 			response.setHeader("Content-Transfer-Encoding", "binary");
 			response.getOutputStream().write(fileByte);
 			response.getOutputStream().flush();

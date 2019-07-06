@@ -149,9 +149,11 @@ public class ItrBokController {
 					}
 					
 			} catch (IllegalStateException e1) {
-				e1.printStackTrace();
+				mv.addObject("message",e1.getMessage());
+				mv.setViewName("redirect:/common/errorPage");
 			} catch (IOException e1) {
-				e1.printStackTrace();
+				mv.addObject("message",e1.getMessage());
+				mv.setViewName("redirect:/common/errorPage");
 			}
 			
 			c.setPageId(pageId);

@@ -45,7 +45,6 @@
         </div>
     </section>
     <!-- Banner Area End -->
-
     <!-- About Area Starts -->
     <section id="two" class="wrapper style2 alt content-center">
 	    <div><h2>${c.title }</h2></div>
