@@ -15,7 +15,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1>MOOC</h1>
+                    <h1>E-Learning</h1>
                 </div>
             </div>
         </div>
@@ -25,7 +25,7 @@
     <!-- About Area Starts -->
     
     <section id="two" class="wrapper style2 alt">
-	<div style="text-align:center;"><h2>강의 목록</h2></div><br><br>
+	<div style="text-align:center;"><h2>서비스 목록</h2></div><br><br>
 	<div class="inner">
 		<c:if test="${!empty loginUser }">
 			<div style="text-align:center;">

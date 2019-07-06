@@ -728,7 +728,7 @@ div #logo {
 	-moz-transition: .5s;
 	-o-transition: .5s;
 	transition: .5s;
-	height: 18em;
+	height: 20em;
 }
 
 .single-feature img {
@@ -3609,7 +3609,7 @@ h6 {
 }
 
 .text-shadow-banner {
-	text-shadow: 0 0 14px #ffffffb0;
+	text-shadow: 5px 5px 5px #000;
 }
 
 .text-shadow-p {

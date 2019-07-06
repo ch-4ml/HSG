@@ -38,7 +38,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1>MOOC 수정</h1>
+                    <h1>E-Learning 수정</h1>
                 </div>
             </div>
         </div>

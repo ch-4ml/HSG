@@ -20,7 +20,7 @@
             <div class="container">
                 <div class="row align-items-center justify-content-between d-flex">
                 <div id="logo">
-                    <a href="view.ma"><img src="./resources/images/logo/HSG_LOGO.png" alt="" title="" width="100%" height="auto"/></a>
+                    <a href="view.ma"><img src="./resources/images/logo/HSG_LOGO.png" alt="" title="" width="80%" height="auto"/></a>
                 </div>
                 <nav id="nav-menu-container">
                     <ul class="nav-menu">
@@ -45,7 +45,7 @@
                         </li>
                         <li class="menu-has-children"><a href="view.ee">교육솔루션</a>
                             <ul>
-                                <li><a href="view.ee">MOOC</a></li>
+                                <li><a href="view.ee">E-Learning</a></li>
                                 <li><a href="view.eh">하드웨어 분야</a></li>
 								<li><a href="view.es">소프트웨어 분야</a></li>
 								<li><a href="view.ec">교육 컨설팅</a></li>

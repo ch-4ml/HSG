@@ -221,7 +221,7 @@ public class OpnLatController {
 				// /xxxxxx_upload_files/파일명.ext 형태로 객체에 넣음 
 				fileName = filePath + "/" + newfileName + ext;
 				originFileName = file.getOriginalFilename();
-				c.setContents(fileName);
+				c.setText(fileName);
 				c.setOrigin(originFileName);
 				
 				// 폴더 없으면 생성
@@ -300,7 +300,7 @@ public class OpnLatController {
 				// /xxxxxx_upload_files/파일명.ext 형태로 객체에 넣음 
 				fileName = filePath + "/" + newfileName + ext;
 				originFileName = file.getOriginalFilename();
-				c.setContents(fileName);
+				c.setText(fileName);
 				c.setOrigin(originFileName);
 				
 				
@@ -363,7 +363,7 @@ public class OpnLatController {
 			HttpServletRequest request){
 		
 		try {
-			String deleteFileName = csi.findById(id).getContents();
+			String deleteFileName = csi.findById(id).getText();
 			// ##################### 파일 삭제 처리 #######################
 			String deleteFilePath = root + deleteFileName;
 			
