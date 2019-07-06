@@ -23,8 +23,7 @@
 	<!-- Banner Area End -->
 
 	<!-- About Area Starts -->
-<section id="two" class="wrapper style2 alt">
-	<div style="text-align:center;"><h2>소프트웨어 교육솔루션</h2></div><br><br>
+<section id="two" class="wrapper style2 alt">r>
 	<div class="inner">
 		<form id="content_form" method="post" action="update.es">
 			<div class="contents">

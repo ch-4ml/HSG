@@ -62,12 +62,18 @@
 			<set>
 				CATEGORY = #{category}, 
 				TITLE = #{title}, 
+				<if test="origin != null">
 				ORIGIN = #{origin},
+				</if>
+				<if test="text != null">
 				TEXT = #{text}, 
+				</if>
 				<if test="contents != null">
 				CONTENTS = #{contents}, 
 				</if>
+				<if test="url != null">
 				URL = #{url},
+				</if>
 				POST_DATE = #{postDate} 			
 			</set>
 		WHERE ID = #{id};

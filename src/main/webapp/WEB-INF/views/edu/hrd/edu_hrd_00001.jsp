@@ -23,7 +23,6 @@
 
 	<!-- About Area Starts -->
 	<section id="two" class="wrapper style2 alt">
-		<div style="text-align:center;"><h2>하드웨어 교육솔루션</h2></div><br><br>
 		<div class="inner">
 			<form id="content_form" method="post" action="update.eh">
 				<div class="contents">

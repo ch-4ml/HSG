@@ -283,9 +283,6 @@ public class OpnLatController {
 			if(!file.isEmpty()) { //
 				String fileName = "";
 				String originFileName = "";
-				
-				// ##################### 파일 삭제 처리 #######################
-				// String deleteFileName = csi.findById(c.getId()).getContents();
 
 				// 파일명 새이름 설정
 				int randomNumber = (int)((Math.random()*10000)+1);
