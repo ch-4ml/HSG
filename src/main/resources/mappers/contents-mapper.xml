@@ -86,9 +86,9 @@
 	</delete>
 	
 	<select id="getListCount" resultType="java.lang.Integer" parameterType="java.lang.String">
-		SELECT COUNT(*) FROM hsgbiz_contents
-		<if test="pageId != null">
-		WHERE PAGE_ID = #{pageId}
+		SELECT COUNT(id) FROM hsgbiz_contents
+		<if test="value != null">
+		WHERE PAGE_ID = #{value}
 		</if>
 	</select>
 	

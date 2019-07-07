@@ -56,9 +56,7 @@
     			                	url: "delete.fi",
     			                	data: {"stored": selectedNode.src},
     			                	dataType: "json",
-    			                	success: function(data) {
-    									alert("됐다")	;
-    			                	}
+    			                	success: function(data) { }
     			                }); // A callback that will let me invoke the deletion of the image on the server if appropriate for the image source.
     			            }
     			        }

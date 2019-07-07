@@ -13,9 +13,9 @@
 let isEnd = false;
 let flag = true; // 스크롤 이벤트가 연속으로 발생하는 것을 방지하기 위한 플래그 
 let currentPage = 1;
-let count = $('#count').val();
 
-$(function() {	
+$(function() {
+	let count = $('#count').val(); // 리스트 수
 	let getList = function(currentPage) {
 		if(isEnd) return;
 		
