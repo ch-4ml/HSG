@@ -6,20 +6,6 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <%@ include file="../../common/head.jsp"%>
-<script>   	
-function updateBtnClickEvent(id) {
-   	location.href='updateView.ib?id=' + id;
-}
-</script>
-<script>
-function deleteBtnClickEvent(id) {
-	var sign = confirm("정말로 삭제하시겠습니까?");
-	
-	if(sign == true){
-		location.href="delete.ib?id=" + id;
-	}
-}
-</script>
 </head>
 <body>
 	<jsp:include page="../../common/header-content.jsp" />
@@ -53,19 +39,30 @@ function deleteBtnClickEvent(id) {
 				<c:if test="${c.category eq 1 }">
 					<table class="simple">
 						<tr class="portrait">
-							<td class="portrait-image"><a href="redirect.ib?url=${c.url }" target="_blank"> <img src="<%= uploadPath %>${c.contents}" alt="" />
-							</a></td>
-							<td class="portrait-contents"><a href="redirect.ib?url=${c.url }" target="_blank">
+							<td class="portrait-image">
+							<c:choose>
+							<c:when test="${!empty loginUser }">
+							<a href="updateView.ib?id=${c.id }">
+							</c:when>
+							<c:otherwise>
+							<a href="redirect.ib?url=${c.url }" target="_blank">
+							</c:otherwise>
+							</c:choose>
+							<img src="<%= uploadPath %>${c.contents}" alt="" />
+							</a>
+							</td>
+							<td class="portrait-contents">
+							<c:choose>
+							<c:when test="${!empty loginUser }">
+							<a href="updateView.ib?id=${c.id }">
+							</c:when>
+							<c:otherwise>
+							<a href="redirect.ib?url=${c.url }" target="_blank">
+							</c:otherwise>
+							</c:choose>
 									<h3>${c.title}</h3>
 									<p>${c.text}</p>
 							</a></td>
-							<td class="portrait-button"><c:if test="${!empty loginUser }">
-									<ul class="actions">
-										<li><input type="button" onclick="updateBtnClickEvent(${c.id})" value="수정"></li>
-										<li>&nbsp;</li>
-										<li><input type="button" onclick="deleteBtnClickEvent(${c.id})" value="삭제"></li>
-									</ul>
-								</c:if></td>
 						</tr>
 					</table>
 				</c:if>
@@ -82,19 +79,29 @@ function deleteBtnClickEvent(id) {
 				<c:if test="${c.category eq 2 }">
 					<table class="simple">
 						<tr class="portrait">
-							<td class="portrait-image"><a href="redirect.ib?url=${c.url }" target="_blank"> <img src="<%= uploadPath %>${c.contents}" alt="" />
+							<td class="portrait-image">
+							<c:choose>
+							<c:when test="${!empty loginUser }">
+							<a href="updateView.ib?id=${c.id }">
+							</c:when>
+							<c:otherwise>
+							<a href="redirect.ib?url=${c.url }" target="_blank">
+							</c:otherwise>
+							</c:choose>
+							<img src="<%= uploadPath %>${c.contents}" alt="" />
 							</a></td>
-							<td class="portrait-contents"><a href="redirect.ib?url=${c.url }" target="_blank">
+							<td class="portrait-contents">
+							<c:choose>
+							<c:when test="${!empty loginUser }">
+							<a href="updateView.ib?id=${c.id }">
+							</c:when>
+							<c:otherwise>
+							<a href="redirect.ib?url=${c.url }" target="_blank">
+							</c:otherwise>
+							</c:choose>
 									<h3>${c.title}</h3>
 									<p>${c.text}</p>
 							</a></td>
-							<td class="portrait-button"><c:if test="${!empty loginUser }">
-									<ul class="actions">
-										<li><input type="button" onclick="updateBtnClickEvent(${c.id})" value="수정"></li>
-										<li>&nbsp;</li>
-										<li><input type="button" onclick="deleteBtnClickEvent(${c.id})" value="삭제"></li>
-									</ul>
-								</c:if></td>
 						</tr>
 					</table>
 				</c:if>

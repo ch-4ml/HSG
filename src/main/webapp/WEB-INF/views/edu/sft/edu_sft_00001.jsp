@@ -23,7 +23,7 @@
 	<!-- Banner Area End -->
 
 	<!-- About Area Starts -->
-<section id="two" class="wrapper style2 alt">r>
+<section id="two" class="wrapper style2 alt">
 	<div class="inner">
 		<form id="content_form" method="post" action="update.es">
 			<div class="contents">

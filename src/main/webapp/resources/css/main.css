@@ -230,12 +230,12 @@ iframe {
 }
 
 .portrait .portrait-image img {
-	width: 12em;
+	width: 100%;
 	height: auto;
 }
 
 .portrait .portrait-contents {
-	max-width: 55%;
+	max-width: 75%;
 	height: auto;
 	padding: 0 5%;
 }
@@ -330,24 +330,32 @@ iframe {
 }
 
 @media screen and (max-width: 700px) {
-		.simpleboard .simpleboard-date {
+	.simpleboard .simpleboard-date {
 			display: none;
-		}
 	}
-
+	
+}
 @media screen and (max-width: 576px) {
-	.landscape .landscape-image, .portrait .portrait-image {
+	.landscape .landscape-image {
 		display: none;
 	}
 	
 	.landscape .landscape-contents h3, .portrait .portrait-contents h3 {
 		text-align: center;
-		padding-top: 5%;
+	    display: -webkit-box;
+	    white-space: normal;
+	    line-height: 1.2;
+	    height: 3.6em;
+	    -webkit-line-clamp: 3;
+	    -webkit-box-orient: vertical;
+	    word-wrap: break-word;
+	    overflow: hidden;
+	    text-overflow: ellipsis;
+	    vertical-align: middle;
 	}
 	
 	.landscape .landscape-contents h4, .portrait .portrait-contents h4, .landscape .landscape-contents p, .portrait .portrait-contents p {
-		text-align: center;
-		padding-bottom: 5%;
+		display: none;
 	}
 }
 
@@ -446,4 +454,10 @@ iframe {
 		width: 50%;
 		height: auto;
 	}
+}
+
+/*------------------------- table ------------------------------------*/
+#contents table {
+	width: 70em;
+	table-layout: fixed;
 }

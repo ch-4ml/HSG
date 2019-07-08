@@ -11,27 +11,37 @@ function resize(obj) {
 	  obj.style.height = (12+obj.scrollHeight)+"px";
 	}
 </script>
-    <script>
-    	$(function() {
-			$("#updateBtn").click(function() {
-				var title = $("#title").val();
-				var url = $("#url").val();
-				var text = $("#text").val();
-				var file = $("#file").val();
-				
-				if(title == ""){
-					return alert("제목을 입력해주세요.");
-				} else if(url == "") {
-					return alert("연결할 주소를 입력해주세요.");
-				} else if(text == ""){
-					return alert("내용을 입력해주세요.");
-				} else {
-					return $("#updateForm").submit();
-				}
-			});
-			$("#text").keydown();
+<script>
+   	$(function() {
+		$("#update").click(function() {
+			var title = $("#title").val();
+			var url = $("#url").val();
+			var text = $("#text").val();
+			var file = $("#file").val();
+			
+			if(title == ""){
+				return alert("제목을 입력해주세요.");
+			} else if(url == "") {
+				return alert("연결할 주소를 입력해주세요.");
+			} else if(text == ""){
+				return alert("내용을 입력해주세요.");
+			} else {
+				return $("#updateForm").submit();
+			}
 		});
-    </script>
+		$("#text").keydown();
+	});
+</script>
+<script>
+$(function() {
+	$("#delete").click(function() {
+		var id = $("#id").val();
+		if(!confirm("삭제하시겠습니까?")) return false;
+		else location.href="delete.ib?id=" + id;
+	});
+});
+</script>
+
 </head>
 <body>
 <jsp:include page="../../common/header-content.jsp" />
@@ -52,7 +62,7 @@ function resize(obj) {
 	<div class="container">
 	    <form id="updateForm" action="update.ib" method="post" enctype="multipart/form-data">
 			<section>
-			<input type="hidden" name="id" value="${c.id} ">
+			<input type="hidden" name="id" id="id" value="${c.id} ">
 			<span class="input input--hoshi">
 				<input class="input__field input__field--hoshi" type="text" id="title" name="title" value="${c.title }">
 				<label class="input__label input__label--hoshi input__label--hoshi-color-1" for="title">
@@ -94,7 +104,8 @@ function resize(obj) {
 			</span>
 			<br>
 			<div align="center">
-				<input type="button" id="updateBtn" value="수정">
+				<input type="button" id="update" value="수정">
+				<input type="button" id="delete" value="삭제">
 			</div>
 			</section>
 		</form>
