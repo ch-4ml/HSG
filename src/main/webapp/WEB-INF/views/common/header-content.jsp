@@ -28,7 +28,7 @@
                         <li class="menu-has-children"><a href="view.ig">회사소개</a>
                             <ul>
                                 <li><a href="view.ig">CEO 인사말</a></li>
-                                <li><a href="view.ih">일반 현황 및 연혁</a></li>
+                                <li><a href="view.ih">일반현황 및 연혁</a></li>
 								<li><a href="view.io">조직 및 사업 분야</a></li>
 								<li><a href="view.ib">출판 도서/특허</a></li>
 								<li><a href="view.ic">컨설팅 및 주요 실적</a></li>

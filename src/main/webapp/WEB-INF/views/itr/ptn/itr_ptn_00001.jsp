@@ -70,7 +70,6 @@ function deleteImg(id) {
     <!-- Banner Area End -->
     <section class="content content-center">
     	<div class="container">
-		  	<h2 style="color: black;">Partner & Customer</h2>
 		  	<input type="hidden" id="user" value="${loginUser.userId }">
 		  	<input type="hidden" id="uploadPath" value="<%= uploadPath %>">
 		  	<c:if test="${!empty loginUser }">

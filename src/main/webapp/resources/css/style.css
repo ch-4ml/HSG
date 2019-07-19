@@ -32,7 +32,7 @@ h1 {
 	color: #fff;
 	font-family: 'NanumSquareRound', sans-serif;
 	font-size: 5em !important;
-	font-weight: 700
+	font-weight: 700;
 }
 
 h2 {
@@ -569,12 +569,12 @@ div #logo {
 	h1 {
 		color: #fff;
 		font-family: 'NanumSquareRound', sans-serif;
-		font-size: 5em !important;
+		font-size: 4em !important;
 		font-weight: 700;
 	}
 	.text-shadow-p {
 		display: inline-block;
-		width: 850px;
+		width: 800px;
 		white-space: normal;
 		line-height: 1.2;
 		height: 2.4em;
@@ -586,7 +586,7 @@ div #logo {
 	h1 {
 		color: #fff;
 		font-family: 'NanumSquareRound', sans-serif;
-		font-size: 4.2em !important;
+		font-size: 3.8em !important;
 		font-weight: 700;
 	}
 	.text-shadow-p {
@@ -606,7 +606,7 @@ div #logo {
 	h1 {
 		color: #fff;
 		font-family: 'NanumSquareRound', sans-serif;
-		font-size: 4em !important;
+		font-size: 3.8em !important;
 		font-weight: 700;
 	}
 	.text-shadow-p {
@@ -626,7 +626,7 @@ div #logo {
 	h1 {
 		color: #fff;
 		font-family: 'NanumSquareRound', sans-serif;
-		font-size: 4em !important;
+		font-size: 2.8em !important;
 		font-weight: 700;
 	}
 	.text-shadow-p {
@@ -646,7 +646,7 @@ div #logo {
 	h1 {
 		color: #fff;
 		font-family: 'NanumSquareRound', sans-serif;
-		font-size: 3em !important;
+		font-size: 2em !important;
 		font-weight: 700;
 	}
 	.text-shadow-p {
@@ -666,7 +666,7 @@ div #logo {
 	h1 {
 		color: #fff;
 		font-family: 'NanumSquareRound', sans-serif;
-		font-size: 2em !important;
+		font-size: 1.5em !important;
 		font-weight: 700;
 	}
 	.text-shadow-p {
@@ -686,7 +686,7 @@ div #logo {
 	h1 {
 		color: #fff;
 		font-family: 'NanumSquareRound', sans-serif;
-		font-size: 2em !important;
+		font-size: 1.2em !important;
 		font-weight: 700;
 	}
 	.text-shadow-p {
@@ -705,7 +705,7 @@ div #logo {
 	h1 {
 		color: #fff;
 		font-family: 'NanumSquareRound', sans-serif;
-		font-size: 1.5em !important;
+		font-size: 1em !important;
 		font-weight: 700;
 	}
 	.text-shadow-p {
@@ -820,11 +820,7 @@ div #logo {
 }
 
 .department-area .single-slide .item-padding h3 {
-	display: inline-block;
 	width: calc(100%);
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
 }
 
 .department-area .single-slide .item-padding p, .department-area .single-slide .item-padding div

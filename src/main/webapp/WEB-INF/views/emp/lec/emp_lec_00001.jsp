@@ -23,7 +23,6 @@
     <!-- Banner Area End -->
     <!-- About Area Starts -->
     <section id="two" class="wrapper style2 alt">
-		<div style="text-align: center;"><h2>분야별 채용 공고</h2></div><br><br>
 		<div class="inner">
 			<c:if test="${!empty loginUser }">
 				<div style="text-align: center;">

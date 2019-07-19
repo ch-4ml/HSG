@@ -49,7 +49,7 @@ $(function() {
 			<div class="row">
 				<div class="col-lg-8">
 					<div class="col-lg-10">
-						<h1 class="text-shadow-banner">HW/SW 시스템<br>융합 솔루션 기업
+						<h1 class="text-shadow-banner">HW/SW 융합 시스템 개발<br>HW/SW 분야 기술 교육
 						</h1>
 					</div>
 					<p class="text-shadow-p">${ban.text }</p>

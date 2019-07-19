@@ -26,7 +26,7 @@
 <section id="two" class="wrapper style2 alt">
 	<div class="inner">
 		<form id="content_form" method="post" action="update.es">
-			<div class="contents">
+			<div class="contents-table">
 				<span id="contents"> ${c.contents } </span>
 			</div>
 			<br>

@@ -160,6 +160,10 @@ iframe {
 	overflow-x: scroll;
 }
 
+.contents-table::-webkit-scrollbar {
+	background: transparent;
+}
+
 .contents img {
 	/*
 	max-width: 100%;

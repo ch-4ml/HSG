@@ -23,7 +23,6 @@
 
 	<!-- About Area Starts -->
 	<section id="two" class="wrapper style2 alt">
-		<div style="text-align:center;"><h2>조직 및 사업 분야</h2></div><br><br>
 		<div class="inner">
 			<form id="content_form" method="post" action="update.io">
 				<div class="contents">

@@ -24,7 +24,6 @@
 
 	<!-- About Area Starts -->
 	<section id="two" class="wrapper style2 alt">
-	    <div style="text-align:center;"><h2>CEO 인사말</h2></div><br><br>
 	    <div class="inner">
 			<form id="content_form" method="post" action="update.ig">
 				<div class="contents">

@@ -25,10 +25,8 @@
 	<section id="two" class="wrapper style2 alt">
 		<div class="inner">
 			<form id="content_form" method="post" action="update.eh">
-				<div class="contents">
-					<br>
+				<div class="contents-table">
 					<span id="contents"> ${c.contents } </span>
-					<br>
 				</div>
 				<br>
 				<span id="updateButton">

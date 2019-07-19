@@ -41,11 +41,7 @@
         </div>
     </section>
     <!-- Banner Area End -->
-	<section id="two" class="wrapper style2 alt">
-		<div style="text-align:center;"><h2>오시는 길</h2></div><br>
-	</section>
-	<br><br>
-	<div id="maps"></div><br><br>
+    <br><br><div id="maps"></div><br><br>
 
     <script>
     var marker;

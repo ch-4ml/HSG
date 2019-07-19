@@ -79,7 +79,6 @@ $(function() {
     <input type="hidden" id="count" value="${count }">
     <!-- About Area Starts -->
     <section id="two" class="wrapper style2 alt">
-		<div class="content-center"><h2>오픈소스</h2><br><br></div>
 		<div class="inner">
 			<c:if test="${!empty loginUser }">
 					<ul class="actions special content-center">
