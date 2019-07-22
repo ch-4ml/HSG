@@ -15,7 +15,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12">
-					<h1>소프트웨어 분야</h1>
+					<h1 class="text-shadow-banner">소프트웨어 분야</h1>
 				</div>
 			</div>
 		</div>

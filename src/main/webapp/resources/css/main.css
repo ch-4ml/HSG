@@ -148,16 +148,17 @@ iframe {
 /*======================================*/
 
 .contents {
-	background-color: white;
-	border-bottom-color: rgba(144, 144, 144, 0.25);
-	border-bottom: solid 3px;
+	/*background-color: white;*/
+	word-break: break-all;
 }
 
 .contents-table {
-	background-color: white;
+	/*background-color: white;
 	border-bottom-color: rgba(144, 144, 144, 0.25);
-	border-bottom: solid 3px;
+	border-bottom: solid 3px;*/
 	overflow-x: scroll;
+	-ms-overflow-style: none;
+	word-break: break-all;
 }
 
 .contents-table::-webkit-scrollbar {
@@ -394,8 +395,10 @@ iframe {
 	}
 }
 /* ------------------------------------------------------------------ */
+
 .contents ul {
-	margin: 1em;
+	/* margin: 1em; 기업연혁때문에 지움 */
+	list-style-type: disc;
 }
 
 .insert-in-partner-customer {

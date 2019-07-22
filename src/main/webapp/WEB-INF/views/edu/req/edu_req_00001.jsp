@@ -116,7 +116,7 @@ function resize(obj) {
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12">
-					<h1>교육 의뢰</h1>
+					<h1 class="text-shadow-banner">교육 의뢰</h1>
 				</div>
 			</div>
 		</div>

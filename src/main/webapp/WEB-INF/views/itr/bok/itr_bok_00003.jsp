@@ -50,7 +50,7 @@ $(function() {
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1>출판도서/특허 수정</h1>
+                    <h1 class="text-shadow-banner">출판도서/특허 수정</h1>
                 </div>
             </div>
         </div>

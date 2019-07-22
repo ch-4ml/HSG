@@ -15,7 +15,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1>분야별 채용 공고</h1>
+                    <h1 class="text-shadow-banner">분야별 채용 공고</h1>
                 </div>
             </div>
         </div>

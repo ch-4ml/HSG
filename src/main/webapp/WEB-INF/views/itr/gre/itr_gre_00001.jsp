@@ -15,7 +15,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12">
-					<h1>CEO 인사말</h1>
+					<h1 class="text-shadow-banner">CEO 인사말</h1>
 				</div>
 			</div>
 		</div>

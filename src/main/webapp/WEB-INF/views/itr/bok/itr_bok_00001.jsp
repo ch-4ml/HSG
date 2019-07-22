@@ -14,7 +14,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12">
-					<h1>출판 도서/특허</h1>
+					<h1 class="text-shadow-banner">출판 도서/특허</h1>
 				</div>
 			</div>
 		</div>

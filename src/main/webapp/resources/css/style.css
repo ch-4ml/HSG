@@ -11,7 +11,7 @@
 	url('https://cdn.rawgit.com/innks/NanumSquareRound/master/nanumsquareround.min.css');
 
 body {
-	color: #777;
+	/*color: #777; 폰트 색상때문에 삭제 */
 	font-family: 'NanumSquareRound', sans-serif;
 	font-size: 15px;
 	font-weight: 400
@@ -489,6 +489,10 @@ body.mobile-nav-active #mobile-nav-toggle {
 	right: 0;
 	transition: all 0.5s;
 	z-index: 997
+}
+
+#header {
+	width: 100%;
 }
 
 @media ( min-width : 768px) and (max-width: 991.98px) {

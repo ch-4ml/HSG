@@ -15,7 +15,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12">
-					<h1>컨설팅 및 주요 실적</h1>
+					<h1 class="text-shadow-banner">컨설팅 및 주요 실적</h1>
 				</div>
 			</div>
 		</div>

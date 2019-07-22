@@ -47,16 +47,13 @@ $(function() {
 	<section class="banner-area">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-8">
-					<div class="col-lg-10">
-						<h1 class="text-shadow-banner">HW/SW 융합 시스템 개발<br>HW/SW 분야 기술 교육
-						</h1>
-					</div>
-					<p class="text-shadow-p">${ban.text }</p>
-					<c:if test="${!empty loginUser }">
-						<a href="updateBanView.ma" class="template-btn mt-3">수정</a>
-					</c:if>
+				<div class="col-lg-12">
+						<h1 class="text-shadow-banner">HW/SW 융합 시스템 개발<br>HW/SW 분야 기술 교육</h1>
 				</div>
+				<p class="text-shadow-p">${ban.text }</p>
+				<c:if test="${!empty loginUser }">
+					<a href="updateBanView.ma" class="template-btn mt-3">수정</a>
+				</c:if>
 			</div>
 		</div>
 	</section>

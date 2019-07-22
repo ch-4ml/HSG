@@ -71,7 +71,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1>LOGIN</h1>
+                    <h1 class="text-shadow-banner">LOGIN</h1>
                 </div>
             </div>
         </div>
