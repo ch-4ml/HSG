@@ -43,7 +43,7 @@
 	<!-- About Area Starts -->
 	<section class="content content-center">
 		<div class="container">
-			<form id="updateForm" action="updateBan.ma" method="post">		
+			<form id="updateForm" action="updateTit.ma" method="post">		
 				<section class="related">
 					<span class="input__textarea input--hoshi">
 						<textarea class="autosize, input__field input__field--hoshi" onkeydown="resize(this)" onkeyup="resize(this)" id="text" name="text">${c.text }</textarea>

@@ -92,6 +92,34 @@ public class HomeController {
 		return "redirect:/";
 	}
 	
+	@RequestMapping(value="updateTitView.ma")
+	public ModelAndView updateTitView(ModelAndView mv) {
+		pageId = "main/tit";
+		try {
+			Contents c = csi.findOneByPageId(pageId);
+			mv.addObject("c", c);
+			mv.setViewName("main/tit/main_tit_00001");
+		} catch(ContentsException e) {
+			mv.addObject("message", e.getMessage());
+			mv.setViewName("common/errorPage");
+		}
+		return mv;
+	}
+	
+	@RequestMapping(value="updateTit.ma")
+	public ModelAndView updateTit(Contents c, ModelAndView mv) {
+		pageId = "main/tit";
+		c.setPageId(pageId);
+		try {
+			csi.update(c);
+			mv.setViewName("redirect:/");
+		} catch (ContentsException e) {
+			mv.addObject("message", e.getMessage());
+			mv.setViewName("common/errorPage");
+		}
+		return mv;
+	}
+	
 	@RequestMapping(value="updateBanView.ma")
 	public ModelAndView updateBanView(ModelAndView mv) {
 		pageId = "main/ban";
