@@ -217,7 +217,7 @@ iframe {
 	text-overflow: ellipsis;
 	white-space: normal;
 	line-height: 1.2;
-	height: 3.6em;
+	height: auto;
 	text-align: left;
 	word-wrap: break-word;
 	display: -webkit-box;
@@ -241,7 +241,7 @@ iframe {
 }
 
 .portrait .portrait-image img {
-	width: 100%;
+	width: 80%;
 	height: auto;
 }
 
@@ -252,7 +252,7 @@ iframe {
 }
 
 .portrait .portrait-contents h3 {
-	margin-bottom: 1em;
+	margin-bottom: 0;
 	display: inline-block;
 	width: 100%;
 	white-space: nowrap;
@@ -271,11 +271,11 @@ iframe {
 	text-overflow: ellipsis;
 	white-space: normal;
 	line-height: 1.2;
-	height: 4.8em;
+	height: auto;
 	text-align: left;
 	word-wrap: break-word;
 	display: -webkit-box;
-	-webkit-line-clamp: 4;
+	-webkit-line-clamp: 15;
 	-webkit-box-orient: vertical;
 }
 
@@ -356,8 +356,8 @@ iframe {
 	    display: -webkit-box;
 	    white-space: normal;
 	    line-height: 1.2;
-	    height: 3.6em;
-	    -webkit-line-clamp: 3;
+	    height: auto;
+	    -webkit-line-clamp: 4;
 	    -webkit-box-orient: vertical;
 	    word-wrap: break-word;
 	    overflow: hidden;

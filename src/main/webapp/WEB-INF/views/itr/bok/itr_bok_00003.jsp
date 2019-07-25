@@ -16,6 +16,7 @@ function resize(obj) {
 		$("#update").click(function() {
 			var title = $("#title").val();
 			var url = $("#url").val();
+			var origin = $("#origin").val();
 			var text = $("#text").val();
 			var file = $("#file").val();
 			
@@ -23,6 +24,8 @@ function resize(obj) {
 				return alert("제목을 입력해주세요.");
 			} else if(url == "") {
 				return alert("연결할 주소를 입력해주세요.");
+			} else if(origin == "") {
+				return alert("출판사, 출판년도를 입력해주세요.");
 			} else if(text == ""){
 				return alert("내용을 입력해주세요.");
 			} else {
@@ -82,11 +85,11 @@ $(function() {
 				</c:choose>
 			</select>
 			</section>
-			<section class="related">
+			<section>
 			<span class="input input--hoshi">
-				<input class="input__field input__field--hoshi" type="text" id="url" name="url" value="${c.url }">
-				<label class="input__label input__label--hoshi input__label--hoshi-color-1" for="url">
-					<span class="input__label-content input__label-content--hoshi">연결할 URL (www.abcde.com)</span>
+				<input class="input__field input__field--hoshi" type="text" id="origin" name="origin" value="${c.origin }">
+				<label class="input__label input__label--hoshi input__label--hoshi-color-1" for="origin">
+					<span class="input__label-content input__label-content--hoshi">출판사, 출판년도</span>
 				</label>
 			</span>
 			<span class="input input--hoshi input--filled">
@@ -94,6 +97,13 @@ $(function() {
 		    	<label class="input__label input__label--hoshi input__label--hoshi-color-1" for="file">
 		    		<span class="input__label-content input__label-content--hoshi">사진 첨부</span>
 		    	</label>
+			</span>
+			<br>
+			<span class="input__textarea input--hoshi">
+				<input class="input__field input__field--hoshi" type="text" id="url" name="url" value="${c.url }">
+				<label class="input__label input__label--hoshi input__label--hoshi-color-1" for="url">
+					<span class="input__label-content input__label-content--hoshi">연결할 URL (www.abcde.com)</span>
+				</label>
 			</span>
 			<br>
 			<span class="input__textarea input--hoshi">

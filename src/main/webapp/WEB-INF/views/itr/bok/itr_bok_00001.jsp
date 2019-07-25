@@ -31,6 +31,10 @@
 				<br>
 				<br>
 			</c:if>
+			<div style="text-align: center;">
+				<h2>도서</h2>
+			</div>
+			<br><br>
 			<c:forEach var="c" items="${cs}">
 				<c:if test="${c.category eq 1 }">
 					<table class="simple">
@@ -57,6 +61,7 @@
 							</c:otherwise>
 							</c:choose>
 									<h3>${c.title}</h3>
+									<h4>${c.origin}</h4>
 									<p>${c.text}</p>
 							</a></td>
 						</tr>

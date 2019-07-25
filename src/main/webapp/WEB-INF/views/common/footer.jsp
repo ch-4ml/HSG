@@ -19,7 +19,7 @@
                                 <li class="mb-2"><a href="view.ih">일반현황 및 연혁</a></li>
                                 <li class="mb-2"><a href="view.io">조직 및 사업 분야</a></li>
                                 <li class="mb-2"><a href="view.ib">출판도서 / 특허</a></li>
-                                <li class="mb-2"><a href="view.ic">컨설팅 및 주요 실적</a></li>
+                                <!-- <li class="mb-2"><a href="view.ic">컨설팅 및 주요 실적</a></li> -->
                                 <li class="mb-2"><a href="view.ip">Partner & Customer</a></li>
                                 <li><a href="view.il">회사 위치</a></li>
                             </ul>
@@ -52,7 +52,7 @@
                     <!-- <div class="col-xl-2 offset-xl-1 col-lg-3"> -->
                     <div class="col-xl-2 col-lg-3">
                         <div class="single-widget-home mb-5 mb-lg-0">
-                            <h3 class="mb-4">인재 채용</h3>
+                            <h3 class="mb-4">HSG 소식</h3>
                              <ul>
                              	<li class="mb-2"><a href="view.en">공지사항</a></li>
                                 <li class="mb-2"><a href="view.el">분야별 채용 공고</a></li>

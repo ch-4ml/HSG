@@ -11,8 +11,7 @@
     <script>
     	$(function() {
 			$("#updateBtn").click(function() {
-				var title = $("#title").val();
-				var category = $("#category").val();
+				var text = $("#text").val();
 				
 				if(text == "") {
 					return alert("내용을 입력해주세요.");

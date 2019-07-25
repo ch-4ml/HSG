@@ -48,12 +48,21 @@ $(function() {
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12">
-						<h1 class="text-shadow-banner">HW/SW 융합 시스템 개발<br>HW/SW 분야 기술 교육</h1>
+					<h1 class="text-shadow-banner">
+						${tit.text }
+						<c:if test="${!empty loginUser }">
+							<a href="updateTitView.ma" class="template-btn mt-3">수정</a>
+						</c:if>
+					</h1>
+					
 				</div>
-				<p class="text-shadow-p">${ban.text }</p>
-				<c:if test="${!empty loginUser }">
-					<a href="updateBanView.ma" class="template-btn mt-3">수정</a>
-				</c:if>
+				<p class="text-shadow-p">
+					${ban.text }
+					<c:if test="${!empty loginUser }">
+						<a href="updateBanView.ma" class="template-btn mt-3">수정</a>
+					</c:if>
+				</p>
+				
 			</div>
 		</div>
 	</section>
@@ -163,9 +172,25 @@ $(function() {
 								</div>
 							</div>
 						</c:if>
+						<!-- 팝업 창 -->
+						<div class="md-modal md-effect-16" id="modal-16">
+							<div class="md-content" style="width: 80%;">
+								<h3>Modal Dialog</h3>
+								<div>
+									<p>This is a modal window. You can do the following things with it:</p>
+									<ul>
+										<li><strong>Read:</strong> modal windows will probably tell you something important so don't forget to read what they say.</li>
+										<li><strong>Look:</strong> a modal window enjoys a certain kind of attention; just look at it and appreciate its presence.</li>
+										<li><strong>Close:</strong> click on the button below to close the modal.</li>
+									</ul>
+									<button class="md-close">Close me!</button>
+								</div>
+							</div>
+						</div>
+						<!--  -->
 						<c:forEach var="d" items="${dev }" varStatus="status">
 							<div class="single-slide">
-								<div class="slide-img">
+								<div class="slide-img md-trigger" data-modal="modal-16">
 									<img src="<%= uploadPath %>${d.contents }" alt="" class="img-fluid">
 									<div class="hover-state">
 										<i class="fa fa-plus"></i>

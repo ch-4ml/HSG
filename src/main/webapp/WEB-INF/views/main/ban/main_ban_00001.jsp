@@ -11,8 +11,7 @@
     <script>
     	$(function() {
 			$("#updateBtn").click(function() {
-				var title = $("#title").val();
-				var category = $("#category").val();
+				var text = $("#text").val();
 				
 				if(text == "") {
 					return alert("내용을 입력해주세요.");
@@ -31,7 +30,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12">
-					<h1>배너 수정</h1>
+					<h1>배너 타이틀 수정</h1>
 				</div>
 			</div>
 		</div>

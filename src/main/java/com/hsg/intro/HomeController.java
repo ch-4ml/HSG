@@ -48,9 +48,14 @@ public class HomeController {
 		logger.info("Welcome home! The client locale is {}.", locale);	
 		String contents = "";
 		try {
+			// title area 데이터 추출
+			pageId = "main/tit";
+			Contents c = csi.findOneByPageId(pageId);
+			mv.addObject("tit", c);
+			
 			// banner area 데이터 추출
 			pageId = "main/ban";
-			Contents c = csi.findOneByPageId(pageId);
+			c = csi.findOneByPageId(pageId);
 			mv.addObject("ban", c);
 			
 			// feature area(cat) 데이터 추출

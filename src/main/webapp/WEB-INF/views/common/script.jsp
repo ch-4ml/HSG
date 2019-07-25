@@ -85,7 +85,11 @@
     <!-- <script src="./resources/js/vendor/jquery.nice-select.min.js"></script>  -->
     <script src="./resources/js/vendor/superfish.min.js"></script>
     <script src="./resources/js/main.js"></script>
-
+    
+	<script src="./resources/js/css-filters-polyfill.js"></script>
+	<script src="./resources/js/css-parser.js"></script>
+	<script src="./resources/js/modal-effects.js"></script>
+	
 	<script src="./resources/js/vendor/jquery.min.js"></script>
 	<script src="./resources/js/vendor/skel.min.js"></script>
 	<script src="./resources/js/vendor/util.js"></script>

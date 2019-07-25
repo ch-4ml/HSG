@@ -31,7 +31,7 @@
                                 <li><a href="view.ih">일반현황 및 연혁</a></li>
 								<li><a href="view.io">조직 및 사업 분야</a></li>
 								<li><a href="view.ib">출판 도서/특허</a></li>
-								<li><a href="view.ic">컨설팅 및 주요 실적</a></li>
+								<!-- <li><a href="view.ic">컨설팅 및 주요 실적</a></li> -->
 								<li><a href="view.ip">Partner & Customer</a></li>
 								<li><a href="view.il">회사위치</a></li>
                             </ul>
@@ -52,7 +52,7 @@
 								<li><a href="view.er">교육 의뢰</a></li>
                             </ul>
                         </li>
-						<li class="menu-has-children"><a href="view.en">인재 채용</a>
+						<li class="menu-has-children"><a href="view.en">HSG 소식</a>
                             <ul>
                             	<li><a href="view.en">공지사항</a></li>
                                 <li><a href="view.el">분야별 채용 공고</a></li>

@@ -30,6 +30,8 @@
 	<link rel="stylesheet" href="./resources/css/list.css" />
 	<link rel="stylesheet" href="./resources/css/input.css" />
 	<link rel="stylesheet" href="./resources/css/cs-select.css" />
+	<link rel="stylesheet" href="./resources/css/popup-component.css" />
+	<link rel="stylesheet" href="./resources/css/popup-default.css" />
 
 
 </head>

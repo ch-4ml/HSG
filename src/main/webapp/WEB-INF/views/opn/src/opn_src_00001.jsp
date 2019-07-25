@@ -78,7 +78,7 @@ $(function() {
     <!-- Banner Area End -->
     <input type="hidden" id="count" value="${count }">
     <!-- About Area Starts -->
-    <section id="two" class="wrapper style2 alt">
+    <section id="two" class="wrapper style2 alt">	
 		<div class="inner">
 			<c:if test="${!empty loginUser }">
 					<ul class="actions special content-center">
