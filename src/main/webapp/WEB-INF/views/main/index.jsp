@@ -18,6 +18,10 @@ function deleteBtnClickEvent(id) {
 		location.href="deleteDev.ma?id=" + id;
 	}
 }
+
+function setMdContent(id) {
+	
+}
 </script>
 <script src="https://cloud.tinymce.com/5/tinymce.min.js?apiKey=iiyaoh4ovlz6z3aafb6vdpqtllt555a3g3loxoh2dwetyw3e"></script>
 <script>
@@ -155,6 +159,22 @@ $(function() {
 					</div>
 				</div>
 			</div>
+			
+			
+			<!-- 팝업 창 -->
+			<div class="md-modal md-effect-16" id="modal-16">
+				<div class="md-content">
+					<h3>${dev[0].title }</h3>
+					<div>
+						<img src="<%= uploadPath %>${dev[0].contents}" alt="">
+							${dev[0].text }
+						<button class="md-close">Close me!</button>
+					</div>
+				</div>
+			</div>
+						<!--  -->
+			
+			
 			<div class="row">
 				<div class="col-lg-12 wow fadeInUp" data-wow-delay="500ms">
 					<div class="department-slider owl-carousel">
@@ -172,26 +192,10 @@ $(function() {
 								</div>
 							</div>
 						</c:if>
-						<!-- 팝업 창 -->
-						<div class="md-modal md-effect-16" id="modal-16">
-							<div class="md-content" style="width: 80%;">
-								<h3>Modal Dialog</h3>
-								<div>
-									<p>This is a modal window. You can do the following things with it:</p>
-									<ul>
-										<li><strong>Read:</strong> modal windows will probably tell you something important so don't forget to read what they say.</li>
-										<li><strong>Look:</strong> a modal window enjoys a certain kind of attention; just look at it and appreciate its presence.</li>
-										<li><strong>Close:</strong> click on the button below to close the modal.</li>
-									</ul>
-									<button class="md-close">Close me!</button>
-								</div>
-							</div>
-						</div>
-						<!--  -->
 						<c:forEach var="d" items="${dev }" varStatus="status">
 							<div class="single-slide">
 								<div class="slide-img md-trigger" data-modal="modal-16">
-									<img src="<%= uploadPath %>${d.contents }" alt="" class="img-fluid">
+									<img src="<%= uploadPath %>${d.contents }" alt="" class="img-fluid" onclick="setMdContent(${status.index})">
 									<div class="hover-state">
 										<i class="fa fa-plus"></i>
 									</div>

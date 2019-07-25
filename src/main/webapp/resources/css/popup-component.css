@@ -18,17 +18,19 @@ perspective effects (not including the modals and the overlay).
 	perspective: 600px;
 }
 
+/*
 .container {
 	background: #e74c3c;
 	min-height: 100%;
 }
+*/
 
 .md-modal {
 	position: fixed;
 	top: 50%;
 	left: 50%;
-	width: 50%;
-	max-width: 630px;
+	width: 80%;
+	max-width: 960px;
 	min-width: 320px;
 	height: auto;
 	z-index: 2000;
@@ -67,22 +69,30 @@ perspective effects (not including the modals and the overlay).
 }
 
 /* Content styles */
+
 .md-content {
 	color: #fff;
-	background: #e74c3c;
+	background: rgba(64,64,64,0.8);
 	position: relative;
 	border-radius: 3px;
 	margin: 0 auto;
+	width: 100%;
+	text-align: center;
+}
+
+.md-content img {
+	width: 100%;
 }
 
 .md-content h3 {
+	color: #fff;
 	margin: 0;
 	padding: 0.4em;
 	text-align: center;
 	font-size: 2.4em;
 	font-weight: 300;
 	opacity: 0.8;
-	background: rgba(0,0,0,0.1);
+	background: rgba(64,64,64,0.8);
 	border-radius: 3px 3px 0 0;
 }
 

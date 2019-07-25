@@ -64,10 +64,10 @@
 		
 		_development_mode: (function(){
 			if(location.hostname === 'localhost' || location.hostname.search(/.local$/) !== -1 || location.hostname.search(/\d+\.\d+\.\d+\.\d+/) !== -1){
-				if(window.console) console.log('Detected localhost or IP address. Assuming you are a developer. Caching of stylesheets is disabled.');
+				// if(window.console) console.log('Detected localhost or IP address. Assuming you are a developer. Caching of stylesheets is disabled.');
 				return true;
 			}
-			if(window.console) console.log('Caching of stylesheets is enabled. You need to refresh twice to see any changes.');
+			// if(window.console) console.log('Caching of stylesheets is enabled. You need to refresh twice to see any changes.');
 			return false;
 		})(),
 		
@@ -84,7 +84,7 @@
 				xmlHttpCheck.open('GET', window.polyfilter_scriptpath + 'htc/sepia.htc', true);
 				xmlHttpCheck.onreadystatechange = function(){
 					if(xmlHttp.readyState == 4 && xmlHttp.status != 200){
-						alert('The configured path \r\rvar polyfilter_scriptpath = "' + window.polyfilter_scriptpath + '"\r\rseems wrong!\r\rConfigure the polyfill\'s correct absolute(!) script path before referencing the css-filters-polyfill.js, like so:\r\rvar polyfilter_scriptpath = "/js/css-filters-polyfill/";\r\rLeaving IE dead in the water is no option. You damn Mac user... ;)');
+						// alert('The configured path \r\rvar polyfilter_scriptpath = "' + window.polyfilter_scriptpath + '"\r\rseems wrong!\r\rConfigure the polyfill\'s correct absolute(!) script path before referencing the css-filters-polyfill.js, like so:\r\rvar polyfilter_scriptpath = "/js/css-filters-polyfill/";\r\rLeaving IE dead in the water is no option. You damn Mac user... ;)');
 					}
 				};
 				try{
@@ -307,7 +307,7 @@
 		// Absolute path to the .htc-files
 		scriptpath:		
 			window.polyfilter_scriptpath ? window.polyfilter_scriptpath : (function(){
-				alert('Please configure the polyfill\'s absolute(!) script path before referencing the css-filters-polyfill.js, like so:\r\nvar polyfilter_scriptpath = "/js/css-filters-polyfill/";');
+				// alert('Please configure the polyfill\'s absolute(!) script path before referencing the css-filters-polyfill.js, like so:\r\nvar polyfilter_scriptpath = "/js/css-filters-polyfill/";');
 				return './'
 			})(),
 		
