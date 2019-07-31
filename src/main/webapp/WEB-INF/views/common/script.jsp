@@ -5,9 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 </head>
-<body>
-	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-		
+<body>		
 	<script>
 	function resize(obj) {
 	  obj.style.height = "1px";
@@ -77,7 +75,7 @@
 	})();
 	</script>
 	<!-- input style 관련 스크립트 -->
-    <script src="./resources/js/vendor/jquery-2.2.4.min.js"></script>
+    <!-- <script src="./resources/js/vendor/jquery-2.2.4.min.js"></script>  -->
 	<script src="./resources/js/vendor/bootstrap-4.1.3.min.js"></script>
     <script src="./resources/js/vendor/wow.min.js"></script>
     <script src="./resources/js/vendor/owl-carousel.min.js"></script>
@@ -90,7 +88,7 @@
 	<script src="./resources/js/css-parser.js"></script>
 	<script src="./resources/js/modal-effects.js"></script>
 	
-	<script src="./resources/js/vendor/jquery.min.js"></script>
+	<!-- <script src="./resources/js/vendor/jquery.min.js"></script>  -->
 	<script src="./resources/js/vendor/skel.min.js"></script>
 	<script src="./resources/js/vendor/util.js"></script>
 	<script src="./resources/js/main2.js"></script>

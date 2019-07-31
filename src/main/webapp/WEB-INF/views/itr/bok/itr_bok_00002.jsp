@@ -12,7 +12,7 @@
 				var category = $("#category").val();
 				var url = $("#url").val();
 				var origin = $("#origin").val();
-				var text = $("#text").val();
+				var text = $("#content").val();
 				var file = $("#file").val();
 				
 				if(title == ""){
@@ -31,7 +31,6 @@
 					return $("#insertForm").submit();
 				}
 			});
-			$("#text").keydown();
 		});
     </script>
     <script>
@@ -45,8 +44,8 @@ function resize(obj) {
 tinymce.init({
     selector: 'textarea#content',
     menubar: false,
-    plugins: ['autolink autosave code link textcolor autoresize hr fullpage lists advlist'],
-    toolbar: "undo redo | forecolor bold underline italic code | numlist bullist outdent indent | link hr",
+    plugins: ['autolink autosave code link textcolor autoresize hr fullpage'],
+    toolbar: "undo redo | forecolor bold underline italic code | link hr",
     fullpage_default_font_family: "NanumSquareRound"
 });
 </script>
@@ -103,12 +102,15 @@ tinymce.init({
 						</label>
 					</span>
 					<br>
+					<textarea id="content" name="text"></textarea>
+					<!--
 					<span class="input__textarea input--hoshi">
 						<textarea class="autosize, input__field input__field--hoshi" onkeydown="resize(this)" onkeyup="resize(this)" id="text" name="text"></textarea>
 						<label class="input__label input__label--hoshi input__label--hoshi-color-1" for="text">
 							<span class="input__label-content input__label-content--hoshi">간단한 설명</span>
 						</label>
 					</span>
+					 -->
 					<br>
 					<div align="center">
 						<input type="button" id="insertBtn" value="추가">

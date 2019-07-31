@@ -19,9 +19,10 @@ function deleteBtnClickEvent(id) {
 	}
 }
 
-function setMdContent(id) {
-	
+function setMdContent(title, image, text) {
+	$('.md-content').html("<h3>" + title + "</h3><div><img src='" + image + "' alt=''><br><br>" + text + "</div>");
 }
+
 </script>
 <script src="https://cloud.tinymce.com/5/tinymce.min.js?apiKey=iiyaoh4ovlz6z3aafb6vdpqtllt555a3g3loxoh2dwetyw3e"></script>
 <script>
@@ -160,20 +161,13 @@ $(function() {
 				</div>
 			</div>
 			
-			
 			<!-- 팝업 창 -->
 			<div class="md-modal md-effect-16" id="modal-16">
 				<div class="md-content">
 					<h3>${dev[0].title }</h3>
-					<div>
-						<img src="<%= uploadPath %>${dev[0].contents}" alt="">
-							${dev[0].text }
-						<button class="md-close">Close me!</button>
-					</div>
+					<div><img src="<%= uploadPath %>${dev[0].contents}" alt=""><br><br>${dev[0].text }</div>
 				</div>
-			</div>
-						<!--  -->
-			
+			</div>			
 			
 			<div class="row">
 				<div class="col-lg-12 wow fadeInUp" data-wow-delay="500ms">
@@ -193,9 +187,9 @@ $(function() {
 							</div>
 						</c:if>
 						<c:forEach var="d" items="${dev }" varStatus="status">
-							<div class="single-slide">
-								<div class="slide-img md-trigger" data-modal="modal-16">
-									<img src="<%= uploadPath %>${d.contents }" alt="" class="img-fluid" onclick="setMdContent(${status.index})">
+							<div class="single-slide md-trigger" data-modal="modal-16" onclick="setMdContent('${d.title}', '<%= uploadPath %>${d.contents}', '${d.text}');">
+								<div class="slide-img">
+									<img src="<%= uploadPath %>${d.contents }" alt="" class="img-fluid">
 									<div class="hover-state">
 										<i class="fa fa-plus"></i>
 									</div>

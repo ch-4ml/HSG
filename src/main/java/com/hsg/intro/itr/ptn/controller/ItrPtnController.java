@@ -102,6 +102,7 @@ public class ItrPtnController {
 		System.out.println(f.toString());
 		
 		try {
+			f.setContentsId(fsi.getListCount(pageId));
 			fsi.insert(f);
 			List<Files> fs = fsi.findByPageId(pageId);
 			mv.addObject("fs", fs);

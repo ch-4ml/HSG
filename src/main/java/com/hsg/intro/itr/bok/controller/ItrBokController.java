@@ -93,6 +93,8 @@ public class ItrBokController {
 	}
 	
 	// 서적/특허 수정
+	
+	
 		@RequestMapping(value = "update.ib", method = RequestMethod.POST) // DI 의존성 주입
 		public ModelAndView updateIbkBok(Contents c, ModelAndView mv, 
 				@RequestParam(required=false) MultipartFile file, 

@@ -36,6 +36,18 @@ $(function() {
 	});
 });
 
+$(function() {
+	$(".partner-customer").sortable({
+		items: $(".partner-customer-li")
+	});
+	//$('.partner-customer li').draggable({
+//		connectToSortable: '.partner-customer',
+		//helper: 'clone',
+		//revert: 'invalid'
+	//});
+	//$('ul, li').disableSelection();
+});
+
 function deleteImg(id) {
 	var user = $('#user').val();
 	if(user == 'admin') {

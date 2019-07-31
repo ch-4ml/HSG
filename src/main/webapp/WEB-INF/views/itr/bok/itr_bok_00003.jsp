@@ -17,7 +17,7 @@ function resize(obj) {
 			var title = $("#title").val();
 			var url = $("#url").val();
 			var origin = $("#origin").val();
-			var text = $("#text").val();
+			var text = $("#content").val();
 			var file = $("#file").val();
 			
 			if(title == ""){
@@ -32,7 +32,6 @@ function resize(obj) {
 				return $("#updateForm").submit();
 			}
 		});
-		$("#text").keydown();
 	});
 </script>
 <script>
@@ -44,7 +43,16 @@ $(function() {
 	});
 });
 </script>
-
+<script src="https://cloud.tinymce.com/5/tinymce.min.js?apiKey=iiyaoh4ovlz6z3aafb6vdpqtllt555a3g3loxoh2dwetyw3e"></script>
+<script>
+tinymce.init({
+    selector: 'textarea#content',
+    menubar: false,
+    plugins: ['autolink autosave code link textcolor autoresize hr fullpage'],
+    toolbar: "undo redo | forecolor bold underline italic code | link hr",
+    fullpage_default_font_family: "NanumSquareRound"
+});
+</script>
 </head>
 <body>
 <jsp:include page="../../common/header-content.jsp" />
@@ -106,12 +114,15 @@ $(function() {
 				</label>
 			</span>
 			<br>
+			<textarea id="content" name="text">${c.text }</textarea>
+			<!-- 
 			<span class="input__textarea input--hoshi">
 				<textarea class="autosize, input__field input__field--hoshi" onkeydown="resize(this)" onkeyup="resize(this)" id="text" name="text">${c.text}</textarea>
 				<label class="input__label input__label--hoshi input__label--hoshi-color-1" for="text">
 					<span class="input__label-content input__label-content--hoshi">간단한 설명</span>
 				</label>
 			</span>
+			 -->
 			<br>
 			<div align="center">
 				<input type="button" id="update" value="수정">

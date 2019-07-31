@@ -21,20 +21,20 @@
 	</section>
 	<!-- Banner Area End -->
 	<section id="one" class="wrapper style2 alt">
-		<div class="inner">
-			<c:if test="${!empty loginUser }">
-				<div style="text-align: center;">
-					<ul class="actions special">
-						<li><input type="button" id="insert" onclick="location.href='insertView.ib'" value="추가"></li>
-					</ul>
-				</div>
-				<br>
-				<br>
-			</c:if>
+		<c:if test="${!empty loginUser }">
 			<div style="text-align: center;">
-				<h2>도서</h2>
+				<ul class="actions special">
+					<li><input type="button" id="insert" onclick="location.href='insertView.ib'" value="추가"></li>
+				</ul>
 			</div>
-			<br><br>
+			<br>
+			<br>
+		</c:if>
+		<div style="text-align: center;">
+			<h2>도서</h2>
+		</div>
+		<br><br>
+		<div class="inner">
 			<c:forEach var="c" items="${cs}">
 				<c:if test="${c.category eq 1 }">
 					<table class="simple">
