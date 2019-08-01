@@ -22,7 +22,7 @@ $(function() {
 				type: 'post',
 				success: function(data) {
 					$.each(data.fs, function(index, f) {
-						let html = "<li id='img" + f.id + "'class='partner-customer-li'><a href='javascript:deleteImg(" + f.id + ");'><img src='" + $('#uploadPath').val() + f.stored + "'></a></li>"
+						let html = "<li id='" + f.contentsId + "'class='partner-customer-li'><a href='javascript:deleteImg(" + f.id + ", " + f.contentsId + ");'><img src='" + $('#uploadPath').val() + f.stored + "'></a></li>"
 						let old = $('.partner-customer').html();
 						$('.partner-customer').html(old + html);
 					});
@@ -38,17 +38,14 @@ $(function() {
 
 $(function() {
 	$(".partner-customer").sortable({
-		items: $(".partner-customer-li")
+		update: function(event, ul) {
+			var newOrder = $(this).sortable('toArray').toString();
+			alert(newOrder);
+		}
 	});
-	//$('.partner-customer li').draggable({
-//		connectToSortable: '.partner-customer',
-		//helper: 'clone',
-		//revert: 'invalid'
-	//});
-	//$('ul, li').disableSelection();
 });
 
-function deleteImg(id) {
+function deleteImg(id, contentsId) {
 	var user = $('#user').val();
 	if(user == 'admin') {
 		if(confirm("정말 삭제하시겠습니까?")) {
@@ -57,7 +54,7 @@ function deleteImg(id) {
 				data: {'id': id},
 				dataType: 'json',
 				success: function(data) {
-					let temp = '#img' + id;
+					let temp = '#' + contentsId;
 					$(temp).remove();
 				},
 				error: function(error) {
@@ -97,7 +94,7 @@ function deleteImg(id) {
 		  	</c:if>
 		  	<ul class="partner-customer">
 		  	<c:forEach var="f" items="${fs }">
-		  		<li id="img${f.id }"class="partner-customer-li"><a href="javascript:deleteImg(${f.id});"><img src="<%= uploadPath %>${f.stored }"></a></li>
+		  		<li id="${f.contentsId }" class="partner-customer-li"><a href="javascript:deleteImg(${f.id }, ${f.contentsId});"><img src="<%= uploadPath %>${f.stored }"></a></li>
 		  	</c:forEach>
 		  	</ul>
 	  	</div>

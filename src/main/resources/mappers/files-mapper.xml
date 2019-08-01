@@ -29,6 +29,7 @@
   	<select id="findByPageId" resultMap="filesResultSet" parameterType="Files">
   		SELECT * FROM hsgbiz_files
   		WHERE PAGE_ID = #{pageId}
+  		ORDER BY #{contentsId}
   	</select>
 	<select id="getListCount" resultType="java.lang.Integer" parameterType="java.lang.String">
 		SELECT COUNT(*) FROM hsgbiz_files 
@@ -46,6 +47,15 @@
   			POST_DATE = #{postDate}
   		</set>
   		WHERE ID = #{id}
+  	</update>
+  	<update id="updateOrder" parameterType="Map">
+  		<foreach collection="list" item="item" index="index">
+  			UPDATE hsgbiz_files
+  			<set>
+  				CONTENTS_ID = #{index}
+  			</set>
+  			WHERE CONTENTS_ID = #{item.order}
+  		</foreach>
   	</update>
   	<delete id="delete" parameterType="java.lang.Integer">
 		DELETE FROM hsgbiz_files 

@@ -22,7 +22,6 @@ function deleteBtnClickEvent(id) {
 function setMdContent(title, image, text) {
 	$('.md-content').html("<h3>" + title + "</h3><div><img src='" + image + "' alt=''><br><br>" + text + "</div>");
 }
-
 </script>
 <script src="https://cloud.tinymce.com/5/tinymce.min.js?apiKey=iiyaoh4ovlz6z3aafb6vdpqtllt555a3g3loxoh2dwetyw3e"></script>
 <script>
@@ -43,6 +42,30 @@ $(function() {
 		});
 		$("#updateItrButton").html("");
 	});
+	
+	setTimeout(function() {
+		[].slice.call( document.querySelectorAll( '.md-trigger' ) ).forEach( function( el, i ) {
+			var modal = document.querySelector( '#' + el.getAttribute( 'data-modal' ) ),
+				close = modal.querySelector( '.md-content' );
+			function removeModal( hasPerspective ) {
+				classie.remove( modal, 'md-show' );
+
+				if( hasPerspective ) {
+					classie.remove( document.documentElement, 'md-perspective' );
+				}
+			}
+			function removeModalHandler() {
+				removeModal( classie.has( el, 'md-setperspective' ) ); 
+			}
+			el.addEventListener( 'click', function( ev ) {
+				classie.add( modal, 'md-show' );
+			});
+			close.addEventListener( 'click', function( ev ) {
+				ev.stopPropagation();
+				removeModalHandler();
+			});
+		});
+	}, 3000);
 });
 </script>
 </head>
@@ -187,8 +210,8 @@ $(function() {
 							</div>
 						</c:if>
 						<c:forEach var="d" items="${dev }" varStatus="status">
-							<div class="single-slide md-trigger" data-modal="modal-16" onclick="setMdContent('${d.title}', '<%= uploadPath %>${d.contents}', '${d.text}');">
-								<div class="slide-img">
+							<div class="single-slide">
+								<div class="slide-img md-trigger" data-modal="modal-16" onclick="setMdContent('${d.title}', '<%= uploadPath %>${d.contents}', '${d.text}');">
 									<img src="<%= uploadPath %>${d.contents }" alt="" class="img-fluid">
 									<div class="hover-state">
 										<i class="fa fa-plus"></i>
