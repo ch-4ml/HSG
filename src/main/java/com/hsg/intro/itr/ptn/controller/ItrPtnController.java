@@ -3,6 +3,8 @@ package com.hsg.intro.itr.ptn.controller;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -126,6 +128,27 @@ public class ItrPtnController {
 			mv.setViewName("itr/ptn/itr_ptn_00001");
 		} catch (Exception e) {
 			e.printStackTrace();
+		}
+		return mv;
+	}
+	
+	// 로고 순서 변경하기
+	@RequestMapping(value = "updateOrder.ip", method = RequestMethod.POST) // DI 의존성 주입
+	public ModelAndView updateOrder(ModelAndView mv, @RequestParam(value="order") String orderString) {
+		try {
+			String[] os = orderString.split(",");
+			int[] oi = new int[os.length];
+			for(int i=0; i<os.length; i++) oi[i] = Integer.parseInt(os[i]);
+			
+			List<Integer> order = new ArrayList<Integer>();
+			for(int i: oi) order.add(i);
+			
+			fsi.updateOrder(order);
+			mv.setViewName("jsonView");
+		} catch (Exception e) {
+			e.printStackTrace();
+			mv.addObject("message", e.getMessage());
+			mv.setViewName("common/errorPage");
 		}
 		return mv;
 	}

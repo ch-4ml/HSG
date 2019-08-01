@@ -29,7 +29,7 @@
   	<select id="findByPageId" resultMap="filesResultSet" parameterType="Files">
   		SELECT * FROM hsgbiz_files
   		WHERE PAGE_ID = #{pageId}
-  		ORDER BY #{contentsId}
+  		ORDER BY CONTENTS_ID
   	</select>
 	<select id="getListCount" resultType="java.lang.Integer" parameterType="java.lang.String">
 		SELECT COUNT(*) FROM hsgbiz_files 

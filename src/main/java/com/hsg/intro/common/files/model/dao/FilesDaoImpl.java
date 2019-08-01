@@ -54,6 +54,11 @@ public class FilesDaoImpl implements FilesDao {
 	}
 
 	@Override
+	public void updateOrder(List<Integer> order) throws FilesException {
+		sqlSession.update("Files.updateOrder", order);
+	}
+	
+	@Override
 	public void delete(int id) throws FilesException {
 		sqlSession.delete("Files.delete", id);
 	}

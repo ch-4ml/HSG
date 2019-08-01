@@ -221,8 +221,11 @@ $(function() {
 									<h3>${d.title }</h3> <br>
 									<p style="text-align: center;">${d.text }</p>
 									<c:if test="${!empty loginUser }">
-										<input type="button" value="수정" onclick="location.href='updateDevView.ma?id=${d.id}'">
-										<input type="button" value="삭제" onclick="deleteBtnClickEvent(${d.id})">
+										<br>
+										<p>
+											<input type="button" value="수정" onclick="location.href='updateDevView.ma?id=${d.id}'">
+											<input type="button" value="삭제" onclick="deleteBtnClickEvent(${d.id})">
+										</p>
 									</c:if>
 								</div>
 							</div>

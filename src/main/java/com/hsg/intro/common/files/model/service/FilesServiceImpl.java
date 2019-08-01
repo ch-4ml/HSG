@@ -191,6 +191,11 @@ public class FilesServiceImpl implements FilesService {
 	public void update(Files f) throws FilesException {
 		fdi.update(f);
 	}
+	
+	@Override
+	public void updateOrder(List<Integer> order) throws FilesException {
+		fdi.updateOrder(order);
+	}
 
 	@Override
 	public void delete(int id) throws FilesException {
