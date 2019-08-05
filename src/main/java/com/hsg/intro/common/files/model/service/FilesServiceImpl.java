@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -188,13 +189,19 @@ public class FilesServiceImpl implements FilesService {
 	}
 	
 	@Override
+	public List<Integer> findIdByPageId(String pageId) throws FilesException {
+		List<Integer> ids = fdi.findIdByPageId(pageId);
+		return ids;
+	}
+	
+	@Override
 	public void update(Files f) throws FilesException {
 		fdi.update(f);
 	}
 	
 	@Override
-	public void updateOrder(List<Integer> order) throws FilesException {
-		fdi.updateOrder(order);
+	public void updateOrder(Map<String, Integer> map) throws FilesException {
+		fdi.updateOrder(map);
 	}
 
 	@Override

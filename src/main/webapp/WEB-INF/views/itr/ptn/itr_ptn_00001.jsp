@@ -40,13 +40,19 @@ $(function() {
 $(function() {
 	$(".partner-customer").sortable({
 		update: function(event, ul) {
-			alert($(this).sortable('toArray').toString());
 			$.ajax({
 				url: 'updateOrder.ip',
 				data: {'order': $(this).sortable('toArray').toString()},
 				type: 'post',
-				success: function(data) {alert("성공");},
-				error:function(request,status,error){
+				success: function(data) {
+					$('.partner-customer').html("");
+					$.each(data.fs, function(index, f) {
+						let html = "<li id='" + f.contentsId + "'class='partner-customer-li ui-sortable-handle'><a href='javascript:deleteImg(" + f.id + ", " + f.contentsId + ");'><img src='" + $('#uploadPath').val() + f.stored + "'></a></li>"
+						let old = $('.partner-customer').html();
+						$('.partner-customer').html(old + html);
+					});
+				},
+				error:function(request,status,error) {
 			        alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 				}
 			});
@@ -101,7 +107,14 @@ function deleteImg(id, contentsId) {
 					<br>
 			  	</form>
 		  	</c:if>
+		  	<c:choose>
+		  	<c:when test="${!empty loginUser }">
 		  	<ul class="partner-customer">
+		  	</c:when>
+		  	<c:otherwise>
+		  	<ul class="partner-customer-disabled">
+		  	</c:otherwise>
+		  	</c:choose>
 		  	<c:forEach var="f" items="${fs }">
 		  		<li id="${f.contentsId }" class="partner-customer-li"><a href="javascript:deleteImg(${f.id }, ${f.contentsId});"><img src="<%= uploadPath %>${f.stored }"></a></li>
 		  	</c:forEach>

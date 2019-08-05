@@ -6,8 +6,10 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -136,15 +138,21 @@ public class ItrPtnController {
 	@RequestMapping(value = "updateOrder.ip", method = RequestMethod.POST) // DI 의존성 주입
 	public ModelAndView updateOrder(ModelAndView mv, @RequestParam(value="order") String orderString) {
 		try {
-			String[] os = orderString.split(",");
-			int[] oi = new int[os.length];
-			for(int i=0; i<os.length; i++) oi[i] = Integer.parseInt(os[i]);
+			String[] order = orderString.split(",");
+			List<Integer> ids = fsi.findIdByPageId(pageId);
+			Map<String, Integer> map;
 			
-			List<Integer> order = new ArrayList<Integer>();
-			for(int i: oi) order.add(i);
+			for(int i=0; i<order.length; i++) {
+				map = new HashMap<String, Integer>();
+				map.put("id", ids.get(Integer.parseInt(order[i])));
+				map.put("order", i);
+				fsi.updateOrder(map);
+			}			
 			
-			fsi.updateOrder(order);
+			List<Files> fs = fsi.findByPageId(pageId);
+			mv.addObject("fs", fs);
 			mv.setViewName("jsonView");
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			mv.addObject("message", e.getMessage());

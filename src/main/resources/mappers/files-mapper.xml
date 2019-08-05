@@ -13,6 +13,9 @@
   		<result property="category" column="CATEGORY" />
   		<result property="postDate" column="POST_DATE" />
   	</resultMap>
+  	<resultMap type="Integer" id="integerResultSet">
+		<id property="id" column="ID" />
+  	</resultMap>
   	<insert id="insert" parameterType="Files">
   		INSERT INTO 
   		hsgbiz_files(CONTENTS_ID, PAGE_ID, ORIGIN, STORED, SIZE, CATEGORY, POST_DATE) 
@@ -28,6 +31,11 @@
   	</select>
   	<select id="findByPageId" resultMap="filesResultSet" parameterType="Files">
   		SELECT * FROM hsgbiz_files
+  		WHERE PAGE_ID = #{pageId}
+  		ORDER BY CONTENTS_ID
+  	</select>
+  	<select id="findIdByPageId" resultMap="integerResultSet" parameterType="java.lang.String">
+  		SELECT ID FROM hsgbiz_files
   		WHERE PAGE_ID = #{pageId}
   		ORDER BY CONTENTS_ID
   	</select>
@@ -49,13 +57,9 @@
   		WHERE ID = #{id}
   	</update>
   	<update id="updateOrder" parameterType="Map">
-  		<foreach collection="list" item="item" index="index">
-  			UPDATE hsgbiz_files
-  			<set>
-  				CONTENTS_ID = #{index}
-  			</set>
-  			WHERE CONTENTS_ID = #{item.order}
-  		</foreach>
+		UPDATE hsgbiz_files
+		set CONTENTS_ID = #{order}
+		WHERE ID = #{id}
   	</update>
   	<delete id="delete" parameterType="java.lang.Integer">
 		DELETE FROM hsgbiz_files 

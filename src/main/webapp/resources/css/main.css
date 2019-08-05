@@ -411,6 +411,12 @@ iframe {
 	margin-right: auto;
 }
 
+.partner-customer-disabled {
+	overflow: auto;
+	margin-left: auto;
+	margin-right: auto;
+}
+
 .partner-customer-li {
 	width: 13%;
 	float: left;

@@ -1,6 +1,7 @@
 package com.hsg.intro.common.files.model.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -42,10 +43,15 @@ public class FilesDaoImpl implements FilesDao {
 
 	@Override
 	public List<Files> findByPageId(String pageId, Integer currentCount) throws FilesException {
-		
 		RowBounds rowBounds = new RowBounds(currentCount, 1);
 		List<Files> files = sqlSession.selectList("Files.findByPageId", pageId, rowBounds);
 		return files;
+	}
+	
+	@Override
+	public List<Integer> findIdByPageId(String pageId) throws FilesException {
+		List<Integer> ids = sqlSession.selectList("Files.findIdByPageId", pageId);
+		return ids;
 	}
 	
 	@Override
@@ -54,8 +60,8 @@ public class FilesDaoImpl implements FilesDao {
 	}
 
 	@Override
-	public void updateOrder(List<Integer> order) throws FilesException {
-		sqlSession.update("Files.updateOrder", order);
+	public void updateOrder(Map<String, Integer> map) throws FilesException {
+		sqlSession.update("Files.updateOrder", map);
 	}
 	
 	@Override
