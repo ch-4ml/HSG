@@ -210,8 +210,8 @@ $(function() {
 							</div>
 						</c:if>
 						<c:forEach var="d" items="${dev }" varStatus="status">
-							<div class="single-slide">
-								<div class="slide-img md-trigger" data-modal="modal-16" onclick="setMdContent('${d.title}', '<%= uploadPath %>${d.contents}', '${d.text}');">
+							<div class="single-slide" onclick="setMdContent('${d.title}', '<%= uploadPath %>${d.contents}', '${d.text}');">
+								<div class="slide-img md-trigger" data-modal="modal-16">
 									<img src="<%= uploadPath %>${d.contents }" alt="" class="img-fluid">
 									<div class="hover-state">
 										<i class="fa fa-plus"></i>
@@ -222,7 +222,7 @@ $(function() {
 									<p style="text-align: center;">${d.text }</p>
 									<c:if test="${!empty loginUser }">
 										<br>
-										<p>
+										<p class="text-center">
 											<input type="button" value="수정" onclick="location.href='updateDevView.ma?id=${d.id}'">
 											<input type="button" value="삭제" onclick="deleteBtnClickEvent(${d.id})">
 										</p>

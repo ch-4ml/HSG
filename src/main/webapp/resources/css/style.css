@@ -842,6 +842,7 @@ div #logo {
 	display: -webkit-box;
 	-webkit-line-clamp: 3;
 	-webkit-box-orient: vertical;
+	height: 54px; /* ie */
 }
 
 .department-area .single-slide .item-padding #container #wrap #body #body_contents div ul
