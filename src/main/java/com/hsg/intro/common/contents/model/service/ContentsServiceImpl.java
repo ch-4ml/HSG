@@ -67,12 +67,10 @@ public class ContentsServiceImpl implements ContentsService {
 	}
 	
 	public int getListCount(String pageId) throws ContentsException {
-		
 		return cdi.getListCount(pageId);
 	}
 
-	public int getListCount(HashMap<String, String> hmap) throws ContentsException {
-		
+	public int getListCount(HashMap<String, String> hmap) throws ContentsException {		
 		return cdi.getListCount(hmap);
 	}
 }

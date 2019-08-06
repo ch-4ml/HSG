@@ -39,13 +39,12 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1>최신기술</h1>
+                    <h1 class="text-shadow-banner">최신기술</h1>
                 </div>
             </div>
         </div>
     </section>
     <!-- Banner Area End -->
-
     <!-- About Area Starts -->
     <section id="two" class="wrapper style2 alt content-center">
 	    <div><h2>${c.title }</h2></div>

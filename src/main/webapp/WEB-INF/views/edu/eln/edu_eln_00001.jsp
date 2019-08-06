@@ -15,7 +15,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1>MOOC</h1>
+                    <h1 class="text-shadow-banner">E-Learning</h1>
                 </div>
             </div>
         </div>
@@ -25,7 +25,6 @@
     <!-- About Area Starts -->
     
     <section id="two" class="wrapper style2 alt">
-	<div style="text-align:center;"><h2>강의 목록</h2></div><br><br>
 	<div class="inner">
 		<c:if test="${!empty loginUser }">
 			<div style="text-align:center;">
@@ -37,7 +36,7 @@
 			<br>
 		</c:if>
 		<c:forEach var="c" items="${cs }" varStatus="status">
-			<table>
+			<table class="simple">
 				<tr class="landscape">
 					<td class="landscape-image">
 					<a href="viewDetail.ee?id=${c.id }">

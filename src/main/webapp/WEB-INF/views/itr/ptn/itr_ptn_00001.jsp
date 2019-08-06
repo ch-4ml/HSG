@@ -21,8 +21,9 @@ $(function() {
 				contentType: false, 
 				type: 'post',
 				success: function(data) {
+					$('.partner-customer').html("");
 					$.each(data.fs, function(index, f) {
-						let html = "<li id='img" + f.id + "'class='partner-customer-li'><a href='javascript:deleteImg(" + f.id + ");'><img src='" + $('#uploadPath').val() + f.stored + "'></a></li>"
+						let html = "<li id='" + f.contentsId + "'class='partner-customer-li ui-sortable-handle'><a href='javascript:deleteImg(" + f.id + ", " + f.contentsId + ");'><img src='" + $('#uploadPath').val() + f.stored + "'></a></li>"
 						let old = $('.partner-customer').html();
 						$('.partner-customer').html(old + html);
 					});
@@ -36,7 +37,30 @@ $(function() {
 	});
 });
 
-function deleteImg(id) {
+$(function() {
+	$(".partner-customer").sortable({
+		update: function(event, ul) {
+			$.ajax({
+				url: 'updateOrder.ip',
+				data: {'order': $(this).sortable('toArray').toString()},
+				type: 'post',
+				success: function(data) {
+					$('.partner-customer').html("");
+					$.each(data.fs, function(index, f) {
+						let html = "<li id='" + f.contentsId + "'class='partner-customer-li ui-sortable-handle'><a href='javascript:deleteImg(" + f.id + ", " + f.contentsId + ");'><img src='" + $('#uploadPath').val() + f.stored + "'></a></li>"
+						let old = $('.partner-customer').html();
+						$('.partner-customer').html(old + html);
+					});
+				},
+				error:function(request,status,error) {
+			        alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+				}
+			});
+		}
+	});
+});
+
+function deleteImg(id, contentsId) {
 	var user = $('#user').val();
 	if(user == 'admin') {
 		if(confirm("정말 삭제하시겠습니까?")) {
@@ -45,7 +69,7 @@ function deleteImg(id) {
 				data: {'id': id},
 				dataType: 'json',
 				success: function(data) {
-					let temp = '#img' + id;
+					let temp = '#' + contentsId;
 					$(temp).remove();
 				},
 				error: function(error) {
@@ -62,7 +86,7 @@ function deleteImg(id) {
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1>Partner & Customer</h1>
+                    <h1 class="text-shadow-banner">Partner & Customer</h1>
                 </div>
             </div>
         </div>
@@ -70,7 +94,6 @@ function deleteImg(id) {
     <!-- Banner Area End -->
     <section class="content content-center">
     	<div class="container">
-		  	<h2 style="color: black;">Partner & Customer</h2>
 		  	<input type="hidden" id="user" value="${loginUser.userId }">
 		  	<input type="hidden" id="uploadPath" value="<%= uploadPath %>">
 		  	<c:if test="${!empty loginUser }">
@@ -84,9 +107,16 @@ function deleteImg(id) {
 					<br>
 			  	</form>
 		  	</c:if>
+		  	<c:choose>
+		  	<c:when test="${!empty loginUser }">
 		  	<ul class="partner-customer">
+		  	</c:when>
+		  	<c:otherwise>
+		  	<ul class="partner-customer-disabled">
+		  	</c:otherwise>
+		  	</c:choose>
 		  	<c:forEach var="f" items="${fs }">
-		  		<li id="img${f.id }"class="partner-customer-li"><a href="javascript:deleteImg(${f.id});"><img src="<%= uploadPath %>${f.stored }"></a></li>
+		  		<li id="${f.contentsId }" class="partner-customer-li"><a href="javascript:deleteImg(${f.id }, ${f.contentsId});"><img src="<%= uploadPath %>${f.stored }"></a></li>
 		  	</c:forEach>
 		  	</ul>
 	  	</div>

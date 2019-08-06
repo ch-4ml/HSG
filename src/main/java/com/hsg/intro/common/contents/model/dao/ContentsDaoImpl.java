@@ -91,6 +91,7 @@ public class ContentsDaoImpl implements ContentsDao {
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
+		System.out.println("count in daoimpl : " + result);
 		return result;
 	}
 	
@@ -98,10 +99,6 @@ public class ContentsDaoImpl implements ContentsDao {
 		Integer result = 0;
 		try {
 			result = sqlSession.selectOne("Contents.getListCount", pageId);
-			
-			if(result == null) {
-				result = 0;
-			}
 		} catch(Exception e) {
 			e.printStackTrace();
 		}

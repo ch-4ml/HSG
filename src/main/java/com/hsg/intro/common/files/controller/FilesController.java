@@ -19,7 +19,7 @@ import com.hsg.intro.common.files.model.vo.Files;
 @SessionAttributes("loginUser")
 public class FilesController {
 	
-	private String root = "/ark9659/tomcat/webapps/var/HSG/uploadFiles";
+	private String root = "/hsglobal03/tomcat/webapps/var/HSG/uploadFiles";
 	private String filePath = "/common_upload_files";
 	
 	@RequestMapping(value="update.fi", method=RequestMethod.POST)
@@ -27,13 +27,7 @@ public class FilesController {
 			@RequestParam(required=false) MultipartFile file ,
 			HttpServletRequest request) {
 		try {
-			if(!file.isEmpty()) {
-				Files f = new Files();
-				
-				// 확장자 구하기 시큐어 코딩때 사용
-				// int pos = file.getOriginalFilename().lastIndexOf(".");
-				// String ext = file.getOriginalFilename().substring(pos);
-				
+			if(!file.isEmpty()) {				
 				String storedFileName = file.getOriginalFilename();
 					
 				// 폴더 없으면 생성

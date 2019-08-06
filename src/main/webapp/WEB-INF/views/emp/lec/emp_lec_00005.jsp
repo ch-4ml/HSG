@@ -58,7 +58,7 @@ function resize(obj) {
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1>강사 지원</h1>
+                    <h1 class="text-shadow-banner">강사 지원</h1>
                 </div>
             </div>
         </div>
@@ -67,9 +67,6 @@ function resize(obj) {
     
     <!-- About Area Starts -->
     <section class="content content-center">
-    	<div style="text-align:center;">
-			<h2>강사 지원 메일 보내기</h2>
-		</div>
 		<div class="container">
 		    <form action="send.el" name="form" method="post" enctype="multipart/form-data">
 			    <span class="input input--hoshi">

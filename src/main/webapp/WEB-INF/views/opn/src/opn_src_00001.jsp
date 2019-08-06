@@ -15,6 +15,7 @@ let flag = true; // 스크롤 이벤트가 연속으로 발생하는 것을 방�
 let currentPage = 1;
 
 $(function() {
+	let count = $('#count').val(); // 리스트 수
 	let getList = function(currentPage) {
 		if(isEnd) return;
 		
@@ -28,7 +29,7 @@ $(function() {
 					isEnd = true;
 				}
 				$.each(data.cs, function(index, c) {
-					index = data.pi.limit*(currentPage-1) + index;
+					index = count - (data.pi.limit*(currentPage-1) + index);
 					renderList(index, c);
 				});
 				flag = true;
@@ -37,7 +38,6 @@ $(function() {
 	}
 	
 	let renderList = function(index, c) {
-		index += 1;
 		let html = "<a href=detail.os?id=" + c.id + "><table class='simple'><tr class='simpleboard'>" +
 				   "<td class='simpleboard-index'>" + index + "</td>" +
 				   "<td class='simpleboard-contents'>" + c.title + "</td>" +
@@ -76,12 +76,12 @@ $(function() {
         </div>
     </section>
     <!-- Banner Area End -->
+    <input type="hidden" id="count" value="${count }">
     <!-- About Area Starts -->
-    <section id="two" class="wrapper style2 alt content-center">
-		<h2>오픈소스</h2><br><br>
+    <section id="two" class="wrapper style2 alt">	
 		<div class="inner">
 			<c:if test="${!empty loginUser }">
-					<ul class="actions special">
+					<ul class="actions special content-center">
 						<li><input type="button" id="insert" onclick="location.href='insertView.os'" value="추가"></li>
 					</ul>
 				<br>

@@ -20,7 +20,7 @@ public class EduCstController {
 	// page_id는 간단한 내용을 뿌려주는 단일 페이지에서 같은 테이블을 사용할 수 있도록 만든 컬럼입니다.
 	private String pageId = "edu/cst";
 
-	// CEO 인사말 보기
+	// 
 	@RequestMapping(value = "view.ec") // DI 의존성 주입
 	public ModelAndView viewContents(ModelAndView mv) {
 		try {
@@ -34,7 +34,7 @@ public class EduCstController {
 		return mv;
 	}
 
-	// CEO 인사말 업데이트
+	//
 	@RequestMapping(value = "update.ec", method = RequestMethod.POST) // DI 의존성 주입
 	public ModelAndView updateContents(Contents c, ModelAndView mv) {
 		try {

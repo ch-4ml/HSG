@@ -254,7 +254,7 @@ a:hover, a:focus {
 }
 
 .content-center{
-	text-align:center;
+	text-align: center;
 }
 
 /*
@@ -461,6 +461,7 @@ a:active, a:hover {
 h1 {
 	font-size: 2em;
 	margin: 0.67em 0;
+	width: 100%;
 }
 
 abbr[title] {

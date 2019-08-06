@@ -13,10 +13,13 @@
   		<result property="category" column="CATEGORY" />
   		<result property="postDate" column="POST_DATE" />
   	</resultMap>
+  	<resultMap type="Integer" id="integerResultSet">
+		<id property="id" column="ID" />
+  	</resultMap>
   	<insert id="insert" parameterType="Files">
   		INSERT INTO 
   		hsgbiz_files(CONTENTS_ID, PAGE_ID, ORIGIN, STORED, SIZE, CATEGORY, POST_DATE) 
-  		VALUES(#{contentsId}, #{pageId}, #{origin}, #{stored}, #{size}, #{category})
+  		VALUES(#{contentsId}, #{pageId}, #{origin}, #{stored}, #{size}, #{category}, #{postDate})
   	</insert>
   	<select id="findById" resultMap="filesResultSet" parameterType="Files">
   		SELECT * FROM hsgbiz_files
@@ -29,6 +32,12 @@
   	<select id="findByPageId" resultMap="filesResultSet" parameterType="Files">
   		SELECT * FROM hsgbiz_files
   		WHERE PAGE_ID = #{pageId}
+  		ORDER BY CONTENTS_ID
+  	</select>
+  	<select id="findIdByPageId" resultMap="integerResultSet" parameterType="java.lang.String">
+  		SELECT ID FROM hsgbiz_files
+  		WHERE PAGE_ID = #{pageId}
+  		ORDER BY CONTENTS_ID
   	</select>
 	<select id="getListCount" resultType="java.lang.Integer" parameterType="java.lang.String">
 		SELECT COUNT(*) FROM hsgbiz_files 
@@ -42,9 +51,15 @@
   			ORIGIN = #{origin},
   			STORED = #{stored},
   			SIZE = #{size},
-  			CATEGORY = #{category}
+  			CATEGORY = #{category},
+  			POST_DATE = #{postDate}
   		</set>
   		WHERE ID = #{id}
+  	</update>
+  	<update id="updateOrder" parameterType="Map">
+		UPDATE hsgbiz_files
+		set CONTENTS_ID = #{order}
+		WHERE ID = #{id}
   	</update>
   	<delete id="delete" parameterType="java.lang.Integer">
 		DELETE FROM hsgbiz_files 

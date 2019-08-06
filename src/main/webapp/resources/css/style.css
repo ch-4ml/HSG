@@ -2,18 +2,16 @@
 	url('https://fonts.googleapis.com/css?family=Do+Hyeon&subset=korean');
 
 @import
-	url("https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900")
-	;
+	url("https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900");
 
 @import
 	url("https://fonts.googleapis.com/css?family=Ubuntu:400,500,700");
 
 @import
-	url('https://cdn.rawgit.com/innks/NanumSquareRound/master/nanumsquareround.min.css')
-	;
+	url('https://cdn.rawgit.com/innks/NanumSquareRound/master/nanumsquareround.min.css');
 
 body {
-	color: #777;
+	/*color: #777; 폰트 색상때문에 삭제 */
 	font-family: 'NanumSquareRound', sans-serif;
 	font-size: 15px;
 	font-weight: 400
@@ -34,7 +32,7 @@ h1 {
 	color: #fff;
 	font-family: 'NanumSquareRound', sans-serif;
 	font-size: 5em !important;
-	font-weight: 700
+	font-weight: 700;
 }
 
 h2 {
@@ -493,6 +491,10 @@ body.mobile-nav-active #mobile-nav-toggle {
 	z-index: 997
 }
 
+#header {
+	width: 100%;
+}
+
 @media ( min-width : 768px) and (max-width: 991.98px) {
 	#header {
 		top: 0
@@ -544,7 +546,7 @@ div #logo {
 
 #header #logo img {
 	padding: 0;
-	margin: 0
+	margin: 0;
 }
 
 @media ( max-width : 768px) {
@@ -571,12 +573,12 @@ div #logo {
 	h1 {
 		color: #fff;
 		font-family: 'NanumSquareRound', sans-serif;
-		font-size: 5em !important;
+		font-size: 4em !important;
 		font-weight: 700;
 	}
 	.text-shadow-p {
 		display: inline-block;
-		width: 850px;
+		width: 800px;
 		white-space: normal;
 		line-height: 1.2;
 		height: 2.4em;
@@ -588,7 +590,7 @@ div #logo {
 	h1 {
 		color: #fff;
 		font-family: 'NanumSquareRound', sans-serif;
-		font-size: 4.2em !important;
+		font-size: 3.8em !important;
 		font-weight: 700;
 	}
 	.text-shadow-p {
@@ -608,7 +610,7 @@ div #logo {
 	h1 {
 		color: #fff;
 		font-family: 'NanumSquareRound', sans-serif;
-		font-size: 4em !important;
+		font-size: 3.8em !important;
 		font-weight: 700;
 	}
 	.text-shadow-p {
@@ -628,7 +630,7 @@ div #logo {
 	h1 {
 		color: #fff;
 		font-family: 'NanumSquareRound', sans-serif;
-		font-size: 4em !important;
+		font-size: 2.8em !important;
 		font-weight: 700;
 	}
 	.text-shadow-p {
@@ -648,7 +650,7 @@ div #logo {
 	h1 {
 		color: #fff;
 		font-family: 'NanumSquareRound', sans-serif;
-		font-size: 3em !important;
+		font-size: 2em !important;
 		font-weight: 700;
 	}
 	.text-shadow-p {
@@ -668,7 +670,7 @@ div #logo {
 	h1 {
 		color: #fff;
 		font-family: 'NanumSquareRound', sans-serif;
-		font-size: 2em !important;
+		font-size: 1.5em !important;
 		font-weight: 700;
 	}
 	.text-shadow-p {
@@ -688,7 +690,7 @@ div #logo {
 	h1 {
 		color: #fff;
 		font-family: 'NanumSquareRound', sans-serif;
-		font-size: 2em !important;
+		font-size: 1.2em !important;
 		font-weight: 700;
 	}
 	.text-shadow-p {
@@ -707,7 +709,7 @@ div #logo {
 	h1 {
 		color: #fff;
 		font-family: 'NanumSquareRound', sans-serif;
-		font-size: 1.5em !important;
+		font-size: 1em !important;
 		font-weight: 700;
 	}
 	.text-shadow-p {
@@ -730,7 +732,7 @@ div #logo {
 	-moz-transition: .5s;
 	-o-transition: .5s;
 	transition: .5s;
-	height: 18em;
+	height: 20em;
 }
 
 .single-feature img {
@@ -822,11 +824,7 @@ div #logo {
 }
 
 .department-area .single-slide .item-padding h3 {
-	display: inline-block;
 	width: calc(100%);
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
 }
 
 .department-area .single-slide .item-padding p, .department-area .single-slide .item-padding div
@@ -844,6 +842,7 @@ div #logo {
 	display: -webkit-box;
 	-webkit-line-clamp: 3;
 	-webkit-box-orient: vertical;
+	height: 54px; /* ie */
 }
 
 .department-area .single-slide .item-padding #container #wrap #body #body_contents div ul
@@ -3611,7 +3610,7 @@ h6 {
 }
 
 .text-shadow-banner {
-	text-shadow: 0 0 14px #ffffffb0;
+	text-shadow: 5px 5px 5px #000;
 }
 
 .text-shadow-p {

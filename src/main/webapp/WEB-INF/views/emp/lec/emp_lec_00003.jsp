@@ -45,7 +45,7 @@ $(function() {
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1>강사 채용 상세</h1>
+                    <h1 class="text-shadow-banner">채용 상세</h1>
                 </div>
             </div>
         </div>

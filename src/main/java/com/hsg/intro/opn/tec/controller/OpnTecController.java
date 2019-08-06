@@ -39,14 +39,20 @@ public class OpnTecController {
 	private Date currentDate = new Date();
 	private String postDate = formatter.format(currentDate);
 
-	private String root = "/ark9659/tomcat/webapps/var/HSG/uploadFiles";
+	private String root = "/hsglobal03/tomcat/webapps/var/HSG/uploadFiles";
 	private String filePath = "/opntec_upload_files";
 	
 	// 페이지 이동
 	@RequestMapping(value = "view.ot")
 	public ModelAndView view(ModelAndView mv) {
-		
-		mv.setViewName("opn/tec/opn_tec_00001");
+		try {
+			int count = csi.getListCount(pageId);
+			mv.addObject("count", count);
+			mv.setViewName("opn/tec/opn_tec_00001");
+		} catch(ContentsException e) {
+			mv.addObject("message",e.getMessage());
+			mv.setViewName("redirect:/common/errorPage");
+		}
 		return mv;		
 	}
 	
@@ -201,7 +207,7 @@ public class OpnTecController {
 				// /xxxxxx_upload_files/파일명.ext 형태로 객체에 넣음 
 				fileName = filePath + "/" + newfileName + ext;
 				originFileName = file.getOriginalFilename();
-				c.setContents(fileName);
+				c.setText(fileName);
 				c.setOrigin(originFileName);
 				
 				// 폴더 없으면 생성
@@ -280,7 +286,7 @@ public class OpnTecController {
 				// /xxxxxx_upload_files/파일명.ext 형태로 객체에 넣음 
 				fileName = filePath + "/" + newfileName + ext;
 				originFileName = file.getOriginalFilename();
-				c.setContents(fileName);
+				c.setText(fileName);
 				c.setOrigin(originFileName);
 				
 				
@@ -343,7 +349,7 @@ public class OpnTecController {
 			HttpServletRequest request){
 		
 		try {
-			String deleteFileName = csi.findById(id).getContents();
+			String deleteFileName = csi.findById(id).getText();
 			// ##################### 파일 삭제 처리 #######################
 			String deleteFilePath = root + deleteFileName;
 			
@@ -382,7 +388,7 @@ public class OpnTecController {
 			byte fileByte[] = FileUtils.readFileToByteArray(new File(downloadFilePath));
 			
 			response.setContentType("application/octet-stream");
-			response.setHeader("Content-Disposition", "attachment; fileName=" + URLEncoder.encode(c.getOrigin(), "UTF-8") + ";");
+			response.setHeader("Content-Disposition", "attachment; fileName=" + URLEncoder.encode(c.getOrigin(), "UTF-8").replace("+", " ") + ";");
 			response.setHeader("Content-Transfer-Encoding", "binary");
 			response.getOutputStream().write(fileByte);
 			response.getOutputStream().flush();

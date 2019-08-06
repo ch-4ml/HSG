@@ -15,7 +15,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12">
-					<h1>교육 컨설팅</h1>
+					<h1 class="text-shadow-banner">교육 컨설팅</h1>
 				</div>
 			</div>
 		</div>
@@ -24,11 +24,10 @@
 
 	<!-- About Area Starts -->
 	<section id="two" class="wrapper style2 alt">
-		<div style="text-align:center;"><h2>교육 컨설팅</h2></div><br><br>
 		<div class="inner">
 			<form id="content_form" method="post" action="update.ec">
 				<div class="contents">
-					<span id="contents"> ${content.text } </span>
+					<span id="contents"> ${c.contents } </span>
 				</div>
 				<br>
 				<span id="updateButton">
@@ -39,7 +38,7 @@
 						<br>
 					</c:if>
 				</span>
-				<input type="hidden" name="id" value="${content.id }">
+				<input type="hidden" name="id" value="${c.id }">
 			</form>
 		</div>
 	</section>

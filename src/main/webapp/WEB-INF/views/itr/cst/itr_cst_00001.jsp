@@ -15,7 +15,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12">
-					<h1>컨설팅 및 주요 실적</h1>
+					<h1 class="text-shadow-banner">컨설팅 및 주요 실적</h1>
 				</div>
 			</div>
 		</div>
@@ -24,7 +24,6 @@
 
 	<!-- About Area Starts -->
 	<section id="two" class="wrapper style2 alt">
-		<div style="text-align:center;"><h2>컨설팅 및 주요 실적</h2></div><br><br>
 	    <div class="inner">
 			<form id="content_form" method="post" action="update.ic">
 				<div class="contents">

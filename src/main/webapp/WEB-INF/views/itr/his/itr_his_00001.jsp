@@ -15,7 +15,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12">
-					<h1>일반현황 및 연혁</h1>
+					<h1 class="text-shadow-banner">일반현황 및 연혁</h1>
 				</div>
 			</div>
 		</div>
@@ -24,7 +24,6 @@
 
 	<!-- About Area Starts -->
 	<section id="two" class="wrapper style2 alt">
-		<div style="text-align:center;"><h2>일반현황 및 연혁</h2></div><br><br>
 		<div class="inner">
 			<form id="content_form" method="post" action="update.ih">
 				<div class="contents">

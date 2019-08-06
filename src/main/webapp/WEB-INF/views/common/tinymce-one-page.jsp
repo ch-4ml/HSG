@@ -56,9 +56,7 @@
     			                	url: "delete.fi",
     			                	data: {"stored": selectedNode.src},
     			                	dataType: "json",
-    			                	success: function(data) {
-    									alert("됐다")	;
-    			                	}
+    			                	success: function(data) { }
     			                }); // A callback that will let me invoke the deletion of the image on the server if appropriate for the image source.
     			            }
     			        }
@@ -70,23 +68,13 @@
     		    	});
     		  	},
     		    images_upload_url: 'update.fi',
-    		    images_upload_base_path: 'http://ark9659.cafe24.com/HSG/resources/uploadFiles',
+    		    images_upload_base_path: 'http://hsgbiz.com/HSG/resources/uploadFiles',
     		    images_reuse_filename: true
     		});
     		$("#updateButton").html("");
     	});
     });
-    
-    
-//    $(function() {
-    //$('#content_form').click(function(e) {
-   			//e.preventDefault();
-   	//		geditor.uploadImages(function(success) {
-    	//		alert("업로드 성공");
-       		//});
-    	//});
-    //});
-    
+        
 </script>
 </head>
 <body>

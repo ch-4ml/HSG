@@ -45,7 +45,7 @@ public class EmpLecController {
 	private Date currentDate = new Date();
 	private String postDate = formatter.format (currentDate);
 	
-	private String root = "/ark9659/tomcat/webapps/var/HSG/uploadFiles";
+	private String root = "/hsglobal03/tomcat/webapps/var/HSG/uploadFiles";
 	private String filePath = "/emplec_upload_files";
 	
 	// 추가 페이지
@@ -276,7 +276,7 @@ public class EmpLecController {
 		List<String> toAddress = new ArrayList<String>();
 		// 대표님과 관리자 이메일로 변경, 추가 가능
 		toAddress.add("ark9659@gmail.com");
-		toAddress.add("cksgud1350@naver.com");
+		toAddress.add("junho.seo@hsgbiz.com");
 		String subject = "[HS글로벌 강사 지원] " + request.getParameter("name");
 		String contents = "지원자 이름 : " + request.getParameter("name") + "\r\n" + 
 					  "분야 : " + request.getParameter("field") + "\r\n" + 

@@ -35,17 +35,13 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1>회사 위치</h1>
+                    <h1 class="text-shadow-banner">회사 위치</h1>
                 </div>
             </div>
         </div>
     </section>
     <!-- Banner Area End -->
-	<section id="two" class="wrapper style2 alt">
-		<div style="text-align:center;"><h2>지도</h2></div><br>
-	</section>
-	<br><br>
-	<div id="maps"></div><br><br>
+    <br><br><div id="maps"></div><br><br>
 
     <script>
     var marker;
@@ -85,7 +81,7 @@
 	}
 	</script>
     <section id="two" class="wrapper style2 alt">
-	    <div style="text-align:center;"><h2>오시는길</h2></div><br><br>
+	    <div style="text-align:center;"><h2>대중교통</h2></div><br><br>
 	    <div class="inner">
 			<form id="content_form" method="post" action="update.il">
 				<div class="contents">

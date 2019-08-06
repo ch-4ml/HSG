@@ -6,21 +6,6 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <%@ include file="../../common/head.jsp"%>
-
-<script>   	
-function updateBtnClickEvent(id) {
-   	location.href='updateView.ib?id=' + id;
-}
-</script>
-<script>
-function deleteBtnClickEvent(id) {
-	var sign = confirm("정말로 삭제하시겠습니까?");
-	
-	if(sign == true){
-		location.href="delete.ib?id=" + id;
-	}
-}
-</script>
 </head>
 <body>
 	<jsp:include page="../../common/header-content.jsp" />
@@ -29,53 +14,58 @@ function deleteBtnClickEvent(id) {
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12">
-					<h1>출판 도서/특허</h1>
+					<h1 class="text-shadow-banner">출판 도서/특허</h1>
 				</div>
 			</div>
 		</div>
 	</section>
 	<!-- Banner Area End -->
-
 	<section id="one" class="wrapper style2 alt">
+		<c:if test="${!empty loginUser }">
+			<div style="text-align: center;">
+				<ul class="actions special">
+					<li><input type="button" id="insert" onclick="location.href='insertView.ib'" value="추가"></li>
+				</ul>
+			</div>
+			<br>
+			<br>
+		</c:if>
 		<div style="text-align: center;">
-			<h2>출판 도서</h2>
+			<h2>도서</h2>
 		</div>
-		<br>
-		<br>
+		<br><br>
 		<div class="inner">
-			<c:if test="${!empty loginUser }">
-				<div style="text-align: center;">
-					<ul class="actions special">
-						<li><input type="button" id="insert" onclick="location.href='insertView.ib'" value="추가"></li>
-					</ul>
-				</div>
-				<br>
-				<br>
-			</c:if>
 			<c:forEach var="c" items="${cs}">
 				<c:if test="${c.category eq 1 }">
-					<div class="spotlight">
-						<div class="image">
-							<img src="<%= uploadPath %>${c.contents}" alt="" />
-						</div>
-						<div class="list">
+					<table class="simple">
+						<tr class="portrait">
+							<td class="portrait-image">
+							<c:choose>
+							<c:when test="${!empty loginUser }">
+							<a href="updateView.ib?id=${c.id }">
+							</c:when>
+							<c:otherwise>
 							<a href="redirect.ib?url=${c.url }" target="_blank">
-								<div class="list-content">
-									<h3>${c.title}</h3>
-									<br>
-									<p>${c.text}</p>
-								</div>
+							</c:otherwise>
+							</c:choose>
+							<img src="<%= uploadPath %>${c.contents}" alt="" />
 							</a>
-							<div class="list-button">
-								<c:if test="${!empty loginUser }">
-									<ul class="actions">
-										<li><input type="button" onclick="updateBtnClickEvent(${c.id})" value="수정"></li>
-										<li><input type="button" onclick="deleteBtnClickEvent(${c.id})" value="삭제"></li>
-									</ul>
-								</c:if>
-							</div>
-						</div>
-					</div>
+							</td>
+							<td class="portrait-contents">
+							<c:choose>
+							<c:when test="${!empty loginUser }">
+							<a href="updateView.ib?id=${c.id }">
+							</c:when>
+							<c:otherwise>
+							<a href="redirect.ib?url=${c.url }" target="_blank">
+							</c:otherwise>
+							</c:choose>
+									<h3>${c.title}</h3>
+									<h4>${c.origin}</h4>
+									<p>${c.text}</p>
+							</a></td>
+						</tr>
+					</table>
 				</c:if>
 			</c:forEach>
 		</div>
@@ -84,31 +74,37 @@ function deleteBtnClickEvent(id) {
 		<div style="text-align: center;">
 			<h2>특허</h2>
 		</div>
-		<br>
-		<br>
+		<br> <br>
 		<div class="inner">
 			<c:forEach var="c" items="${cs}">
 				<c:if test="${c.category eq 2 }">
-					<div class="spotlight">
-						<div class="image">
+					<table class="simple">
+						<tr class="portrait">
+							<td class="portrait-image">
+							<c:choose>
+							<c:when test="${!empty loginUser }">
+							<a href="updateView.ib?id=${c.id }">
+							</c:when>
+							<c:otherwise>
+							<a href="redirect.ib?url=${c.url }" target="_blank">
+							</c:otherwise>
+							</c:choose>
 							<img src="<%= uploadPath %>${c.contents}" alt="" />
-						</div>
-						<div class="list">
-							<div class="list-content">
-								<h3>${c.title}</h3>
-								<p>${c.text}</p>
-							</div>
-							<div class="list-button">
-								<c:if test="${!empty loginUser }">
-									<ul class="actions">
-										<li><input type="button" onclick="updateBtnClickEvent(${c.id})" value="수정"></li>
-										<li><input type="button" onclick="deleteBtnClickEvent(${c.id})" value="삭제"></li>
-									</ul>
-								</c:if>
-							</div>
-						</div>
-						<br>
-					</div>
+							</a></td>
+							<td class="portrait-contents">
+							<c:choose>
+							<c:when test="${!empty loginUser }">
+							<a href="updateView.ib?id=${c.id }">
+							</c:when>
+							<c:otherwise>
+							<a href="redirect.ib?url=${c.url }" target="_blank">
+							</c:otherwise>
+							</c:choose>
+									<h3>${c.title}</h3>
+									<p>${c.text}</p>
+							</a></td>
+						</tr>
+					</table>
 				</c:if>
 			</c:forEach>
 		</div>

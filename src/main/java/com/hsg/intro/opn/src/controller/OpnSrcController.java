@@ -42,14 +42,20 @@ public class OpnSrcController {
 	private String postDate = formatter.format(currentDate);
 
 	// 업로드 경로
-	private String root = "/ark9659/tomcat/webapps/var/HSG/uploadFiles";
+	private String root = "/hsglobal03/tomcat/webapps/var/HSG/uploadFiles";
 	private String filePath = "/opnsrc_upload_files";
 	
 	// 페이지 이동
 	@RequestMapping(value = "view.os")
 	public ModelAndView view(ModelAndView mv) {
-		
-		mv.setViewName("opn/src/opn_src_00001");
+		try {
+			int count = csi.getListCount(pageId);
+			mv.addObject("count", count);
+			mv.setViewName("opn/src/opn_src_00001");
+		} catch(ContentsException e) {
+			mv.addObject("message",e.getMessage());
+			mv.setViewName("redirect:/common/errorPage");
+		}
 		return mv;		
 	}
 	
@@ -98,9 +104,9 @@ public class OpnSrcController {
 			mv.addObject("cs", cs);
 			mv.setViewName("jsonView");
 		} catch (ContentsException e) {
-			e.printStackTrace();
+			mv.addObject("message",e.getMessage());
+			mv.setViewName("redirect:/common/errorPage");
 		}
-		
 		return mv;
 	}
 	
@@ -203,7 +209,7 @@ public class OpnSrcController {
 				// /xxxxxx_upload_files/파일명.ext 형태로 객체에 넣음 
 				fileName = filePath + "/" + newfileName + ext;
 				originFileName = file.getOriginalFilename();
-				c.setContents(fileName);
+				c.setText(fileName);
 				c.setOrigin(originFileName);
 				
 				// 폴더 없으면 생성
@@ -282,7 +288,7 @@ public class OpnSrcController {
 					// /xxxxxx_upload_files/파일명.ext 형태로 객체에 넣음 
 					fileName = filePath + "/" + newfileName + ext;
 					originFileName = file.getOriginalFilename();
-					c.setContents(fileName);
+					c.setText(fileName);
 					c.setOrigin(originFileName);
 					
 					
@@ -345,7 +351,7 @@ public class OpnSrcController {
 			HttpServletRequest request){
 		
 		try {
-			String deleteFileName = csi.findById(id).getContents();
+			String deleteFileName = csi.findById(id).getText();
 			// ##################### 파일 삭제 처리 #######################
 			String deleteFilePath = root + deleteFileName;
 			
@@ -385,7 +391,7 @@ public class OpnSrcController {
 			byte fileByte[] = FileUtils.readFileToByteArray(new File(downloadFilePath));
 			
 			response.setContentType("application/octet-stream");
-			response.setHeader("Content-Disposition", "attachment; fileName=" + URLEncoder.encode(c.getOrigin(), "UTF-8") + ";");
+			response.setHeader("Content-Disposition", "attachment; fileName=" + URLEncoder.encode(c.getOrigin(), "UTF-8").replace("+", " ") + ";");
 			response.setHeader("Content-Transfer-Encoding", "binary");
 			response.getOutputStream().write(fileByte);
 			response.getOutputStream().flush();

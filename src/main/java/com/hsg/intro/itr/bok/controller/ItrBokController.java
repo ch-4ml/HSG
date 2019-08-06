@@ -34,7 +34,7 @@ public class ItrBokController {
 	private Date currentDate = new Date();
 	private String postDate = formatter.format (currentDate);
 	
-	private String root = "/ark9659/tomcat/webapps/var/HSG/uploadFiles";
+	private String root = "/hsglobal03/tomcat/webapps/var/HSG/uploadFiles";
 	private String filePath = "/itrbok_upload_files";
 	
 	// 서적/특허 추가
@@ -93,6 +93,8 @@ public class ItrBokController {
 	}
 	
 	// 서적/특허 수정
+	
+	
 		@RequestMapping(value = "update.ib", method = RequestMethod.POST) // DI 의존성 주입
 		public ModelAndView updateIbkBok(Contents c, ModelAndView mv, 
 				@RequestParam(required=false) MultipartFile file, 
@@ -149,9 +151,11 @@ public class ItrBokController {
 					}
 					
 			} catch (IllegalStateException e1) {
-				e1.printStackTrace();
+				mv.addObject("message",e1.getMessage());
+				mv.setViewName("redirect:/common/errorPage");
 			} catch (IOException e1) {
-				e1.printStackTrace();
+				mv.addObject("message",e1.getMessage());
+				mv.setViewName("redirect:/common/errorPage");
 			}
 			
 			c.setPageId(pageId);

@@ -15,7 +15,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12">
-					<h1>교육솔루션 - 소프트웨어</h1>
+					<h1 class="text-shadow-banner">소프트웨어 분야</h1>
 				</div>
 			</div>
 		</div>
@@ -24,10 +24,9 @@
 
 	<!-- About Area Starts -->
 <section id="two" class="wrapper style2 alt">
-	<div style="text-align:center;"><h2>소프트웨어 교육솔루션</h2></div><br><br>
 	<div class="inner">
 		<form id="content_form" method="post" action="update.es">
-			<div class="contents">
+			<div class="contents-table">
 				<span id="contents"> ${c.contents } </span>
 			</div>
 			<br>

@@ -20,14 +20,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.hsg.intro.Exception.ContentsException;
 import com.hsg.intro.common.PageInfo;
 import com.hsg.intro.common.contents.model.service.ContentsServiceImpl;
 import com.hsg.intro.common.contents.model.vo.Contents;
-import com.hsg.intro.common.files.model.dao.FilesDaoImpl;
 import com.hsg.intro.common.files.model.service.FilesServiceImpl;
 import com.hsg.intro.common.files.model.vo.Files;
 
@@ -46,14 +44,20 @@ public class OpnLatController {
 	Date currentDate = new Date();
 	String postDate = formatter.format(currentDate);
 
-	private String root = "/ark9659/tomcat/webapps/var/HSG/uploadFiles";
+	private String root = "/hsglobal03/tomcat/webapps/var/HSG/uploadFiles";
 	String filePath = "/" + dirName;
 	
 	// 페이지 이동
 	@RequestMapping(value = "view.ol")
 	public ModelAndView view(ModelAndView mv) {
-		
-		mv.setViewName("opn/lat/opn_lat_00001");
+		try {
+			int count = csi.getListCount(pageId);
+			mv.addObject("count", count);
+			mv.setViewName("opn/lat/opn_lat_00001");
+		} catch(ContentsException e) {
+			mv.addObject("message",e.getMessage());
+			mv.setViewName("redirect:/common/errorPage");
+		}
 		return mv;		
 	}
 	
@@ -223,7 +227,7 @@ public class OpnLatController {
 				// /xxxxxx_upload_files/파일명.ext 형태로 객체에 넣음 
 				fileName = filePath + "/" + newfileName + ext;
 				originFileName = file.getOriginalFilename();
-				c.setContents(fileName);
+				c.setText(fileName);
 				c.setOrigin(originFileName);
 				
 				// 폴더 없으면 생성
@@ -285,9 +289,6 @@ public class OpnLatController {
 			if(!file.isEmpty()) { //
 				String fileName = "";
 				String originFileName = "";
-				
-				// ##################### 파일 삭제 처리 #######################
-				// String deleteFileName = csi.findById(c.getId()).getContents();
 
 				// 파일명 새이름 설정
 				int randomNumber = (int)((Math.random()*10000)+1);
@@ -302,7 +303,7 @@ public class OpnLatController {
 				// /xxxxxx_upload_files/파일명.ext 형태로 객체에 넣음 
 				fileName = filePath + "/" + newfileName + ext;
 				originFileName = file.getOriginalFilename();
-				c.setContents(fileName);
+				c.setText(fileName);
 				c.setOrigin(originFileName);
 				
 				
@@ -365,7 +366,7 @@ public class OpnLatController {
 			HttpServletRequest request){
 		
 		try {
-			String deleteFileName = csi.findById(id).getContents();
+			String deleteFileName = csi.findById(id).getText();
 			// ##################### 파일 삭제 처리 #######################
 			String deleteFilePath = root + deleteFileName;
 			
@@ -405,7 +406,7 @@ public class OpnLatController {
 			byte fileByte[] = FileUtils.readFileToByteArray(new File(downloadFilePath));
 			
 			response.setContentType("application/octet-stream");
-			response.setHeader("Content-Disposition", "attachment; fileName=" + URLEncoder.encode(c.getOrigin(), "UTF-8") + ";");
+			response.setHeader("Content-Disposition", "attachment; fileName=" + URLEncoder.encode(c.getOrigin(), "UTF-8").replace("+", " ") + ";");
 			response.setHeader("Content-Transfer-Encoding", "binary");
 			response.getOutputStream().write(fileByte);
 			response.getOutputStream().flush();

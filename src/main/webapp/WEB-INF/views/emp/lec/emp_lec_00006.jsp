@@ -16,7 +16,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1>강사 지원</h1>
+                    <h1 class="text-shadow-banner">강사 지원 완료</h1>
                 </div>
             </div>
         </div>
