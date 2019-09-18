@@ -230,7 +230,7 @@ opacity
 
 .menu-has-children ul li a {
 	padding: 4px 10px !important;
-	text-transform: uppercase !important
+	/*text-transform: uppercase !important*/
 }
 
 .sf-arrows .sf-with-ul, .sf-arrows .sf-main {
