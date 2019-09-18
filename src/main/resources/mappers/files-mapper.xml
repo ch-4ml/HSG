@@ -19,7 +19,7 @@
   	<insert id="insert" parameterType="Files">
   		INSERT INTO 
   		hsgbiz_files(CONTENTS_ID, PAGE_ID, ORIGIN, STORED, SIZE, CATEGORY, POST_DATE) 
-  		VALUES(#{contentsId}, #{pageId}, #{origin}, #{stored}, #{size}, #{category}, #{postDate})
+  		VALUES(#{contentsId}, #{pageId}, #{origin}, #{stored}, #{size}, #{category}, now())
   	</insert>
   	<select id="findById" resultMap="filesResultSet" parameterType="Files">
   		SELECT * FROM hsgbiz_files
@@ -52,7 +52,7 @@
   			STORED = #{stored},
   			SIZE = #{size},
   			CATEGORY = #{category},
-  			POST_DATE = #{postDate}
+  			POST_DATE = now()
   		</set>
   		WHERE ID = #{id}
   	</update>

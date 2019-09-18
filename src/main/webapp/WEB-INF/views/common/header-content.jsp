@@ -28,10 +28,10 @@
                                 <li><a href="view.ig">CEO 인사말</a></li>
                                 <li><a href="view.ih">일반현황 및 연혁</a></li>
 								<li><a href="view.io">조직 및 사업 분야</a></li>
-								<li><a href="view.ib">출판 도서/특허</a></li>
+								<li><a href="view.ib">출판 도서 & 특허</a></li>
 								<!-- <li><a href="view.ic">컨설팅 및 주요 실적</a></li> -->
-								<li><a href="view.ip">Partner & Customer</a></li>
-								<li><a href="view.il">회사위치</a></li>
+								<li><a href="view.ip">PARTNER & CUSTOMER</a></li>
+								<li><a href="view.il">회사 위치</a></li>
                             </ul>
                         </li>
                         <li class="menu-has-children"><a href="view.ol">오픈소스</a>

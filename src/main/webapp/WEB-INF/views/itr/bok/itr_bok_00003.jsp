@@ -24,8 +24,6 @@ function resize(obj) {
 				return alert("제목을 입력해주세요.");
 			} else if(url == "") {
 				return alert("연결할 주소를 입력해주세요.");
-			} else if(origin == "") {
-				return alert("출판사, 출판년도를 입력해주세요.");
 			} else if(text == ""){
 				return alert("내용을 입력해주세요.");
 			} else {

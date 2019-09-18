@@ -17,7 +17,7 @@
 	<insert id = "insert" parameterType="Contents">
 		INSERT INTO 
 		hsgbiz_contents(PAGE_ID, CATEGORY, TITLE, CONTENTS, ORIGIN, TEXT, URL, POST_DATE) 
-		VALUES(#{pageId}, #{category}, #{title}, #{contents}, #{origin}, #{text}, #{url}, #{postDate})
+		VALUES(#{pageId}, #{category}, #{title}, #{contents}, #{origin}, #{text}, #{url}, now())
 	</insert>
 	<!-- 
 	<select id="findAll" resultMap="contentsResultSet" parameterType="Contents">
@@ -74,7 +74,7 @@
 				<if test="url != null">
 				URL = #{url},
 				</if>
-				POST_DATE = #{postDate} 			
+				POST_DATE = now() 			
 			</set>
 		WHERE ID = #{id};
 	</update>

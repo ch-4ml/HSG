@@ -15,12 +15,12 @@
                         <div class="single-widget-home mb-5 mb-lg-0">
                             <h3 class="mb-4">회사 소개</h3>
                             <ul>
-                                <li class="mb-2"><a href="view.ig">CEO인사말</a></li>
+                                <li class="mb-2"><a href="view.ig">CEO 인사말</a></li>
                                 <li class="mb-2"><a href="view.ih">일반현황 및 연혁</a></li>
                                 <li class="mb-2"><a href="view.io">조직 및 사업 분야</a></li>
-                                <li class="mb-2"><a href="view.ib">출판도서 / 특허</a></li>
+                                <li class="mb-2"><a href="view.ib">출판도서 & 특허</a></li>
                                 <!-- <li class="mb-2"><a href="view.ic">컨설팅 및 주요 실적</a></li> -->
-                                <li class="mb-2"><a href="view.ip">Partner & Customer</a></li>
+                                <li class="mb-2"><a href="view.ip">PARTNER & CUSTOMER</a></li>
                                 <li><a href="view.il">회사 위치</a></li>
                             </ul>
                         </div>
@@ -43,7 +43,7 @@
                              <ul>
                                 <li class="mb-2"><a href="view.ee">E-Learning</a></li>
                                 <li class="mb-2"><a href="view.eh">하드웨어 분야</a></li>
-                                <li class="mb-2"><a href="view.io">소프트웨어 분야</a></li>
+                                <li class="mb-2"><a href="view.es">소프트웨어 분야</a></li>
                                 <li class="mb-2"><a href="view.ec">교육 컨설팅</a></li>
 								<li class="mb-2"><a href="view.er">교육 의뢰</a></li>
                             </ul>

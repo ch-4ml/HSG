@@ -38,7 +38,7 @@
 					<tr class="portrait">
 						<td class="portrait-image">
 							<a href="viewDetail.el?id=${c.id }">
-								<img src="<%= uploadPath %>${c.contents }" alt="">
+								<img src="<%= uploadPath %>${c.origin }" alt="">
 							</a>
 						</td>
 						<td class="portrait-contents">
