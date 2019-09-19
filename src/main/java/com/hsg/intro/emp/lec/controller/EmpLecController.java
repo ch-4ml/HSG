@@ -58,25 +58,36 @@ public class EmpLecController {
 	// 추가
 	@RequestMapping(value="insert.el")
 	public ModelAndView insert(Contents c, ModelAndView mv, 
-			@RequestParam(required=false) MultipartFile file, 
-			HttpServletRequest request) {
+			MultipartHttpServletRequest request) {
+		
+		MultipartFile file = request.getFile("file");
+		MultipartFile thumbnail = request.getFile("thumbnail");
 		
 		// ################### 파일 업로드 ###################
 		String fileName = "";
+		String thumbnailName = "";
 		try {
 			// 파일명 새이름 설정
 			int randomNumber = (int)((Math.random()*10000)+1);
+			int t_randomNumber = randomNumber + 1;
 			SimpleDateFormat format = new SimpleDateFormat ( "yyyyMMddHHmmss");
 			Date nowTime = new Date();
 			String newfileName = format.format(nowTime) + String.valueOf(randomNumber);
+			String newThumbnailName = format.format(nowTime) + String.valueOf(t_randomNumber);
 			
 			// 확장자 구하기
 			int pos = file.getOriginalFilename().lastIndexOf(".");
 			String ext = file.getOriginalFilename().substring(pos);
 			
+			int t_pos = thumbnail.getOriginalFilename().lastIndexOf(".");
+			String t_ext = thumbnail.getOriginalFilename().substring(t_pos);
+			
 			// /xxxxxx_upload_files/파일명.ext 형태로 객체에 넣음 
 			fileName = filePath + "/" + newfileName + ext;
 			c.setContents(fileName);
+			
+			thumbnailName = filePath + "/" + newThumbnailName + t_ext;
+			c.setOrigin(thumbnailName);
 			
 			// 폴더 없으면 생성
 			File uploadPath = new File(root + filePath);
@@ -86,6 +97,7 @@ public class EmpLecController {
 		
 			// 해당 폴더에 파일 생성
 			file.transferTo(new File(root + fileName));
+			thumbnail.transferTo(new File(root + thumbnailName));
 			
 		} catch (IllegalStateException e1) {
 			e1.printStackTrace();
@@ -152,22 +164,35 @@ public class EmpLecController {
 	// 업데이트(검색한 페이지로 돌아가게 하려면 파라미터 추가)
 	@RequestMapping(value="update.el", method=RequestMethod.POST) // DI 의존성 주입
 	public ModelAndView updateEduEln(Contents c, ModelAndView mv, 
-			@RequestParam(required=false) MultipartFile file, 
-			HttpServletRequest request) throws ContentsException {
+			MultipartHttpServletRequest request) throws ContentsException {
 
+		MultipartFile file = request.getFile("file");
+		MultipartFile thumbnail = request.getFile("thumbnail");
+		
 		try {
 			System.out.println("#################### update.el file.isEmpty() : " + file.isEmpty() + "####################");
+			System.out.println("#################### update.el thumbnail.isEmpty() : " + thumbnail.isEmpty() + "####################");
 			System.out.println("#################### update.el content : " + c + "####################");
 			
-			if(!file.isEmpty()) { // 파일이 null 일 경우
-				String fileName = "";
+			int randomNumber = (int)((Math.random()*10000)+1);
+			int t_randomNumber = randomNumber + 1;
+			SimpleDateFormat format = new SimpleDateFormat ("yyyyMMddHHmmss");
+			Date nowTime = new Date();
+			
+			String fileName = "";
+			String thumbnailName = "";
+			
+			// 폴더 없으면 생성
+			File uploadPath = new File(root + filePath);
+			if(!uploadPath.exists()) {
+				uploadPath.mkdirs();
+			}
+			
+			if(!file.isEmpty()) { // 파일이 존재하는 경우		
 				// ##################### 파일 삭제 처리 #######################
 				String deleteFileName = csi.findById(c.getId()).getContents();
-
+				
 				// 파일명 새이름 설정
-				int randomNumber = (int)((Math.random()*10000)+1);
-				SimpleDateFormat format = new SimpleDateFormat ("yyyyMMddHHmmss");
-				Date nowTime = new Date();
 				String newfileName = format.format(nowTime) + String.valueOf(randomNumber);	
 				
 				// 확장자 구하기
@@ -177,12 +202,6 @@ public class EmpLecController {
 				// /xxxxxx_upload_files/파일명.ext 형태로 객체에 넣음 
 				fileName = filePath + "/" + newfileName + ext;
 				c.setContents(fileName);
-				
-				// 폴더 없으면 생성
-				File uploadPath = new File(root + filePath);
-				if(!uploadPath.exists()) {
-					uploadPath.mkdirs();
-				}
 			
 				// 해당 폴더에 파일 생성
 				file.transferTo(new File(root + fileName));
@@ -193,10 +212,31 @@ public class EmpLecController {
 				// ##################### 파일 삭제 처리 #######################
 				File deleteFile = new File(deleteFilePath); // 파일 URL
 				
-				System.out.println("#################### update.ee deleteFilePath : " + deleteFilePath + "####################");
+				System.out.println("#################### update.el deleteFilePath : " + deleteFilePath + "####################");
 				
 				if(deleteFile.exists()) {
 					if(deleteFile.delete()) {
+						System.out.println("파일 삭제 완료");
+					} else {
+						System.out.println("파일 삭제 실패");
+					}
+				} else {
+					System.out.println("파일이 존재하지 않습니다.");
+				}
+			}
+			
+			if(!thumbnail.isEmpty()) {
+				String deleteThumbnailName = csi.findById(c.getId()).getOrigin();
+				String newThumbnailName = format.format(nowTime) + String.valueOf(t_randomNumber);
+				int t_pos = thumbnail.getOriginalFilename().lastIndexOf(".");
+				String t_ext = thumbnail.getOriginalFilename().substring(t_pos);
+				thumbnailName = filePath + "/" + newThumbnailName + t_ext;
+				c.setOrigin(thumbnailName);
+				thumbnail.transferTo(new File(root + thumbnailName));
+				String deleteThumbnailPath = root + deleteThumbnailName;
+				File deleteThumbnail = new File(deleteThumbnailPath); // 파일 URL
+				if(deleteThumbnail.exists()) {
+					if(deleteThumbnail.delete()) {
 						System.out.println("파일 삭제 완료");
 					} else {
 						System.out.println("파일 삭제 실패");
