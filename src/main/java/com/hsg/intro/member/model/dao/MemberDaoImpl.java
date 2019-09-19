@@ -25,6 +25,8 @@ public class MemberDaoImpl implements MemberDao{
 
 		String result = "";
 		
+		// System.out.println("암호화 된 키를 보자 : " + passwordEncoder.encode(m.getUserPw()));
+		
 		System.out.println("암호화된 비밀번호 : " + cryptPwd);
 		
 		if (!passwordEncoder.matches(m.getUserPw(), cryptPwd)) {

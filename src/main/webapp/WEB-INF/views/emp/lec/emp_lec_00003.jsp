@@ -56,7 +56,7 @@ $(function() {
     <section id="two" class="wrapper style2 alt content-center">
 	    <div><h2>${c.title }</h2></div>
 	    <div class="inner">
-    		<div class="contents">
+    		<div class="contents emplec">
    				<br><br>
    				<img src="<%= uploadPath %>${c.contents }" alt="">
 				<br><br>

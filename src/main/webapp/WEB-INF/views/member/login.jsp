@@ -31,7 +31,7 @@
 	    			method: "post",
 	    			url: "<%=PATH %>/login.me",
 	    			data: loginUser,
-	    			success: function(data){  	
+	    			success: function(data){    				
 						if(data.result == "T"){
 							window.location.assign("<%=PATH %>/loginSessionStore.me?userId="+userId);
 						} else {

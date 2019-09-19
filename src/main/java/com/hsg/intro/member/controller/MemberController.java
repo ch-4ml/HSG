@@ -81,46 +81,47 @@ public class MemberController {
 		request.getSession().setAttribute("prevPage", referer);
 		return "member/login";
 	}
-	//회원가입
-	/*@RequestMapping("insert.me")
-	public String insertMember(Member m, Model model
-			, @RequestParam(name="photo", required=false) MultipartFile photo
-			, HttpServletRequest request){
-		
-		String root = request.getSession().getServletContext().getRealPath("resources");
-		String filePath = root + "\\uploadFiles";
-		
-		System.out.println(filePath);
-		
-		try {
-			System.out.println("photo : " + photo);
-			photo.transferTo(new File(filePath + "\\" + photo.getOriginalFilename()));
-		} catch (IllegalStateException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		
-		m.setUserPwd(passwordEncoder.encode(m.getUserPwd()));
-		
-		if(m.getGender().equals("1") || m.getGender().equals("3") ){
-			m.setGender("M");
-		} else {
-			m.setGender("F");
-		}
-		
-		System.out.println("controller : " + m);
-		
-		try {
-			ms.insertMember(m);
-			return "main/main";
-		} catch (RuntimeException e) {
-			model.addAttribute("message","濡쒓렇?씤?떎?뙣");
-			return "common/errorPage";
-		}
-	}*/
+	
+//	//회원가입
+//	@RequestMapping("insert.me")
+//	public String insertMember(Member m, Model model
+//			, @RequestParam(name="photo", required=false) MultipartFile photo
+//			, HttpServletRequest request){
+//		
+//		String root = request.getSession().getServletContext().getRealPath("resources");
+//		String filePath = root + "\\uploadFiles";
+//		
+//		System.out.println(filePath);
+//		
+//		try {
+//			System.out.println("photo : " + photo);
+//			photo.transferTo(new File(filePath + "\\" + photo.getOriginalFilename()));
+//		} catch (IllegalStateException e1) {
+//			// TODO Auto-generated catch block
+//			e1.printStackTrace();
+//		} catch (IOException e1) {
+//			// TODO Auto-generated catch block
+//			e1.printStackTrace();
+//		}
+//		
+//		m.setUserPwd(passwordEncoder.encode(m.getUserPwd()));
+//		
+//		if(m.getGender().equals("1") || m.getGender().equals("3") ){
+//			m.setGender("M");
+//		} else {
+//			m.setGender("F");
+//		}
+//		
+//		System.out.println("controller : " + m);
+//		
+//		try {
+//			ms.insertMember(m);
+//			return "main/main";
+//		} catch (RuntimeException e) {
+//			model.addAttribute("message","濡쒓렇?씤?떎?뙣");
+//			return "common/errorPage";
+//		}
+//	}
 	
 	// 중복검사
 	/*@RequestMapping("duplicationCheck.me")
